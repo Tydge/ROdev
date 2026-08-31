@@ -1,0 +1,13 @@
+character:
+  name: NoraEllis
+  character_id: 150006
+  account_id: 2000005
+identity:
+  archetype: support Priest capable of solo levelling
+  career_wish: { first_job: Acolyte, second_job: Priest, skip_job_quests: true }
+growth:
+  priorities: [INT, VIT, DEX]
+  combat_style: Holy Light, self-healing, later full party support
+implementation:
+  bot_instance: bot05
+  shared_career_script: npc/custom/bot_career_paths.txt

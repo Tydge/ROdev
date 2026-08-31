@@ -1,0 +1,13 @@
+character:
+  name: MiraVale
+  character_id: 150004
+  account_id: 2000003
+identity:
+  archetype: elemental Wizard
+  career_wish: { first_job: Mage, second_job: Wizard, skip_job_quests: true }
+growth:
+  priorities: [INT, DEX, VIT]
+  combat_style: Fire Bolt with weapon fallback, later multi-element area magic
+implementation:
+  bot_instance: bot03
+  shared_career_script: npc/custom/bot_career_paths.txt

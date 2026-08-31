@@ -1,0 +1,14 @@
+Windows 客户端：C:\Gravity\Ragnarok
+
+主要备份：
+  C:\Gravity\Ragnarok\LocalRO.exe.pre-lang
+  C:\Gravity\Ragnarok\LocalRO.exe.broken-lang
+  C:\Gravity\Ragnarok\_codex_backup_20260823_quest_nav
+
+当前可玩程序：
+  C:\Gravity\Ragnarok\LocalRO.exe
+
+当前 LocalRO.exe SHA-256：
+  B4CBFB979EE992AD28F32BCD0C597D2B8D90734CE9035E5ACF43DB6A183D9A80
+
+这些文件位于 Parallels 的 Windows 11 虚拟机内；不要用旧备份覆盖当前程序，除非正在执行有计划的回滚。

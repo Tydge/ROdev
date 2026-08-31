@@ -1,0 +1,57 @@
+character:
+  name: KoreHelper
+  character_id: 150002
+  account_id: 2000001
+
+identity:
+  archetype: AGI dagger Assassin
+  temperament: cautious, independent, survival-first
+  career_wish:
+    first_job: Thief
+    second_job: Assassin
+    skip_job_quests: true
+    first_job_at: Novice Job 10
+    second_job_at: Thief Job 50
+
+stats:
+  final_targets:
+    STR: 90
+    AGI: 90
+    VIT: 30
+    INT: 1
+    DEX: 50
+    LUK: 1
+  notes:
+    - AGI is raised early for survival and attack speed.
+    - STR follows for reliable dagger damage.
+    - DEX and VIT are added in stages for accuracy and durability.
+
+skills:
+  novice:
+    NV_BASIC: 9
+  thief:
+    TF_DOUBLE: 10
+    TF_MISS: 10
+    TF_STEAL: 10
+    TF_HIDING: 8
+    TF_POISON: 10
+    TF_DETOXIFY: 1
+  assassin:
+    AS_RIGHT: 5
+    AS_LEFT: 5
+    AS_CLOAKING: 10
+    AS_ENCHANTPOISON: 10
+    AS_POISONREACT: 10
+    AS_VENOMDUST: 9
+
+economy:
+  sell: ordinary low-value drops
+  keep:
+    - cards
+    - pet and taming items
+    - equipment
+    - useful consumables
+
+implementation:
+  openkore_config: /Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/openkore-local/instances/bot01/control/config.txt
+  server_job_script: /Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/rathena/npc/custom/korehelper_job_path.txt

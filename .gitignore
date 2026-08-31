@@ -1,0 +1,36 @@
+.DS_Store
+**/.DS_Store
+
+# Runtime output and local diagnostics
+*.log
+*.pid
+*.sock
+**/logs/
+**/log/
+**/tmp/
+**/cache/
+
+# Credentials and machine-local OpenKore instance state
+**/.env
+**/.env.*
+**/instances/*/control/config.txt
+**/instances/*/control/servers.txt
+**/instances/*/logs/
+
+# Local databases, dumps, and large binary archives
+**/database/
+*.sql
+*.sql.gz
+*.dmp
+*.zip
+*.7z
+*.rar
+
+# Editor and test artifacts
+.idea/
+.vscode/
+*.swp
+*.tmp
+__pycache__/
+.pytest_cache/
+

@@ -1,0 +1,13 @@
+character:
+  name: EthanRowe
+  character_id: 150003
+  account_id: 2000002
+identity:
+  archetype: durable two-handed Knight
+  career_wish: { first_job: Swordman, second_job: Knight, skip_job_quests: true }
+growth:
+  priorities: [STR, VIT, DEX, AGI]
+  combat_style: melee weapon attacks, later Bash and Knight sword skills
+implementation:
+  bot_instance: bot02
+  shared_career_script: npc/custom/bot_career_paths.txt

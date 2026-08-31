@@ -1,0 +1,13 @@
+character:
+  name: CalebWren
+  character_id: 150005
+  account_id: 2000004
+identity:
+  archetype: AGI/DEX bow Hunter
+  career_wish: { first_job: Archer, second_job: Hunter, skip_job_quests: true }
+growth:
+  priorities: [DEX, AGI, LUK, VIT]
+  combat_style: bow attacks and Double Strafe, later falcon and traps
+implementation:
+  bot_instance: bot04
+  shared_career_script: npc/custom/bot_career_paths.txt
