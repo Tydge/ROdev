@@ -17,17 +17,25 @@ BEGIN {
 }
 use WorldAI::CharacterSnapshot;
 use WorldAI::Index;
+use WorldAI::RouteProbe;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '2.0.0';
+our $VERSION = '3.0.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
 my $index = WorldAI::Index->new(path => $index_path);
 my $scorer = WorldAI::Scorer->new();
+my $route_probe = WorldAI::RouteProbe->new(
+	wall_timeout_ms => 1000,
+	task_slice_s => 0.03,
+);
 my $commands;
 my $MAX_TOP_N = 20;
+my $MAX_ROUTE_PROBES_PER_COMMAND = 8;
+my $ROUTE_PROBE_WALL_TIMEOUT_MS = 1000;
+my $ROUTE_COMMAND_BUDGET_MS = 2000;
 
 Plugins::register(
 	$NAME,
@@ -110,6 +118,10 @@ sub command_handler {
 			print_status();
 		} elsif ($args =~ /^top(?:\s+(\d+))?$/i) {
 			print_top(defined($1) ? int($1) : 5);
+		} elsif ($args =~ /^route\s+(\S+)$/i) {
+			print_route($1);
+		} elsif ($args =~ /^recommend\s+reachable$/i) {
+			print_reachable_recommendation();
 		} elsif ($args =~ /^recommend$/i) {
 			print_recommendation();
 		} elsif ($args =~ /^inspect\s+monster\s+(.+)$/i) {
@@ -135,6 +147,8 @@ sub print_help {
 	wa_log('[HELP] worldai status');
 	wa_log('[HELP] worldai top [N]');
 	wa_log('[HELP] worldai recommend');
+	wa_log('[HELP] worldai route <map>');
+	wa_log('[HELP] worldai recommend reachable');
 	wa_log('[HELP] worldai inspect monster <name|aegis|id>');
 	wa_log('[HELP] worldai inspect map <map>');
 	wa_log('[HELP] worldai reload');
@@ -142,7 +156,10 @@ sub print_help {
 
 sub print_status {
 	wa_log("[STATUS] plugin_version=$VERSION mode=RECOMMEND_ONLY movement_control=OFF combat_control=OFF");
-	wa_log('[STATUS] cpu_model=ON_DEMAND background_hooks=0 max_top_n=' . $MAX_TOP_N);
+	wa_log(sprintf(
+		'[STATUS] cpu_model=ON_DEMAND background_hooks=0 max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d',
+		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND,
+	));
 	if ($index->loaded) {
 		wa_log(sprintf(
 			'[STATUS] index=loaded schema=%s monsters=%d maps=%d candidate_pairs=%d',
@@ -274,6 +291,113 @@ sub print_recommendation {
 	wa_log(sprintf('[RECOMMEND] elapsed_ms=%.1f', $elapsed_ms));
 	_print_compact_result(1, $results->[0]);
 	wa_log('  estimated_hits=' . _fmt($results->[0]{estimated_hits}));
+}
+
+sub _route_value {
+	my ($value) = @_;
+	return defined($value) ? $value : 'undef';
+}
+
+sub _print_route_result {
+	my ($result, %args) = @_;
+	my $prefix = $args{prefix} || 'ROUTE';
+	wa_log(sprintf(
+		'[%s] source=%s (%s,%s) target=%s status=%s engine=%s elapsed_ms=%s',
+		$prefix,
+		_route_value($result->{source_map}), _route_value($result->{source_x}), _route_value($result->{source_y}),
+		_route_value($result->{target_map}), $result->{status}, $result->{engine}, _route_value($result->{elapsed_ms}),
+	));
+	if ($result->{status} eq 'REACHABLE') {
+		wa_log(sprintf(
+			'[%s] hops=%s weighted_cost=%s zeny=%s tickets=%s npc=%s command=%s airship=%s save_teleport=%s warp_item=%s',
+			$prefix,
+			map { _route_value($result->{$_}) }
+				qw(route_hops route_weighted_cost route_zeny route_tickets uses_npc uses_command uses_airship uses_save_teleport uses_warp_item),
+		));
+		wa_log("[$prefix] route=" . _route_value($result->{route_string}));
+	} else {
+		wa_warning(sprintf(
+			'[%s] error=%s message=%s',
+			$prefix, _route_value($result->{error_code}), _route_value($result->{error_message}),
+		));
+	}
+}
+
+sub print_route {
+	my ($requested_map) = @_;
+	my $map = _canonical_map($requested_map);
+	if (!$map) {
+		wa_warning('[ROUTE] invalid map name');
+		return;
+	}
+	my ($snapshot, $error) = _snapshot();
+	if (!$snapshot) {
+		wa_warning("[ROUTE] character snapshot unavailable reason=$error");
+		return;
+	}
+	my $result = $route_probe->probe(
+		map => $map,
+		source_map => $snapshot->{current_map}, source_x => $snapshot->{pos_x}, source_y => $snapshot->{pos_y},
+		budget => $snapshot->{zeny}, wall_timeout_ms => $ROUTE_PROBE_WALL_TIMEOUT_MS,
+	);
+	_print_route_result($result);
+	wa_log('[ROUTE] recommendation_only=yes movement_control=OFF combat_control=OFF');
+}
+
+sub print_reachable_recommendation {
+	my ($snapshot, $results, $score_elapsed_ms) = _calculate_ranked();
+	return unless $results;
+	if (!@$results) {
+		wa_warning('[RECOMMEND_REACHABLE] no allowed candidate');
+		return;
+	}
+	unless (defined($snapshot->{current_map}) && defined($snapshot->{pos_x}) && defined($snapshot->{pos_y})) {
+		wa_warning('[RECOMMEND_REACHABLE] source map or coordinates are unavailable');
+		return;
+	}
+
+	my $validated = $route_probe->first_reachable(
+		candidates => $results,
+		source_map => $snapshot->{current_map}, source_x => $snapshot->{pos_x}, source_y => $snapshot->{pos_y},
+		budget => $snapshot->{zeny},
+		max_probes => $MAX_ROUTE_PROBES_PER_COMMAND,
+		per_probe_timeout_ms => $ROUTE_PROBE_WALL_TIMEOUT_MS,
+		total_timeout_ms => $ROUTE_COMMAND_BUDGET_MS,
+	);
+	wa_log(sprintf(
+		'[RECOMMEND_REACHABLE] static_score_ms=%.1f route_elapsed_ms=%s probes=%d',
+		$score_elapsed_ms, _route_value($validated->{elapsed_ms}), $validated->{probes_used},
+	));
+	for my $attempt (@{$validated->{attempts}}) {
+		next if $attempt->{cached};
+		my $candidate = $attempt->{candidate};
+		my $route = $attempt->{result};
+		wa_log(sprintf(
+			'[VALIDATE] static_rank=%d %s (%d) @ %s score=%s risk=%s route=%s cached=%s action=%s',
+			$attempt->{static_rank}, $candidate->{monster_name}, $candidate->{monster_id}, $candidate->{target_map},
+			_fmt($candidate->{score}), $candidate->{risk}, $route->{status}, $attempt->{cached} ? 'yes' : 'no',
+			$route->{status} eq 'REACHABLE' ? 'SELECTED' : $route->{status} eq 'UNREACHABLE' ? 'SKIPPED' : 'DEFERRED',
+		));
+		wa_warning(sprintf('[VALIDATE] map=%s error=%s', $candidate->{target_map}, _route_value($route->{error_code})))
+			if $route->{status} ne 'REACHABLE';
+	}
+
+	wa_warning('[RECOMMEND_REACHABLE] route_probe_limit_reached') if $validated->{limit_reached};
+	wa_warning('[RECOMMEND_REACHABLE] route_command_budget_reached') if $validated->{budget_reached};
+	if ($validated->{selected}) {
+		my $selected = $validated->{selected};
+		my $selected_rank = @{$validated->{attempts}}
+			? $validated->{attempts}[-1]{static_rank} : 1;
+		wa_log(sprintf(
+			'[SELECTED] %s (%d) @ %s score=%s risk=%s static_rank=%d',
+			$selected->{monster_name}, $selected->{monster_id}, $selected->{target_map},
+			_fmt($selected->{score}), $selected->{risk}, $selected_rank,
+		));
+		_print_route_result($validated->{selected_result}, prefix => 'SELECTED_ROUTE');
+	} else {
+		wa_warning('[RECOMMEND_REACHABLE] no definitely reachable candidate within limits');
+	}
+	wa_log('[RECOMMEND_REACHABLE] recommendation_only=yes movement_control=OFF combat_control=OFF');
 }
 
 sub inspect_monster {

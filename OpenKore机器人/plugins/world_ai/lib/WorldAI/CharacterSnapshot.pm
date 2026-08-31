@@ -37,6 +37,8 @@ sub capture {
 	my $defense = _number($char->{def});
 	my $defense_bonus = _number($char->{def_bonus});
 	my $map = eval { $field ? $field->baseName : undef };
+	my $pos_x = _number($char->{pos_to}{x});
+	my $pos_y = _number($char->{pos_to}{y});
 
 	return ({
 		base_level    => $base_level,
@@ -48,6 +50,9 @@ sub capture {
 		sp            => _number($char->{sp}),
 		sp_max        => _number($char->{sp_max}),
 		current_map   => $map,
+		pos_x         => $pos_x,
+		pos_y         => $pos_y,
+		zeny          => _number($char->{zeny}),
 		attack        => $attack,
 		attack_bonus  => $attack_bonus,
 		attack_total  => _sum_defined($attack, $attack_bonus),
