@@ -17,6 +17,10 @@ python3 "OpenKore机器人/plugins/world_ai/tools/gen_index.py" \
 
 `--rathena-root` 缺省即为上面这个本机路径；`--out` 可覆盖输出位置；`--extra-spawn` 可临时并入额外刷怪文件。
 
+- 必需的 conf、刷怪文件或 mob_db 缺失时，默认以非零码退出且**不写输出**，避免用一次路径错误覆盖有效索引；
+  只有显式传 `--allow-partial` 才降级写出部分/空索引。
+- 生成时会做 schema 断言（例如 `walk_speed` 必须是整数），类型不符视为生成器 bug，直接失败。
+
 ## 数据来源（已核实）
 
 1. **怪物数值**：`db/pre-re/mob_db.yml`。`db/mob_db.yml` 只是 91 行的导入桩，其 `Footer.Imports`
@@ -34,7 +38,7 @@ python3 "OpenKore机器人/plugins/world_ai/tools/gen_index.py" \
 
 ```jsonc
 {
-  "meta": { "schema_version": 1, "generated_at": "...", "sources": {...}, "counts": {...} },
+  "meta": { "schema_version": 2, "generated_at": "...", "sources": {...}, "counts": {...} },
   "monsters": {          // 只含“出现在静态刷怪里”的可狩猎怪物，按 ID 升序
     "1002": {
       "id": 1002, "aegis_name": "PORING", "name": "Poring",
@@ -54,6 +58,8 @@ python3 "OpenKore机器人/plugins/world_ai/tools/gen_index.py" \
 
 - 同图同怪出现多条 `monster` 行时，`count` 累加。
 - `monsters` 只保留有静态刷怪的怪物（1004 条 mob_db 中 510 条可狩猎）；纯任务/活动/召唤类怪物不在静态索引里。
+- `meta.sources.input_sha256`：每个输入文件（mob_db + 各刷怪脚本）的 SHA-256。
+- `meta.sources.rathena_git`：生成时 rAthena 工作树的 HEAD commit 与 dirty 状态（非 git 仓库时为 null）。
 
 ## 校验结果（已知数据断言）
 

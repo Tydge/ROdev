@@ -1,7 +1,7 @@
 {
   "meta": {
-    "schema_version": 1,
-    "generated_at": "2026-08-31T15:37:09+08:00",
+    "schema_version": 2,
+    "generated_at": "2026-08-31T18:37:23+08:00",
     "sources": {
       "mob_db": "db/pre-re/mob_db.yml",
       "spawn_files": [
@@ -75,7 +75,83 @@
         "npc/custom/korehelper_job_path.txt",
         "npc/custom/bot_career_paths.txt"
       ],
-      "spawn_file_count": 69
+      "spawn_file_count": 69,
+      "input_sha256": {
+        "db/pre-re/mob_db.yml": "4f045e32eb176c695cb11e94a68013867a437072aef0cee7438313826dc54e12",
+        "npc/mobs/jail.txt": "fad50a02b3fea5388035fc8ab8bee205c06ed320f963b77e9e3a720455f4a8ba",
+        "npc/mobs/pvp.txt": "85b025e9c66d52c380c7f00518468c41a13aa5367f537d57ad6c37ae710be3f2",
+        "npc/mobs/towns.txt": "50c97a8dd3af61738d6904848a53a1e718ee07375153c619afa9d20a266e8382",
+        "npc/pre-re/mobs/citycleaners.txt": "9727612b1870f27868e91da8d21aa53c2fe95743a34a55790658dcd697eaa02d",
+        "npc/pre-re/mobs/dungeons/abbey.txt": "3a53d77680b406af754ef107b0eed0aa682cdb87c2cd901ba76fc40073eee130",
+        "npc/pre-re/mobs/dungeons/abyss.txt": "88e8126eac07ef7ae411719581cba0d13ce9aec6f345233ba26027134379aa7f",
+        "npc/pre-re/mobs/dungeons/alde_dun.txt": "7330af018d5672c4232f089168cd74951c90f92af640a53f81eea78023d0a54c",
+        "npc/pre-re/mobs/dungeons/ama_dun.txt": "15847e8e2bc1d4bfe9399d77214e98f4de32dbe656644f3021245833461e8654",
+        "npc/pre-re/mobs/dungeons/anthell.txt": "60733fe9fbd91accf0d63d884aa2161dbb16abf7e36ff7917f316a4cb396bab6",
+        "npc/pre-re/mobs/dungeons/ayo_dun.txt": "434785b26ce13a94b899881c61851ff3217880d436fff62e9c2703999377c0be",
+        "npc/pre-re/mobs/dungeons/beach_dun.txt": "824190baab1af4982de115650b9d666c08a327dfcae164c6e2d7cb6ffbdb1915",
+        "npc/pre-re/mobs/dungeons/c_tower.txt": "ecfe0ec1a5f470725acdadd24a15d84def3fa491c297aad30f534c17def7baa7",
+        "npc/pre-re/mobs/dungeons/ein_dun.txt": "5faf6379219841a5ca6a10bf4835769692f0995379ad2e038b2c7d29f92294cc",
+        "npc/pre-re/mobs/dungeons/gef_dun.txt": "0bd247b4dde7f148732005c28937ebf13609026af57073460145e0e68f9f4406",
+        "npc/pre-re/mobs/dungeons/gefenia.txt": "d361137f2ce0af06b1b3dc24439039fd562f0310806ad5f97392be479a378312",
+        "npc/pre-re/mobs/dungeons/glastheim.txt": "5a32ce5457533ce470b8f063a2dfa3050810594fc1cd42e77566321752c21cc6",
+        "npc/pre-re/mobs/dungeons/gld_dun.txt": "709cf58108e5cdf229c7add7f5ff78f82fe113789113ba8d6d3d713cc3ee697d",
+        "npc/pre-re/mobs/dungeons/gld_dunSE.txt": "7e67774099c2d596d7d4b55f2b9c4248cb706980fc9f49ed17acbd41d53f11d8",
+        "npc/pre-re/mobs/dungeons/gon_dun.txt": "edf6598bef47bb8f80310c99b4a8cd7eb7ddbe838feef6d8b0b4aa16c17c9228",
+        "npc/pre-re/mobs/dungeons/ice_dun.txt": "17084088e0ec3f40a5fd35db9639b3ddf62dffa02df0a5f1e49c33e54b3595ec",
+        "npc/pre-re/mobs/dungeons/in_sphinx.txt": "5cd1bda9d819968811b6a194ea4e7f277c20f719ddc4ae0fa00dfdb66878e64a",
+        "npc/pre-re/mobs/dungeons/iz_dun.txt": "b5ae103b118a959c039cf8a5a7862df47b29b8531fd1914c77868632e39b1f20",
+        "npc/pre-re/mobs/dungeons/juperos.txt": "02f9fd6c100fd9cabe5c180e7ce546e0fdd51090a6a613232c2af7ac73cc463d",
+        "npc/pre-re/mobs/dungeons/kh_dun.txt": "986e5b04d42b661ae3e7de4a906124ea83985656eb316635af9c2a2d414222a1",
+        "npc/pre-re/mobs/dungeons/lhz_dun.txt": "22b8f5d190fdc588762d2ba148576258f59b48d745ae28f6defa4dcdcc571975",
+        "npc/pre-re/mobs/dungeons/lou_dun.txt": "ef1273ff8b01e7b3fb60e740c8bc4a3ca18a59014aadaa910bf48321094b3fd5",
+        "npc/pre-re/mobs/dungeons/mag_dun.txt": "095e07022928cf75705f4367f4d3396cda976235745481180b1f6f541a2d4f9b",
+        "npc/pre-re/mobs/dungeons/mjo_dun.txt": "79865c5f41aa6e2a9cef231cb4a7e6046d60533ea7c42603ef76b25524419f69",
+        "npc/pre-re/mobs/dungeons/moc_pryd.txt": "8e8f8d90d3258351e290433ab01005d6f67c98a249eac51d5af46ac208c11c33",
+        "npc/pre-re/mobs/dungeons/mosk_dun.txt": "4503c012326eec3ab4d4c1e8137f4f20b92dcc1d34f8444c057f779244bb90ff",
+        "npc/pre-re/mobs/dungeons/nyd_dun.txt": "58d4cb1b3a1a139381e847db7c22f483e26487f42006d927ed9e203f8dad3546",
+        "npc/pre-re/mobs/dungeons/odin.txt": "c87600471ce2d7a6c6613f98b8a121580d97d0fb0e3aa1c9e4149a601e094965",
+        "npc/pre-re/mobs/dungeons/orcsdun.txt": "cda15de275aa5c52b457ed38e0c0d81e313ffbe846f8fcfa5fde13f3288f2d9d",
+        "npc/pre-re/mobs/dungeons/pay_dun.txt": "742ecafa47620845e64409daf515928a5add3e7c429e2cecafd7cc488dd89e03",
+        "npc/pre-re/mobs/dungeons/prt_maze.txt": "e6aa8ac786ef744af64ab2db59b221adea5dcaf4a280e783afe436fe1b493a4a",
+        "npc/pre-re/mobs/dungeons/prt_sew.txt": "cf0379265134c69dcd2f43477ed68f7f7ff9c375ed2b4f51c5ffa7a79095d107",
+        "npc/pre-re/mobs/dungeons/ra_san.txt": "c532b81f571c904240b2f05c7cea3913866aea0688bb2785472daf823b360d4e",
+        "npc/pre-re/mobs/dungeons/tha_t.txt": "80c162730edbba738393a6a4a478a2a514ca99c7b9225cdb1f14f515e0d99a4d",
+        "npc/pre-re/mobs/dungeons/thor_v.txt": "c0a14f5c362bd69900b177560220ea569093ecd94adfdd831aac02d6c5613890",
+        "npc/pre-re/mobs/dungeons/treasure.txt": "933d311c22b1004a694cca54aa8dda2db129c542d622c639506875dfa6ebf879",
+        "npc/pre-re/mobs/dungeons/tur_dun.txt": "b4cc5751f335273b16a133d12f714100a4641b95512ae7f88705d1c381af887a",
+        "npc/pre-re/mobs/dungeons/um_dun.txt": "e1513f502c6a6b2b6f24d79089e7cbab7cc6931042dabfce3a0a2c0a8fb413c3",
+        "npc/pre-re/mobs/dungeons/xmas_dun.txt": "09202ac2538b96dfb81d014b2f2ed11951375594582bd58097e2ee2d19c9baac",
+        "npc/pre-re/mobs/dungeons/yggdrasil.txt": "62f4abc67b44a1d72907df3c3b3f6615dc1581a91546d866308d9bd679428209",
+        "npc/pre-re/mobs/fields/amatsu.txt": "208b92aea2aa8ddc3e37e1ed8b0dd2d9b789170e8d73d91b86bb68cb27d1438f",
+        "npc/pre-re/mobs/fields/ayothaya.txt": "742141348e29c861c5e567b5f38397380ac6c15acfd5fdef6d112c406acf07e1",
+        "npc/pre-re/mobs/fields/comodo.txt": "6e7a5fa8f1df81e4805780f6115339d6b8195313499601e91abe8e4d6d979c68",
+        "npc/pre-re/mobs/fields/einbroch.txt": "23defcde5f0bc36fac4f2a70bd35227571c1dc15845d39f0b07c2534a910c352",
+        "npc/pre-re/mobs/fields/geffen.txt": "0e1bd8402c4a6248aeaa0687e62cff358390f5302a8a67465a7c1917b8a32d1b",
+        "npc/pre-re/mobs/fields/gonryun.txt": "7248317ecc699717d9bf2905b3b517fdbfac8962e6778037cf6ce27d97a41bdd",
+        "npc/pre-re/mobs/fields/hugel.txt": "b7620184ada244fc0df92ad4d05aeddf744dfebca1aa28932f979adb6d252df7",
+        "npc/pre-re/mobs/fields/lighthalzen.txt": "9542f2c461a9585f8ced79c7131896333925d77d30be706bef3519559fb78d52",
+        "npc/pre-re/mobs/fields/louyang.txt": "386d6653e000c637b9bc8dc732e437eb98fdb3eda83f0de69f42800e8b0c2ec2",
+        "npc/pre-re/mobs/fields/lutie.txt": "1f3edbb102bd7f1eaebcb24e61817557562b786a8930eb242a873b9fc279ac1e",
+        "npc/pre-re/mobs/fields/manuk.txt": "d70eedb6632125d7fe4cdbb8612754a2c9a4f0d90c1cc02d2fc4eb66d337dc20",
+        "npc/pre-re/mobs/fields/mjolnir.txt": "2c0b10b1d0ddf797d8cddc778f1361afbcf8d1dfb0d6a397ef42559b6610f93f",
+        "npc/pre-re/mobs/fields/morocc.txt": "008f17519bae8998fd474d4043099d1fd94c168054a426b70fdc72d2bd31a1a5",
+        "npc/pre-re/mobs/fields/moscovia.txt": "2825b40982aad4440d590a47bf293c3ff6a600865e5c85c25c25c883005128c9",
+        "npc/pre-re/mobs/fields/niflheim.txt": "ccb3e53a113e2623c054ad88648f42bc7f8c8ecb233aa9df7e6ef5be175ce750",
+        "npc/pre-re/mobs/fields/payon.txt": "57e34aae2ef7c6a147dc187448e2c4d1ac058518e29091e21eb70b104c4cd9a8",
+        "npc/pre-re/mobs/fields/prontera.txt": "7e5d29e7ac85a5b9f225065325f40609d5de8899afa7e9a6a6e83dd64e54fbd8",
+        "npc/pre-re/mobs/fields/rachel.txt": "949b16abbcfe344743acec991bfa5fba2ee1fc120f5a8e0928d45f33d8848f06",
+        "npc/pre-re/mobs/fields/splendide.txt": "8f8015de324cd31135bb9baa27ce0a05c7391bb9f8a3c5245e7e38d1077ce775",
+        "npc/pre-re/mobs/fields/umbala.txt": "7a308ae4c4702502862b6f38bd83b95568d9e2e2595edacd07bf7fba7c8f908c",
+        "npc/pre-re/mobs/fields/veins.txt": "937e993d52431c4ea08037284c8c5586287a80f5897190ace266cec8667892f3",
+        "npc/pre-re/mobs/fields/yuno.txt": "1ea8041570359ef3ca0c6bf2bcd2aec4d7afc7a517332f5e467cf52271cd06bd",
+        "npc/custom/resetnpc.txt": "1884944274c03ac01fbb02dcea17ff4697ec742561460c597e217cde59a5e3e4",
+        "npc/custom/korehelper_job_path.txt": "3d308f16516436cfe4f3361bd81222044a7f9066d9cb47f51f614c000c2b786f",
+        "npc/custom/bot_career_paths.txt": "5eef81c90f8373ff7bee01b715956022ca87b26f8bf130c7d52e50bcb63624ad"
+      },
+      "rathena_git": {
+        "commit": "9ee78480020d95b30ef22c0c2685de1439e50ff9",
+        "dirty": false
+      }
     },
     "counts": {
       "monsters_indexed": 510,
@@ -104,7 +180,7 @@
       "race": "Insect",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -131,7 +207,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -183,7 +259,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -212,7 +288,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -246,7 +322,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -278,7 +354,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -318,7 +394,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -346,7 +422,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -376,7 +452,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -405,7 +481,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -432,7 +508,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -460,7 +536,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -490,7 +566,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -518,7 +594,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -547,7 +623,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -579,7 +655,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -605,7 +681,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 4,
       "skill_range": 10,
       "maps": {
@@ -634,7 +710,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -663,7 +739,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -689,7 +765,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -717,7 +793,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -745,7 +821,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -773,7 +849,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -800,7 +876,7 @@
       "race": "Brute",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -828,7 +904,7 @@
       "race": "Plant",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -908,7 +984,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -936,7 +1012,7 @@
       "race": "Plant",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -963,7 +1039,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -990,7 +1066,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1026,7 +1102,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1058,7 +1134,7 @@
       "race": "Brute",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1093,7 +1169,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1121,7 +1197,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -1149,7 +1225,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1177,7 +1253,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1206,7 +1282,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1238,7 +1314,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1264,7 +1340,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1290,7 +1366,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1320,7 +1396,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -1350,7 +1426,7 @@
       "race": "Insect",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -1382,7 +1458,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1413,7 +1489,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1441,7 +1517,7 @@
       "race": "Insect",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1479,7 +1555,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1507,7 +1583,7 @@
       "race": "Insect",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1537,7 +1613,7 @@
       "race": "Insect",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1565,7 +1641,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1593,7 +1669,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1623,7 +1699,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1653,7 +1729,7 @@
       "race": "Insect",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1680,7 +1756,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1708,7 +1784,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1741,7 +1817,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1768,7 +1844,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1801,7 +1877,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1827,7 +1903,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1853,7 +1929,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1880,7 +1956,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1908,7 +1984,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -1945,7 +2021,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -1972,7 +2048,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2001,7 +2077,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2028,7 +2104,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2055,7 +2131,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2083,7 +2159,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2113,7 +2189,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2139,7 +2215,7 @@
       "race": "Plant",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2173,7 +2249,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2237,7 +2313,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2298,7 +2374,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2385,7 +2461,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2466,7 +2542,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2507,7 +2583,7 @@
       "race": "Plant",
       "element": "Holy",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2571,7 +2647,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2617,7 +2693,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 1,
       "skill_range": 7,
       "maps": {
@@ -2662,7 +2738,7 @@
       "race": "Insect",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2690,7 +2766,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2720,7 +2796,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2748,7 +2824,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2775,7 +2851,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2804,7 +2880,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2830,7 +2906,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2859,7 +2935,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2886,7 +2962,7 @@
       "race": "Insect",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2914,7 +2990,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2944,7 +3020,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -2972,7 +3048,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -3006,7 +3082,7 @@
       "race": "Demihuman",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3033,7 +3109,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3063,7 +3139,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3093,7 +3169,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3119,7 +3195,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3146,7 +3222,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3181,7 +3257,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3214,7 +3290,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3244,7 +3320,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3271,7 +3347,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3298,7 +3374,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3324,7 +3400,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3350,7 +3426,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3377,7 +3453,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3415,7 +3491,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3443,7 +3519,7 @@
       "race": "Plant",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3490,7 +3566,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3527,7 +3603,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3557,7 +3633,7 @@
       "race": "Formless",
       "element": "Ghost",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3585,7 +3661,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3613,7 +3689,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -3649,7 +3725,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3676,7 +3752,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3705,7 +3781,7 @@
       "race": "Demon",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3736,7 +3812,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3763,7 +3839,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3790,7 +3866,7 @@
       "race": "Demihuman",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3817,7 +3893,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3844,7 +3920,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3871,7 +3947,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3900,7 +3976,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3937,7 +4013,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3965,7 +4041,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -3991,7 +4067,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4017,7 +4093,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4045,7 +4121,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4073,7 +4149,7 @@
       "race": "Demihuman",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4101,7 +4177,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4129,7 +4205,7 @@
       "race": "Demon",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4157,7 +4233,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4193,7 +4269,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4219,7 +4295,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4246,7 +4322,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "800",
+      "walk_speed": 800,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4273,7 +4349,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4301,7 +4377,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4327,7 +4403,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4356,7 +4432,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4387,7 +4463,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4417,7 +4493,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4443,7 +4519,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4470,7 +4546,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4498,7 +4574,7 @@
       "race": "Formless",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4524,7 +4600,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4551,7 +4627,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4577,7 +4653,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4605,7 +4681,7 @@
       "race": "Dragon",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4634,7 +4710,7 @@
       "race": "Dragon",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4663,7 +4739,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "125",
+      "walk_speed": 125,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4691,7 +4767,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4718,7 +4794,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4746,7 +4822,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4775,7 +4851,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4803,7 +4879,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -4830,7 +4906,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4858,7 +4934,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4885,7 +4961,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4914,7 +4990,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4944,7 +5020,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4971,7 +5047,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -4998,7 +5074,7 @@
       "race": "Demon",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5024,7 +5100,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5055,7 +5131,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5085,7 +5161,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5112,7 +5188,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5138,7 +5214,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5165,7 +5241,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5199,7 +5275,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5229,7 +5305,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5256,7 +5332,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5283,7 +5359,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5310,7 +5386,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -5338,7 +5414,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5366,7 +5442,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5414,7 +5490,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5442,7 +5518,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5469,7 +5545,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5499,7 +5575,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5536,7 +5612,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5562,7 +5638,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5588,7 +5664,7 @@
       "race": "Plant",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5616,7 +5692,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5642,7 +5718,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5669,7 +5745,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -5695,7 +5771,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -5727,7 +5803,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5760,7 +5836,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -5791,7 +5867,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5818,7 +5894,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5845,7 +5921,7 @@
       "race": "Demon",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -5874,7 +5950,7 @@
       "race": "Brute",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5904,7 +5980,7 @@
       "race": "Insect",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5930,7 +6006,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5958,7 +6034,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -5988,7 +6064,7 @@
       "race": "Plant",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -6019,7 +6095,7 @@
       "race": "Fish",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -6047,7 +6123,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6080,7 +6156,7 @@
       "race": "Plant",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6110,7 +6186,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6137,7 +6213,7 @@
       "race": "Demihuman",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6164,7 +6240,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -6190,7 +6266,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6217,7 +6293,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6243,7 +6319,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -6271,7 +6347,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -6299,7 +6375,7 @@
       "race": "Demon",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -6331,7 +6407,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6360,7 +6436,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6388,7 +6464,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6418,7 +6494,7 @@
       "race": "Undead",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6445,7 +6521,7 @@
       "race": "Demihuman",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -6474,7 +6550,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6502,7 +6578,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6529,7 +6605,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6578,7 +6654,7 @@
       "race": "Dragon",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 4,
       "skill_range": 10,
       "maps": {
@@ -6605,7 +6681,7 @@
       "race": "Demon",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -6632,7 +6708,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "220",
+      "walk_speed": 220,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -6661,7 +6737,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6688,7 +6764,7 @@
       "race": "Fish",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6718,7 +6794,7 @@
       "race": "Demon",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6744,7 +6820,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -6774,7 +6850,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6801,7 +6877,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -6830,7 +6906,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6860,7 +6936,7 @@
       "race": "Demon",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -6890,7 +6966,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6917,7 +6993,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -6943,7 +7019,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -6976,7 +7052,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -7005,7 +7081,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -7035,7 +7111,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7062,7 +7138,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7088,7 +7164,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7114,7 +7190,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7141,7 +7217,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -7170,7 +7246,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7196,7 +7272,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7223,7 +7299,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7250,7 +7326,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7277,7 +7353,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7307,7 +7383,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7333,7 +7409,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7360,7 +7436,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7390,7 +7466,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7416,7 +7492,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7443,7 +7519,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7469,7 +7545,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7495,7 +7571,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7521,7 +7597,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7548,7 +7624,7 @@
       "race": "Demon",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "145",
+      "walk_speed": 145,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7575,7 +7651,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7601,7 +7677,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7627,7 +7703,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7653,7 +7729,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7681,7 +7757,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7708,7 +7784,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7734,7 +7810,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7760,7 +7836,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7786,7 +7862,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7812,7 +7888,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7840,7 +7916,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7866,7 +7942,7 @@
       "race": "Brute",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7896,7 +7972,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7924,7 +8000,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -7950,7 +8026,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -7976,7 +8052,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8003,7 +8079,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8032,7 +8108,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "195",
+      "walk_speed": 195,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8062,7 +8138,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8091,7 +8167,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8117,7 +8193,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8143,7 +8219,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8169,7 +8245,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8196,7 +8272,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8223,7 +8299,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -8264,7 +8340,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8291,7 +8367,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8320,7 +8396,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8349,7 +8425,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8377,7 +8453,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8406,7 +8482,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8433,7 +8509,7 @@
       "race": "Demon",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8463,7 +8539,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -8495,7 +8571,7 @@
       "race": "Demon",
       "element": "Poison",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8529,7 +8605,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8555,7 +8631,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8583,7 +8659,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8610,7 +8686,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8636,7 +8712,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8662,7 +8738,7 @@
       "race": "Dragon",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8690,7 +8766,7 @@
       "race": "Dragon",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8718,7 +8794,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "195",
+      "walk_speed": 195,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8748,7 +8824,7 @@
       "race": "Brute",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8774,7 +8850,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8800,7 +8876,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "145",
+      "walk_speed": 145,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -8828,7 +8904,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -8857,7 +8933,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8883,7 +8959,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -8909,7 +8985,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -8935,7 +9011,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -8963,7 +9039,7 @@
       "race": "Brute",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -8990,7 +9066,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -9018,7 +9094,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9047,7 +9123,7 @@
       "race": "Demon",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9073,7 +9149,7 @@
       "race": "Fish",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -9099,7 +9175,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "145",
+      "walk_speed": 145,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -9126,7 +9202,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9152,7 +9228,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "410",
+      "walk_speed": 410,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -9179,7 +9255,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -9206,7 +9282,7 @@
       "race": "Plant",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "140",
+      "walk_speed": 140,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9233,7 +9309,7 @@
       "race": "Brute",
       "element": "Ghost",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9260,7 +9336,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9286,7 +9362,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9313,7 +9389,7 @@
       "race": "Brute",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -9341,7 +9417,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "135",
+      "walk_speed": 135,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -9369,7 +9445,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -9396,7 +9472,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9428,7 +9504,7 @@
       "race": "Plant",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -9455,7 +9531,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9481,7 +9557,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -9509,7 +9585,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9538,7 +9614,7 @@
       "race": "Plant",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "400",
+      "walk_speed": 400,
       "attack_range": 8,
       "skill_range": 10,
       "maps": {
@@ -9564,7 +9640,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9592,7 +9668,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9620,7 +9696,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "125",
+      "walk_speed": 125,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9646,7 +9722,7 @@
       "race": "Demon",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "147",
+      "walk_speed": 147,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9672,7 +9748,7 @@
       "race": "Demihuman",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "175",
+      "walk_speed": 175,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9698,7 +9774,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9725,7 +9801,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9752,7 +9828,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "155",
+      "walk_speed": 155,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9780,7 +9856,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 3,
       "skill_range": 14,
       "maps": {
@@ -9808,7 +9884,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9835,7 +9911,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9861,7 +9937,7 @@
       "race": "Dragon",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -9888,7 +9964,7 @@
       "race": "Brute",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "450",
+      "walk_speed": 450,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9915,7 +9991,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "445",
+      "walk_speed": 445,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9942,7 +10018,7 @@
       "race": "Demon",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "165",
+      "walk_speed": 165,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9968,7 +10044,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -9995,7 +10071,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -10023,7 +10099,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "140",
+      "walk_speed": 140,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10049,7 +10125,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10077,7 +10153,7 @@
       "race": "Formless",
       "element": "Ghost",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10104,7 +10180,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10140,7 +10216,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10168,7 +10244,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10195,7 +10271,7 @@
       "race": "Undead",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10221,7 +10297,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10248,7 +10324,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10276,7 +10352,7 @@
       "race": "Insect",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10305,7 +10381,7 @@
       "race": "Formless",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10331,7 +10407,7 @@
       "race": "Formless",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "350",
+      "walk_speed": 350,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10357,7 +10433,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10383,7 +10459,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "220",
+      "walk_speed": 220,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10411,7 +10487,7 @@
       "race": "Demon",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -10437,7 +10513,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10471,7 +10547,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -10501,7 +10577,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "130",
+      "walk_speed": 130,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -10529,7 +10605,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -10555,7 +10631,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "140",
+      "walk_speed": 140,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10583,7 +10659,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 6,
       "skill_range": 10,
       "maps": {
@@ -10611,7 +10687,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10637,7 +10713,7 @@
       "race": "Demon",
       "element": "Poison",
       "element_level": 4,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10664,7 +10740,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10690,7 +10766,7 @@
       "race": "Demihuman",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10716,7 +10792,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 14,
       "skill_range": 10,
       "maps": {
@@ -10742,7 +10818,7 @@
       "race": "Demihuman",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10768,7 +10844,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10794,7 +10870,7 @@
       "race": "Demihuman",
       "element": "Poison",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10820,7 +10896,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10846,7 +10922,7 @@
       "race": "Demihuman",
       "element": "Holy",
       "element_level": 4,
-      "walk_speed": "125",
+      "walk_speed": 125,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10872,7 +10948,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 14,
       "skill_range": 10,
       "maps": {
@@ -10898,7 +10974,7 @@
       "race": "Demihuman",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10924,7 +11000,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "145",
+      "walk_speed": 145,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10951,7 +11027,7 @@
       "race": "Demihuman",
       "element": "Poison",
       "element_level": 3,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -10978,7 +11054,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11005,7 +11081,7 @@
       "race": "Demihuman",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "130",
+      "walk_speed": 130,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11032,7 +11108,7 @@
       "race": "Demihuman",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -11059,7 +11135,7 @@
       "race": "Demihuman",
       "element": "Ghost",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11086,7 +11162,7 @@
       "race": "Demihuman",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11114,7 +11190,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11140,7 +11216,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -11167,7 +11243,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 5,
       "skill_range": 10,
       "maps": {
@@ -11194,7 +11270,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 5,
       "skill_range": 10,
       "maps": {
@@ -11221,7 +11297,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 5,
       "skill_range": 10,
       "maps": {
@@ -11248,7 +11324,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11276,7 +11352,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11304,7 +11380,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11332,7 +11408,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11359,7 +11435,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11388,7 +11464,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11415,7 +11491,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11442,7 +11518,7 @@
       "race": "Brute",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11470,7 +11546,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11496,7 +11572,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11526,7 +11602,7 @@
       "race": "Plant",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 14,
       "skill_range": 10,
       "maps": {
@@ -11554,7 +11630,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11584,7 +11660,7 @@
       "race": "Formless",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11614,7 +11690,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11645,7 +11721,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11676,7 +11752,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11706,7 +11782,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -11737,7 +11813,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11769,7 +11845,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -11804,7 +11880,7 @@
       "race": "Angel",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11836,7 +11912,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11868,7 +11944,7 @@
       "race": "Angel",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11900,7 +11976,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11932,7 +12008,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -11958,7 +12034,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -11985,7 +12061,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12012,7 +12088,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12039,7 +12115,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -12065,7 +12141,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12091,7 +12167,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12117,7 +12193,7 @@
       "race": "Undead",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12143,7 +12219,7 @@
       "race": "Dragon",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12170,7 +12246,7 @@
       "race": "Dragon",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12198,7 +12274,7 @@
       "race": "Dragon",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "110",
+      "walk_speed": 110,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12231,7 +12307,7 @@
       "race": "Dragon",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12258,7 +12334,7 @@
       "race": "Dragon",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12285,7 +12361,7 @@
       "race": "Dragon",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12317,7 +12393,7 @@
       "race": "Dragon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12345,7 +12421,7 @@
       "race": "Dragon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12371,7 +12447,7 @@
       "race": "Dragon",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -12400,7 +12476,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "130",
+      "walk_speed": 130,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12428,7 +12504,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12456,7 +12532,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12484,7 +12560,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "220",
+      "walk_speed": 220,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12512,7 +12588,7 @@
       "race": "Formless",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12539,7 +12615,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12565,7 +12641,7 @@
       "race": "Demon",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12591,7 +12667,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "110",
+      "walk_speed": 110,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12619,7 +12695,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12645,7 +12721,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12673,7 +12749,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12701,7 +12777,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12729,7 +12805,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12756,7 +12832,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 2,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12783,7 +12859,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12810,7 +12886,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "130",
+      "walk_speed": 130,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -12837,7 +12913,7 @@
       "race": "Angel",
       "element": "Holy",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12864,7 +12940,7 @@
       "race": "Formless",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -12892,7 +12968,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12919,7 +12995,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12946,7 +13022,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -12973,7 +13049,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13001,7 +13077,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "140",
+      "walk_speed": 140,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13031,7 +13107,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 3,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 6,
       "skill_range": 10,
       "maps": {
@@ -13060,7 +13136,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "220",
+      "walk_speed": 220,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -13087,7 +13163,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13114,7 +13190,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13141,7 +13217,7 @@
       "race": "Demon",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 10,
       "skill_range": 10,
       "maps": {
@@ -13169,7 +13245,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -13198,7 +13274,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -13231,7 +13307,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13266,7 +13342,7 @@
       "race": "Brute",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13298,7 +13374,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13337,7 +13413,7 @@
       "race": "Brute",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -13373,7 +13449,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 2,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -13400,7 +13476,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13426,7 +13502,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13452,7 +13528,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 2,
       "skill_range": 14,
       "maps": {
@@ -13480,7 +13556,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 4,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 12,
       "skill_range": 14,
       "maps": {
@@ -13508,7 +13584,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "160",
+      "walk_speed": 160,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -13536,7 +13612,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 4,
-      "walk_speed": "130",
+      "walk_speed": 130,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -13564,7 +13640,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -13591,7 +13667,7 @@
       "race": "Formless",
       "element": "Fire",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13619,7 +13695,7 @@
       "race": "Demon",
       "element": "Fire",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13646,7 +13722,7 @@
       "race": "Demon",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13672,7 +13748,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 2,
       "skill_range": 14,
       "maps": {
@@ -13699,7 +13775,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13727,7 +13803,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 9,
       "skill_range": 10,
       "maps": {
@@ -13755,7 +13831,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "140",
+      "walk_speed": 140,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13782,7 +13858,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13810,7 +13886,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13839,7 +13915,7 @@
       "race": "Undead",
       "element": "Undead",
       "element_level": 4,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13867,7 +13943,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13895,7 +13971,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13923,7 +13999,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "320",
+      "walk_speed": 320,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13950,7 +14026,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "230",
+      "walk_speed": 230,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -13977,7 +14053,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 1,
-      "walk_speed": "270",
+      "walk_speed": 270,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14004,7 +14080,7 @@
       "race": "Demihuman",
       "element": "Water",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14031,7 +14107,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "170",
+      "walk_speed": 170,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -14057,7 +14133,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -14085,7 +14161,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 4,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14113,7 +14189,7 @@
       "race": "Angel",
       "element": "Dark",
       "element_level": 1,
-      "walk_speed": "110",
+      "walk_speed": 110,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14141,7 +14217,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14169,7 +14245,7 @@
       "race": "Demon",
       "element": "Undead",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14197,7 +14273,7 @@
       "race": "Demon",
       "element": "Ghost",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14225,7 +14301,7 @@
       "race": "Demon",
       "element": "Dark",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14251,7 +14327,7 @@
       "race": "Formless",
       "element": "Wind",
       "element_level": 2,
-      "walk_speed": "190",
+      "walk_speed": 190,
       "attack_range": 6,
       "skill_range": 10,
       "maps": {
@@ -14277,7 +14353,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 2,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14303,7 +14379,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 1,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14329,7 +14405,7 @@
       "race": "Formless",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14355,7 +14431,7 @@
       "race": "Demihuman",
       "element": "Neutral",
       "element_level": 3,
-      "walk_speed": "180",
+      "walk_speed": 180,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -14381,7 +14457,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14408,7 +14484,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14436,7 +14512,7 @@
       "race": "Plant",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 7,
       "skill_range": 10,
       "maps": {
@@ -14462,7 +14538,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14489,7 +14565,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14515,7 +14591,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "100",
+      "walk_speed": 100,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14541,7 +14617,7 @@
       "race": "Brute",
       "element": "Holy",
       "element_level": 3,
-      "walk_speed": "120",
+      "walk_speed": 120,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14568,7 +14644,7 @@
       "race": "Brute",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 3,
       "skill_range": 10,
       "maps": {
@@ -14595,7 +14671,7 @@
       "race": "Insect",
       "element": "Wind",
       "element_level": 1,
-      "walk_speed": "110",
+      "walk_speed": 110,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14622,7 +14698,7 @@
       "race": "Plant",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14649,7 +14725,7 @@
       "race": "Insect",
       "element": "Poison",
       "element_level": 1,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 2,
       "skill_range": 10,
       "maps": {
@@ -14675,7 +14751,7 @@
       "race": "Dragon",
       "element": "Earth",
       "element_level": 1,
-      "walk_speed": "250",
+      "walk_speed": 250,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14701,7 +14777,7 @@
       "race": "Dragon",
       "element": "Earth",
       "element_level": 4,
-      "walk_speed": "1000",
+      "walk_speed": 1000,
       "attack_range": 0,
       "skill_range": 10,
       "maps": {
@@ -14727,7 +14803,7 @@
       "race": "Plant",
       "element": "Poison",
       "element_level": 2,
-      "walk_speed": "290",
+      "walk_speed": 290,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14753,7 +14829,7 @@
       "race": "Formless",
       "element": "Water",
       "element_level": 4,
-      "walk_speed": "230",
+      "walk_speed": 230,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14779,7 +14855,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "150",
+      "walk_speed": 150,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14805,7 +14881,7 @@
       "race": "Demihuman",
       "element": "Earth",
       "element_level": 3,
-      "walk_speed": "200",
+      "walk_speed": 200,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {
@@ -14831,7 +14907,7 @@
       "race": "Formless",
       "element": "Earth",
       "element_level": 2,
-      "walk_speed": "300",
+      "walk_speed": 300,
       "attack_range": 1,
       "skill_range": 10,
       "maps": {

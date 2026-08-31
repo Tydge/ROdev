@@ -12,15 +12,20 @@ gen_index.py — 生成 OpenKore 动态练级所需的“怪物↔地图”静�
 只依赖 Python 标准库，不需要 PyYAML：mob_db.yml 使用与本文档匹配的子集解析
 （两空格缩进的 "- Id:" 列表项 + 四空格缩进的 "Key: value" 字段）。
 
+必需数据源缺失时默认以非零码退出，且不写输出文件，避免用一次路径错误覆盖有效索引；
+只有显式传入 --allow-partial 才允许降级（写部分/空索引并返回 0）。
+
 用法：
-    python3 gen_index.py [--rathena-root PATH] [--out PATH] [--extra-spawn FILE]...
+    python3 gen_index.py [--rathena-root PATH] [--out PATH] [--extra-spawn FILE]... [--allow-partial]
 """
 
 import argparse
 import datetime
+import hashlib
 import json
 import os
 import re
+import subprocess
 import sys
 
 DEFAULT_RATHENA_ROOT = "/Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/rathena"
@@ -35,19 +40,27 @@ SPAWN_CONF_RELS = [
     "npc/scripts_custom.conf",
 ]
 
-# mob_db 中抽取的字段（类型 -> 默认值）。嵌套容器（Drops/Modes/MvpDrops/RaceGroups）
-# 位于六空格缩进，不会被四空格字段正则误吞，故无需单独处理。
+# mob_db 中抽取的字段。WalkSpeed 也是数值（rAthena DEFAULT_WALK_SPEED = 150），
+# 放在整数字段里，避免生成出字符串类型的 walk_speed。
 INT_FIELDS = {
     "Level": 1, "Hp": 1, "Sp": 1, "BaseExp": 0, "JobExp": 0, "MvpExp": 0,
     "Attack": 0, "Attack2": 0, "Defense": 0, "MagicDefense": 0,
     "Str": 1, "Agi": 1, "Vit": 1, "Int": 1, "Dex": 1, "Luk": 1,
     "AttackRange": 0, "SkillRange": 0, "ChaseRange": 0, "ElementLevel": 1,
+    "WalkSpeed": 150,
 }
 STR_FIELDS = {
     "AegisName": "", "Name": "", "JapaneseName": "",
     "Size": "Small", "Race": "Formless", "Element": "Neutral",
-    "WalkSpeed": "",
 }
+
+# 输出 schema 断言：这些键在最终 JSON 里必须是整数。
+SCHEMA_INT_KEYS = [
+    "id", "level", "hp", "base_exp", "job_exp", "mvp_exp",
+    "attack", "attack2", "defense", "magic_defense",
+    "element_level", "walk_speed", "attack_range", "skill_range",
+]
+SCHEMA_STR_KEYS = ["aegis_name", "name", "size", "race", "element"]
 
 ID_LINE_RE = re.compile(r"^  - Id:\s*(\d+)\s*$")
 FIELD_LINE_RE = re.compile(r"^    ([A-Za-z][A-Za-z0-9_]*):\s*(.*?)\s*$")
@@ -104,20 +117,20 @@ def conf_npc_paths(conf_path):
     return paths
 
 
-def collect_spawn_files(root):
-    """按 conf 里的未注释 npc: 行收集实际加载的刷怪脚本。返回 [(绝对路径, 相对路径)]。"""
+def collect_spawn_files(root, errors):
+    """按 conf 里的未注释 npc: 行收集刷怪脚本。缺失的 conf/引用文件记入 errors。"""
     files, seen = [], set()
     for conf_rel in SPAWN_CONF_RELS:
         conf_path = os.path.join(root, conf_rel)
         if not os.path.isfile(conf_path):
-            log("[warn] 未找到 conf: %s" % conf_path)
+            errors.append("必需的 conf 缺失: %s" % conf_rel)
             continue
         for rel in conf_npc_paths(conf_path):
             full = os.path.join(root, rel)
             if full in seen:
                 continue
             if not os.path.isfile(full):
-                log("[warn] conf 引用但文件不存在，跳过: %s" % rel)
+                errors.append("conf %s 引用的刷怪文件缺失: %s" % (conf_rel, rel))
                 continue
             seen.add(full)
             files.append((full, rel))
@@ -181,27 +194,84 @@ def build_monster_entry(mob):
     }
 
 
+def validate_index(monsters_out):
+    """schema 断言：关键字段类型必须与文档契约一致，否则抛 AssertionError。"""
+    for mid, entry in monsters_out.items():
+        for key in SCHEMA_INT_KEYS:
+            val = entry.get(key)
+            if not isinstance(val, int):
+                raise AssertionError(
+                    "monster %s 字段 %s 应为 int，实际为 %r (%s)"
+                    % (mid, key, val, type(val).__name__)
+                )
+        for key in SCHEMA_STR_KEYS:
+            val = entry.get(key)
+            if not isinstance(val, str):
+                raise AssertionError(
+                    "monster %s 字段 %s 应为 str，实际为 %r (%s)"
+                    % (mid, key, val, type(val).__name__)
+                )
+        if not isinstance(entry.get("is_mvp"), bool):
+            raise AssertionError("monster %s 字段 is_mvp 应为 bool" % mid)
+
+
+def sha256_file(path):
+    h = hashlib.sha256()
+    with open(path, "rb") as fh:
+        for chunk in iter(lambda: fh.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def git_info(root):
+    """返回 (commit_hash, dirty)。git 不可用或 root 非 git 仓库时返回 (None, None)。"""
+    try:
+        rev = subprocess.run(
+            ["git", "-C", root, "rev-parse", "HEAD"],
+            capture_output=True, text=True, timeout=15,
+        )
+        if rev.returncode != 0 or not rev.stdout.strip():
+            return None, None
+        commit = rev.stdout.strip()
+        status = subprocess.run(
+            ["git", "-C", root, "status", "--porcelain"],
+            capture_output=True, text=True, timeout=15,
+        )
+        dirty = status.returncode == 0 and bool(status.stdout.strip())
+        return commit, dirty
+    except Exception:
+        return None, None
+
+
 def main(argv):
     ap = argparse.ArgumentParser()
     ap.add_argument("--rathena-root", default=DEFAULT_RATHENA_ROOT)
     ap.add_argument("--out", default=None)
     ap.add_argument("--extra-spawn", action="append", default=[],
                     help="额外纳入的刷怪脚本（相对 rAthena 根或绝对路径），可多次指定")
+    ap.add_argument("--allow-partial", action="store_true",
+                    help="必需数据源缺失时仍降级写出部分/空索引（默认失败退出且不写文件）")
     args = ap.parse_args(argv)
 
     root = os.path.abspath(args.rathena_root)
+    errors = []
+
     mob_db_path = os.path.join(root, MOB_DB_REL)
     if not os.path.isfile(mob_db_path):
-        log("[fatal] 找不到 mob_db: %s" % mob_db_path)
-        return 2
+        errors.append("必需的 mob_db 缺失: %s" % MOB_DB_REL)
+        monsters = {}
+    else:
+        monsters = parse_mob_db(mob_db_path)
+        log("[info] mob_db 解析完成，共 %d 条怪物" % len(monsters))
 
-    monsters = parse_mob_db(mob_db_path)
-    log("[info] mob_db 解析完成，共 %d 条怪物" % len(monsters))
+    spawn_files = collect_spawn_files(root, errors)
 
-    spawn_files = collect_spawn_files(root)
     for extra in args.extra_spawn:
         full = extra if os.path.isabs(extra) else os.path.join(root, extra)
-        if os.path.isfile(full) and not any(f == full for f, _ in spawn_files):
+        if not os.path.isfile(full):
+            errors.append("--extra-spawn 文件缺失: %s" % extra)
+            continue
+        if not any(f == full for f, _ in spawn_files):
             spawn_files.append((full, extra))
 
     spawns = []
@@ -209,10 +279,15 @@ def main(argv):
         n = parse_spawn_file(full, rel, spawns)
         log("[info] %-45s 静态刷怪 %d 条" % (rel, n))
 
+    if not spawn_files:
+        errors.append("未收集到任何刷怪脚本（conf 缺失或全部被注释）")
+    if not spawns:
+        errors.append("未解析到任何静态刷怪记录")
+
     monsters_out = {}
     maps_out = {}
-    boss_maps = {}  # mob_id -> set(map)
-    unresolved = {}  # mob_id -> [map, ...]
+    boss_maps = {}
+    unresolved = {}
     spawn_records = 0
 
     for mapname, mob_id, count, is_boss, rel, lineno in spawns:
@@ -233,7 +308,6 @@ def main(argv):
     for mid, mapset in boss_maps.items():
         monsters_out[mid]["boss_spawn_maps"] = sorted(mapset)
 
-    # 只保留真正出现在静态刷怪里的“可狩猎”怪物，并按 id 排序。
     ordered_monsters = {
         str(mid): monsters_out[mid] for mid in sorted(monsters_out.keys())
     }
@@ -243,6 +317,24 @@ def main(argv):
         m: {str(mid): maps_out[m][mid] for mid in sorted(maps_out[m].keys())}
         for m in sorted(maps_out.keys())
     }
+
+    # schema 断言始终生效（即使 --allow-partial）；类型不符是生成器 bug，必须失败。
+    try:
+        validate_index(ordered_monsters)
+    except AssertionError as exc:
+        log("[fatal] schema 校验失败: %s" % exc)
+        return 2
+
+    # 来源指纹：记录每个输入文件的 SHA-256 与 rAthena git 状态，便于审计与复现。
+    input_sha256 = {}
+    if os.path.isfile(mob_db_path):
+        input_sha256[MOB_DB_REL] = sha256_file(mob_db_path)
+    for full, rel in spawn_files:
+        try:
+            input_sha256[rel] = sha256_file(full)
+        except OSError:
+            pass
+    commit, dirty = git_info(root)
 
     # 报告被注释掉、当前未加载的“自定义补怪”脚本，便于人工核对。
     disabled_custom = []
@@ -255,14 +347,26 @@ def main(argv):
                     if m and ("spawn" in m.group(1) or "mob" in m.group(1)):
                         disabled_custom.append(m.group(1))
 
+    if errors:
+        if not args.allow_partial:
+            for e in errors:
+                log("[error] %s" % e)
+            log("[fatal] 存在 %d 个必需数据源问题，未写入输出。"
+                "若确要降级生成部分索引，请显式传 --allow-partial。" % len(errors))
+            return 1
+        for e in errors:
+            log("[warn] (partial) %s" % e)
+
     doc = {
         "meta": {
-            "schema_version": 1,
+            "schema_version": 2,
             "generated_at": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
             "sources": {
                 "mob_db": MOB_DB_REL,
                 "spawn_files": [rel for _, rel in spawn_files],
                 "spawn_file_count": len(spawn_files),
+                "input_sha256": input_sha256,
+                "rathena_git": {"commit": commit, "dirty": dirty} if commit else None,
             },
             "counts": {
                 "monsters_indexed": len(ordered_monsters),
