@@ -47,6 +47,21 @@ ensure_managed_plugins() {
   else
     echo "[警告] 保留现有插件文件，未覆盖：$target_file"
   fi
+
+  # world_ai has runtime modules and map_index.json, so deploy the complete
+  # directory instead of linking only world_ai.pl.
+  plugin_name="world_ai"
+  local source_dir="$MANAGED_PLUGIN_ROOT/$plugin_name"
+  target_dir="$OPENKORE_ROOT/plugins/$plugin_name"
+
+  [[ -f "$source_dir/$plugin_name.pl" ]] || return 0
+  if [[ -L "$target_dir" ]]; then
+    /bin/ln -sfn "$source_dir" "$target_dir"
+  elif [[ ! -e "$target_dir" ]]; then
+    /bin/ln -s "$source_dir" "$target_dir"
+  else
+    echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
+  fi
 }
 
 start_bot_instance() {
@@ -199,8 +214,13 @@ case "${1:-status}" in
     start_bots on
     ;;
   start-one)
-    [[ -n "${2:-}" ]] || { echo "请指定实例，例如：$SCRIPT_PATH start-one bot02"; exit 2; }
-    start_bot_instance "$2" on
+    [[ -n "${2:-}" ]] || { echo "请指定实例，例如：$SCRIPT_PATH start-one bot02 [on|manual]"; exit 2; }
+    ai_mode="${3:-on}"
+    [[ "$ai_mode" == "on" || "$ai_mode" == "manual" ]] || {
+      echo "AI 模式只能是 on 或 manual"
+      exit 2
+    }
+    start_bot_instance "$2" "$ai_mode"
     ;;
   stop)
     stop_bots
@@ -235,7 +255,7 @@ case "${1:-status}" in
     bot_info
     ;;
   *)
-    echo "用法：$SCRIPT_PATH {start|start-manual|start-bot|start-one ID|stop|stop-one ID|stop-all|restart|console [ID]|status|bot-status|bot-info}"
+    echo "用法：$SCRIPT_PATH {start|start-manual|start-bot|start-one ID [on|manual]|stop|stop-one ID|stop-all|restart|console [ID]|status|bot-status|bot-info}"
     exit 2
     ;;
 esac

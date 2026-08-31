@@ -88,6 +88,27 @@ worldtest stop
 
 当前怪物测试表只有 Poring 和 Rocker。`hunt` 期间会临时切换 `lockMap`，并仅在内存中放行目标怪；`worldtest stop`、失败或卸载插件时会恢复原值。2026-08-31 已实测单跳、多地图连续寻路和 Rocker 击杀，证据见 `文档/TEST_REPORT.md`。
 
+## world_ai 只读动态练级推荐
+
+bot01 已启用正式 `world_ai` Step 2。它从 OpenKore 当前 `$char` / `$field` 读取实时角色状态，并使用 rAthena Pre-Renewal 静态索引生成可解释的怪物×地图推荐：
+
+```text
+worldai status
+worldai top [N]
+worldai recommend
+worldai inspect monster <Name|AegisName|ID>
+worldai inspect map <map>
+worldai reload
+```
+
+当前模式固定为 `RECOMMEND_ONLY`：不自动移动、不创建 MapRoute、不修改 `lockMap` 或 `mon_control`，也不接管战斗。插件只在用户执行推荐命令时计算，没有 AI 高频钩子、后台轮询或定时重算；一次完整 Top 10 实测约 29～32 ms，正常空闲/战斗时不会持续消耗额外 CPU。详细设计见 `plugins/world_ai/README.md`，验证证据见 `文档/WORLD_AI_STEP2_TEST_REPORT.md`。
+
+需要单独以 manual AI 测试 bot01 时可执行：
+
+```bash
+"/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/脚本/openkore-control.sh" start-one bot01 manual
+```
+
 ## 运行目录
 
 - OpenKore 源码：`/Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/openkore`
@@ -114,5 +135,5 @@ worldtest stop
 - 角色创建协议在本组合中未稳定完成，因此首个角色由本机数据库按 rAthena 新手默认值创建；日常登录、选角、进地图和移动协议均已验证。
 - 尚未完成 8 小时稳定性测试；Windows 图形客户端已确认 Bot 可见。详见测试报告。
 - 当前配置 5 个 Bot；已验证并发登录和初始战斗，尚未完成五实例 8 小时稳定性测试。
-- `world_ai_test` 目前是验证插件，不是正式自动练级选图系统；只在 bot01 的 `sys.txt` 启动列表中启用。
+- `world_ai_test` 保留为原生移动/狩猎验证插件；正式 `world_ai` Step 2 只做推荐。两者都只在 bot01 的 `sys.txt` 启动列表中启用。
 - `autoGear` 第一版保守管理武器、盾牌、衣服、披肩、鞋和头部装备；饰品与复杂脚本特效尚不参与自动比较，以免仅按表面数值误判。

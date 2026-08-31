@@ -1,92 +1,79 @@
-# world_ai — 动态练级选图（第 1 步：离线索引）
+# world_ai — 第 2 步：只读动态练级推荐
 
-这是把 `world_ai_test` 的“换图打怪”实验升级成正式动态练级系统的**第 1 步**：离线生成
-“怪物 ↔ 地图”静态索引，供后续插件与收益/风险评分使用。本目录暂不含插件逻辑，只交付数据管线与数据。
+`world_ai` 是 OpenKore 上层的练级决策器。当前版本只读取角色运行时状态和静态世界索引，输出“打什么、去哪张图”的建议；不自动移动、不修改 `lockMap`、不修改 `mon_control`、不操作 AI 队列，也不接管战斗。
 
-## 文件
+## 命令
 
-- `tools/gen_index.py`：生成器。纯 Python 标准库，无 PyYAML 依赖。
-- `map_index.json`：生成结果（提交入库，插件运行时直接读取）。
+```text
+worldai status
+worldai top [N]
+worldai recommend
+worldai inspect monster <Name|AegisName|ID>
+worldai inspect map <map>
+worldai reload
+```
 
-## 重新生成
+`top` 默认输出 5 项，最多 20 项。排序固定为分数降序、怪物 ID 升序、地图名升序。
+
+## 目录
+
+```text
+world_ai/
+├── world_ai.pl
+├── map_index.json
+├── lib/WorldAI/
+│   ├── Index.pm
+│   ├── CharacterSnapshot.pm
+│   └── Scorer.pm
+├── t/
+│   ├── index.t
+│   └── scorer.t
+└── tools/gen_index.py
+```
+
+- `Index.pm`：加载和校验索引，建立名称与 ID 查询表；reload 失败时保留旧数据。
+- `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态。
+- `Scorer.pm`：无 OpenKore 副作用的纯评分模块。
+- `world_ai.pl`：命令、输出和错误隔离。
+
+## CPU 约束
+
+插件没有 `AI_pre` 钩子、后台线程、轮询或定时任务。只有 `top`、`recommend` 和 inspect 命令会按需评分；`status` 不会遍历候选。一次评分中每张地图的共存怪风险只建立一次并复用，命令结束后缓存释放。因此机器人空闲或正常战斗时，world_ai 不产生持续 CPU 负载。
+
+## 安全边界
+
+- MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
+- 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
+- `skill_range` 暂不评分，因为当前数据几乎都是默认值，不能证明怪物实际拥有远程技能。
+- `attack_range` 参与远程风险。
+- 当前 schema 2 只有刷新数量，没有地图面积和重生时间，因此评分项叫 `spawn_count_score`，不是严格的刷新密度。
+- Top 榜只使用 `%maps_lut` 已知地图；路线仍标为 `UNVERIFIED`，Step 3 执行前必须重新验证。
+- 普通显示名可能重名；歧义时命令会列出 ID/AegisName，而不是擅自选择。
+
+## 离线测试
+
+在项目根目录执行：
+
+```bash
+prove -I"OpenKore机器人/plugins/world_ai/lib" \
+  "OpenKore机器人/plugins/world_ai/t/index.t" \
+  "OpenKore机器人/plugins/world_ai/t/scorer.t" \
+  "OpenKore机器人/plugins/world_ai/t/performance.t"
+```
+
+正式启用前还应使用 OpenKore 的 `src` 和 `src/deps` 路径执行 `perl -c`，再只在 bot01 的 manual AI 模式完成无副作用验证。
+
+## 第 1 步索引生成
+
+`map_index.json` 仍由纯标准库 Python 生成：
 
 ```bash
 python3 "OpenKore机器人/plugins/world_ai/tools/gen_index.py" \
   --rathena-root "/Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/rathena"
 ```
 
-`--rathena-root` 缺省即为上面这个本机路径；`--out` 可覆盖输出位置；`--extra-spawn` 可临时并入额外刷怪文件。
+数据来自 `db/pre-re/mob_db.yml` 与三个怪物脚本配置实际启用的静态刷怪文件。必需输入缺失时默认失败且不覆盖旧索引；只有显式传 `--allow-partial` 才允许生成部分数据。
 
-- 必需的 conf、刷怪文件或 mob_db 缺失时，默认以非零码退出且**不写输出**，避免用一次路径错误覆盖有效索引；
-  只有显式传 `--allow-partial` 才降级写出部分/空索引。
-- 生成时会做 schema 断言（例如 `walk_speed` 必须是整数），类型不符视为生成器 bug，直接失败。
+当前 schema 2 包含 510 种有静态刷新点的怪物、318 张地图。内部关联始终使用怪物 ID，避免 Name/AegisName/刷怪脚本别名不一致。
 
-## 数据来源（已核实）
-
-1. **怪物数值**：`db/pre-re/mob_db.yml`。`db/mob_db.yml` 只是 91 行的导入桩，其 `Footer.Imports`
-   声明了 `db/pre-re/mob_db.yml`（Prerenewal）/ `db/re/mob_db.yml`（Renewal）/ `db/import/mob_db.yml`。
-   本服编译为 Pre-Renewal（`DBPATH = "pre-re/"`，见 `src/config/const.hpp`），因此真正加载的是
-   `db/pre-re/mob_db.yml`；`db/import/mob_db.yml` 本服为空，无覆盖。
-2. **静态刷怪**：由三个 conf 里“未注释”的 `npc:` 行决定（`//` 注释的会被正确跳过）：
-   - `npc/scripts_monsters.conf` → `npc/mobs/{jail,pvp,towns}.txt`
-   - `npc/pre-re/scripts_monsters.conf` → `citycleaners.txt` + `dungeons/*.txt` + `fields/*.txt`
-   - `npc/scripts_custom.conf` → 当前只有 resetnpc / 职业路线脚本（无静态刷怪）
-
-   入口是 `npc/pre-re/scripts_main.conf`（map-server 通过 `map_reloadnpc_sub` 加载）。
-
-## 输出结构
-
-```jsonc
-{
-  "meta": { "schema_version": 2, "generated_at": "...", "sources": {...}, "counts": {...} },
-  "monsters": {          // 只含“出现在静态刷怪里”的可狩猎怪物，按 ID 升序
-    "1002": {
-      "id": 1002, "aegis_name": "PORING", "name": "Poring",
-      "level": 1, "hp": 50, "base_exp": 2, "job_exp": 1, "mvp_exp": 0,
-      "is_mvp": false, "attack": 7, "attack2": 10, "defense": 0, "magic_defense": 5,
-      "size": "Medium", "race": "Plant", "element": "Water", "element_level": 1,
-      "walk_speed": 400, "attack_range": 1, "skill_range": 10,
-      "maps": { "prt_fild08": 70, "prt_fild00": 40, "...": 30 },
-      "boss_spawn_maps": []
-    }
-  },
-  "maps": {              // 反向索引：地图 -> { 怪物ID: 数量 }
-    "prt_fild08": { "1002": 70, "1063": 40, "1008": 20, "1113": 10 }
-  }
-}
-```
-
-- 同图同怪出现多条 `monster` 行时，`count` 累加。
-- `monsters` 只保留有静态刷怪的怪物（1004 条 mob_db 中 510 条可狩猎）；纯任务/活动/召唤类怪物不在静态索引里。
-- `meta.sources.input_sha256`：每个输入文件（mob_db + 各刷怪脚本）的 SHA-256。
-- `meta.sources.rathena_git`：生成时 rAthena 工作树的 HEAD commit 与 dirty 状态（非 git 仓库时为 null）。
-
-## 校验结果（已知数据断言）
-
-| 检查项 | 期望 | 实际 |
-| --- | --- | --- |
-| Poring 1002 数值 | lvl 1 / hp 50 / base_exp 2 / atk 7-10 | 一致 |
-| Poring → prt_fild08 | 70 | 70 |
-| Rocker 1052 数值 | lvl 9 / hp 198 / base_exp 20 | 一致 |
-| Rocker → prt_fild07 / prt_fild04 | 80 / 70 | 80 / 70 |
-| prt_fild08 原生刷怪 | Lunatic 40 · Pupa 20 · Poring 70 · Drops 10 | 一致 |
-
-`world_ai_test.pl` 里硬编码的 Poring→prt_fild08=70、Rocker→prt_fild07=80、prt_fild04=70 与本索引完全吻合。
-
-## 两个重要发现（会影响第 2、3 步）
-
-1. **按 ID 连接，不按名字**。刷怪脚本写的是 `monster Garm 1252,1,...`，但 `mob_db.yml` 的
-   `Name` 是 “Hatii”（`AegisName` 才是 `GARM`）。名字大小写/别名不一致很常见，本索引以刷怪行里的
-   `ID` 作为唯一连接键，规避了这类问题。
-2. **`is_mvp` 只表示 `MvpExp > 0` 的真 MVP**（如 Orc Hero、Mistress、Hatii/Garm）。像
-   `Vocal (1088)` 这种“野外小 Boss”（`monster` 关键字 + 长刷新间隔、无 `MvpExp`）不会被该字段命中，
-   也不是 `boss_monster` 刷出，因此 `boss_spawn_maps` 为空。**第 2 步的风险评分不能只靠 `is_mvp`**，
-   还要用 `level / hp / attack` 差距来过滤这类高威胁怪。
-
-## 已知边界
-
-- 只索引**静态刷怪**。NPC 脚本里动态 `monster "map",x,y,...` 命令产生的活动/任务/MVP 召唤不在其中；
-  对“选图打怪”而言静态刷怪才是可靠依据，动态召唤不属于可规划目标。
-- 早期测试曾用 `npc/custom/bot_training_spawns.txt` 给 `prt_fild08` 补 Fabre/Chonchon/Willow/Roda Frog，
-  属错误操作，已删除（文件与 `npc/scripts_custom.conf` 里的注释引用一并移除）。当前 `prt_fild08` 只有原生刷怪
-  （Lunatic/Pupa/Poring/Drops）。**约定：禁止直接修改地图刷怪脚本。**
+已知边界：不索引 NPC 动态召唤；不计算真实 EXP/hour、掉落收益、路线成本、地图面积或实际重生率；不修改 rAthena 原生刷怪。
