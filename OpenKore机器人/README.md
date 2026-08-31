@@ -61,9 +61,8 @@
 
 ## 当前行为
 
-- 固定地图：`prt_fild08`（普隆德拉南门外）。
-- 分级白名单：Poring、Pupa 可立即攻击；Base Lv.2 解锁 Fabre，Lv.3 解锁 Lunatic，Lv.5 解锁 Drops/Chonchon，Lv.6 解锁 Willow，Lv.8 解锁 Roda Frog；其他怪物默认不主动攻击。
-- 为保持同一训练地图并增加变化，`prt_fild08` 少量补入 Fabre 12、Chonchon 8、Willow 8、Roda Frog 6；原生刷怪不变。
+- 固定地图：`prt_fild08`（普隆德拉南门外），只用原生刷怪，不修改地图刷怪。
+- 分级白名单：Poring、Pupa 可立即攻击；Base Lv.3 解锁 Lunatic，Lv.5 解锁 Drops；其他怪物默认不主动攻击（`all 0`）。
 - 普攻、自动拾取、小范围巡逻均已开启。
 - HP 低于 55% 时使用物品 ID 569/501（Novice Potion / Red Potion）；低于 45% 且没有合适动作时坐下，恢复到 90%。使用 ID 是为了避免 OpenKore 的韩文物品表导致英文名称匹配失败。
 - 死亡后使用 OpenKore 默认复活流程，并回到当前固定地图。
