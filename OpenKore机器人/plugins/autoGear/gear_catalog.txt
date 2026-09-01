@@ -1,0 +1,2018 @@
+# id	type	subtype	attack	magic_attack	defense	magic_defense	slots	weapon_level	equip_level	jobs	locations	name	scripted
+1101	Weapon	1hSword	25	0	0	0	3	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Sword	0
+1102	Weapon	1hSword	25	0	0	0	4	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Sword	0
+1103	Weapon	1hSword	25	0	0	0	0	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Sword	0
+1104	Weapon	1hSword	39	0	0	0	3	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Falchion	0
+1105	Weapon	1hSword	39	0	0	0	4	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Falchion	0
+1106	Weapon	1hSword	39	0	0	0	0	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Falchion	0
+1107	Weapon	1hSword	53	0	0	0	3	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Blade	0
+1108	Weapon	1hSword	53	0	0	0	4	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Blade	0
+1109	Weapon	1hSword	53	0	0	0	0	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Blade	0
+1110	Weapon	1hSword	70	0	0	0	2	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Rapier	0
+1111	Weapon	1hSword	70	0	0	0	3	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Rapier	0
+1112	Weapon	1hSword	70	0	0	0	0	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Rapier	0
+1113	Weapon	1hSword	85	0	0	0	2	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Scimitar	0
+1114	Weapon	1hSword	85	0	0	0	3	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Scimitar	0
+1115	Weapon	1hSword	85	0	0	0	3	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Scimitar	0
+1116	Weapon	2hSword	60	0	0	0	3	1	4	Crusader,Knight,Swordsman	Both_Hand	Katana	0
+1117	Weapon	2hSword	60	0	0	0	4	1	4	Crusader,Knight,Swordsman	Both_Hand	Katana	0
+1118	Weapon	2hSword	60	0	0	0	0	1	4	Crusader,Knight,Swordsman	Both_Hand	Katana	0
+1119	Weapon	1hSword	130	0	0	0	1	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Tsurugi	0
+1120	Weapon	1hSword	130	0	0	0	2	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Tsurugi	0
+1121	Weapon	1hSword	130	0	0	0	0	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Tsurugi	0
+1122	Weapon	1hSword	100	0	0	0	2	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Ring Pommel Saber	0
+1123	Weapon	1hSword	120	0	0	0	1	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Haedonggum	1
+1124	Weapon	1hSword	90	0	0	0	0	3	5	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Orcish Sword	1
+1125	Weapon	1hSword	100	0	0	0	3	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Ring Pommel Saber	0
+1126	Weapon	1hSword	115	0	0	0	2	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Saber	0
+1127	Weapon	1hSword	115	0	0	0	3	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Saber	0
+1128	Weapon	1hSword	120	0	0	0	2	3	27	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Haedonggum	1
+1129	Weapon	1hSword	150	0	0	0	0	3	27	Crusader,Knight	Right_Hand	Flamberge	0
+1130	Weapon	1hSword	120	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Nagan	1
+1131	Weapon	1hSword	100	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Ice Falchion	1
+1132	Weapon	1hSword	115	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Edge	1
+1133	Weapon	1hSword	100	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Fireblend	1
+1134	Weapon	1hSword	140	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Caesar's Sword	1
+1135	Weapon	1hSword	150	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Cutlus	1
+1136	Weapon	1hSword	85	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Solar Sword	1
+1137	Weapon	1hSword	150	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Excalibur	1
+1138	Weapon	1hSword	170	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Mysteltainn	1
+1139	Weapon	1hSword	200	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Tirfing	1
+1140	Weapon	1hSword	150	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Byeollungum	1
+1141	Weapon	1hSword	140	0	0	0	0	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Immaterial Sword	1
+1142	Weapon	1hSword	104	0	0	0	0	3	68	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Jeweled Sword	1
+1143	Weapon	1hSword	140	0	0	0	0	3	74	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Gaia Sword	1
+1144	Weapon	1hSword	75	0	0	0	0	3	48	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Sashimi	1
+1145	Weapon	1hSword	125	0	0	0	0	3	75	Crusader	Right_Hand	Holy Avenger	1
+1146	Weapon	1hSword	100	0	0	0	1	3	30	Novice,SuperNovice	Right_Hand	Town Sword	0
+1147	Weapon	1hSword	100	0	0	0	2	3	30	Novice,SuperNovice	Right_Hand	Town Sword	0
+1148	Weapon	1hSword	140	0	0	0	1	4	45	Novice,SuperNovice	Right_Hand	Star Dust Blade	1
+1149	Weapon	1hSword	150	0	0	0	2	3	27	Crusader,Knight	Right_Hand	Flamberge	0
+1151	Weapon	2hSword	90	0	0	0	2	2	18	Crusader,Knight,Swordsman	Both_Hand	Slayer	0
+1152	Weapon	2hSword	90	0	0	0	3	2	18	Crusader,Knight,Swordsman	Both_Hand	Slayer	0
+1153	Weapon	2hSword	90	0	0	0	0	2	18	Crusader,Knight,Swordsman	Both_Hand	Slayer	0
+1154	Weapon	2hSword	115	0	0	0	2	2	18	Crusader,Knight,Swordsman	Both_Hand	Bastard Sword	0
+1155	Weapon	2hSword	115	0	0	0	3	2	18	Crusader,Knight,Swordsman	Both_Hand	Bastard Sword	0
+1156	Weapon	2hSword	115	0	0	0	0	2	18	Crusader,Knight,Swordsman	Both_Hand	Bastard Sword	0
+1157	Weapon	2hSword	160	0	0	0	1	3	33	Crusader,Knight,Swordsman	Both_Hand	Two-Handed Sword	0
+1158	Weapon	2hSword	160	0	0	0	2	3	33	Crusader,Knight,Swordsman	Both_Hand	Two-Handed Sword	0
+1159	Weapon	2hSword	160	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Two-Handed Sword	0
+1160	Weapon	2hSword	140	0	0	0	1	3	33	Crusader,Knight,Swordsman	Both_Hand	Broad Sword	1
+1161	Weapon	2hSword	250	0	0	0	0	4	48		Both_Hand	Balmung	1
+1162	Weapon	2hSword	140	0	0	0	2	3	33	Crusader,Knight,Swordsman	Both_Hand	Broad Sword	1
+1163	Weapon	2hSword	180	0	0	0	0	3	33	Crusader,Knight	Both_Hand	Claymore	0
+1164	Weapon	2hSword	155	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Muramasa	1
+1165	Weapon	2hSword	200	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Masamune	1
+1166	Weapon	2hSword	150	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Dragon Slayer	1
+1167	Weapon	2hSword	160	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Schweizersabel	1
+1168	Weapon	2hSword	200	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Zweihander	1
+1169	Weapon	2hSword	155	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Executioner	1
+1170	Weapon	2hSword	175	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Katzbalger	1
+1171	Weapon	2hSword	200	0	0	0	2	4	48	Crusader,Knight,Swordsman	Both_Hand	Zweihander	1
+1172	Weapon	2hSword	180	0	0	0	2	3	33	Crusader,Knight	Both_Hand	Claymore	0
+1173	Weapon	2hSword	204	0	0	0	0	4	1	Crusader,Knight,Swordsman	Both_Hand	Muramasa	1
+1174	Weapon	2hSword	190	0	0	0	0	4	0	Crusader,Knight,Swordsman	Both_Hand	Executioner	1
+1175	Weapon	2hSword	200	0	0	0	1	4	55	Crusader,Knight,Swordsman	Both_Hand	Atlas Weapon	1
+1176	Weapon	2hSword	160	0	0	0	2	4	55	Crusader,Knight,Swordsman	Both_Hand	Muscle Cutter	1
+1177	Weapon	2hSword	120	0	0	0	0	1	0	Crusader,Knight,Swordsman	Both_Hand	Muramash	1
+1178	Weapon	2hSword	160	0	0	0	2	4	48	Crusader,Knight,Swordsman	Both_Hand	Schweizersabel	1
+1179	Weapon	2hSword	155	0	0	0	1	4	48	Crusader,Knight,Swordsman	Both_Hand	Executioner	1
+1180	Weapon	2hSword	150	0	0	0	2	4	48	Crusader,Knight,Swordsman	Both_Hand	Dragon Slayer	1
+1181	Weapon	2hSword	250	0	0	0	2	4	90	Crusader,Knight,Swordsman	Both_Hand	Tae Goo Lyeon	1
+1182	Weapon	2hSword	200	0	0	0	2	4	50	Crusader,Knight,Swordsman	Both_Hand	Bloody Eater	1
+1183	Weapon	2hSword	200	0	0	0	0	3	80	Crusader,Knight,Swordsman	Both_Hand	Brave Assaulter's Katzbalger	1
+1184	Weapon	2hSword	200	0	0	0	0	3	80	Crusader,Knight,Swordsman	Both_Hand	Valorous Assaulter's Katzbalger	1
+1185	Weapon	2hSword	275	0	0	0	2	4	80	Crusader,Knight,Swordsman	Both_Hand	Violet Fear	1
+1186	Weapon	2hSword	200	0	0	0	2	4	70	Crusader,Knight,Swordsman	Both_Hand	Death Guidance	1
+1187	Weapon	2hSword	220	0	0	0	0	4	80	Crusader,Knight,Swordsman	Both_Hand	Glorious Claymore	1
+1188	Weapon	2hSword	180	0	0	0	1	4	80	Crusader,Knight,Swordsman	Both_Hand	Veteran Sword	1
+1189	Weapon	2hSword	200	0	0	0	3	2	50	Crusader,Knight,Swordsman	Both_Hand	Krasnaya	1
+1190	Weapon	2hSword	220	0	0	0	0	3	1	Crusader,Knight	Both_Hand	Claymore	1
+1201	Weapon	Dagger	17	0	0	0	3	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Knife	0
+1202	Weapon	Dagger	17	0	0	0	4	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Knife	0
+1203	Weapon	Dagger	17	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Knife	0
+1204	Weapon	Dagger	30	0	0	0	3	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Cutter	0
+1205	Weapon	Dagger	30	0	0	0	4	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Cutter	0
+1206	Weapon	Dagger	30	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Cutter	0
+1207	Weapon	Dagger	43	0	0	0	3	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Main Gauche	0
+1208	Weapon	Dagger	43	0	0	0	4	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Main Gauche	0
+1209	Weapon	Dagger	43	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Main Gauche	0
+1210	Weapon	Dagger	59	0	0	0	2	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dirk	0
+1211	Weapon	Dagger	59	0	0	0	3	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dirk	0
+1212	Weapon	Dagger	59	0	0	0	0	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dirk	0
+1213	Weapon	Dagger	73	0	0	0	2	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dagger	0
+1214	Weapon	Dagger	73	0	0	0	3	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dagger	0
+1215	Weapon	Dagger	73	0	0	0	0	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dagger	0
+1216	Weapon	Dagger	87	0	0	0	2	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Stiletto	0
+1217	Weapon	Dagger	87	0	0	0	3	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Stiletto	0
+1218	Weapon	Dagger	87	0	0	0	0	2	12	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Stiletto	0
+1219	Weapon	Dagger	105	0	0	0	2	3	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Gladius	0
+1220	Weapon	Dagger	105	0	0	0	3	3	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Gladius	0
+1221	Weapon	Dagger	105	0	0	0	0	3	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Gladius	0
+1222	Weapon	Dagger	118	0	0	0	1	3	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Damascus	1
+1223	Weapon	Dagger	90	0	0	0	0	4	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Fortune Sword	1
+1224	Weapon	Dagger	70	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Swordbreaker	1
+1225	Weapon	Dagger	70	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Mailbreaker	1
+1226	Weapon	Dagger	118	0	0	0	2	3	24	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Damascus	1
+1227	Weapon	Dagger	80	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Weeder Knife	1
+1228	Weapon	Dagger	80	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Combat Knife	1
+1229	Weapon	Dagger	75	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Kitchen Knife	1
+1230	Weapon	Dagger	80	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Ice Pick	1
+1231	Weapon	Dagger	70	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Bazerald	1
+1232	Weapon	Dagger	140	0	0	0	0	4	36	Assassin	Right_Hand	Assassin Dagger	1
+1233	Weapon	Dagger	90	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Exorciser	1
+1234	Weapon	Dagger	50	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Moonlight Dagger	1
+1235	Weapon	Dagger	110	0	0	0	0	4	36	Alchemist	Right_Hand	Azoth	1
+1236	Weapon	Dagger	140	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Sucsamad	1
+1237	Weapon	Dagger	180	0	0	0	0	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Grimtooth	1
+1238	Weapon	Dagger	64	0	0	0	0	3	70	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Zeny Knife	1
+1239	Weapon	Dagger	64	0	0	0	0	3	65	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Poison Knife	1
+1240	Weapon	Dagger	84	0	0	0	0	4	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Princess Knife	1
+1241	Weapon	Dagger	55	0	0	0	0	4	85	Mage,Sage,SoulLinker,Wizard	Right_Hand	Cursed Dagger	1
+1242	Weapon	Dagger	140	0	0	0	0	4	55	Mage,Sage,SoulLinker,Wizard	Right_Hand	Dagger of Counter	1
+1243	Weapon	Dagger	45	0	0	0	0	1	1	Novice,SuperNovice	Right_Hand	Novice Main-Gauche	0
+1244	Weapon	Dagger	100	0	0	0	0	4	55	Assassin,Ninja,Rogue,Thief	Right_Hand	Holy Dagger	1
+1245	Weapon	Dagger	110	0	0	0	1	3	30	Novice,SuperNovice	Right_Hand	Cinquedea	0
+1246	Weapon	Dagger	110	0	0	0	2	3	30	Novice,SuperNovice	Right_Hand	Cinquedea	0
+1247	Weapon	Dagger	39	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Kindle Dagger	1
+1248	Weapon	Dagger	39	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Obsidian Dagger	1
+1249	Weapon	Dagger	39	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Fisherman's Dagger	1
+1250	Weapon	Katar	125	0	0	0	2	2	18	Assassin	Both_Hand	Jur	0
+1251	Weapon	Katar	125	0	0	0	3	2	18	Assassin	Both_Hand	Jur	0
+1252	Weapon	Katar	148	0	0	0	1	3	33	Assassin	Both_Hand	Katar	1
+1253	Weapon	Katar	148	0	0	0	2	3	33	Assassin	Both_Hand	Katar	1
+1254	Weapon	Katar	165	0	0	0	0	3	33	Assassin	Both_Hand	Jamadhar	0
+1255	Weapon	Katar	165	0	0	0	1	3	33	Assassin	Both_Hand	Jamadhar	0
+1256	Weapon	Katar	105	0	0	0	0	3	55	Assassin	Both_Hand	Katar of Frozen Icicle	1
+1257	Weapon	Katar	105	0	0	0	0	3	55	Assassin	Both_Hand	Katar of Quaking	1
+1258	Weapon	Katar	105	0	0	0	0	3	55	Assassin	Both_Hand	Katar of Raging Blaze	1
+1259	Weapon	Katar	105	0	0	0	0	3	55	Assassin	Both_Hand	Katar of Piercing Wind	1
+1260	Weapon	Katar	150	0	0	0	0	3	65	Assassin	Both_Hand	Sharpened Legbone of Ghoul	1
+1261	Weapon	Katar	140	0	0	0	0	4	75	Assassin	Both_Hand	Infiltrator	1
+1262	Weapon	Katar	115	0	0	0	0	3	55	Assassin	Both_Hand	Loki's Nail	1
+1263	Weapon	Katar	151	0	0	0	0	4	70	Assassin	Both_Hand	Unholy Touch	1
+1264	Weapon	Katar	90	0	0	0	4	1	1	Assassin	Both_Hand	Specialty Jur	1
+1265	Weapon	Katar	120	0	0	0	0	4	75	Assassin	Both_Hand	Bloody Roar	1
+1266	Weapon	Katar	140	0	0	0	1	4	75	Assassin	Both_Hand	Infiltrator	1
+1267	Weapon	Katar	189	0	0	0	0	4	1	Assassin	Both_Hand	Infiltrator	1
+1268	Weapon	Katar	160	0	0	0	1	4	55	Assassin	Both_Hand	Wild Beast Claw	1
+1269	Weapon	Katar	140	0	0	0	0	4	55	Assassin	Both_Hand	Inverse Scale	1
+1270	Weapon	Katar	110	0	0	0	1	4	55	Assassin	Both_Hand	Drill Katar	1
+1271	Weapon	Katar	120	0	0	0	2	4	55	Assassin	Both_Hand	Blood Tears	1
+1272	Weapon	Katar	120	0	0	0	0	1	0	Assassin	Both_Hand	Scratcher	1
+1273	Weapon	Katar	148	0	0	0	0	4	0	Assassin	Both_Hand	Refined Bloody Roar	1
+1274	Weapon	Katar	179	0	0	0	0	4	0	Assassin	Both_Hand	Refined Unholy Touch	1
+1275	Weapon	Katar	105	0	0	0	3	3	55	Assassin	Both_Hand	Katar of Frozen Icicle	1
+1276	Weapon	Katar	105	0	0	0	3	3	55	Assassin	Both_Hand	Katar of Quaking	1
+1277	Weapon	Katar	105	0	0	0	3	3	55	Assassin	Both_Hand	Katar of Raging Blaze	1
+1278	Weapon	Katar	105	0	0	0	3	3	55	Assassin	Both_Hand	Katar of Piercing Wind	1
+1279	Weapon	Katar	130	0	0	0	0	3	80	Assassin	Both_Hand	Brave Carnage Katar	1
+1280	Weapon	Katar	130	0	0	0	0	3	80	Assassin	Both_Hand	Valorous Carnage Katar	1
+1281	Weapon	Katar	140	0	0	0	0	4	80	Assassin	Both_Hand	Glorious Bloody Roar	1
+1282	Weapon	Katar	140	0	0	0	0	4	80	Assassin	Both_Hand	Glorious Jamadhar	1
+1283	Weapon	Katar	175	0	0	0	0	4	0	Assassin	Both_Hand	Katar Of Speed	1
+1284	Weapon	Katar	120	0	0	0	2	3	50	Assassin	Both_Hand	Krishna	1
+1285	Weapon	Katar	130	0	0	0	2	3	50	Assassin	Both_Hand	Chakram	1
+1286	Weapon	Katar	200	0	0	0	0	3	1	Assassin	Both_Hand	Jamadhar	1
+1301	Weapon	1hAxe	38	0	0	0	3	1	3	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Axe	0
+1302	Weapon	1hAxe	38	0	0	0	4	1	3	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Axe	0
+1303	Weapon	1hAxe	38	0	0	0	0	1	3	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Axe	0
+1304	Weapon	1hAxe	75	0	0	0	0	3	3	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Orcish Axe	0
+1305	Weapon	1hAxe	140	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Cleaver	1
+1306	Weapon	1hAxe	140	0	0	0	1	3	76	Alchemist,Blacksmith	Right_Hand	War Axe	1
+1307	Weapon	1hAxe	115	0	0	0	0	2	14	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Windhawk	1
+1308	Weapon	1hAxe	170	0	0	0	0	4	45	Novice,SuperNovice	Right_Hand	Golden Axe	0
+1309	Weapon	1hAxe	75	0	0	0	4	3	3	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Orcish Axe	0
+1310	Weapon	1hAxe	130	0	0	0	0	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Glorious Cleaver	1
+1311	Weapon	1hAxe	140	0	0	0	2	3	50	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Vecer Axe	1
+1312	Weapon	1hAxe	110	0	0	0	0	3	1	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Orcish Axe	1
+1313	Weapon	1hAxe	77	0	0	0	0	1	1	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Tourist Axe	1
+1314	Weapon	2hAxe	200	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Tomahawk	1
+1315	Weapon	2hAxe	229	0	0	0	0	4	1	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Light Epsilon	1
+1351	Weapon	2hAxe	80	0	0	0	3	1	3	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Battle Axe	0
+1352	Weapon	2hAxe	80	0	0	0	4	1	3	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Battle Axe	0
+1353	Weapon	2hAxe	80	0	0	0	0	1	3	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Battle Axe	0
+1354	Weapon	2hAxe	120	0	0	0	2	2	16	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Hammer	0
+1355	Weapon	2hAxe	120	0	0	0	3	2	16	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Hammer	0
+1356	Weapon	2hAxe	120	0	0	0	0	2	16	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Hammer	0
+1357	Weapon	2hAxe	155	0	0	0	1	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Buster	0
+1358	Weapon	2hAxe	155	0	0	0	2	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Buster	0
+1359	Weapon	2hAxe	155	0	0	0	0	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Buster	0
+1360	Weapon	2hAxe	185	0	0	0	1	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Two-Handed Axe	0
+1361	Weapon	2hAxe	185	0	0	0	2	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Two-Handed Axe	0
+1362	Weapon	2hAxe	185	0	0	0	0	3	30	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Two-Handed Axe	0
+1363	Weapon	2hAxe	170	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Bloody Axe	1
+1364	Weapon	2hAxe	187	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Great Axe	1
+1365	Weapon	2hAxe	120	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Sabbath	1
+1366	Weapon	2hAxe	180	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Light Epsilon	1
+1367	Weapon	2hAxe	120	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Slaughter	1
+1368	Weapon	2hAxe	165	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Tomahawk	1
+1369	Weapon	2hAxe	215	0	0	0	0	4	44	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Guillotine	1
+1370	Weapon	2hAxe	10	0	0	0	0	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Doom Slayer	1
+1371	Weapon	2hAxe	10	0	0	0	1	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Doom Slayer	1
+1372	Weapon	2hAxe	229	0	0	0	0	4	1	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Light Epsilon	1
+1373	Weapon	2hAxe	205	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Refined Bloody Axe	1
+1374	Weapon	2hAxe	200	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Tomahawk	1
+1375	Weapon	2hAxe	200	0	0	0	2	3	70	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Berdysz	1
+1376	Weapon	2hAxe	175	0	0	0	1	4	70	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Heart Breaker	1
+1377	Weapon	2hAxe	332	0	0	0	1	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Hurricane's Fury	1
+1378	Weapon	2hAxe	215	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Refined Great Axe	1
+1379	Weapon	2hAxe	200	0	0	0	0	3	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Valorous Insane Battle Axe	1
+1380	Weapon	2hAxe	200	0	0	0	0	3	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Brave Insane Battle Axe	1
+1381	Weapon	2hAxe	100	0	0	0	3	1	3	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Novice Battle Axe	0
+1382	Weapon	2hAxe	220	0	0	0	0	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Glorious Two-Handed Axe	1
+1383	Weapon	2hAxe	200	0	0	0	0	4	60	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Celestial Axe	1
+1384	Weapon	2hAxe	250	0	0	0	2	3	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Veteran Axe	1
+1385	Weapon	2hAxe	210	0	0	0	0	4	75	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Bradium Stone Hammer	1
+1386	Weapon	2hAxe	20	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Doom Slayer	1
+1387	Weapon	2hAxe	330	0	0	0	1	3	50	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Giant Axe	1
+1388	Weapon	2hAxe	220	0	0	0	0	3	1	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Two-Handed Axe	1
+1389	Weapon	2hAxe	200	0	0	0	0	4	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Tomahawk	1
+1390	Weapon	2hAxe	229	0	0	0	0	4	1	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Hand	Light Epsilon	1
+1401	Weapon	1hSpear	28	0	0	0	3	1	4	Crusader,Knight,Swordsman	Right_Hand	Javelin	0
+1402	Weapon	1hSpear	28	0	0	0	4	1	4	Crusader,Knight,Swordsman	Right_Hand	Javelin	0
+1403	Weapon	1hSpear	28	0	0	0	0	1	4	Crusader,Knight,Swordsman	Right_Hand	Javelin	0
+1404	Weapon	1hSpear	44	0	0	0	3	1	4	Crusader,Knight,Swordsman	Right_Hand	Spear	0
+1405	Weapon	1hSpear	44	0	0	0	4	1	4	Crusader,Knight,Swordsman	Right_Hand	Spear	0
+1406	Weapon	1hSpear	44	0	0	0	0	1	4	Crusader,Knight,Swordsman	Right_Hand	Spear	0
+1407	Weapon	1hSpear	60	0	0	0	3	1	4	Crusader,Knight,Swordsman	Right_Hand	Pike	0
+1408	Weapon	1hSpear	60	0	0	0	4	1	4	Crusader,Knight,Swordsman	Right_Hand	Pike	0
+1409	Weapon	1hSpear	60	0	0	0	0	1	4	Crusader,Knight,Swordsman	Right_Hand	Pike	0
+1410	Weapon	2hSpear	185	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Lance	0
+1411	Weapon	2hSpear	185	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Lance	0
+1412	Weapon	2hSpear	185	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Lance	0
+1413	Weapon	1hSpear	120	0	0	0	0	4	4	Crusader,Knight,Swordsman	Right_Hand	Gungnir	1
+1414	Weapon	1hSpear	145	0	0	0	0	4	48	Crusader,Knight,Swordsman	Right_Hand	Gelerdria	1
+1415	Weapon	1hSpear	100	0	0	0	0	4	48	Crusader,Knight,Swordsman	Right_Hand	Brocca	1
+1416	Weapon	1hSpear	95	0	0	0	0	4	48	Crusader,Knight,Swordsman	Right_Hand	Tjungkuletti	1
+1417	Weapon	1hSpear	160	0	0	0	1	3	71	Crusader,Knight,Swordsman	Right_Hand	Pole Axe	1
+1418	Weapon	1hSpear	120	0	0	0	2	4	4	Crusader,Knight,Swordsman	Right_Hand	Gungnir	1
+1419	Weapon	1hSpear	159	0	0	0	0	3	1	Crusader,Knight,Swordsman	Right_Hand	Pole Axe	1
+1420	Weapon	1hSpear	150	0	0	0	1	4	65	Crusader,Knight,Swordsman	Right_Hand	Long Horn	1
+1421	Weapon	1hSpear	140	0	0	0	1	4	65	Crusader,Knight,Swordsman	Right_Hand	Battle Hook	1
+1422	Weapon	1hSpear	180	0	0	0	1	4	60	Crusader,Knight,Swordsman	Right_Hand	Hunting Spear	1
+1423	Weapon	1hSpear	120	0	0	0	0	1	0	Crusader,Knight,Swordsman	Right_Hand	Pole XO	1
+1424	Weapon	1hSpear	149	0	0	0	0	4	0	Crusader,Knight,Swordsman	Right_Hand	Refined Brocca	1
+1425	Weapon	1hSpear	60	0	0	0	0	3	80	Crusader,Knight,Swordsman	Right_Hand	Assaulter Spear	1
+1426	Weapon	1hSpear	130	0	0	0	0	4	80	Crusader,Knight,Swordsman	Right_Hand	Glorious Spear	1
+1427	Weapon	1hSpear	160	0	0	0	0	3	0	Crusader,Knight,Swordsman	Right_Hand	Spear Of Excellent	1
+1428	Weapon	1hSpear	150	0	0	0	1	4	65	Crusader,Knight,Swordsman	Right_Hand	Long Horn	1
+1429	Weapon	1hSpear	180	0	0	0	1	4	60	Crusader,Knight,Swordsman	Right_Hand	Hunting Spear	1
+1430	Weapon	1hSpear	74	0	0	0	0	1	1	Crusader,Knight,Swordsman	Right_Hand	Pike	1
+1431	Weapon	1hSpear	195	0	0	0	0	3	1	Crusader,Knight,Swordsman	Right_Hand	Pole Axe	1
+1432	Weapon	1hSpear	195	0	0	0	0	3	1	Crusader,Knight,Swordsman	Right_Hand	Pole Axe	1
+1451	Weapon	2hSpear	84	0	0	0	2	2	18	Crusader,Knight,Swordsman	Both_Hand	Guisarme	0
+1452	Weapon	2hSpear	84	0	0	0	3	2	18	Crusader,Knight,Swordsman	Both_Hand	Guisarme	0
+1453	Weapon	2hSpear	84	0	0	0	0	2	18	Crusader,Knight,Swordsman	Both_Hand	Guisarme	0
+1454	Weapon	2hSpear	104	0	0	0	2	2	18	Crusader,Knight,Swordsman	Both_Hand	Glaive	0
+1455	Weapon	2hSpear	104	0	0	0	3	2	18	Crusader,Knight,Swordsman	Both_Hand	Glaive	0
+1456	Weapon	2hSpear	104	0	0	0	0	2	18	Crusader,Knight,Swordsman	Both_Hand	Glaive	0
+1457	Weapon	2hSpear	124	0	0	0	1	2	18	Crusader,Knight,Swordsman	Both_Hand	Partizan	0
+1458	Weapon	2hSpear	124	0	0	0	2	2	18	Crusader,Knight,Swordsman	Both_Hand	Partizan	0
+1459	Weapon	2hSpear	124	0	0	0	0	2	18	Crusader,Knight,Swordsman	Both_Hand	Partizan	0
+1460	Weapon	2hSpear	150	0	0	0	2	3	33	Crusader,Knight,Swordsman	Both_Hand	Trident	0
+1461	Weapon	2hSpear	150	0	0	0	3	3	33	Crusader,Knight,Swordsman	Both_Hand	Trident	0
+1462	Weapon	2hSpear	150	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Trident	0
+1463	Weapon	2hSpear	165	0	0	0	1	3	33	Crusader,Knight,Swordsman	Both_Hand	Halberd	0
+1464	Weapon	2hSpear	165	0	0	0	2	3	33	Crusader,Knight,Swordsman	Both_Hand	Halberd	0
+1465	Weapon	2hSpear	165	0	0	0	0	3	33	Crusader,Knight,Swordsman	Both_Hand	Halberd	0
+1466	Weapon	2hSpear	180	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Crescent Scythe	1
+1467	Weapon	2hSpear	183	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Bill Guisarme	1
+1468	Weapon	2hSpear	170	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Zephyrus	1
+1469	Weapon	2hSpear	180	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Longinus's Spear	1
+1470	Weapon	2hSpear	190	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Brionac	1
+1471	Weapon	2hSpear	200	0	0	0	0	4	48	Crusader,Knight,Swordsman	Both_Hand	Hellfire	1
+1472	Weapon	2hStaff	25	0	0	0	0	3	73	Mage,Sage,SoulLinker,Wizard	Both_Hand	Soul Staff	1
+1473	Weapon	2hStaff	120	0	0	0	0	4	90	Mage,Sage,SoulLinker,Wizard	Both_Hand	Wizardry Staff	1
+1474	Weapon	2hSpear	160	0	0	0	0	4	60	Crusader,Knight,Swordsman	Both_Hand	Gae Bolg	1
+1475	Weapon	2hSpear	200	0	0	0	0	4	75	Crusader,Knight,Swordsman	Both_Hand	Equestrian's Spear	0
+1476	Weapon	2hSpear	180	0	0	0	1	4	48	Crusader,Knight,Swordsman	Both_Hand	Crescent Scythe	1
+1477	Weapon	2hSpear	170	0	0	0	0	4	75	Crusader,Knight,Swordsman	Both_Hand	Spectral Spear	1
+1478	Weapon	2hSpear	120	0	0	0	0	4	65	Crusader,Knight	Both_Hand	Ahlspiess	1
+1479	Weapon	2hSpear	170	0	0	0	1	4	75	Crusader,Knight,Swordsman	Both_Hand	Spectral Spear	1
+1480	Weapon	2hSpear	160	0	0	0	2	4	60	Crusader,Knight,Swordsman	Both_Hand	Gae Bolg	1
+1481	Weapon	2hSpear	170	0	0	0	3	4	48	Crusader,Knight,Swordsman	Both_Hand	Zephyrus	1
+1482	Weapon	2hSpear	160	0	0	0	0	3	80	Crusader,Knight,Swordsman	Both_Hand	Assaulter Lance	1
+1483	Weapon	2hSpear	160	0	0	0	1	3	50	Crusader,Knight,Swordsman	Both_Hand	Ivory Lance	1
+1484	Weapon	2hSpear	150	0	0	0	1	4	70	Knight	Both_Hand	Cardo	1
+1485	Weapon	2hSpear	112	0	0	0	4	2	50	Crusader,Knight,Swordsman	Both_Hand	Battle Fork	0
+1486	Weapon	2hSpear	220	0	0	0	0	4	80	Crusader,Knight,Swordsman	Both_Hand	Glorious Lance	1
+1487	Weapon	2hSpear	220	0	0	0	0	3	1	Crusader,Knight,Swordsman	Both_Hand	Lance	1
+1488	Weapon	2hSpear	135	0	0	0	0	4	1	Crusader,Knight	Both_Hand	Ahlspiess	1
+1501	Weapon	Mace	23	0	0	0	3	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Club	0
+1502	Weapon	Mace	23	0	0	0	4	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Club	0
+1503	Weapon	Mace	23	0	0	0	0	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Club	0
+1504	Weapon	Mace	37	0	0	0	3	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Mace	0
+1505	Weapon	Mace	37	0	0	0	4	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Mace	0
+1506	Weapon	Mace	37	0	0	0	0	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Mace	0
+1507	Weapon	Mace	54	0	0	0	2	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Smasher	0
+1508	Weapon	Mace	54	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Smasher	0
+1509	Weapon	Mace	54	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Smasher	0
+1510	Weapon	Mace	69	0	0	0	2	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Flail	0
+1511	Weapon	Mace	69	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Flail	0
+1512	Weapon	Mace	69	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Flail	0
+1513	Weapon	Mace	110	0	0	0	1	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Morning Star	0
+1514	Weapon	Mace	110	0	0	0	2	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Morning Star	0
+1515	Weapon	Mace	110	0	0	0	2	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Morning Star	0
+1516	Weapon	Mace	130	0	0	0	0	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Sword Mace	0
+1517	Weapon	Mace	130	0	0	0	1	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Sword Mace	0
+1518	Weapon	Mace	130	0	0	0	1	3	27	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Sword Mace	0
+1519	Weapon	Mace	84	0	0	0	2	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Chain	0
+1520	Weapon	Mace	84	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Chain	0
+1521	Weapon	Mace	84	0	0	0	3	2	14	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Chain	0
+1522	Weapon	Mace	140	0	0	0	0	3	27	Acolyte,Monk,Priest	Right_Hand	Stunner	1
+1523	Weapon	Mace	85	0	0	0	0	4	40	Acolyte,Monk,Priest	Right_Hand	Spike	1
+1524	Weapon	Mace	110	0	0	0	1	4	40	Acolyte,Monk,Priest	Right_Hand	Golden Mace	1
+1525	Weapon	Mace	135	0	0	0	0	4	40	Acolyte,Monk,Priest	Right_Hand	Long Mace	1
+1526	Weapon	Mace	145	0	0	0	0	4	40	Acolyte,Monk,Priest	Right_Hand	Slash	1
+1527	Weapon	Mace	165	0	0	0	0	4	40	Acolyte,Monk,Priest	Right_Hand	Quadrille	1
+1528	Weapon	Mace	140	0	0	0	0	4	40	Acolyte,Monk,Priest	Right_Hand	Grand Cross	1
+1529	Weapon	Mace	155	0	0	0	0	3	78	Monk,Priest	Right_Hand	Iron Driver	0
+1530	Weapon	Mace	250	0	0	0	0	4	95	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Mjolnir	1
+1531	Weapon	Mace	115	0	0	0	0	3	55	Acolyte,Monk,Priest	Right_Hand	Wrench	1
+1532	Weapon	Mace	140	0	0	0	2	3	27	Acolyte,Monk,Priest	Right_Hand	Stunner	1
+1533	Weapon	Mace	170	0	0	0	0	4	48		Right_Hand	Warrior's Balmung	1
+1534	Weapon	Mace	150	0	0	0	0	3	0	Acolyte,Monk,Priest	Right_Hand	Wrench	1
+1535	Weapon	Mace	4	0	0	0	1	4	44	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Hollgrehenn's Hammer	1
+1536	Weapon	Mace	120	0	0	0	0	1	0	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Good Morning Star	1
+1537	Weapon	Mace	193	0	0	0	0	4	0	Acolyte,Monk,Priest	Right_Hand	Refined Quadrille	1
+1538	Weapon	Mace	85	0	0	0	2	4	40	Acolyte,Monk,Priest	Right_Hand	Spike	1
+1539	Weapon	Mace	110	0	0	0	2	4	40	Acolyte,Monk,Priest	Right_Hand	Golden Mace	1
+1540	Weapon	Mace	140	0	0	0	1	4	40	Acolyte,Monk,Priest	Right_Hand	Grand Cross	1
+1541	Weapon	Mace	120	0	0	0	0	4	60	Acolyte,Monk,Priest	Right_Hand	Nemesis	1
+1542	Weapon	Mace	105	0	0	0	0	3	80	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Valorous Battlefield Morning Star	1
+1543	Weapon	Mace	105	0	0	0	0	3	80	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Brave Battlefield Morning Star	1
+1544	Weapon	Mace	110	0	0	0	3	3	50	Acolyte,Monk,Priest	Right_Hand	Lunakaligo	1
+1545	Weapon	Mace	57	0	0	0	3	1	2	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Novice Mace	0
+1546	Weapon	Mace	130	0	0	0	0	4	80	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Novice,Priest,SuperNovice,Swordsman	Right_Hand	Glorious Morning Star	1
+1547	Weapon	Mace	150	0	0	0	0	3	0	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Mace Of Madness	1
+1548	Weapon	Mace	160	0	0	0	2	3	80	Acolyte,Monk,Priest	Right_Hand	Veteran Hammer	1
+1549	Weapon	Mace	450	0	0	0	0	3	99	Blacksmith	Right_Hand	Pile Bunker	0
+1550	Weapon	Book	85	0	0	0	3	2	14	Priest,Sage,StarGladiator	Right_Hand	Book	0
+1551	Weapon	Book	115	0	0	0	2	3	27	Priest,Sage,StarGladiator	Right_Hand	Bible	1
+1552	Weapon	Book	125	0	0	0	1	3	27	Priest,Sage,StarGladiator	Right_Hand	Tablet	0
+1553	Weapon	Book	90	0	0	0	0	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Billows	1
+1554	Weapon	Book	90	0	0	0	0	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Mother Earth	1
+1555	Weapon	Book	90	0	0	0	0	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of the Blazing Sun	1
+1556	Weapon	Book	90	0	0	0	0	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Gust of Wind	1
+1557	Weapon	Book	120	0	0	0	0	4	40	Priest,Sage,StarGladiator	Right_Hand	Book of the Apocalypse	1
+1558	Weapon	Book	60	0	0	0	1	4	40	Priest,Sage,StarGladiator	Right_Hand	Girl's Diary	1
+1559	Weapon	Book	130	0	0	0	0	4	70	Priest,Sage,StarGladiator	Right_Hand	Legacy of Dragon	1
+1560	Weapon	Book	100	0	0	0	2	3	60	Priest,Sage,StarGladiator	Right_Hand	Sage's Diary	1
+1561	Weapon	Book	140	0	0	0	1	4	55	Priest,Sage,StarGladiator	Right_Hand	Hardcover Book	1
+1562	Weapon	Book	110	0	0	0	1	4	80	Priest,Sage,StarGladiator	Right_Hand	Battlefield Textbook	1
+1563	Weapon	Book	135	0	0	0	2	3	1	Priest,Sage,StarGladiator	Right_Hand	Sage's Diary	1
+1564	Weapon	Book	110	0	0	0	2	3	70	Priest,Sage,StarGladiator	Right_Hand	Encyclopedia	1
+1565	Weapon	Book	137	0	0	0	2	4	85	Priest,Sage,StarGladiator	Right_Hand	Ledger of Death	1
+1566	Weapon	Book	120	0	0	0	0	1	0	Priest,Sage,StarGladiator	Right_Hand	Diary Of Great Basil	1
+1567	Weapon	Book	168	0	0	0	0	4	0	Priest,Sage,StarGladiator	Right_Hand	Refined Hardcover Book	1
+1568	Weapon	Book	90	0	0	0	3	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Billows	1
+1569	Weapon	Book	90	0	0	0	3	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Mother Earth	1
+1570	Weapon	Book	90	0	0	0	3	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Blazing Sun	1
+1571	Weapon	Book	90	0	0	0	3	3	27	Priest,Sage,StarGladiator	Right_Hand	Book of Gust of Wind	1
+1572	Weapon	Book	60	0	0	0	2	3	60	Priest,Sage,StarGladiator	Right_Hand	Principles of Magic	1
+1573	Weapon	Book	30	0	0	0	2	3	70	Priest,Sage,StarGladiator	Right_Hand	Ancient Magic	1
+1574	Weapon	Book	90	0	0	0	0	3	80	Priest,Sage,StarGladiator	Right_Hand	Brave Battle Strategy Book	1
+1575	Weapon	Book	90	0	0	0	0	3	80	Priest,Sage,StarGladiator	Right_Hand	Valorous Battle Strategy Book	1
+1576	Weapon	Book	90	0	0	0	0	4	80	Priest,Sage,StarGladiator	Right_Hand	Glorious Tablet	1
+1577	Weapon	Book	90	0	0	0	0	4	80	Priest,Sage,StarGladiator	Right_Hand	Glorious Apocalypse	1
+1578	Weapon	Book	140	0	0	0	0	3	0	Priest,Sage,StarGladiator	Right_Hand	Book Of Prayer	1
+1579	Weapon	Book	137	0	0	0	2	4	85	Priest,Sage,StarGladiator	Right_Hand	Book of the Dead	1
+1580	Weapon	Book	145	0	0	0	0	3	0	Priest,Sage,StarGladiator	Right_Hand	Giant Encyclopedia	1
+1581	Weapon	Book	135	0	0	0	2	3	1	Priest,Sage,StarGladiator	Right_Hand	Diary Of Great Sage	0
+1582	Weapon	Book	135	0	0	0	2	3	1	Priest,Sage,StarGladiator	Right_Hand	Diary Of Great Sage	0
+1599	Weapon	Mace	200	0	0	0	0	1	1		Right_Hand	Angra Manyu	1
+1601	Weapon	Staff	15	0	0	0	3	1	1	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Rod	1
+1602	Weapon	Staff	15	0	0	0	4	1	1	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Rod	1
+1603	Weapon	Staff	15	0	0	0	0	1	1	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Rod	1
+1604	Weapon	Staff	25	0	0	0	2	2	12	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Wand	1
+1605	Weapon	Staff	25	0	0	0	3	2	12	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Wand	1
+1606	Weapon	Staff	25	0	0	0	0	2	12	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Wand	1
+1607	Weapon	Staff	40	0	0	0	2	2	12	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Staff	1
+1608	Weapon	Staff	40	0	0	0	3	2	12	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Staff	1
+1609	Weapon	Staff	40	0	0	0	0	2	12	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Staff	1
+1610	Weapon	Staff	60	0	0	0	1	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Arc Wand	1
+1611	Weapon	Staff	60	0	0	0	2	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Arc Wand	1
+1612	Weapon	Staff	60	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Arc Wand	1
+1613	Weapon	Staff	130	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Mighty Staff	1
+1614	Weapon	Staff	75	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Wand of Occult	1
+1615	Weapon	Staff	40	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Evil Bone Wand	1
+1616	Weapon	Staff	60	0	0	0	0	4	40	Mage,Sage,SoulLinker,Wizard	Right_Hand	Wing Staff	1
+1617	Weapon	Staff	50	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Survivor's Rod	1
+1618	Weapon	Staff	50	0	0	0	1	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Survivor's Rod	1
+1619	Weapon	Staff	50	0	0	0	0	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Survivor's Rod	1
+1620	Weapon	Staff	50	0	0	0	1	3	24	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Survivor's Rod	1
+1621	Weapon	Staff	70	0	0	0	1	3	30	Novice,SuperNovice	Right_Hand	Hypnotist's Staff	1
+1622	Weapon	Staff	70	0	0	0	2	3	30	Novice,SuperNovice	Right_Hand	Hypnotist's Staff	1
+1623	Weapon	Staff	165	0	0	0	0	3	1	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Mighty Staff	1
+1624	Weapon	Staff	60	0	0	0	2	3	70	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Lich's Bone Wand	1
+1625	Weapon	Staff	10	0	0	0	0	3	55	Acolyte,Monk,Priest	Right_Hand	Healing Staff	1
+1626	Weapon	Staff	80	0	0	0	0	3	70	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Piercing Staff	1
+1627	Weapon	Staff	40	0	0	0	0	1	0	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Staffy	1
+1628	Weapon	Staff	71	0	0	0	0	3	0	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Refined Survivor's Rod	1
+1629	Weapon	Staff	40	0	0	0	1	4	50	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Gentleman's Staff	1
+1630	Weapon	Staff	30	0	0	0	0	3	50	Mage,Sage,SoulLinker,Wizard	Right_Hand	Release of Wish	1
+1631	Weapon	Staff	50	0	0	0	1	4	70	Monk,Priest	Right_Hand	Holy Stick	1
+1632	Weapon	Staff	70	0	0	0	0	3	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Warlock's Magic Wand	1
+1633	Weapon	Staff	70	0	0	0	0	3	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Warlock's Battle Wand	1
+1634	Weapon	Staff	70	0	0	0	0	3	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Strong Recovery Wand	1
+1635	Weapon	Staff	70	0	0	0	0	3	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Speedy Recovery Wand	1
+1636	Weapon	Staff	60	0	0	0	0	4	75	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Thorn Staff of Darkness	1
+1637	Weapon	Staff	80	0	0	0	0	4	70	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Eraser	1
+1638	Weapon	Staff	10	0	0	0	0	3	1	Acolyte,Monk,Priest	Right_Hand	Staff Of Healing	1
+1639	Weapon	Staff	15	0	0	0	3	1	1	Acolyte,Mage,Monk,Novice,Priest,Sage,SoulLinker,SuperNovice,Wizard	Right_Hand	Novice Rod	1
+1640	Weapon	Staff	70	0	0	0	0	4	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Glorious Arc Wand	1
+1641	Weapon	Staff	70	0	0	0	0	4	80	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Glorious Cure Wand	1
+1642	Weapon	Staff	100	0	0	0	0	2	0	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Staff Of Darkness	1
+1643	Weapon	Staff	100	0	0	0	0	4	70	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Right_Hand	Dead Tree Cane	1
+1644	Weapon	Staff	80	0	0	0	0	3	70	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Staff of Piercing	1
+1645	Weapon	Staff	60	0	0	0	2	3	70	Acolyte,Mage,Monk,Priest,Sage,Wizard	Right_Hand	Lich's Bone Wand	1
+1646	Weapon	Staff	30	0	0	0	2	3	50	Mage,Sage,Wizard	Right_Hand	La'cryma Stick	1
+1647	Weapon	Staff	30	0	0	0	1	3	50	Acolyte,Monk,Priest	Right_Hand	Croce Staff	1
+1648	Weapon	Staff	30	0	0	0	0	4	50	Mage,Sage,Wizard	Right_Hand	Staff Of Bordeaux	1
+1701	Weapon	Bow	15	0	0	0	3	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Bow	0
+1702	Weapon	Bow	15	0	0	0	4	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Bow	0
+1703	Weapon	Bow	15	0	0	0	0	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Bow	1
+1704	Weapon	Bow	29	0	0	0	3	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Composite Bow	0
+1705	Weapon	Bow	29	0	0	0	4	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Composite Bow	0
+1706	Weapon	Bow	29	0	0	0	0	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Composite Bow	0
+1707	Weapon	Bow	50	0	0	0	2	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Great Bow	0
+1708	Weapon	Bow	50	0	0	0	3	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Great Bow	0
+1709	Weapon	Bow	50	0	0	0	0	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Great Bow	0
+1710	Weapon	Bow	65	0	0	0	2	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Crossbow	0
+1711	Weapon	Bow	65	0	0	0	3	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Crossbow	0
+1712	Weapon	Bow	65	0	0	0	0	2	18	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Crossbow	0
+1713	Weapon	Bow	90	0	0	0	1	3	33	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Arbalest	1
+1714	Weapon	Bow	100	0	0	0	1	3	33	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Gakkung Bow	0
+1715	Weapon	Bow	90	0	0	0	2	3	33	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Arbalest	1
+1716	Weapon	Bow	100	0	0	0	2	3	33	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Gakkung Bow	0
+1718	Weapon	Bow	125	0	0	0	0	3	33	Hunter	Both_Hand	Hunter Bow	0
+1719	Weapon	Bow	75	0	0	0	0	4	48	Thief	Both_Hand	Roguemaster's Bow	0
+1720	Weapon	Bow	150	0	0	0	0	4	48	Archer,BardDancer,Hunter,Rogue	Both_Hand	Rudra Bow	1
+1721	Weapon	Bow	95	0	0	0	1	3	65	Hunter,Rogue,Thief	Both_Hand	Repeating Crossbow	0
+1722	Weapon	Bow	145	0	0	0	0	4	77	BardDancer,Hunter	Both_Hand	Ballista	0
+1723	Weapon	Bow	100	0	0	0	2	3	30	Hunter	Both_Hand	Luna Bow	1
+1724	Weapon	Bow	100	0	0	0	0	4	60	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Dragon Wing	1
+1725	Weapon	Bow	120	0	0	0	1	4	70	BardDancer,Hunter	Both_Hand	Minstrel Bow	1
+1726	Weapon	Bow	125	0	0	0	1	3	33	Hunter	Both_Hand	Hunter Bow	0
+1727	Weapon	Bow	145	0	0	0	1	4	77	BardDancer,Hunter	Both_Hand	Ballista	0
+1728	Weapon	Bow	194	0	0	0	0	4	1	BardDancer,Hunter	Both_Hand	Ballista	1
+1729	Weapon	Bow	185	0	0	0	0	4	1	Archer,BardDancer,Hunter,Rogue	Both_Hand	Rudra Bow	1
+1730	Weapon	Bow	95	0	0	0	1	3	55	Archer,BardDancer,Hunter,Rogue	Both_Hand	Burning Bow	1
+1731	Weapon	Bow	100	0	0	0	1	3	55	Archer,BardDancer,Hunter,Rogue	Both_Hand	Frozen Bow	1
+1732	Weapon	Bow	105	0	0	0	1	3	55	Archer,BardDancer,Hunter,Rogue	Both_Hand	Earth Bow	0
+1733	Weapon	Bow	95	0	0	0	1	3	55	Archer,BardDancer,Hunter,Rogue	Both_Hand	Gust Bow	0
+1734	Weapon	Bow	120	0	0	0	0	3	65	Archer,BardDancer,Hunter,Rogue	Both_Hand	Orc Archer Bow	1
+1735	Weapon	Bow	120	0	0	0	0	1	1	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Kkakkung	1
+1736	Weapon	Bow	70	0	0	0	3	3	70	Hunter	Both_Hand	Double Bound	1
+1737	Weapon	Bow	135	0	0	0	1	4	70	Hunter	Both_Hand	Ixion Wings	1
+1738	Weapon	Bow	100	0	0	0	0	3	80	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Valorous Battle CrossBow	1
+1739	Weapon	Bow	100	0	0	0	0	3	80	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Brave Battle CrossBow	1
+1740	Weapon	Bow	105	0	0	0	2	4	60	Hunter	Both_Hand	Nepenthes Bow	1
+1741	Weapon	Bow	125	0	0	0	1	4	80	Archer,BardDancer,Hunter	Both_Hand	Cursed Lyre	1
+1742	Weapon	Bow	49	0	0	0	3	1	4	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Novice Composite Bow	0
+1743	Weapon	Bow	100	0	0	0	0	4	80	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Glorious Hunter Bow	1
+1744	Weapon	Bow	170	0	0	0	0	4	1	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Bow Of Evil	1
+1745	Weapon	Bow	100	0	0	0	2	3	50	Archer,BardDancer,Hunter	Both_Hand	Falken Blitz	1
+1801	Weapon	Knuckle	30	0	0	0	3	1	1	Monk,Priest	Right_Hand	Waghnak	0
+1802	Weapon	Knuckle	30	0	0	0	4	1	1	Monk,Priest	Right_Hand	Waghnak	0
+1803	Weapon	Knuckle	50	0	0	0	2	2	12	Monk,Priest	Right_Hand	Knuckle Dusters	0
+1804	Weapon	Knuckle	50	0	0	0	3	2	12	Monk,Priest	Right_Hand	Knuckle Dusters	0
+1805	Weapon	Knuckle	65	0	0	0	2	2	12	Monk,Priest	Right_Hand	Studded Knuckles	0
+1806	Weapon	Knuckle	65	0	0	0	3	2	12	Monk,Priest	Right_Hand	Studded Knuckles	0
+1807	Weapon	Knuckle	115	0	0	0	0	3	24	Monk,Priest	Right_Hand	Fist	0
+1808	Weapon	Knuckle	115	0	0	0	1	3	24	Monk,Priest	Right_Hand	Fist	0
+1809	Weapon	Knuckle	86	0	0	0	1	3	24	Monk,Priest	Right_Hand	Claw	1
+1810	Weapon	Knuckle	86	0	0	0	2	3	24	Monk,Priest	Right_Hand	Claw	1
+1811	Weapon	Knuckle	97	0	0	0	1	3	24	Monk,Priest	Right_Hand	Finger	0
+1812	Weapon	Knuckle	97	0	0	0	2	3	24	Monk,Priest	Right_Hand	Finger	0
+1813	Weapon	Knuckle	110	0	0	0	0	4	36	Monk,Priest	Right_Hand	Kaiser Knuckle	1
+1814	Weapon	Knuckle	120	0	0	0	0	4	36	Monk,Priest	Right_Hand	Berserk	1
+1815	Weapon	Knuckle	152	0	0	0	1	4	70	Monk,Priest	Right_Hand	Hatii Claw	1
+1816	Weapon	Knuckle	120	0	0	0	1	4	36	Monk,Priest	Right_Hand	Berserk	1
+1817	Weapon	Knuckle	159	0	0	0	0	4	1	Monk,Priest	Right_Hand	Kaiser Knuckle	1
+1818	Weapon	Knuckle	80	0	0	0	3	3	75	Monk,Priest	Right_Hand	Magma Fist	1
+1819	Weapon	Knuckle	80	0	0	0	3	3	75	Monk,Priest	Right_Hand	Icicle Fist	1
+1820	Weapon	Knuckle	80	0	0	0	3	3	75	Monk,Priest	Right_Hand	Electric Fist	1
+1821	Weapon	Knuckle	80	0	0	0	3	3	75	Monk,Priest	Right_Hand	Seismic Fist	1
+1822	Weapon	Knuckle	30	0	0	0	4	3	60	Monk,Priest	Right_Hand	Combo Battle Glove	1
+1823	Weapon	Knuckle	30	0	0	0	0	3	80	Monk,Priest	Right_Hand	Valorous Battle Fist	1
+1824	Weapon	Knuckle	30	0	0	0	0	3	80	Monk,Priest	Right_Hand	Brave Battle Fist	1
+1825	Weapon	Knuckle	95	0	0	0	3	3	60	Monk	Right_Hand	Horn of Hillslion	1
+1826	Weapon	Knuckle	30	0	0	0	0	4	80	Monk,Priest	Right_Hand	Glorious Claw	1
+1827	Weapon	Knuckle	30	0	0	0	0	4	80	Monk,Priest	Right_Hand	Glorious Fist	1
+1828	Weapon	Knuckle	150	0	0	0	0	4	0	Monk,Priest	Right_Hand	Monk Knuckle	1
+1829	Weapon	Knuckle	150	0	0	0	0	3	1	Monk,Priest	Right_Hand	Fist	1
+1901	Weapon	Musical	50	0	0	0	3	1	2	BardDancer	Right_Hand	Violin	0
+1902	Weapon	Musical	50	0	0	0	4	1	2	BardDancer	Right_Hand	Violin	0
+1903	Weapon	Musical	90	0	0	0	2	2	14	BardDancer	Right_Hand	Mandolin	0
+1904	Weapon	Musical	90	0	0	0	3	2	14	BardDancer	Right_Hand	Mandolin	0
+1905	Weapon	Musical	105	0	0	0	2	2	14	BardDancer	Right_Hand	Lute	0
+1906	Weapon	Musical	105	0	0	0	3	2	14	BardDancer	Right_Hand	Lute	0
+1907	Weapon	Musical	142	0	0	0	0	3	27	BardDancer	Right_Hand	Guitar	0
+1908	Weapon	Musical	142	0	0	0	1	3	27	BardDancer	Right_Hand	Guitar	0
+1909	Weapon	Musical	114	0	0	0	1	3	27	BardDancer	Right_Hand	Harp	1
+1910	Weapon	Musical	114	0	0	0	2	3	27	BardDancer	Right_Hand	Harp	1
+1911	Weapon	Musical	126	0	0	0	1	3	27	BardDancer	Right_Hand	Gumoongoh	0
+1912	Weapon	Musical	126	0	0	0	2	3	27	BardDancer	Right_Hand	Gumoongoh	0
+1913	Weapon	Musical	110	0	0	0	0	4	70	BardDancer	Right_Hand	Electric Guitar	1
+1914	Weapon	Musical	110	0	0	0	0	3	27	BardDancer	Right_Hand	Burning Passion Guitar	1
+1915	Weapon	Musical	110	0	0	0	0	3	27	BardDancer	Right_Hand	Loner's Guitar	1
+1916	Weapon	Musical	110	0	0	0	0	3	27	BardDancer	Right_Hand	Green Acre Guitar	1
+1917	Weapon	Musical	110	0	0	0	0	3	27	BardDancer	Right_Hand	Gentle Breeze Guitar	1
+1918	Weapon	Musical	150	0	0	0	0	4	65	BardDancer	Right_Hand	Oriental Lute	1
+1919	Weapon	Musical	130	0	0	0	1	3	70	BardDancer	Right_Hand	Bass Guitar	1
+1920	Weapon	Musical	10	0	0	0	0	4	70	BardDancer	Right_Hand	Berserk Guitar	1
+1921	Weapon	Musical	120	0	0	0	0	1	0	BardDancer	Right_Hand	Gun Moon Gom	1
+1922	Weapon	Musical	150	0	0	0	2	4	65	BardDancer	Right_Hand	Oriental Lute	1
+1923	Weapon	Musical	50	0	0	0	0	3	80	BardDancer	Right_Hand	Valorous Battlefield Guitar	1
+1924	Weapon	Musical	50	0	0	0	0	3	80	BardDancer	Right_Hand	Brave Battlefield Guitar	1
+1925	Weapon	Musical	110	0	0	0	3	3	70	BardDancer	Right_Hand	Cello	1
+1926	Weapon	Musical	120	0	0	0	2	4	60	BardDancer	Right_Hand	Harp of Nepenthes	1
+1927	Weapon	Musical	50	0	0	0	0	4	80	BardDancer	Right_Hand	Glorious Guitar	1
+1928	Weapon	Musical	40	0	0	0	0	4	0	BardDancer	Right_Hand	Spirited Guitar	1
+1929	Weapon	Musical	177	0	0	0	0	3	1	BardDancer	Right_Hand	Guitar	1
+1950	Weapon	Whip	45	0	0	0	3	1	3	BardDancer	Right_Hand	Rope	0
+1951	Weapon	Whip	45	0	0	0	4	1	3	BardDancer	Right_Hand	Rope	0
+1952	Weapon	Whip	80	0	0	0	2	2	16	BardDancer	Right_Hand	Whip	0
+1953	Weapon	Whip	80	0	0	0	3	2	16	BardDancer	Right_Hand	Whip	0
+1954	Weapon	Whip	95	0	0	0	2	2	16	BardDancer	Right_Hand	Wire Whip	0
+1955	Weapon	Whip	95	0	0	0	3	2	16	BardDancer	Right_Hand	Wire Whip	0
+1956	Weapon	Whip	135	0	0	0	0	3	30	BardDancer	Right_Hand	Rante Whip	0
+1957	Weapon	Whip	135	0	0	0	1	3	30	BardDancer	Right_Hand	Rante Whip	0
+1958	Weapon	Whip	105	0	0	0	1	3	30	BardDancer	Right_Hand	Tail Whip	1
+1959	Weapon	Whip	105	0	0	0	2	3	30	BardDancer	Right_Hand	Tail Whip	1
+1960	Weapon	Whip	120	0	0	0	1	3	30	BardDancer	Right_Hand	Whip	0
+1961	Weapon	Whip	120	0	0	0	2	3	30	BardDancer	Right_Hand	Whip	0
+1962	Weapon	Whip	100	0	0	0	0	4	44	BardDancer	Right_Hand	Lariat Whip	1
+1963	Weapon	Whip	115	0	0	0	0	4	44	BardDancer	Right_Hand	Rapture Rose	1
+1964	Weapon	Whip	135	0	0	0	0	4	44	BardDancer	Right_Hand	Chemeti Whip	1
+1965	Weapon	Whip	110	0	0	0	0	3	30	BardDancer	Right_Hand	Red Flame Whip	1
+1966	Weapon	Whip	110	0	0	0	0	3	30	BardDancer	Right_Hand	Icicle Whip	1
+1967	Weapon	Whip	110	0	0	0	0	3	30	BardDancer	Right_Hand	Gaia Whip	1
+1968	Weapon	Whip	120	0	0	0	0	3	30	BardDancer	Right_Hand	Skipping Rope	1
+1969	Weapon	Whip	140	0	0	0	0	4	30	BardDancer	Right_Hand	Blade Whip	1
+1970	Weapon	Whip	150	0	0	0	0	4	65	BardDancer	Right_Hand	Queen's Whip	1
+1971	Weapon	Whip	110	0	0	0	0	3	30	BardDancer	Right_Hand	Electric Wire	1
+1972	Weapon	Whip	100	0	0	0	2	4	70	BardDancer	Right_Hand	Electric Eel	1
+1973	Weapon	Whip	110	0	0	0	1	4	70	BardDancer	Right_Hand	Sea Witch's Foot	1
+1974	Weapon	Whip	185	0	0	0	0	4	70	BardDancer	Right_Hand	Carrot Whip	1
+1975	Weapon	Whip	120	0	0	0	0	1	0	BardDancer	Right_Hand	Queen Is Whip	1
+1976	Weapon	Whip	150	0	0	0	2	4	65	BardDancer	Right_Hand	Queen's Whip	1
+1977	Weapon	Whip	50	0	0	0	0	3	80	BardDancer	Right_Hand	Valorous Battle Lariat	1
+1978	Weapon	Whip	50	0	0	0	0	3	80	BardDancer	Right_Hand	Brave Battle Lariat	1
+1979	Weapon	Whip	120	0	0	0	2	4	60	BardDancer	Right_Hand	Stem of Nepenthes	1
+1980	Weapon	Whip	110	0	0	0	3	3	70	BardDancer	Right_Hand	Whip of Balance	1
+1981	Weapon	Whip	50	0	0	0	0	4	80	BardDancer	Right_Hand	Glorious Lariat	1
+1982	Weapon	Whip	160	0	0	0	0	4	0	BardDancer	Right_Hand	Phenomena Whip	1
+1983	Weapon	Whip	170	0	0	0	0	3	1	BardDancer	Right_Hand	Rante Whip	1
+2000	Weapon	2hStaff	130	0	0	0	1	4	80	Wizard	Both_Hand	Staff of Destruction	1
+2001	Weapon	2hStaff	120	0	0	0	0	4	70	Monk,Priest	Both_Hand	Divine Cross	1
+2002	Weapon	2hStaff	70	0	0	0	0	4	80	Acolyte,Mage,Monk,Priest,Sage,Wizard	Both_Hand	Glorious Destruction Staff	1
+2003	Weapon	2hStaff	130	0	0	0	1	4	80	Wizard	Both_Hand	Staff of Destruction	1
+2004	Weapon	2hStaff	30	0	0	0	0	4	50	Mage,Sage,Wizard	Both_Hand	Kronos	1
+2005	Weapon	2hStaff	30	0	0	0	1	3	50	Acolyte,Monk,Priest	Both_Hand	Dea Staff	1
+2101	Armor		0	0	3	0	0	0	0		Left_Hand	Guard	0
+2102	Armor		0	0	3	0	1	0	0		Left_Hand	Guard	0
+2103	Armor		0	0	4	0	0	0	0	Acolyte,Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Rogue,Swordsman,Thief	Left_Hand	Buckler	0
+2104	Armor		0	0	4	0	1	0	0	Acolyte,Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Rogue,Swordsman,Thief	Left_Hand	Buckler	0
+2105	Armor		0	0	6	0	0	0	0	Crusader,Knight,Swordsman	Left_Hand	Shield	0
+2106	Armor		0	0	6	0	1	0	0	Crusader,Knight,Swordsman	Left_Hand	Shield	0
+2107	Armor		0	0	4	0	0	0	0	Crusader,Knight,StarGladiator,Swordsman	Left_Hand	Mirror Shield	1
+2108	Armor		0	0	4	0	1	0	0	Crusader,Knight,StarGladiator,Swordsman	Left_Hand	Mirror Shield	1
+2109	Armor		0	0	3	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Left_Hand	Memory Book	1
+2110	Armor		0	0	5	0	0	0	68	Crusader	Left_Hand	Holy Guard	1
+2111	Armor		0	0	5	0	0	0	83	Crusader	Left_Hand	Sacred Mission	1
+2112	Armor		0	0	3	0	0	0	0	Novice,SuperNovice	Left_Hand	Novice Guard	0
+2113	Armor		0	0	3	0	1	0	40	Novice,SuperNovice	Left_Hand	Novice Shield	1
+2114	Armor		0	0	3	0	1	0	65	All	Left_Hand	Stone Buckler	1
+2115	Armor		0	0	3	0	1	0	65	All	Left_Hand	Valkyrja's Shield	1
+2116	Armor		0	0	3	0	1	0	20	Novice,SuperNovice	Left_Hand	Angelic Guard	1
+2117	Armor		0	0	5	0	0	0	20	Ninja	Left_Hand	Arm Guard	0
+2118	Armor		0	0	5	0	1	0	20	Ninja	Left_Hand	Arm Guard	0
+2119	Armor		0	0	4	0	0	0	50	Ninja	Left_Hand	Advanced Arm Guard	1
+2120	Armor		0	0	4	0	1	0	50	Ninja	Left_Hand	Advanced Arm Guard	1
+2121	Armor		0	0	3	0	1	0	0	Mage,Sage,SoulLinker,Wizard	Left_Hand	Memory Book	1
+2122	Armor		0	0	5	0	0	0	68	All	Left_Hand	Platinum Shield	1
+2123	Armor		0	0	5	0	1	0	55	All	Left_Hand	Orleans's Server	1
+2124	Armor		0	0	5	0	1	0	55	All	Left_Hand	Thorny Buckler	1
+2125	Armor		0	0	4	0	1	0	75	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Left_Hand	Strong Shield	1
+2126	Armor		0	0	3	0	0	0	75	All	Left_Hand	Guyak Shield	1
+2127	Armor		0	0	10	0	0	0	0		Left_Hand	Secular Mission	1
+2128	Armor		0	0	5	0	1	0	83	Crusader	Left_Hand	Sacred Mission	1
+2129	Armor		0	0	5	0	0	0	50	Monk,Priest	Left_Hand	Exorcism Bible	1
+2130	Armor		0	0	6	0	1	0	80	Crusader	Left_Hand	Cross Shield	1
+2131	Armor		0	0	2	0	1	0	70	Mage,Sage,SoulLinker,Wizard	Left_Hand	Magic Bible Vol1	1
+2132	Armor		0	0	9	0	0	0	0		Left_Hand	Shell Of Resistance	1
+2133	Armor		0	0	5	0	1	0	50	Crusader,Knight,Swordsman	Left_Hand	Tournament Shield	1
+2134	Armor		0	0	3	0	1	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Left_Hand	Shield of Naga	1
+2135	Armor		0	0	4	0	1	0	70	Rogue	Left_Hand	Shadow Guard	0
+2136	Armor		0	0	5	0	0	0	0		Left_Hand	Cracked Buckler	1
+2137	Armor		0	0	5	0	0	0	95	All	Left_Hand	Neo Valkyrja's Shield	1
+2138	Armor		0	0	5	0	1	0	65	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Left_Hand	Bradium Shield	1
+2139	Armor		0	0	60	0	0	0	99	Blacksmith	Left_Hand	Flame Thrower	0
+2199	Armor		0	0	100	0	0	0	1		Left_Hand	Ahura Mazdah	1
+2201	Armor		0	0	0	0	0	0	0		Head_Mid	Sunglasses	1
+2202	Armor		0	0	0	0	1	0	0		Head_Mid	Sunglasses	1
+2203	Armor		0	0	0	0	0	0	0		Head_Mid	Glasses	0
+2204	Armor		0	0	0	0	1	0	0		Head_Mid	Glasses	0
+2205	Armor		0	0	0	0	0	0	0		Head_Mid	Diver Goggles	0
+2206	Armor		0	0	0	0	0	0	0		Head_Top	Wedding Veil	1
+2207	Armor		0	0	0	0	0	0	0		Head_Top	Fancy Flower	1
+2208	Armor		0	0	1	0	0	0	0		Head_Top	Ribbon	1
+2209	Armor		0	0	1	0	1	0	0		Head_Top	Ribbon	1
+2210	Armor		0	0	1	0	0	0	0		Head_Top	Hair Band	0
+2211	Armor		0	0	1	0	0	0	0		Head_Top	Bandana	0
+2212	Armor		0	0	0	0	0	0	0		Head_Mid	Eye Patch	0
+2213	Armor		0	0	2	0	0	0	0		Head_Top	Kitty Band	0
+2214	Armor		0	0	2	0	0	0	0		Head_Top	Bunny Band	1
+2215	Armor		0	0	2	0	0	0	0		Head_Top	Flower Band	0
+2216	Armor		0	0	4	0	0	0	0	Acolyte,Monk,Priest	Head_Top	Biretta	0
+2217	Armor		0	0	4	0	1	0	0	Acolyte,Monk,Priest	Head_Top	Biretta	0
+2218	Armor		0	0	0	0	0	0	0		Head_Low	Flu Mask	1
+2219	Armor		0	0	0	0	0	0	0		Head_Low	Flu Mask	1
+2220	Armor		0	0	2	0	0	0	0		Head_Top	Hat	0
+2221	Armor		0	0	2	0	1	0	0		Head_Top	Hat	0
+2222	Armor		0	0	3	0	0	0	0	All	Head_Top	Turban	0
+2223	Armor		0	0	3	0	1	0	0	All	Head_Top	Turban	0
+2224	Armor		0	0	5	0	0	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Merchant,Rogue,Swordsman,Thief	Head_Mid,Head_Top	Goggles	0
+2225	Armor		0	0	5	0	1	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Merchant,Rogue,Swordsman,Thief	Head_Mid,Head_Top	Goggles	0
+2226	Armor		0	0	4	0	0	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Cap	0
+2227	Armor		0	0	4	0	1	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Cap	0
+2228	Armor		0	0	6	0	0	0	0	Crusader,Knight,Swordsman	Head_Top	Helm	0
+2229	Armor		0	0	6	0	1	0	0	Crusader,Knight,Swordsman	Head_Top	Helm	0
+2230	Armor		0	0	4	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Gemmed Sallet	1
+2231	Armor		0	0	4	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Gemmed Sallet	1
+2232	Armor		0	0	3	0	0	0	0	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Head_Top	Circlet	1
+2233	Armor		0	0	3	0	1	0	0	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Head_Top	Circlet	1
+2234	Armor		0	0	4	0	0	0	45	All	Head_Top	Tiara	1
+2235	Armor		0	0	4	0	0	0	45	All	Head_Top	Crown	1
+2236	Armor		0	0	1	0	0	0	0		Head_Top	Santa Hat	1
+2237	Armor		0	0	0	0	0	0	0		Head_Low	Bandit Beard	0
+2239	Armor		0	0	0	0	0	0	0		Head_Mid	Monocle	0
+2240	Armor		0	0	0	0	0	0	0		Head_Low	Beard	0
+2241	Armor		0	0	0	0	0	0	0		Head_Low	Grampa Beard	0
+2242	Armor		0	0	1	0	0	0	0		Head_Mid	Purple Glasses	1
+2243	Armor		0	0	1	0	0	0	0		Head_Mid	Geek Glasses	1
+2244	Armor		0	0	2	0	0	0	0	All	Head_Top	Big Ribbon	1
+2245	Armor		0	0	3	0	0	0	0	All	Head_Top	Sweet Gent	0
+2246	Armor		0	0	5	0	0	0	40	All	Head_Top	Golden Gear	1
+2247	Armor		0	0	3	0	0	0	0	All	Head_Top	Romantic Gent	0
+2248	Armor		0	0	3	0	0	0	0	All	Head_Top	Western Grace	0
+2249	Armor		0	0	3	0	0	0	0	All	Head_Top	Coronet	1
+2250	Armor		0	0	1	0	0	0	0	All	Head_Top	Cute Ribbon	1
+2251	Armor		0	0	5	0	0	0	0	Acolyte,Monk,Priest	Head_Top	Monk Hat	1
+2252	Armor		0	0	4	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Wizard Hat	1
+2253	Armor		0	0	1	0	0	0	0		Head_Top	Sunflower	1
+2254	Armor		0	0	2	0	0	0	0	All	Head_Top	Angel Wing	1
+2255	Armor		0	0	3	0	0	0	0	All	Head_Top	Evil Wing	1
+2256	Armor		0	0	5	0	0	0	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,StarGladiator,Swordsman,Taekwon	Head_Top	Majestic Goat	1
+2257	Armor		0	0	2	0	0	0	0		Head_Top	Unicorn Horn	0
+2258	Armor		0	0	6	0	0	0	50	Acolyte,Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Head_Top	Spiky Band	0
+2259	Armor		0	0	1	0	0	0	0		Head_Top	Mini Propeller	0
+2260	Armor		0	0	1	0	0	0	0	All	Head_Mid	Mini Glasses	0
+2261	Armor		0	0	4	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Army Cap	0
+2262	Armor		0	0	0	0	0	0	0		Head_Low	Clown Nose	0
+2263	Armor		0	0	0	0	0	0	0	All	Head_Mid	Zorro Masque	0
+2264	Armor		0	0	5	0	0	0	0		Head_Low,Head_Mid,Head_Top	Munak Hat	1
+2265	Armor		0	0	0	0	0	0	0		Head_Low	Gangster Mask	1
+2266	Armor		0	0	1	0	0	0	50	Crusader,Knight,Swordsman	Head_Low	Iron Cain	0
+2267	Armor		0	0	0	0	0	0	0	All	Head_Low	Cigarette	1
+2268	Armor		0	0	0	0	0	0	0	All	Head_Low	Pipe	1
+2269	Armor		0	0	0	0	0	0	0	All	Head_Low	Romantic Flower	1
+2270	Armor		0	0	0	0	0	0	0	All	Head_Low	Romantic Leaf	1
+2271	Armor		0	0	1	0	0	0	0	All	Head_Top	Jack be Dandy	0
+2272	Armor		0	0	1	0	0	0	0		Head_Top	Stop Post	0
+2273	Armor		0	0	3	0	0	0	0	All	Head_Top	Doctor Band	1
+2274	Armor		0	0	0	0	0	0	0	All	Head_Top	Ghost Bandana	1
+2275	Armor		0	0	2	0	0	0	0		Head_Top	Red Bandana	0
+2276	Armor		0	0	1	0	0	0	0		Head_Mid	Angled Glasses	0
+2277	Armor		0	0	2	0	0	0	0	Acolyte,Monk,Priest	Head_Top	Nurse Cap	1
+2278	Armor		0	0	1	0	0	0	0		Head_Low,Head_Mid	Mr. Smile	0
+2279	Armor		0	0	1	0	0	0	0		Head_Top	Bomb Wick	0
+2280	Armor		0	0	3	0	0	0	0		Head_Top	Sakkat	1
+2281	Armor		0	0	2	0	0	0	0	All	Head_Low,Head_Mid	Opera Masque	0
+2282	Armor		0	0	0	0	0	0	0		Head_Top	Halo	1
+2283	Armor		0	0	3	0	0	0	0		Head_Top	Ear Muffs	1
+2284	Armor		0	0	4	0	0	0	0	All	Head_Top	Antlers	0
+2285	Armor		0	0	0	0	0	0	30	All	Head_Top	Apple of Archer	1
+2286	Armor		0	0	0	0	0	0	70	All	Head_Mid	Elven Ears	0
+2287	Armor		0	0	3	0	0	0	0	All	Head_Top	Pirate Bandana	1
+2288	Armor		0	0	1	0	0	0	0	All	Head_Low,Head_Mid	Mr. Scream	0
+2289	Armor		0	0	0	0	0	0	0		Head_Top	Poo Poo Hat	1
+2290	Armor		0	0	1	0	0	0	0		Head_Top	Funeral Hat	0
+2291	Armor		0	0	0	0	0	0	0	All	Head_Mid	Masquerade	1
+2292	Armor		0	0	2	0	0	0	50	Alchemist,Blacksmith,Merchant	Head_Low,Head_Mid	Welding Mask	1
+2293	Armor		0	0	1	0	0	0	0		Head_Top	Pretend Murdered	0
+2294	Armor		0	0	1	0	0	0	0		Head_Top	Stellar	0
+2295	Armor		0	0	0	0	0	0	0	All	Head_Mid	Blinker	1
+2296	Armor		0	0	1	0	0	0	50	Archer,BardDancer,Hunter	Head_Mid	Binoculars	1
+2297	Armor		0	0	1	0	0	0	0	All	Head_Low,Head_Mid	Goblin Mask	0
+2298	Armor		0	0	2	0	0	0	0		Head_Top	Green Feeler	0
+2299	Armor		0	0	5	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Orc Helm	0
+2301	Armor		0	0	1	0	0	0	0		Armor	Cotton Shirt	0
+2302	Armor		0	0	1	0	1	0	0		Armor	Cotton Shirt	0
+2303	Armor		0	0	2	0	0	0	0		Armor	Jacket	0
+2304	Armor		0	0	2	0	1	0	0		Armor	Jacket	0
+2305	Armor		0	0	3	0	0	0	0		Armor	Adventurer's Suit	0
+2306	Armor		0	0	3	0	1	0	0		Armor	Adventurer's Suit	0
+2307	Armor		0	0	4	0	0	0	0	All	Armor	Mantle	0
+2308	Armor		0	0	4	0	1	0	0	All	Armor	Mantle	0
+2309	Armor		0	0	5	0	0	0	0	All	Armor	Coat	0
+2310	Armor		0	0	5	0	1	0	0	All	Armor	Coat	0
+2311	Armor		0	0	6	0	1	0	30	All	Armor	Mink Coat	0
+2312	Armor		0	0	7	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Padded Armor	0
+2313	Armor		0	0	7	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Padded Armor	0
+2314	Armor		0	0	8	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Chain Mail	0
+2315	Armor		0	0	8	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Chain Mail	0
+2316	Armor		0	0	10	0	0	0	40	Crusader,Knight,Swordsman	Armor	Full Plate	0
+2317	Armor		0	0	10	0	1	0	40	Crusader,Knight,Swordsman	Armor	Full Plate	0
+2318	Armor		0	0	8	0	1	0	70	Alchemist,Blacksmith,Merchant	Armor	Lord's Clothes	1
+2319	Armor		0	0	7	0	1	0	60	All	Armor	Glittering Jacket	1
+2320	Armor		0	0	5	0	1	0	0	All	Armor	Formal Suit	0
+2321	Armor		0	0	3	0	0	0	0	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Mage,Merchant,Monk,Priest,Sage,SoulLinker,Swordsman,Wizard	Armor	Silk Robe	1
+2322	Armor		0	0	3	0	1	0	0	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Mage,Merchant,Monk,Priest,Sage,SoulLinker,Swordsman,Wizard	Armor	Silk Robe	1
+2323	Armor		0	0	4	0	0	0	0	Acolyte,Monk,Priest	Armor	Scapulare	0
+2324	Armor		0	0	4	0	1	0	0	Acolyte,Monk,Priest	Armor	Scapulare	0
+2325	Armor		0	0	6	0	0	0	0	Acolyte,Alchemist,Blacksmith,Merchant,Monk,Priest	Armor	Saint's Robe	1
+2326	Armor		0	0	6	0	1	0	0	Acolyte,Alchemist,Blacksmith,Merchant,Monk,Priest	Armor	Saint's Robe	1
+2327	Armor		0	0	7	0	0	0	60	Acolyte,Monk,Priest	Armor	Holy Robe	1
+2328	Armor		0	0	4	0	0	0	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Wooden Mail	0
+2329	Armor		0	0	4	0	1	0	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Wooden Mail	0
+2330	Armor		0	0	6	0	0	0	45	Archer,BardDancer,Hunter	Armor	Tights	1
+2331	Armor		0	0	6	0	1	0	45	Archer,BardDancer,Hunter	Armor	Tights	1
+2332	Armor		0	0	4	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Armor	Silver Robe	0
+2333	Armor		0	0	4	0	1	0	0	Mage,Sage,SoulLinker,Wizard	Armor	Silver Robe	0
+2334	Armor		0	0	5	0	0	0	50	Mage,Sage,SoulLinker,Wizard	Armor	Mage Coat	1
+2335	Armor		0	0	6	0	0	0	0	Assassin,Ninja,Rogue,Thief	Armor	Thief Clothes	1
+2336	Armor		0	0	6	0	1	0	0	Assassin,Ninja,Rogue,Thief	Armor	Thief Clothes	1
+2337	Armor		0	0	7	0	0	0	50	Assassin,Ninja,Rogue,Thief	Armor	Ninja Suit	1
+2338	Armor		0	0	0	0	0	0	0	All	Armor	Wedding Dress	1
+2339	Armor		0	0	4	0	0	0	0		Armor	Pantie	0
+2340	Armor		0	0	4	0	1	0	10	Novice,SuperNovice	Armor	Novice Breastplate	0
+2341	Armor		0	0	11	0	0	0	70	Crusader	Armor	Legion Plate Armor	0
+2342	Armor		0	0	11	0	1	0	70	Crusader	Armor	Legion Plate Armor	0
+2343	Armor		0	0	5	0	0	0	75	Sage,SoulLinker,Wizard	Armor	Robe of Cast	1
+2344	Armor		0	0	4	0	0	0	45	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Lucius's Fierce Armor of Volcano	1
+2345	Armor		0	0	4	0	1	0	45	All	Armor	Lucius's Fierce Armor of Volcano	1
+2346	Armor		0	0	4	0	0	0	45	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Saphien's Armor of Ocean	1
+2347	Armor		0	0	4	0	1	0	45	All	Armor	Saphien's Armor of Ocean	1
+2348	Armor		0	0	4	0	0	0	45	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Aebecee's Raging Typhoon Armor	1
+2349	Armor		0	0	4	0	1	0	45	All	Armor	Aebecee's Raging Typhoon Armor	1
+2350	Armor		0	0	4	0	0	0	45	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Claytos Cracking Earth Armor	1
+2351	Armor		0	0	4	0	1	0	45	All	Armor	Claytos Cracking Earth Armor	1
+2352	Armor		0	0	4	0	0	0	0	Novice,SuperNovice	Armor	Tattered Novice Ninja Suit	0
+2353	Armor		0	0	6	0	1	0	65	All	Armor	Odin's Blessing	0
+2354	Armor		0	0	7	0	0	0	54	All	Armor	Goibne's Armor	1
+2355	Armor		0	0	4	0	1	0	40	Novice,SuperNovice	Armor	Angelic Protection	1
+2356	Armor		0	0	5	0	1	0	70	Monk,Priest	Armor	Blessed Holy Robe	1
+2357	Armor		0	0	6	0	1	0	1	All	Armor	Valkyrian Armor	1
+2358	Armor		0	0	5	0	0	0	1		Armor	Angel's Dress	1
+2359	Armor		0	0	7	0	1	0	50	Assassin,Ninja,Rogue,Thief	Armor	Ninja Suit	1
+2360	Armor		0	0	5	0	1	0	75	Sage,SoulLinker,Wizard	Armor	Robe of Cast	1
+2364	Armor		0	0	10	0	1	0	55	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Armor	Meteo Plate Armor	1
+2365	Armor		0	0	2	0	1	0	55	All	Armor	Orleans's Gown	1
+2366	Armor		0	0	6	0	1	0	55	All	Armor	Divine Cloth	1
+2367	Armor		0	0	5	0	1	0	50	Hunter	Armor	Sniping Suit	1
+2368	Armor		0	0	4	0	0	0	0		Armor	Golden Armor	1
+2369	Armor		0	0	12	0	0	0	0	All	Armor	Freyja Overcoat	1
+2370	Armor		0	0	15	0	0	0	0		Armor	Used Mage Coat	1
+2371	Armor		0	0	4	0	1	0	0		Armor	Pantie	0
+2372	Armor		0	0	5	0	1	0	50	Mage,Sage,SoulLinker,Wizard	Armor	Mage Coat	1
+2373	Armor		0	0	7	0	1	0	60	Acolyte,Monk,Priest	Armor	Holy Robe	1
+2374	Armor		0	0	6	0	1	0	55	Acolyte,Archer,BardDancer,Hunter,Mage,Monk,Priest,Sage,Wizard	Armor	Diabolus Robe	1
+2375	Armor		0	0	7	0	1	0	55	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Diabolus Armor	1
+2376	Armor		0	0	7	0	1	0	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,StarGladiator,Swordsman,Taekwon	Armor	Assaulter Plate	1
+2377	Armor		0	0	7	0	1	0	80	Alchemist,Blacksmith,Merchant	Armor	Elite Engineer Armor	1
+2378	Armor		0	0	7	0	1	0	80	Assassin,Ninja,Rogue,Thief	Armor	Assassin Robe	1
+2379	Armor		0	0	3	0	1	0	80	Mage,Sage,SoulLinker,Wizard	Armor	Warlock's Battle Robe	1
+2380	Armor		0	0	3	0	1	0	80	Acolyte,Monk,Priest	Armor	Medic's Robe	1
+2381	Armor		0	0	3	0	1	0	80	Archer,BardDancer,Hunter	Armor	Elite Archer Suit	1
+2382	Armor		0	0	3	0	1	0	80	Gunslinger	Armor	Elite Shooter Suit	1
+2383	Armor		0	0	10	0	0	0	94		Armor	Brynhild	1
+2384	Armor		0	0	10	0	0	0	0		Armor	Spiritual Tunic	1
+2385	Armor		0	0	12	0	0	0	0		Armor	Recuperative Armor	1
+2386	Armor		0	0	5	0	0	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Armor	Chameleon Armor	1
+2387	Armor		0	0	3	0	1	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Armor	Sprint Mail	1
+2388	Armor		0	0	4	0	1	0	70	Assassin	Armor	Kandura	1
+2389	Armor		0	0	5	0	1	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Armor	Armor of Naga	1
+2390	Armor		0	0	6	0	1	0	75	Archer,BardDancer,Hunter	Armor	Improved Tights	1
+2391	Armor		0	0	9	0	1	0	82	Crusader,Knight,Swordsman	Armor	Life Link	1
+2392	Armor		0	0	10	0	0	0	0		Armor	Old Green Pantie	1
+2393	Armor		0	0	8	0	1	0	0		Armor	Novice Adventurer's Suit	0
+2394	Armor		0	0	0	0	0	0	81	All	Armor	Glorious Suit	1
+2395	Armor		0	0	0	0	0	0	61	All	Armor	Glorious Popularized Suit	1
+2396	Armor		0	0	0	0	0	0	0	All	Armor	Glorious Mass-Production Suit	1
+2397	Armor		0	0	2	0	0	0	0	All	Armor	Incredible Event Resignation Coat	0
+2398	Armor		0	0	5	0	1	0	50	Hunter	Armor	Sniping Suit	1
+2399	Armor		0	0	3	0	1	0	0	All	Armor	Dragon Vest	1
+2401	Armor		0	0	1	0	0	0	0		Shoes	Sandals	0
+2402	Armor		0	0	1	0	1	0	0		Shoes	Sandals	0
+2403	Armor		0	0	2	0	0	0	0	All	Shoes	Shoes	0
+2404	Armor		0	0	2	0	1	0	0	All	Shoes	Shoes	0
+2405	Armor		0	0	4	0	0	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Gunslinger,Hunter,Knight,Merchant,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Shoes	Boots	0
+2406	Armor		0	0	4	0	1	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Gunslinger,Hunter,Knight,Merchant,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Shoes	Boots	0
+2407	Armor		0	0	0	0	0	0	0	All	Shoes	Crystal Pumps	1
+2408	Armor		0	0	3	0	0	0	0		Shoes	Shackles	0
+2409	Armor		0	0	2	0	0	0	0	All	Shoes	High Heels	1
+2410	Armor		0	0	5	0	0	0	94		Shoes	Sleipnir	1
+2411	Armor		0	0	5	0	0	0	65	Crusader,Knight	Shoes	Greaves	0
+2412	Armor		0	0	5	0	1	0	65	Crusader,Knight	Shoes	Greaves	0
+2413	Armor		0	0	6	0	0	0	30	Crusader,Knight,Swordsman	Shoes	Safety Boots	0
+2414	Armor		0	0	2	0	0	0	0	Novice,SuperNovice	Shoes	Novice Slippers	0
+2415	Armor		0	0	3	0	1	0	30	All	Shoes	Bunny Slipper	1
+2416	Armor		0	0	2	0	1	0	40	Novice,SuperNovice	Shoes	Novice Shoes	1
+2417	Armor		0	0	3	0	0	0	65	All	Shoes	Fricco's Shoes	1
+2418	Armor		0	0	4	0	0	0	65	All	Shoes	Vidar's Boots	1
+2419	Armor		0	0	4	0	0	0	54	All	Shoes	Goibne's Greaves	1
+2420	Armor		0	0	2	0	1	0	25	Novice,SuperNovice	Shoes	Angel's Reincarnation	1
+2421	Armor		0	0	4	0	1	0	1	All	Shoes	Valkyrian Shoes	1
+2422	Armor		0	0	2	0	1	0	40	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Shoes	High Fashion Sandals	1
+2423	Armor		0	0	3	0	0	0	85	All	Shoes	Variant Shoes	1
+2424	Armor		0	0	3	0	1	0	55	All	Shoes	Tidal Shoes	1
+2425	Armor		0	0	4	0	0	0	55	All	Shoes	Black Leather Boots	1
+2426	Armor		0	0	0	0	0	0	75	All	Shoes	Shadow Walk	1
+2427	Armor		0	0	4	0	0	0	0		Shoes	Golden Shoes	1
+2428	Armor		0	0	10	0	0	0	0	All	Shoes	Freyja Boots	1
+2429	Armor		0	0	5	0	0	0	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Merchant,Rogue,Swordsman,Thief	Shoes	Iron Boots	0
+2430	Armor		0	0	5	0	0	0	0		Shoes	Iron Boots	0
+2431	Armor		0	0	10	0	0	0	0		Shoes	Valley Shoes	1
+2432	Armor		0	0	2	0	1	0	0	All	Shoes	High Heels	1
+2433	Armor		0	0	4	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Shoes	Diabolus Boots	1
+2434	Armor		0	0	4	0	1	0	55	All	Shoes	Black Leather Boots	1
+2435	Armor		0	0	4	0	1	0	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Ninja,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Shoes	Battle Greaves	1
+2436	Armor		0	0	3	0	1	0	80	Acolyte,Archer,BardDancer,Hunter,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Shoes	Combat Boots	1
+2437	Armor		0	0	3	0	1	0	80	Gunslinger	Shoes	Battle Boots	1
+2438	Armor		0	0	0	0	0	0	80		Shoes	Paw Of Cat	1
+2439	Armor		0	0	9	0	0	0	0		Shoes	Refresh Shoes	1
+2440	Armor		0	0	2	0	1	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Shoes	Sprint Shoes	1
+2441	Armor		0	0	0	0	0	0	0		Shoes	Beach Sandals	1
+2442	Armor		0	0	7	0	0	0	0		Shoes	Red Stocking Boots	1
+2443	Armor		0	0	0	0	0	0	0		Shoes	Fisher's Boots	0
+2444	Armor		0	0	0	0	0	0	81	All	Shoes	Glorious Shoes	1
+2445	Armor		0	0	0	0	0	0	61	All	Shoes	Glorious Popularized Shoes	1
+2446	Armor		0	0	0	0	0	0	0	All	Shoes	Glorious Mass-Production Shoes	1
+2447	Armor		0	0	5	0	0	0	0	All	Shoes	Army Boots	0
+2448	Armor		0	0	2	0	0	0	0		Shoes	Air Boss	1
+2449	Armor		0	0	3	0	0	0	85	All	Shoes	Variant Shoes	1
+2450	Armor		0	0	4	0	0	0	60	All	Shoes	Vital Tree Shoes	1
+2501	Armor		0	0	1	0	0	0	0		Garment	Hood	0
+2502	Armor		0	0	1	0	1	0	0		Garment	Hood	0
+2503	Armor		0	0	2	0	0	0	0	All	Garment	Muffler	0
+2504	Armor		0	0	2	0	1	0	0	All	Garment	Muffler	0
+2505	Armor		0	0	4	0	0	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Garment	Manteau	0
+2506	Armor		0	0	4	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Garment	Manteau	0
+2507	Armor		0	0	2	0	0	0	40	All	Garment	Ancient Cape	1
+2508	Armor		0	0	1	0	0	0	0	All	Garment	Ragamuffin Manteau	1
+2509	Armor		0	0	0	0	0	0	75	Mage,Sage,SoulLinker,Wizard	Garment	Survivor's Manteau	1
+2510	Armor		0	0	2	0	0	0	0	Novice,SuperNovice	Garment	Somber Novice Hood	1
+2511	Armor		0	0	1	0	0	0	75	All	Garment	Skeleton Manteau	1
+2512	Armor		0	0	2	0	1	0	40	Novice,SuperNovice	Garment	Novice Manteau	1
+2513	Armor		0	0	3	0	1	0	80	All	Garment	Heavenly Maiden Robe	0
+2514	Armor		0	0	5	0	1	0	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Garment	Pauldron	0
+2515	Armor		0	0	1	0	1	0	85	Mage,Sage,SoulLinker,Wizard	Garment	Eagle Wing	0
+2516	Armor		0	0	3	0	0	0	65	All	Garment	Falcon Muffler	1
+2517	Armor		0	0	4	0	0	0	65	All	Garment	Vali's Manteau	1
+2518	Armor		0	0	3	0	0	0	33	All	Garment	Morpheus's Shawl	1
+2519	Armor		0	0	3	0	0	0	61	All	Garment	Morrigane's Manteau	1
+2520	Armor		0	0	3	0	0	0	54	All	Garment	Goibne's Spaulders	1
+2521	Armor		0	0	2	0	1	0	20	Novice,SuperNovice	Garment	Angelic Cardigan	1
+2522	Armor		0	0	2	0	0	0	1		Garment	Undershirt	1
+2523	Armor		0	0	2	0	1	0	1		Garment	Undershirt	1
+2524	Armor		0	0	3	0	1	0	1	All	Garment	Valkyrian Manteau	1
+2525	Armor		0	0	2	0	1	0	40	All	Garment	Ancient Cape	1
+2526	Armor		0	0	4	0	0	0	50		Garment	Coat of Dragon Scale	0
+2527	Armor		0	0	4	0	1	0	48	All	Garment	Dragon Breath	1
+2528	Armor		0	0	3	0	1	0	55	All	Garment	Wool Scarf	1
+2529	Armor		0	0	4	0	0	0	55	All	Garment	Rider Insignia	1
+2530	Armor		0	0	4	0	1	0	55	All	Garment	Rider Insignia	1
+2531	Armor		0	0	3	0	1	0	70	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Garment	Ulfhedinn	1
+2532	Armor		0	0	3	0	1	0	70	Acolyte,Archer,BardDancer,Hunter,Mage,Monk,Priest,Sage,Wizard	Garment	Mithril Magic Cape	1
+2533	Armor		0	0	10	0	0	0	0	All	Garment	Freyja Cape	1
+2534	Armor		0	0	10	0	0	0	0		Garment	Ruffler	1
+2535	Armor		0	0	5	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Garment	Cloak Of Survival	1
+2536	Armor		0	0	2	0	1	0	60	All	Garment	Skin of Ventus	1
+2537	Armor		0	0	5	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Garment	Diabolus Manteau	1
+2538	Armor		0	0	4	0	1	0	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Ninja,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Garment	Captain's Manteau	1
+2539	Armor		0	0	3	0	1	0	80	Acolyte,Archer,BardDancer,Hunter,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Garment	Commander's Manteau	1
+2540	Armor		0	0	3	0	1	0	80	Gunslinger	Garment	Sheriff's Manteau	1
+2541	Armor		0	0	5	0	0	0	94		Garment	Asprika	1
+2542	Armor		0	0	4	0	1	0	70	All	Garment	Flame Manteau of Naght Sieger	1
+2543	Armor		0	0	9	0	0	0	0		Garment	Sylphid Manteau	1
+2544	Armor		0	0	3	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Garment	Leather of Tendrilion	1
+2545	Armor		0	0	2	0	1	0	70	Monk,Priest	Garment	Musika	1
+2546	Armor		0	0	0	0	1	0	0		Garment	Beach Manteau	1
+2547	Armor		0	0	8	0	0	0	0		Garment	Cheap Undershirt	1
+2548	Armor		0	0	5	0	0	0	95	All	Garment	Neo Muffler	1
+2549	Armor		0	0	0	0	0	0	81	All	Garment	Glorious Muffler	1
+2550	Armor		0	0	0	0	0	0	0		Garment	Fisher's Muffler	0
+2551	Armor		0	0	4	0	1	0	55	All	Garment	Crest of the Rider	1
+2552	Armor		0	0	3	0	1	0	70	Acolyte,Archer,BardDancer,Hunter,Mage,Monk,Priest,Sage,Wizard	Garment	Mithril Magic Manteau	1
+2553	Armor		0	0	5	0	1	0	0	All	Garment	Dragon Manteau	1
+2554	Armor		0	0	5	0	1	0	90	All	Garment	Nydhorgg's Shadow Garb	1
+2601	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Ring	1
+2602	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Earring	1
+2603	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Necklace	1
+2604	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Glove	1
+2605	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Brooch	1
+2607	Armor		0	0	0	0	1	0	0		Both_Accessory	Clip	1
+2608	Armor		0	0	0	0	0	0	20	All	Both_Accessory	Rosary	1
+2609	Armor		0	0	0	0	0	0	0		Both_Accessory	Skull Ring	0
+2610	Armor		0	0	0	0	0	0	0		Both_Accessory	Gold Ring	0
+2611	Armor		0	0	0	0	0	0	0		Both_Accessory	Silver Ring	0
+2612	Armor		0	0	0	0	0	0	0		Both_Accessory	Flower Ring	0
+2613	Armor		0	0	0	0	0	0	0		Both_Accessory	Diamond Ring	0
+2614	Armor		0	0	0	0	0	0	50	All	Both_Accessory	Eye of Dullahan	1
+2615	Armor		0	0	3	0	0	0	40	All	Both_Accessory	Safety Ring	1
+2616	Armor		0	0	0	0	0	0	40	All	Both_Accessory	Critical Ring	1
+2617	Armor		0	0	1	0	0	0	35	All	Both_Accessory	Celebrant's Mitten	1
+2618	Armor		0	0	1	0	0	0	35	All	Both_Accessory	Matyr's Leash	1
+2619	Armor		0	0	0	0	0	0	65	Archer,BardDancer,Hunter	Both_Accessory	Bow Thimble	1
+2620	Armor		0	0	0	0	0	0	70	Assassin,Ninja,Rogue,Thief	Both_Accessory	Rogue's Treasure	1
+2621	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Ring	1
+2622	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Earring	1
+2623	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Necklace	1
+2624	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Glove	1
+2625	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Brooch	1
+2626	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Rosary	1
+2627	Armor		0	0	0	0	1	0	25		Both_Accessory	Belt	0
+2628	Armor		0	0	0	0	1	0	1	Novice,SuperNovice	Both_Accessory	Novice Armlet	0
+2629	Armor		0	0	2	0	0	0	94		Both_Accessory	Megingjard	1
+2630	Armor		0	0	1	0	0	0	94		Both_Accessory	Brisingamen	1
+2631	Armor		0	0	0	0	0	0	1		Both_Accessory	Celebration Ring	0
+2634	Armor		0	0	0	0	0	0	0		Both_Accessory	Wedding Ring	1
+2635	Armor		0	0	0	0	0	0	0		Both_Accessory	Wedding Ring	1
+2636	Armor		0	0	0	0	0	0	0		Both_Accessory	Gold Christmas Ring	1
+2637	Armor		0	0	0	0	0	0	0		Both_Accessory	Silver Christmas Ring	1
+2638	Armor		0	0	0	0	0	0	0		Both_Accessory	Sacred Incense	1
+2639	Armor		0	0	0	0	0	0	0		Both_Accessory	Occult Incense	1
+2640	Armor		0	0	1	0	0	0	0	All	Both_Accessory	Kafra Ring	1
+2641	Armor		0	0	0	0	0	0	50	Alchemist,Blacksmith,Merchant	Both_Accessory	Fashion Hip Sack	1
+2642	Armor		0	0	0	0	0	0	0		Both_Accessory	Serin's Gold Ring	0
+2643	Armor		0	0	0	0	0	0	0		Both_Accessory	Serin's Gold Ring	0
+2644	Armor		0	0	0	0	0	0	0		Both_Accessory	The Sign	1
+2645	Armor		0	0	0	0	0	0	60	Assassin,Ninja,Rogue,Thief	Both_Accessory	Moonlight Ring	1
+2646	Armor		0	0	0	0	0	0	0		Both_Accessory	Bunch of Carnations	1
+2647	Armor		0	0	0	0	1	0	0		Both_Accessory	Nile Rose	1
+2648	Armor		0	0	0	0	0	0	33	All	Both_Accessory	Morpheus's Ring	1
+2649	Armor		0	0	0	0	0	0	33	All	Both_Accessory	Morpheus's Bracelet	1
+2650	Armor		0	0	0	0	0	0	61	All	Both_Accessory	Morrigane's Belt	1
+2651	Armor		0	0	0	0	0	0	61	All	Both_Accessory	Morrigane's Pendant	1
+2652	Armor		0	0	0	0	0	0	40		Both_Accessory	Goddess of Fortune's Cursed Brooch	1
+2653	Armor		0	0	0	0	0	0	90		Both_Accessory	Sacrifice Ring	0
+2654	Armor		0	0	1	0	0	0	30	Assassin,Ninja,Rogue,Thief	Both_Accessory	Shinobi Sash	1
+2655	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Bloodied Shackle Ball	0
+2656	Armor		0	0	1	0	0	0	1	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Both_Accessory	Armor Charm	1
+2657	Armor		0	0	0	0	0	0	1		Both_Accessory	Laboratory Permit	0
+2658	Armor		0	0	0	0	1	0	0		Both_Accessory	Nile Rose	1
+2659	Armor		0	0	1	0	0	0	1	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Vesper Core 01	1
+2660	Armor		0	0	1	0	0	0	1	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Vesper Core 02	1
+2661	Armor		0	0	1	0	0	0	1	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Vesper Core 03	1
+2662	Armor		0	0	1	0	0	0	1	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Vesper Core 04	1
+2663	Armor		0	0	0	0	0	0	75		Both_Accessory	Gauntlet of Hit	1
+2664	Armor		0	0	0	0	0	0	75	All	Both_Accessory	Belcarf	1
+2665	Armor		0	0	0	0	0	0	60	Acolyte,Monk,Priest	Both_Accessory	Exorcising Ring	1
+2666	Armor		0	0	0	0	0	0	1		Both_Accessory	Lantern of Hope	1
+2667	Armor		0	0	0	0	0	0	60	All	Both_Accessory	Renown Archer's Gloves	1
+2668	Armor		0	0	0	0	0	0	1		Both_Accessory	Woman Glory	0
+2669	Armor		0	0	0	0	1	0	0		Both_Accessory	RJC Necklace	1
+2670	Armor		0	0	1	0	0	0	30		Both_Accessory	Ring of Longing	1
+2671	Armor		0	0	0	0	1	0	65	Archer,BardDancer,Hunter	Both_Accessory	Bow Thimble	1
+2672	Armor		0	0	0	0	0	0	0	All	Both_Accessory	3rd Anniversary Celebration Ring	0
+2673	Armor		0	0	0	0	0	0	48	All	Both_Accessory	Warrior's Shining Ring	1
+2674	Armor		0	0	0	0	0	0	1		Both_Accessory	Ring of Honor	0
+2675	Armor		0	0	0	0	0	0	1		Both_Accessory	Lord Ring	1
+2676	Armor		0	0	0	0	0	0	1		Both_Accessory	Hunter's Earring	1
+2677	Armor		0	0	0	0	0	0	0		Both_Accessory	Spiritual Ring	1
+2678	Armor		0	0	0	0	0	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Ring Of Flame Lord	1
+2679	Armor		0	0	2	0	0	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Ring Of Resonance	1
+2680	Armor		0	0	0	0	0	0	0		Both_Accessory	Lesser Elemental Ring	1
+2681	Armor		0	0	0	0	0	0	0		Both_Accessory	Republic Anniversary Ring	1
+2682	Armor		0	0	1	0	0	0	20	All	Both_Accessory	Ring of Water	1
+2683	Armor		0	0	1	0	0	0	20	All	Both_Accessory	Ring of Fire	1
+2684	Armor		0	0	1	0	0	0	20	All	Both_Accessory	Ring of Wind	1
+2685	Armor		0	0	1	0	0	0	20	All	Both_Accessory	Ring of Earth	1
+2686	Armor		0	0	2	0	0	0	1	All	Head_Mid	Elven Ears	1
+2687	Armor		0	0	1	0	0	0	1	All	Head_Low	Steel Flower	1
+2688	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Critical Ring	1
+2689	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Earring	1
+2690	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Ring	1
+2691	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Necklace	1
+2692	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Glove	1
+2693	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Brooch	1
+2694	Armor		0	0	0	0	0	0	1	All	Both_Accessory	Rosary	1
+2695	Armor		0	0	5	0	0	0	1	All	Both_Accessory	Safety Ring	1
+2696	Armor		0	0	1	0	0	0	1	All	Both_Accessory	Vesper Core 01	1
+2697	Armor		0	0	1	0	0	0	1	All	Both_Accessory	Vesper Core 02	1
+2698	Armor		0	0	1	0	0	0	1	All	Both_Accessory	Vesper Core 03	1
+2699	Armor		0	0	1	0	0	0	1	All	Both_Accessory	Vesper Core 04	1
+2700	Armor		0	0	0	0	0	0	60	Crusader,Knight,Swordsman	Both_Accessory	Red Silk Seal	0
+2701	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Orleans's Glove	1
+2702	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Bison Horn	1
+2703	Armor		0	0	0	0	1	0	50	All	Both_Accessory	Expert Ring	1
+2704	Armor		0	0	4	0	0	0	0		Both_Accessory	Golden Accessories	1
+2705	Armor		0	0	4	0	0	0	0		Both_Accessory	Golden Accessories	1
+2706	Armor		0	0	0	0	0	0	0		Both_Accessory	Arrest Handcuffs	0
+2707	Armor		0	0	0	0	0	0	0		Both_Accessory	GUSLI	0
+2708	Armor		0	0	0	0	0	0	0		Both_Accessory	Chinese Handicraft	1
+2709	Armor		0	0	0	0	0	0	0		Both_Accessory	5th Anniversary Coin	1
+2710	Armor		0	0	0	0	0	0	0	All	Both_Accessory	Bloody Iron Ball	1
+2711	Armor		0	0	0	0	0	0	0		Both_Accessory	Spiritual Ring	1
+2712	Armor		0	0	0	0	0	0	30		Both_Accessory	Ragnarok Limited Edition	1
+2713	Armor		0	0	0	0	0	0	0		Both_Accessory	Certificate	0
+2714	Armor		0	0	0	0	1	0	0		Both_Accessory	Marvelous Pendant	0
+2715	Armor		0	0	0	0	1	0	0		Both_Accessory	Skull Ring	1
+2716	Armor		0	0	0	0	1	0	80	Sage,SoulLinker,Wizard	Both_Accessory	Librarian Glove	1
+2717	Armor		0	0	0	0	0	0	80	Mage,Sage,SoulLinker,Wizard	Both_Accessory	Pocket Watch	0
+2718	Armor		0	0	0	0	1	0	65	Archer,BardDancer,Hunter	Both_Accessory	Lunatic Brooch	0
+2719	Armor		0	0	1	0	0	0	50	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Both_Accessory	Iron Wrist	1
+2720	Armor		0	0	1	0	0	0	70	Crusader,Knight,StarGladiator,Swordsman	Both_Accessory	Medal of Honor	1
+2721	Armor		0	0	1	0	0	0	70	Assassin,Ninja,Rogue,Thief	Both_Accessory	Medal of Honor	1
+2722	Armor		0	0	1	0	0	0	70	Acolyte,Monk,Priest	Both_Accessory	Medal of Honor	1
+2723	Armor		0	0	1	0	0	0	70	Mage,Sage,SoulLinker,Wizard	Both_Accessory	Medal of Honor	1
+2724	Armor		0	0	1	0	0	0	70	Archer,BardDancer,Hunter	Both_Accessory	Medal of Honor	1
+2725	Armor		0	0	1	0	0	0	70	Alchemist,Blacksmith,Merchant	Both_Accessory	Medal of Honor	1
+2726	Armor		0	0	0	0	0	0	70	Hunter	Both_Accessory	Icarus Wings	1
+2727	Armor		0	0	0	0	0	0	70	Hunter	Both_Accessory	Bowman Scarf	1
+2728	Armor		0	0	0	0	1	0	80	All	Both_Accessory	Cursed Hand	1
+2729	Armor		0	0	0	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Diabolus Ring	1
+2730	Armor		0	0	0	0	1	0	80	All	Both_Accessory	Seal of Continental Guard	1
+2731	Armor		0	0	0	0	1	0	80	All	Both_Accessory	Rune Spellstone	1
+2732	Armor		0	0	0	0	1	0	80	All	Both_Accessory	Death Loop	1
+2733	Armor		0	0	1	0	0	0	70	Gunslinger	Both_Accessory	Sheriff Badge	1
+2734	Armor		0	0	1	0	0	0	0	Novice,SuperNovice	Both_Accessory	Directive	0
+2735	Armor		0	0	1	0	0	0	0	Novice,SuperNovice	Both_Accessory	Directive	0
+2736	Armor		0	0	0	0	0	0	75	All	Both_Accessory	Navel Ring	1
+2737	Armor		0	0	0	0	0	0	75	All	Both_Accessory	Foot Ring	1
+2738	Armor		0	0	0	0	0	0	0		Both_Accessory	Shiny Coin	1
+2739	Armor		0	0	0	0	0	0	0		Both_Accessory	Ordinary Coin	1
+2740	Armor		0	0	0	0	0	0	0		Both_Accessory	Rusty Coin	1
+2741	Armor		0	0	0	0	0	0	0		Both_Accessory	All In One Ring	1
+2743	Armor		0	0	0	0	0	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Angelic Ring	1
+2744	Armor		0	0	0	0	0	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Sprint Ring	1
+2745	Armor		0	0	0	0	1	0	70	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Pinguicula Corsage	1
+2746	Armor		0	0	1	0	0	0	80	Assassin	Both_Accessory	Cold Heart	1
+2747	Armor		0	0	1	0	0	0	80	Rogue	Both_Accessory	Black Cat	1
+2748	Armor		0	0	0	0	0	0	84	Archer,BardDancer,Hunter	Both_Accessory	Cursed Star	1
+2749	Armor		0	0	1	0	1	0	90	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Both_Accessory	Linen Glove	1
+2751	Armor		0	0	0	0	0	0	0		Both_Accessory	Academy Of Badge	1
+2752	Armor		0	0	0	0	0	0	1		Both_Accessory	Praccsinos	1
+2753	Armor		0	0	0	0	0	0	1		Both_Accessory	Beholder Ring	1
+2754	Armor		0	0	0	0	0	0	1		Both_Accessory	Hallow Ring	1
+2755	Armor		0	0	0	0	0	0	1		Both_Accessory	Clamorous Ring	1
+2756	Armor		0	0	0	0	0	0	1		Both_Accessory	Chemical Ring	1
+2757	Armor		0	0	0	0	0	0	1		Both_Accessory	Insecticide Ring	1
+2758	Armor		0	0	0	0	0	0	1		Both_Accessory	Fischer Ring	1
+2759	Armor		0	0	0	0	0	0	1		Both_Accessory	Decussate Ring	1
+2760	Armor		0	0	0	0	0	0	1		Both_Accessory	Bloody Ring	1
+2761	Armor		0	0	0	0	0	0	1		Both_Accessory	Satanic Ring	1
+2762	Armor		0	0	0	0	0	0	1		Both_Accessory	Dragon Ring	1
+2763	Armor		0	0	0	0	0	0	95	All	Both_Accessory	Neo Skull Ring	1
+2764	Armor		0	0	0	0	0	0	0		Both_Accessory	Small Fishing Rod	0
+2765	Armor		0	0	0	0	0	0	0		Both_Accessory	Novice Figure	1
+2766	Armor		0	0	0	0	0	0	0		Both_Accessory	Swordman Figure	1
+2767	Armor		0	0	0	0	0	0	0		Both_Accessory	Acolyte Figure	1
+2768	Armor		0	0	0	0	0	0	0		Both_Accessory	Mage Figure	1
+2769	Armor		0	0	0	0	0	0	0		Both_Accessory	Archer Figure	1
+2770	Armor		0	0	0	0	0	0	0		Both_Accessory	Thief Figure	1
+2771	Armor		0	0	0	0	0	0	0		Both_Accessory	Merchant Figure	1
+2772	Armor		0	0	0	0	0	0	81	All	Both_Accessory	Glorious Ring	1
+2773	Armor		0	0	0	0	0	0	61	All	Both_Accessory	Glorious Mass-Production Ring	1
+2774	Armor		0	0	0	0	0	0	0	All	Both_Accessory	Glorious Popularized Ring	1
+2775	Armor		0	0	0	0	0	0	0		Both_Accessory	Lure	0
+2776	Armor		0	0	0	0	0	0	0		Both_Accessory	Adventurer's Trusty Towel	0
+2777	Armor		0	0	0	0	1	0	30		Both_Accessory	Shaman Ring	1
+2778	Armor		0	0	0	0	0	0	30		Both_Accessory	Shaman Earrings	1
+2779	Armor		0	0	1	0	0	0	30		Both_Accessory	Dark Knight Belt	1
+2780	Armor		0	0	1	0	0	0	80		Both_Accessory	Dark Knight Glove	1
+2781	Armor		0	0	1	0	1	0	1		Both_Accessory	Aumdura's Benefit	1
+2782	Armor		0	0	0	0	0	0	0		Both_Accessory	Ring of the Ancient Wise King	1
+2783	Armor		0	0	0	0	1	0	70		Both_Accessory	Eye Stone Ring	1
+2784	Armor		0	0	0	0	0	0	1		Both_Accessory	Christmas Musicbox	1
+2785	Armor		0	0	0	0	1	0	90	All	Both_Accessory	Orlean's Gloves	1
+2786	Armor		0	0	0	0	0	0	0		Both_Accessory	Spiritual Ring	1
+2787	Armor		0	0	0	0	1	0	75	All	Both_Accessory	Waterdrop Brooch	1
+2788	Armor		0	0	0	0	1	0	60	All	Both_Accessory	Bradium Earring	1
+2789	Armor		0	0	0	0	1	0	60	All	Both_Accessory	Bradium Ring	1
+2790	Armor		0	0	0	0	1	0	60	All	Both_Accessory	Bradium Brooch	1
+2791	Armor		0	0	0	0	1	0	1		Both_Accessory	Fresh Fish	1
+2794	Armor		0	0	0	0	1	0	99	Crusader,Knight,Swordsman	Both_Accessory	Magic Stone Ring	1
+2795	Armor		0	0	0	0	0	0	99	All	Both_Accessory	Green Apple Ring	1
+2796	Armor		0	0	0	0	0	0	99	Mage,Sage,SoulLinker,Wizard	Both_Accessory	Rocks	1
+2797	Armor		0	0	0	0	0	0	99	Mage,Sage,SoulLinker,Wizard	Both_Accessory	Rocks	1
+2798	Armor		0	0	0	0	0	0	99	Monk,Priest	Both_Accessory	Will Of Exhausted Angel	1
+2799	Armor		0	0	0	0	1	0	0		Both_Accessory	Kuirpenring	1
+2800	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Accelerator	1
+2801	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Hovering Booster	1
+2802	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Suicidal Device	0
+2803	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Shape Shifter	1
+2804	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Cooling Device	1
+2805	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Magnetic Field Generator	1
+2806	Armor		0	0	3	0	1	0	99	Blacksmith	Both_Accessory	Barrier Builder	1
+2807	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Repair Kit	0
+2808	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Camouflague Generator	1
+2809	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	High Quality Cooler	1
+2810	Armor		0	0	0	0	1	0	99	Blacksmith	Both_Accessory	Special Cooler	1
+2819	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Swordsman Manual	1
+2820	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Thief Manual	1
+2821	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Acolyte Manual	1
+2822	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Archer Manual	1
+2823	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Merchant Manual	1
+2824	Armor		0	0	0	0	0	0	1	Novice,SuperNovice	Both_Accessory	Mage Manual	1
+5001	Armor		0	0	3	0	0	0	1	All	Head_Top	Headset	1
+5002	Armor		0	0	4	0	0	0	60	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Jewel Crown	1
+5003	Armor		0	0	1	0	0	0	0	All	Head_Top	Joker Jester	1
+5004	Armor		0	0	0	0	0	0	0	All	Head_Low	Oxygen Mask	1
+5005	Armor		0	0	1	0	0	0	0	All	Head_Low,Head_Mid	Gas Mask	1
+5006	Armor		0	0	1	0	0	0	0	All	Head_Mid	Machoman's Glasses	0
+5007	Armor		0	0	3	0	0	0	55	All	Head_Top	Grand Circlet	1
+5008	Armor		0	0	1	0	0	0	0	All	Head_Top	Puppy Love	0
+5009	Armor		0	0	3	0	0	0	0	All	Head_Top	Safety Helmet	1
+5010	Armor		0	0	3	0	0	0	0		Head_Top	Indian Fillet	0
+5011	Armor		0	0	3	0	0	0	0		Head_Top	Aerial	0
+5012	Armor		0	0	3	0	0	0	0	All	Head_Top	Ph.D Hat	0
+5013	Armor		0	0	5	0	0	0	0		Head_Top	Lord Kaho's Horn	1
+5014	Armor		0	0	2	0	0	0	65	Crusader,Knight,Swordsman	Head_Mid	Fin Helm	0
+5015	Armor		0	0	3	0	0	0	0		Head_Top	Egg Shell	0
+5016	Armor		0	0	2	0	0	0	0	All	Head_Top	Boy's Cap	0
+5017	Armor		0	0	7	0	0	0	70	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Head_Top	Bone Helm	1
+5018	Armor		0	0	4	0	0	0	0	Archer,BardDancer,Hunter	Head_Top	Feather Bonnet	1
+5019	Armor		0	0	5	0	0	0	0	All	Head_Top	Corsair	1
+5020	Armor		0	0	3	0	0	0	0		Head_Top	Kafra Band	1
+5021	Armor		0	0	4	0	0	0	38	Alchemist,Blacksmith,Merchant	Head_Top	Grief for Greed	1
+5022	Armor		0	0	4	0	0	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Head_Mid,Head_Top	Hat of the Sun God	1
+5023	Armor		0	0	0	0	0	0	0	Alchemist,Blacksmith,Merchant	Head_Top	Parcel Hat	0
+5024	Armor		0	0	1	0	0	0	0		Head_Top	Cake Hat	0
+5025	Armor		0	0	5	0	0	0	74	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Head_Top	Helm of Angel	1
+5026	Armor		0	0	1	0	0	0	50	All	Head_Top	Chef Hat	1
+5027	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Mage Hat	1
+5028	Armor		0	0	0	0	0	0	0		Head_Top	Candle	0
+5029	Armor		0	0	3	0	0	0	20	All	Head_Top	Spore Hat	0
+5030	Armor		0	0	3	0	0	0	40	All	Head_Top	Panda Hat	0
+5031	Armor		0	0	4	0	0	0	55	Acolyte,Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Rogue,Swordsman,Thief	Head_Top	Mine Hat	1
+5032	Armor		0	0	1	0	0	0	0	All	Head_Top	Sunday Hat	0
+5033	Armor		0	0	3	0	0	0	50	All	Head_Top	Raccoon Hat	0
+5034	Armor		0	0	0	0	0	0	0	All	Head_Top	Bulb Band	0
+5035	Armor		0	0	2	0	0	0	38	All	Head_Top	Poring Hat	0
+5036	Armor		0	0	1	0	0	0	10	All	Head_Top	Cross Hat	0
+5037	Armor		0	0	4	0	0	0	5		Head_Top	Nut Shell	0
+5038	Armor		0	0	2	0	0	0	64	All	Head_Top	Deviruchi Hat	1
+5039	Armor		0	0	4	0	0	0	19		Head_Top	Rainbow Eggshell	0
+5040	Armor		0	0	0	0	0	0	0		Head_Mid	Blush	0
+5041	Armor		0	0	0	0	0	0	0		Head_Top	Heart Hairpin	0
+5042	Armor		0	0	0	0	0	0	14	All	Head_Top	Bao Bao	0
+5043	Armor		0	0	1	0	0	0	20	All	Head_Mid	Opera Phantom Mask	0
+5044	Armor		0	0	2	0	0	0	45		Head_Top	Evil Wing Ears	1
+5045	Armor		0	0	3	0	0	0	50	Acolyte,Mage,Monk,Priest,Sage,SoulLinker,Wizard	Head_Top	Magician Hat	1
+5046	Armor		0	0	5	0	0	0	0		Head_Low,Head_Mid,Head_Top	Bongun Hat	0
+5047	Armor		0	0	0	0	0	0	0	All	Head_Top	Fashionable Glasses	0
+5048	Armor		0	0	0	0	0	0	0		Head_Top	Cresent Hairpin	0
+5049	Armor		0	0	1	0	0	0	0		Head_Top	Striped Hairband	0
+5050	Armor		0	0	5	0	0	0	30		Head_Top	Wonder Nutshell	0
+5051	Armor		0	0	0	0	0	0	0		Head_Low	Pussy Cat Bell	0
+5052	Armor		0	0	1	0	0	0	0		Head_Top	Blue Hairband	0
+5053	Armor		0	0	5	0	0	0	65	Crusader,Knight,Swordsman	Head_Low,Head_Top	Sphinx Hat	1
+5054	Armor		0	0	0	0	0	0	70	Assassin,Priest	Head_Low	Assassin Mask	0
+5055	Armor		0	0	3	0	0	0	0	Novice,SuperNovice	Head_Top	Novice False Eggshell	0
+5056	Armor		0	0	0	0	0	0	0		Head_Top	Fruit of Love	0
+5057	Armor		0	0	2	0	0	0	45		Head_Top	Black Cat Ears	0
+5058	Armor		0	0	1	0	0	0	0	All	Head_Top	Drooping Cat	1
+5059	Armor		0	0	3	0	0	0	50		Head_Top	Teddybear Hat	0
+5060	Armor		0	0	3	0	0	0	0		Head_Top	Party Hat	1
+5061	Armor		0	0	1	0	0	0	0		Head_Top	Flower Hairpin	0
+5062	Armor		0	0	3	0	0	0	50		Head_Top	Straw Hat	1
+5063	Armor		0	0	1	0	0	0	0	All	Head_Top	Giant Band Aid	0
+5064	Armor		0	0	1	0	0	0	0		Head_Top	Smokie Leaf	0
+5065	Armor		0	0	2	0	0	0	50		Head_Top	Blue Fish	1
+5066	Armor		0	0	4	0	0	0	70	All	Head_Top	Succubus Horn	1
+5067	Armor		0	0	4	0	0	0	0	All	Head_Top	Sombrero	1
+5068	Armor		0	0	1	0	0	0	70		Head_Mid	Evil Wing Ears	1
+5069	Armor		0	0	1	0	0	0	0	All	Head_Top	Kitsune Mask	1
+5070	Armor		0	0	1	0	0	0	0	All	Head_Top	Hot-blooded Headband	1
+5071	Armor		0	0	1	0	0	0	0	All	Head_Top	Indian Headband	1
+5072	Armor		0	0	4	0	0	0	70	All	Head_Top	Incubus Horn	1
+5073	Armor		0	0	2	0	0	0	0	All	Head_Top	Model Training Hat	1
+5074	Armor		0	0	1	0	0	0	70		Head_Mid	Angel Wing Ears	1
+5075	Armor		0	0	4	0	0	0	0		Head_Top	Cowboy Hat	0
+5076	Armor		0	0	2	0	0	0	0		Head_Top	Beanie	1
+5077	Armor		0	0	1	0	0	0	0		Head_Top	Tulip Hairpin	0
+5078	Armor		0	0	3	0	0	0	50		Head_Top	Sea-Otter Hat	1
+5079	Armor		0	0	1	0	0	0	0		Head_Top	X Hairpin	0
+5080	Armor		0	0	4	0	0	0	45		Head_Top	Crown of Ancient Queen	0
+5081	Armor		0	0	0	0	0	0	75	All	Head_Top	Crown of Mistress	1
+5082	Armor		0	0	2	0	0	0	0		Head_Top	Decorative Mushroom	0
+5083	Armor		0	0	1	0	0	0	45		Head_Top	Red Ribbon	1
+5084	Armor		0	0	1	0	0	0	0	All	Head_Top	Lazy Smokie	1
+5085	Armor		0	0	1	0	0	0	45		Head_Mid	Small Ribbons	0
+5086	Armor		0	0	2	0	0	0	0	All	Head_Low,Head_Mid	Alarm Mask	1
+5087	Armor		0	0	1	0	0	0	0		Head_Low,Head_Mid	Poker Face	0
+5088	Armor		0	0	1	0	0	0	0		Head_Low,Head_Mid	Surprised Mask	0
+5089	Armor		0	0	1	0	0	0	0		Head_Low,Head_Mid	Annoyed Mask	0
+5090	Armor		0	0	2	0	0	0	0		Head_Low,Head_Mid	Goblin Leader Mask	0
+5091	Armor		0	0	2	0	0	0	35	All	Head_Mid,Head_Top	Decorative Golden Bell	0
+5092	Armor		0	0	5	0	0	0	65	Assassin,Priest	Head_Mid,Head_Top	Coif	0
+5093	Armor		0	0	5	0	1	0	65	Assassin,Priest	Head_Mid,Head_Top	Coif	1
+5094	Armor		0	0	5	0	0	0	55	All	Head_Mid,Head_Top	Helmet of Orc Hero	1
+5096	Armor		0	0	0	0	0	0	70	Assassin,Priest	Head_Low	Assassin Mask	0
+5097	Armor		0	0	0	0	0	0	0		Head_Top	Holiday Hat	0
+5098	Armor		0	0	2	0	0	0	50		Head_Mid,Head_Top	Tiger Mask	1
+5099	Armor		0	0	1	0	0	0	0		Head_Top	Neko Mimi	1
+5100	Armor		0	0	0	0	0	0	75		Head_Top	Sales Banner	1
+5101	Armor		0	0	0	0	0	0	0		Head_Mid	Takius's Blindfold	0
+5102	Armor		0	0	0	0	0	0	0		Head_Mid	Blank Eyes	0
+5103	Armor		0	0	1	0	0	0	30	All	Head_Top	Sunflower Hairpin	1
+5104	Armor		0	0	0	0	0	0	0	All	Head_Mid	Dark Blinder	1
+5105	Armor		0	0	1	0	0	0	24		Head_Top	2nd Anniversary Hat	1
+5106	Armor		0	0	3	0	0	0	1		Head_Top	2nd Anniversary Hat	1
+5107	Armor		0	0	0	0	0	0	0		Head_Low	Crunch Toast	0
+5108	Armor		0	0	3	0	1	0	0		Head_Top	Renown Detective's Cap	0
+5109	Armor		0	0	2	0	0	0	0		Head_Top	Red Bonnet	0
+5110	Armor		0	0	0	0	0	0	0		Head_Low	Baby Pacifier	0
+5111	Armor		0	0	2	0	0	0	55		Head_Top	Galapago Cap	1
+5112	Armor		0	0	4	0	0	0	40	Novice,SuperNovice	Head_Top	Super Novice Hat	1
+5113	Armor		0	0	0	0	0	0	0		Head_Low	Angry Snarl	0
+5114	Armor		0	0	3	0	0	0	0		Head_Top	Bucket Hat	0
+5115	Armor		0	0	3	0	0	0	0		Head_Top	Winter Hat	1
+5116	Armor		0	0	1	0	0	0	0		Head_Top	Banana Hat	1
+5117	Armor		0	0	0	0	0	0	0		Head_Top	Mystic Rose	1
+5118	Armor		0	0	2	0	0	0	0		Head_Top	Puppy Headband	0
+5119	Armor		0	0	4	0	1	0	40	Novice,SuperNovice	Head_Top	Super Novice Hat	1
+5120	Armor		0	0	3	0	1	0	0		Head_Top	Bucket Hat	0
+5121	Armor		0	0	3	0	0	0	70	All	Head_Mid,Head_Top	Zealotus Mask	1
+5122	Armor		0	0	5	0	0	0	65	All	Head_Top	Magni's Cap	1
+5123	Armor		0	0	3	0	1	0	65	All	Head_Top	Ulle's Cap	1
+5124	Armor		0	0	3	0	0	0	65	All	Head_Top	Fricca's Circlet	1
+5125	Armor		0	0	3	0	1	0	50	Novice,SuperNovice	Head_Top	Angel's Kiss	1
+5126	Armor		0	0	1	0	0	0	33	All	Head_Top	Morpheus's Hood	1
+5127	Armor		0	0	4	0	0	0	61	All	Head_Top	Morrigane's Helm	1
+5128	Armor		0	0	5	0	0	0	54	All	Head_Top	Goibne's Helm	1
+5129	Armor		0	0	1	0	0	0	50		Head_Top	Bird Nest	1
+5130	Armor		0	0	0	0	0	0	75	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Head_Mid,Head_Top	Lion Mask	1
+5131	Armor		0	0	8	0	0	0	75	Crusader,Knight,Swordsman	Head_Low,Head_Mid,Head_Top	Close Helmet	1
+5132	Armor		0	0	2	0	0	0	0		Head_Top	Angeling Hat	1
+5133	Armor		0	0	1	0	0	0	0	Acolyte,Monk,Priest	Head_Top	Sheep Hat	1
+5134	Armor		0	0	2	0	0	0	0		Head_Top	Pumpkin-Head	1
+5135	Armor		0	0	0	0	0	0	75	All	Head_Mid	Cyclop's Eye	1
+5136	Armor		0	0	2	0	0	0	0		Head_Top	Antonio's Santa Hat	0
+5137	Armor		0	0	0	0	1	0	30	All	Head_Top	Alice Doll	1
+5138	Armor		0	0	1	0	0	0	30	Mage,Sage,SoulLinker,Wizard	Head_Top	Magic Eyes	1
+5139	Armor		0	0	0	0	0	0	10		Head_Top	Hibiscus	1
+5140	Armor		0	0	1	0	1	0	10		Head_Top	Charming Ribbon	1
+5141	Armor		0	0	0	0	1	0	30	All	Head_Top	Marionette Doll	1
+5142	Armor		0	0	8	0	0	0	50	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Head_Mid,Head_Top	Crescent Helm	1
+5143	Armor		0	0	5	0	1	0	30	All	Head_Low,Head_Mid,Head_Top	Kabuki Mask	1
+5144	Armor		0	0	2	0	0	0	0		Head_Top	Gambler Hat	1
+5145	Armor		0	0	0	0	0	0	0		Head_Top	Carnival Joker Jester	0
+5146	Armor		0	0	0	0	0	0	0		Head_Top	Elephant Hat	1
+5147	Armor		0	0	3	0	1	0	0		Head_Top	Baseball Cap	0
+5148	Armor		0	0	0	0	0	0	0		Head_Top	Phrygian Cap	1
+5149	Armor		0	0	0	0	0	0	0		Head_Top	Silver Tiara	1
+5150	Armor		0	0	1	0	0	0	0		Head_Top	Joker Jester	1
+5151	Armor		0	0	4	0	1	0	0		Head_Mid,Head_Top	Note Headphones	1
+5152	Armor		0	0	2	0	0	0	1		Head_Mid,Head_Top	Chinese Crown	1
+5153	Armor		0	0	3	0	0	0	0		Head_Top	Angeling Hairpin	1
+5154	Armor		0	0	3	0	0	0	0		Head_Mid	Father's Sunglasses	0
+5155	Armor		0	0	0	0	0	0	0		Head_Low	Father's White Moustache	1
+5156	Armor		0	0	0	0	0	0	0		Head_Low	Father's Mask	1
+5157	Armor		0	0	5	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Orc Helm	0
+5158	Armor		0	0	5	0	1	0	0	Acolyte,Monk,Priest	Head_Top	Monk Hat	1
+5159	Armor		0	0	5	0	1	0	40	All	Head_Top	Golden Gear	1
+5160	Armor		0	0	5	0	1	0	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,StarGladiator,Swordsman,Taekwon	Head_Top	Majestic Goat	1
+5161	Armor		0	0	6	0	1	0	50	Acolyte,Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Rogue,StarGladiator,Swordsman,Taekwon,Thief	Head_Top	Spiky Band	0
+5162	Armor		0	0	7	0	1	0	70	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Head_Top	Bone Helm	1
+5163	Armor		0	0	5	0	1	0	0	All	Head_Top	Corsair	1
+5164	Armor		0	0	4	0	1	0	45	All	Head_Top	Tiara	1
+5165	Armor		0	0	4	0	1	0	45	All	Head_Top	Crown	1
+5166	Armor		0	0	5	0	1	0	65	Crusader,Knight,Swordsman	Head_Low,Head_Top	Sphinx Hat	1
+5167	Armor		0	0	5	0	1	0	0		Head_Low,Head_Mid,Head_Top	Munak Hat	1
+5168	Armor		0	0	5	0	1	0	0		Head_Low,Head_Mid,Head_Top	Bongun Hat	0
+5169	Armor		0	0	4	0	1	0	40		Head_Mid,Head_Top	Bride Mask	1
+5170	Armor		0	0	1	0	0	0	0	All	Head_Top	Feather Beret	1
+5171	Armor		0	0	5	0	1	0	0	All	Head_Top	Valkyrie Helm	1
+5172	Armor		0	0	0	0	0	0	0		Head_Top	Beret	1
+5173	Armor		0	0	3	0	1	0	60		Head_Top	Magistrate Hat	1
+5174	Armor		0	0	3	0	1	0	60		Head_Top	Ayam	1
+5175	Armor		0	0	0	0	0	0	0		Head_Mid	Censor Bar	1
+5176	Armor		0	0	2	0	0	0	30		Head_Low,Head_Mid	Hahoe Mask	1
+5177	Armor		0	0	5	0	1	0	40		Head_Mid,Head_Top	Mythical Lion Mask	1
+5178	Armor		0	0	0	0	0	0	0		Head_Top	Candle	1
+5179	Armor		0	0	0	0	0	0	0		Head_Top	Golden Tiara	1
+5180	Armor		0	0	1	0	0	0	0		Head_Top	France Holiday Hat	1
+5181	Armor		0	0	3	0	1	0	50	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Mid,Head_Top	Helm of Darkness	1
+5182	Armor		0	0	2	0	0	0	30		Head_Top	Puppy Hat	1
+5183	Armor		0	0	2	0	0	0	10		Head_Top	Bird Nest Hat	1
+5184	Armor		0	0	4	0	0	0	30	All	Head_Top	Captain's Hat	1
+5185	Armor		0	0	1	0	1	0	10		Head_Top	Laurel Wreath	1
+5186	Armor		0	0	1	0	0	0	30		Head_Top	Geographer Band	1
+5187	Armor		0	0	0	0	1	0	30		Head_Top	Twin Ribbon	1
+5188	Armor		0	0	2	0	0	0	50		Head_Top	Wandering Minstrel Hat	1
+5189	Armor		0	0	0	0	0	0	0		Head_Top	Autumn Leaves	1
+5190	Armor		0	0	3	0	1	0	0		Head_Top	Independence Memorial Hat	0
+5191	Armor		0	0	1	0	1	0	0		Head_Top	Black Ribbon	1
+5192	Armor		0	0	1	0	1	0	0		Head_Top	Yellow Ribbon	1
+5193	Armor		0	0	1	0	1	0	0		Head_Top	Green Ribbon	1
+5194	Armor		0	0	1	0	1	0	0		Head_Top	Pink Ribbon	1
+5195	Armor		0	0	1	0	1	0	0		Head_Top	Red Ribbon	1
+5196	Armor		0	0	1	0	1	0	0		Head_Top	Orange Ribbon	1
+5197	Armor		0	0	1	0	1	0	0		Head_Top	White Ribbon	1
+5198	Armor		0	0	1	0	0	0	0		Head_Top	Drooping Bunny	1
+5199	Armor		0	0	3	0	0	0	0		Head_Top	Baseball Cap	0
+5200	Armor		0	0	0	0	0	0	0		Head_Top	Coppola	0
+5201	Armor		0	0	3	0	0	0	0		Head_Top	Party Hat	0
+5202	Armor		0	0	2	0	0	0	0		Head_Top	Fantastic Pumpkin-Head	1
+5203	Armor		0	0	2	0	0	0	0		Head_Low,Head_Mid	Smiling Mask	1
+5204	Armor		0	0	0	0	0	0	0		Head_Low	Rudolph's Nose	1
+5205	Armor		0	0	3	0	0	0	0		Head_Mid,Head_Top	Emperor's Laurel Crown	1
+5206	Armor		0	0	0	0	0	0	0	All	Head_Low	Romantic White Flower	1
+5207	Armor		0	0	0	0	0	0	0		Head_Top	Angel Blessing	1
+5208	Armor		0	0	2	0	1	0	40	All	Head_Top	Rideword Hat	1
+5209	Armor		0	0	2	0	0	0	0		Head_Top	Love Dad Cap	0
+5210	Armor		0	0	1	0	0	0	10		Head_Top	Flapping Angel Wing	1
+5211	Armor		0	0	2	0	1	0	20		Head_Top	Dress Hat	1
+5212	Armor		0	0	3	0	1	0	30		Head_Top	Satellite Hairband	1
+5213	Armor		0	0	2	0	0	0	1		Head_Top	Sheila Hairnet	1
+5214	Armor		0	0	3	0	0	0	1		Head_Mid,Head_Top	Moonlight Flower Hat	1
+5215	Armor		0	0	2	0	0	0	0	All	Head_Top	Evolved Angel Wing	1
+5216	Armor		0	0	3	0	0	0	0	All	Head_Top	Evolved Evil Wing	1
+5217	Armor		0	0	5	0	0	0	0	Alchemist,Blacksmith,Crusader,Knight,Merchant,StarGladiator,Swordsman,Taekwon	Head_Top	Evolved Majestic Goat	1
+5218	Armor		0	0	2	0	0	0	0		Head_Top	Evolved Bunny Band	1
+5219	Armor		0	0	1	0	0	0	0	All	Head_Top	Evolved Drooping Cat	1
+5220	Armor		0	0	0	0	0	0	0	All	Head_Low	Evolved Pipe	1
+5221	Armor		0	0	1	0	0	0	45		Head_Mid	Evolved Pair of Red Ribbon	1
+5222	Armor		0	0	2	0	0	0	50		Head_Top	Evolved Blue Fish	1
+5223	Armor		0	0	2	0	0	0	35	All	Head_Mid,Head_Top	Evolved Big Golden Bell	1
+5224	Armor		0	0	5	0	0	0	55	All	Head_Mid,Head_Top	Evolved Orc Hero Helm	1
+5225	Armor		0	0	2	0	1	0	10		Head_Top	Parade Hat	1
+5226	Armor		0	0	2	0	0	0	0		Head_Top	Mini Propeller	1
+5227	Armor		0	0	2	0	0	0	64	All	Head_Top	Red Deviruchi Hat	1
+5228	Armor		0	0	2	0	0	0	64	All	Head_Top	Gray Deviruchi Hat	1
+5229	Armor		0	0	2	0	0	0	64	All	Head_Top	Brown Deviruchi Hat	1
+5230	Armor		0	0	1	0	0	0	0	All	Head_Top	Gray Drooping Cat	1
+5231	Armor		0	0	1	0	0	0	0	All	Head_Top	Brown Drooping Cat	1
+5232	Armor		0	0	1	0	0	0	0	All	Head_Top	Pink Drooping Cat	1
+5233	Armor		0	0	1	0	0	0	0	All	Head_Top	Blue Drooping Cat	1
+5234	Armor		0	0	1	0	0	0	0	All	Head_Top	Yellow Drooping Cat	1
+5235	Armor		0	0	2	0	0	0	0		Head_Top	Brown Beanie	1
+5236	Armor		0	0	2	0	0	0	0		Head_Top	Blue Beanie	1
+5237	Armor		0	0	2	0	0	0	0		Head_Top	Pink Beanie	1
+5238	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Red Mage Hat	1
+5239	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Gray Mage Hat	1
+5240	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Brown Mage Hat	1
+5241	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Blue Mage Hat	1
+5242	Armor		0	0	1	0	0	0	0	Mage,Sage,SoulLinker,Wizard	Head_Top	Yellow Mage Hat	1
+5243	Armor		0	0	2	0	1	0	0		Head_Mid,Head_Top	Shafka	1
+5244	Armor		0	0	1	0	0	0	0		Head_Mid	Elven Blindfold	1
+5245	Armor		0	0	1	0	0	0	0		Head_Mid	Elven Sunglasses	1
+5246	Armor		0	0	3	0	0	0	0		Head_Top	Angelic Helm	1
+5247	Armor		0	0	4	0	0	0	0		Head_Top	Satanic Helm	1
+5248	Armor		0	0	1	0	0	0	0		Head_Mid	Robotic Blindfold	1
+5249	Armor		0	0	1	0	0	0	0		Head_Mid	Human Blindfold	1
+5250	Armor		0	0	0	0	0	0	0		Head_Mid	Robotic Ears	0
+5251	Armor		0	0	0	0	0	0	0		Head_Mid	Round Ears	0
+5252	Armor		0	0	1	0	0	0	20		Head_Top	Drooping Ninetail	1
+5253	Armor		0	0	1	0	1	0	20		Head_Top	Lif Doll Hat	1
+5254	Armor		0	0	1	0	1	0	20		Head_Top	Deviling Hat	1
+5255	Armor		0	0	3	0	0	0	20		Head_Top	Triple Poring Hat	1
+5256	Armor		0	0	1	0	1	0	20		Head_Top	Valkyrie Feather Band	1
+5257	Armor		0	0	2	0	0	0	20	All	Head_Top	Soul Ring	1
+5258	Armor		0	0	0	0	1	0	10		Head_Mid,Head_Top	Afro Wig	1
+5259	Armor		0	0	3	0	0	0	0		Head_Top	Elephant Hat	1
+5260	Armor		0	0	2	0	0	0	0		Head_Top	Cookie Hat	1
+5261	Armor		0	0	2	0	0	0	0		Head_Top	Silver Tiara	1
+5262	Armor		0	0	2	0	0	0	0		Head_Top	Golden Tiara	1
+5263	Armor		0	0	1	0	0	0	20	All	Head_Low,Head_Mid,Head_Top	Pagdayaw	1
+5264	Armor		0	0	4	0	0	0	0		Head_Top	Australian Flag Hat	1
+5265	Armor		0	0	7	0	0	0	1	All	Head_Top	Apple of Archer	1
+5266	Armor		0	0	9	0	0	0	1		Head_Top	Bunny Band	1
+5267	Armor		0	0	10	0	0	0	0		Head_Top	Sakkat	1
+5268	Armor		0	0	10	0	0	0	1	All	Head_Top	Grand Circlet	1
+5269	Armor		0	0	1	0	0	0	10		Head_Top	Flapping Angel Wing	1
+5270	Armor		0	0	1	0	1	0	0		Head_Top	Autumn Leaves	1
+5271	Armor		0	0	4	0	1	0	0		Head_Mid,Head_Top	Phoenix Crown	1
+5272	Armor		0	0	2	0	0	0	0		Head_Low,Head_Mid	Tongue Mask	1
+5273	Armor		0	0	1	0	0	0	0		Head_Mid,Head_Top	Happy Wig	1
+5274	Armor		0	0	1	0	0	0	0		Head_Mid,Head_Top	Shiny Wig	1
+5275	Armor		0	0	1	0	0	0	0		Head_Mid,Head_Top	Marvelous Wig	1
+5276	Armor		0	0	1	0	0	0	0		Head_Mid,Head_Top	Fantastic Wig	1
+5277	Armor		0	0	1	0	0	0	20	All	Head_Top	Yellow Bandana	1
+5278	Armor		0	0	1	0	0	0	20	All	Head_Top	Yellow Ribbon	1
+5279	Armor		0	0	1	0	0	0	0	All	Head_Top	Refined Drooping Cat	1
+5280	Armor		0	0	5	0	0	0	0		Head_Top	Baphomet Horns	1
+5281	Armor		0	0	2	0	0	0	0	All	Head_Top	Refined Deviruchi Hat	1
+5282	Armor		0	0	3	0	1	0	0		Head_Top	Europe Baseball Cap	0
+5283	Armor		0	0	1	0	0	0	10		Head_Top	Chick Hat	1
+5284	Armor		0	0	0	0	1	0	30		Head_Top	Water Lily Crown	1
+5285	Armor		0	0	3	0	1	0	30		Head_Top	Vane Hairpin	1
+5286	Armor		0	0	3	0	0	0	70		Head_Top	Pecopeco Hairband	1
+5287	Armor		0	0	1	0	1	0	30		Head_Top	Vacation Hat	1
+5288	Armor		0	0	1	0	0	0	0		Head_Mid	Red Glasses	1
+5289	Armor		0	0	0	0	0	0	30		Head_Top	Vanilmirth Hat	1
+5290	Armor		0	0	1	0	0	0	0		Head_Top	Drooping Bunny	1
+5291	Armor		0	0	4	0	0	0	30		Head_Top	Kettle Hat	1
+5292	Armor		0	0	5	0	0	0	50		Head_Top	Dragon Skull	1
+5293	Armor		0	0	1	0	0	0	0		Head_Top	Ramen Hat	1
+5294	Armor		0	0	0	0	0	0	0		Head_Low,Head_Mid,Head_Top	Whisper Mask	1
+5295	Armor		0	0	4	0	0	0	0		Head_Mid,Head_Top	Golden Bandana	1
+5296	Armor		0	0	1	0	1	0	0		Head_Top	Drooping Nine Tail	1
+5297	Armor		0	0	2	0	1	0	0		Head_Top	Soul Wing	1
+5298	Armor		0	0	1	0	1	0	0		Head_Mid,Head_Top	Dokebi's Wig	1
+5299	Armor		0	0	1	0	1	0	0		Head_Low,Head_Mid,Head_Top	Pagdayaw	1
+5300	Armor		0	0	2	0	0	0	45	All	Head_Top	Bullock Helm	1
+5301	Armor		0	0	0	0	0	0	0		Head_Top	Victory Hairband	0
+5302	Armor		0	0	1	0	0	0	30		Head_Top	Flower Lily	0
+5303	Armor		0	0	1	0	0	0	0		Head_Top	Flower Crown	1
+5304	Armor		0	0	4	0	1	0	50		Head_Low,Head_Mid,Head_Top	Cap Of Blindness	1
+5305	Armor		0	0	0	0	0	0	0		Head_Low	Pirate Dagger	1
+5306	Armor		0	0	12	0	0	0	0	All	Head_Top	Freya's Crown	1
+5307	Armor		0	0	3	0	0	0	0		Head_Top	Carmen Miranda's Hat	1
+5308	Armor		0	0	3	0	1	0	0		Head_Top	Brazil National Flag Hat	1
+5309	Armor		0	0	1	0	0	0	0		Head_Low,Head_Mid,Head_Top	Wool Mask	1
+5310	Armor		0	0	3	0	1	0	0		Head_Top	Shining Electric Bulb Hairband	1
+5311	Armor		0	0	1	0	1	0	0		Head_Top	Large Hisbiscus	1
+5312	Armor		0	0	5	0	1	0	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Ayothaya King's Hat	1
+5313	Armor		0	0	3	0	1	0	0		Head_Mid,Head_Top	Diadem	1
+5314	Armor		0	0	1	0	0	0	50		Head_Low,Head_Mid	Hockey Mask	1
+5315	Armor		0	0	1	0	0	0	35		Head_Mid	Observer	1
+5316	Armor		0	0	2	0	0	0	50		Head_Top	Umbrella Hat	1
+5317	Armor		0	0	2	0	0	0	50		Head_Top	Fisherman's Hat	1
+5318	Armor		0	0	2	0	0	0	0		Head_Top	Poring Party Hat	1
+5319	Armor		0	0	2	0	0	0	10	All	Head_Top	Hello Mother Hat	1
+5320	Armor		0	0	4	0	0	0	0	All	Head_Top	Champion Wreath	1
+5321	Armor		0	0	2	0	0	0	0		Head_Top	Bandana Merah Putih	0
+5322	Armor		0	0	2	0	0	0	24		Head_Top	Kerchief	1
+5323	Armor		0	0	10	0	0	0	0		Head_Top	Misstrance Crown	1
+5324	Armor		0	0	2	0	0	0	10		Head_Top	Little Angel Doll	1
+5325	Armor		0	0	2	0	0	0	10		Head_Mid	Robo Eye	1
+5326	Armor		0	0	1	0	0	0	0		Head_Mid	Masquerade C	1
+5327	Armor		0	0	10	0	0	0	0	All	Head_Mid,Head_Top	Refined Helmet of Orc Hero	1
+5328	Armor		0	0	2	0	0	0	0		Head_Mid	Evil Wing Ears C	1
+5329	Armor		0	0	1	0	0	0	0		Head_Mid	Dark Blindfold C	1
+5330	Armor		0	0	6	0	0	0	0	All	Head_Top	kRO Drooping Kitty C	1
+5331	Armor		0	0	10	0	0	0	0	All	Head_Top	Corsair C	1
+5332	Armor		0	0	0	0	0	0	20		Head_Low,Head_Mid	Loki Mask	1
+5333	Armor		0	0	2	0	0	0	50		Head_Top	Radio Antenna	1
+5334	Armor		0	0	0	0	0	0	38		Head_Top	Flapping Angeling	1
+5335	Armor		0	0	2	0	0	0	0		Head_Top	Jumping Poring	1
+5336	Armor		0	0	2	0	0	0	10		Head_Top	Guildsman Recruiter Hat	0
+5337	Armor		0	0	2	0	0	0	10		Head_Top	Party Recruiter Hat	0
+5338	Armor		0	0	2	0	0	0	10		Head_Top	Bf Recruiter Hat	0
+5339	Armor		0	0	2	0	0	0	10		Head_Top	Friend Recruiter Hat	0
+5340	Armor		0	0	0	0	1	0	60		Head_Top	Defolty Doll Hat	1
+5341	Armor		0	0	0	0	1	0	60		Head_Top	Glaris Doll Hat	1
+5342	Armor		0	0	0	0	1	0	60		Head_Top	Sorin Doll Hat	1
+5343	Armor		0	0	0	0	1	0	60		Head_Top	Telling Doll Hat	1
+5344	Armor		0	0	0	0	1	0	60		Head_Top	Bennit Doll Hat	1
+5345	Armor		0	0	0	0	1	0	60		Head_Top	W Doll Hat	1
+5346	Armor		0	0	2	0	0	0	10		Head_Top	Gf Recruiter Hat	0
+5347	Armor		0	0	3	0	1	0	0	All	Head_Top	Ph.D Hat	0
+5348	Armor		0	0	2	0	1	0	0	All	Head_Top	Big Ribbon	1
+5349	Armor		0	0	2	0	1	0	0	All	Head_Top	Boy's Cap	0
+5350	Armor		0	0	3	0	1	0	0	All	Head_Top	Pirate Bandana	1
+5351	Armor		0	0	1	0	1	0	0		Head_Top	Sunflower	1
+5352	Armor		0	0	2	0	0	0	38	All	Head_Top	Poporing Cap	0
+5353	Armor		0	0	4	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Head_Mid,Head_Top	Hat of the Sun God	1
+5354	Armor		0	0	2	0	0	0	0		Head_Top	Muslim Hat M	1
+5355	Armor		0	0	2	0	0	0	0		Head_Top	Selendang	1
+5356	Armor		0	0	2	0	0	0	0		Head_Top	Festival Pumpkin Hat	1
+5357	Armor		0	0	10	0	0	0	0		Head_Mid,Head_Top	Wings Of Victory	1
+5358	Armor		0	0	1	0	0	0	70		Head_Mid	Peco Ears	1
+5359	Armor		0	0	3	0	1	0	60		Head_Top	Ship Captain Hat	1
+5360	Armor		0	0	2	0	0	0	45		Head_Top	Hyuke's Black Cat Ears	1
+5361	Armor		0	0	0	0	0	0	60		Head_Low	Gangster Scarf	1
+5362	Armor		0	0	0	0	0	0	60		Head_Low	Ninja Scroll	1
+5363	Armor		0	0	2	0	1	0	70	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Head_Top	Helm Of Abyss	1
+5364	Armor		0	0	2	0	1	0	60		Head_Top	Evil Snake Lord Hat	1
+5365	Armor		0	0	3	0	1	0	1		Head_Top	Magnolia Hat	1
+5366	Armor		0	0	3	0	0	0	0		Head_Top	Love Dad Bandana	1
+5367	Armor		0	0	5	0	1	0	10		Head_Low,Head_Mid,Head_Top	Hyegun Hat	1
+5368	Armor		0	0	2	0	0	0	0		Head_Top	White Wing	1
+5369	Armor		0	0	1	0	0	0	0		Head_Top	Dark Wing	1
+5370	Armor		0	0	1	0	0	0	0		Head_Top	Orchid Hairband	1
+5371	Armor		0	0	2	0	0	0	0		Head_Mid,Head_Top	Judge Hat	1
+5372	Armor		0	0	1	0	0	0	0		Head_Top	Koneko Hat	1
+5373	Armor		0	0	2	0	1	0	0		Head_Mid,Head_Top	Dark Randgris Helm	1
+5374	Armor		0	0	5	0	0	0	0		Head_Top	Gigantic Majestic Goat	1
+5375	Armor		0	0	5	0	1	0	0		Head_Mid,Head_Top	Orc Hero Headdress	1
+5376	Armor		0	0	3	0	1	0	0		Head_Top	Flying Evil Wing	1
+5377	Armor		0	0	0	0	0	0	0		Head_Low	Gentleman's Pipe	1
+5378	Armor		0	0	0	0	0	0	0		Head_Top	Bunny Top Hat	1
+5379	Armor		0	0	3	0	1	0	50		Head_Top	Tam	1
+5380	Armor		0	0	1	0	0	0	0		Head_Top	Fish Head Hat	1
+5381	Armor		0	0	2	0	1	0	0		Head_Top	Santa Poring Hat	1
+5382	Armor		0	0	3	0	1	0	0		Head_Top	Bell Ribbon	1
+5383	Armor		0	0	3	0	1	0	50	All	Head_Top	Hunter's Cap	1
+5384	Armor		0	0	1	0	1	0	20		Head_Top	Twin Pompom By JB	1
+5385	Armor		0	0	1	0	0	0	20		Head_Top	Yoyo Hat	1
+5386	Armor		0	0	7	0	0	0	1		Head_Top	Ayam	1
+5387	Armor		0	0	1	0	1	0	30		Head_Top	Neko Mimi Kafra	1
+5388	Armor		0	0	1	0	1	0	30		Head_Top	Snake Head Hat	1
+5389	Armor		0	0	0	0	0	0	30		Head_Mid	Angel Spirit	1
+5390	Armor		0	0	2	0	0	0	0		Head_Top	Frozen Twin Pompom	1
+5391	Armor		0	0	0	0	0	0	0		Head_Low	Toast	1
+5392	Armor		0	0	3	0	1	0	0		Head_Top	Luoyang NewYear Hat	1
+5393	Armor		0	0	2	0	0	0	0		Head_Top	Love Valentine's Hat	1
+5394	Armor		0	0	0	0	0	0	0		Head_Low	Bubblegum	0
+5395	Armor		0	0	2	0	1	0	50		Head_Top	Striped Hat	1
+5396	Armor		0	0	2	0	1	0	0		Head_Top	Jasper Crest	1
+5397	Armor		0	0	0	0	0	0	0		Head_Mid	Scuba Gear	1
+5398	Armor		0	0	5	0	1	0	85	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Head_Top	Bone Head	1
+5399	Armor		0	0	1	0	1	0	85	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,SoulLinker,StarGladiator,Wizard	Head_Top	Mandragora Cap	1
+5400	Armor		0	0	0	0	0	0	0		Head_Low,Head_Mid,Head_Top	Fox Hat	1
+5401	Armor		0	0	1	0	0	0	70		Head_Mid	Black Frame Glasses	1
+5402	Armor		0	0	1	0	0	0	70		Head_Mid	Mischievous Fairy	1
+5403	Armor		0	0	0	0	0	0	30		Head_Low	Fish In Mouth	1
+5404	Armor		0	0	1	0	1	0	45		Head_Top	Blue Ribbon	1
+5405	Armor		0	0	0	0	0	0	80		Head_Top	Filir Hat	1
+5406	Armor		0	0	2	0	0	0	0		Head_Top	Academy Freshman Hat	1
+5407	Armor		0	0	2	0	1	0	0		Head_Top	Academy Completion Hat	1
+5408	Armor		0	0	5	0	0	0	0		Head_Top	Old Bandana	1
+5409	Armor		0	0	4	0	1	0	0		Head_Top	Purple Cowboy Hat	1
+5410	Armor		0	0	6	0	0	0	0		Head_Low,Head_Mid,Head_Top	Brown Paperbag Hat	1
+5411	Armor		0	0	2	0	0	0	0		Head_Top	White Snake Hat	1
+5412	Armor		0	0	1	0	0	0	0		Head_Low	Sweet Candy	1
+5413	Armor		0	0	2	0	0	0	0		Head_Top	Pop Corn Hat	1
+5414	Armor		0	0	2	0	0	0	0		Head_Top	Camp Fire Hat	1
+5415	Armor		0	0	5	0	0	0	40		Head_Top	Poring Cake Hat	1
+5416	Armor		0	0	2	0	0	0	18	All	Head_Top	Beer Hat	1
+5417	Armor		0	0	1	0	1	0	0		Head_Top	Crown Parrots	1
+5418	Armor		0	0	4	0	1	0	0		Head_Top	Legionnaire Hat	1
+5419	Armor		0	0	0	0	0	0	0		Head_Low	Leaves Of Grass	1
+5420	Armor		0	0	8	0	0	0	70	All	Head_Low,Head_Mid,Head_Top	Mask Of Ifrit	1
+5421	Armor		0	0	0	0	0	0	70	All	Head_Mid	Ears Of Ifrit	1
+5422	Armor		0	0	0	0	0	0	0		Head_Top	Linguistic Book Hat	1
+5423	Armor		0	0	5	0	0	0	0		Head_Top	I Love China	1
+5424	Armor		0	0	2	0	1	0	0		Head_Top	Fanta Orange Can Hat	0
+5425	Armor		0	0	2	0	1	0	0		Head_Top	Fanta Grape Can Hat	0
+5426	Armor		0	0	2	0	1	0	0		Head_Top	Karada Meguricha Hat	1
+5427	Armor		0	0	2	0	1	0	0		Head_Top	Black Tea Kochakaden Hat	1
+5428	Armor		0	0	0	0	0	0	0		Head_Low,Head_Mid,Head_Top	RWC Anniversary Bread Envelope	1
+5429	Armor		0	0	2	0	1	0	0		Head_Top	Bogy Cap	1
+5430	Armor		0	0	3	0	0	0	0		Head_Top	Torch Cap	1
+5431	Armor		0	0	0	0	1	0	30		Head_Top	Chicken Hat	1
+5432	Armor		0	0	0	0	0	0	0		Head_Top	bRO 4th Anniversary Hat	1
+5433	Armor		0	0	0	0	0	0	0		Head_Top	Golden Laurel	0
+5435	Armor		0	0	1	0	1	0	40		Head_Top	Red Minstrel Hat	1
+5436	Armor		0	0	1	0	0	0	0		Head_Top	Bride's Corolla	1
+5437	Armor		0	0	1	0	1	0	0		Head_Top	Fairy Flower	1
+5438	Armor		0	0	1	0	0	0	0	All	Head_Top	Cute Green Ribbon	1
+5439	Armor		0	0	1	0	0	0	0	All	Head_Top	Cute Red Ribbon	1
+5440	Armor		0	0	1	0	0	0	0	All	Head_Top	Cute Blue Ribbon	1
+5441	Armor		0	0	1	0	0	0	0	All	Head_Top	Cute White Ribbon	1
+5442	Armor		0	0	3	0	1	0	70		Head_Top	Necktie	1
+5443	Armor		0	0	3	0	1	0	70		Head_Top	Statue Of Baby Angel	1
+5444	Armor		0	0	0	0	0	0	0		Head_Top	Hair Brush	1
+5445	Armor		0	0	0	0	0	0	0		Head_Low	Candy Cane In Mouth	1
+5446	Armor		0	0	0	0	1	0	0		Head_Top	Catfoot Hairpin	1
+5447	Armor		0	0	3	0	0	0	70		Head_Top	Frog Hat	1
+5448	Armor		0	0	0	0	1	0	0		Head_Low,Head_Mid,Head_Top	Soloplay Box1	0
+5449	Armor		0	0	0	0	1	0	0		Head_Low,Head_Mid,Head_Top	Soloplay Box2	0
+5450	Armor		0	0	0	0	0	0	20	All	Head_Top	Solar Hat	0
+5451	Armor		0	0	7	0	1	0	1		Head_Top	RWC 2008 Dragon Helm Gold	1
+5452	Armor		0	0	5	0	1	0	1		Head_Top	RWC 2008 Dragon Helm Silver	1
+5453	Armor		0	0	0	0	1	0	1		Head_Top	RWC 2008 Dragon Helm Copper	1
+5454	Armor		0	0	3	0	1	0	0		Head_Top	Puppy Hat	1
+5455	Armor		0	0	1	0	1	0	0		Head_Top	Decorative Geographer	1
+5456	Armor		0	0	0	0	1	0	0		Head_Top	Summer Hat	1
+5457	Armor		0	0	2	0	1	0	1		Head_Top	Moon Rabbit Hat	1
+5458	Armor		0	0	2	0	0	0	0		Head_Top	Pinwheel Hat	1
+5459	Armor		0	0	1	0	0	0	0		Head_Top	Drooping Bunny	1
+5460	Armor		0	0	7	0	0	0	60		Head_Top	Evolved Dragon Skull Hat	1
+5461	Armor		0	0	1	0	0	0	50		Head_Low,Head_Mid,Head_Top	Evolved Whisper Mask	1
+5462	Armor		0	0	1	0	0	0	90		Head_Low	Spiked Scarf	1
+5463	Armor		0	0	1	0	0	0	90		Head_Low	Rainbow Scarf	1
+5464	Armor		0	0	1	0	0	0	0		Head_Top	Zaha Doll Hat	1
+5476	Armor		0	0	2	0	0	0	30		Head_Mid,Head_Top	Grand Peco Hairband	1
+5477	Armor		0	0	1	0	1	0	30		Head_Top	Brazilian Flag Hat	1
+5478	Armor		0	0	3	0	0	0	0		Head_Top	Classic Hat	1
+5479	Armor		0	0	1	0	0	0	30		Head_Top	Shaman's Hair Decoration	1
+5480	Armor		0	0	3	0	0	0	30		Head_Top	Bijofnil Wings	1
+5481	Armor		0	0	1	0	1	0	1		Head_Top	Hermode Cap	1
+5482	Armor		0	0	5	0	0	0	80		Head_Low,Head_Mid,Head_Top	Dark Knight Mask	1
+5483	Armor		0	0	1	0	0	0	50		Head_Low,Head_Mid	Odin Mask	1
+5485	Armor		0	0	3	0	0	0	60		Head_Low,Head_Mid,Head_Top	Tiger Face	1
+5486	Armor		0	0	3	0	0	0	0		Head_Top	Anniversary Hat	1
+5487	Armor		0	0	1	0	0	0	0		Head_Top	Poring Cake Hat	1
+5488	Armor		0	0	1	0	0	0	0		Head_Top	Twin Santa Hat	1
+5489	Armor		0	0	0	0	0	0	0		Head_Top	Love Daddy Hat	1
+5490	Armor		0	0	3	0	0	0	70		Head_Top	Anubis Helm	1
+5491	Armor		0	0	3	0	1	0	0		Head_Top	Bandit Hat	1
+5492	Armor		0	0	5	0	0	0	0	All	Head_Top	Student Cap	1
+5493	Armor		0	0	3	0	0	0	0	All	Head_Top	Ulle's Cap	1
+5494	Armor		0	0	5	0	0	0	0	Crusader,Knight,Swordsman	Head_Low,Head_Top	Sphinx Hat	1
+5495	Armor		0	0	6	0	1	0	75		Head_Top	Power Of Thor	1
+5496	Armor		0	0	3	0	0	0	50		Head_Top	Dice Hat	1
+5497	Armor		0	0	3	0	1	0	30	All	Head_Top	King Tiger Doll Hat	1
+5498	Armor		0	0	5	0	0	0	50	All	Head_Mid,Head_Top	Wandering Wolf Helm	1
+5499	Armor		0	0	0	0	0	0	0		Head_Top	Pizza Hat	1
+5500	Armor		0	0	6	0	0	0	30		Head_Top	Icecream Hat	1
+5501	Armor		0	0	6	0	0	0	10		Head_Top	Pirate's Pride	1
+5502	Armor		0	0	2	0	0	0	1		Head_Mid,Head_Top	Necromancer's Hood	1
+5503	Armor		0	0	2	0	0	0	0		Head_Top	Magic Rabit Hat	1
+5504	Armor		0	0	5	0	0	0	70		Head_Mid,Head_Top	Wedding Weil	1
+5505	Armor		0	0	2	0	0	0	50		Head_Mid,Head_Top	Asara Fairy Hat	1
+5506	Armor		0	0	4	0	0	0	0		Head_Top	Blue Night Cap	1
+5507	Armor		0	0	4	0	0	0	0		Head_Top	Pink Night Cap	1
+5508	Armor		0	0	3	0	0	0	0		Head_Top	Shark Hat	1
+5509	Armor		0	0	5	0	0	0	0		Head_Top	Sting hat	1
+5510	Armor		0	0	4	0	0	0	0		Head_Top	Shower Cap	1
+5511	Armor		0	0	5	0	1	0	30		Head_Mid,Head_Top	Samambaia	1
+5512	Armor		0	0	6	0	0	0	70		Head_Top	Aquarius Diadem	1
+5513	Armor		0	0	6	0	0	0	70		Head_Top	Aquarius Crown	1
+5514	Armor		0	0	6	0	0	0	70		Head_Top	Pisces Diadem	1
+5515	Armor		0	0	6	0	0	0	70		Head_Top	Pisces Crown	1
+5516	Armor		0	0	0	0	0	0	60	Hunter	Head_Mid	hawk Eyes	1
+5517	Armor		0	0	0	0	0	0	60	Archer,BardDancer,Hunter	Head_Mid	Hawk Eyes	1
+5518	Armor		0	0	5	0	0	0	50		Head_Top	Gigantic Majestic Goat	1
+5519	Armor		0	0	4	0	1	0	1		Head_Top	Peacock Feather	1
+5520	Armor		0	0	0	0	1	0	1		Head_Mid,Head_Top	Rabbit Earplugs	1
+5521	Armor		0	0	0	0	0	0	0		Head_Low	Angry Mouth	1
+5522	Armor		0	0	4	0	1	0	0		Head_Top	Fanta Zero Lemon Hat	0
+5523	Armor		0	0	4	0	1	0	0		Head_Top	Sakura Mist Hat	1
+5524	Armor		0	0	4	0	1	0	0		Head_Top	Sakura Milk Tea Hat	1
+5525	Armor		0	0	4	0	1	0	0		Head_Top	Flower Hat	1
+5526	Armor		0	0	4	0	0	0	60		Head_Top	Tanigumi Girl Doll	1
+5527	Armor		0	0	2	0	0	0	1		Head_Top	Lunatic Hat	1
+5528	Armor		0	0	4	0	1	0	30	All	Head_Top	Frog King Hat	1
+5529	Armor		0	0	6	0	1	0	70		Head_Mid,Head_Top	Satanic Bone Helm	1
+5530	Armor		0	0	6	0	1	0	30		Head_Top	Raven Cap	0
+5531	Armor		0	0	1	0	1	0	0		Head_Top	Baby Dragon Hat	1
+5532	Armor		0	0	0	0	0	0	0		Head_Low	Pirate Dagger	1
+5533	Armor		0	0	3	0	1	0	80		Head_Top	Emperor Wreath	1
+5535	Armor		0	0	3	0	0	0	0		Head_Top	Side Cap	1
+5536	Armor		0	0	1	0	0	0	1		Head_Low	Spare Card	1
+5537	Armor		0	0	2	0	1	0	45		Head_Top	Kwati Hat	1
+5538	Armor		0	0	2	0	1	0	45		Head_Mid,Head_Top	Tucan Hat	1
+5539	Armor		0	0	4	0	1	0	25		Head_Low,Head_Mid,Head_Top	Jaguar Hat	1
+5540	Armor		0	0	8	0	0	0	20		Head_Top	Freyja SCirclet7	1
+5541	Armor		0	0	8	0	0	0	20		Head_Top	Freyja SCirclet30	1
+5542	Armor		0	0	8	0	0	0	20		Head_Top	Freyja SCirclet60	1
+5543	Armor		0	0	8	0	0	0	20		Head_Top	Freyja SCirclet90	1
+5544	Armor		0	0	6	0	0	0	1		Head_Top	Time Keeper Hat	1
+5545	Armor		0	0	3	0	0	0	70		Head_Top	Aries Diadem	1
+5546	Armor		0	0	3	0	0	0	70		Head_Top	Aries Crown	1
+5547	Armor		0	0	1	0	1	0	0		Head_Top	RJC Katusa Flower	1
+5548	Armor		0	0	0	0	0	0	50		Head_Low	Scarlet Rose	1
+5549	Armor		0	0	3	0	0	0	70		Head_Top	Taurus Diadem	1
+5550	Armor		0	0	3	0	0	0	70		Head_Top	Taurus Crown	1
+5552	Armor		0	0	8	0	0	0	0		Head_Top	Festival Grand Circlet	1
+5553	Armor		0	0	7	0	0	0	0		Head_Top	Festival Bunny Band	1
+5554	Armor		0	0	3	0	0	0	20		Head_Top	Octopus Hat	1
+5555	Armor		0	0	3	0	0	0	0		Head_Top	Leaf Cat Hat	1
+5556	Armor		0	0	3	0	0	0	55		Head_Low,Head_Mid,Head_Top	Seal Hat	1
+5557	Armor		0	0	6	0	1	0	20	All	Head_Top	Wild Rose Hat	1
+5558	Armor		0	0	6	0	1	0	30		Head_Top	Luxury Hat	1
+5559	Armor		0	0	1	0	0	0	0		Head_Top	Piece Of White Cloth	0
+5560	Armor		0	0	3	0	0	0	75		Head_Top	Bullock Helm	1
+5561	Armor		0	0	1	0	0	0	0		Head_Top	Magic Rabbit Hat	1
+5562	Armor		0	0	0	0	1	0	45		Head_Mid,Head_Top	Luxurious Wedding Veil	1
+5564	Armor		0	0	3	0	1	0	85		Head_Mid,Head_Top	Crown of Deceit	1
+5565	Armor		0	0	5	0	0	0	1		Head_Low,Head_Mid	Dragon Arhat Mask	1
+5566	Armor		0	0	1	0	0	0	1		Head_Low,Head_Mid	Tiger Arhat Mask	1
+5567	Armor		0	0	1	0	1	0	1		Head_Top	Bright Fury	1
+5568	Armor		0	0	1	0	1	0	0		Head_Mid,Head_Top	Rabbit Bonnet	1
+5569	Armor		0	0	4	0	0	0	70		Head_Top	Gemini Diadem	1
+5570	Armor		0	0	4	0	0	0	70		Head_Top	Gemini Crown	1
+5572	Armor		0	0	1	0	1	0	1		Head_Top	Savage Babe Hat	1
+5573	Armor		0	0	1	0	1	0	0		Head_Top	Dokebi Horn	0
+5574	Armor		0	0	0	0	0	0	10		Head_Low	Well-Chewed Pencil	1
+5575	Armor		0	0	6	0	1	0	30		Head_Top	Rice Ball Hat	0
+5577	Armor		0	0	5	0	0	0	80		Head_Low,Head_Mid,Head_Top	Dark Knight Mask	1
+5578	Armor		0	0	1	0	0	0	0		Head_Top	Voyage_Hat	1
+5579	Armor		0	0	2	0	1	0	70		Head_Mid,Head_Top	Wanderer's Sakkat	1
+5581	Armor		0	0	3	0	0	0	70		Head_Top	Cancer Diadem	1
+5582	Armor		0	0	3	0	0	0	70		Head_Top	Cancer Crown	1
+5583	Armor		0	0	1	0	0	0	12		Head_Top	Eden Team Hat	0
+5584	Armor		0	0	1	0	0	0	1		Head_Top	Majestic Evil Horns	1
+5585	Armor		0	0	1	0	1	0	1		Head_Mid,Head_Top	Rune Cloth Circlet	0
+5586	Armor		0	0	1	0	1	0	1		Head_Top	Mosquito Coil	0
+5587	Armor		0	0	1	0	0	0	1		Head_Top	Mosquito Coil	0
+5590	Armor		0	0	1	0	0	0	0		Head_Top	Poring Cake Hat	0
+5592	Armor		0	0	2	0	0	0	80		Head_Mid	Sigrun's Wings	1
+5593	Armor		0	0	1	0	1	0	1		Head_Mid,Head_Top	Rabbit Bonnet	0
+5594	Armor		0	0	1	0	0	0	1		Head_Low	Donut In Mouth	0
+5596	Armor		0	0	2	0	0	0	1		Head_Low	4Leaf Clover In Mouth	1
+5597	Armor		0	0	2	0	0	0	1		Head_Low	Bubble Gum In Mouth	1
+5600	Armor		0	0	1	0	0	0	1		Head_Top	Brazil Twin Ribbon	1
+5603	Armor		0	0	8	0	1	0	1		Head_Top	RTC First Place	1
+5604	Armor		0	0	6	0	1	0	1		Head_Top	RTC Second Place	1
+5605	Armor		0	0	4	0	1	0	1		Head_Top	RTC Third Place	1
+5653	Armor		0	0	3	0	1	0	70		Head_Top	Darkness Helm	0
+5654	Armor		0	0	2	0	1	0	10		Head_Top	Holy Marching Hat	1
+5658	Armor		0	0	1	0	0	0	1		Head_Top	Imp Hat	1
+5659	Armor		0	0	1	0	0	0	1		Head_Top	Sleeper Hat	1
+5660	Armor		0	0	1	0	0	0	1		Head_Top	Gryphon Hat	1
+5664	Armor		0	0	1	0	0	0	70		Head_Mid	Filir's Pinions	1
+5665	Armor		0	0	1	0	1	0	1		Head_Top	Shaman Hat	1
+5666	Armor		0	0	8	0	1	0	1		Head_Top	Golden Crown	1
+5667	Armor		0	0	1	0	1	0	30		Head_Mid,Head_Top	Skull Hood	0
+5668	Armor		0	0	5	0	0	0	1		Head_Top	Weird Pumpkin Hat	1
+5671	Armor		0	0	0	0	1	0	70		Head_Top	Drooping Morocc Minion	0
+5681	Armor		0	0	1	0	0	0	0		Head_Top	Green Ribbon	1
+5682	Armor		0	0	5	0	1	0	1		Head_Top	Triangle Rune Cap	1
+5683	Armor		0	0	5	0	0	0	1		Head_Top	Baphomet Horns	0
+5684	Armor		0	0	5	0	0	0	1		Head_Top	Ornate Crown	0
+5685	Armor		0	0	5	0	0	0	1		Head_Top	Army Cap	0
+5686	Armor		0	0	5	0	0	0	1		Head_Top	Nice Hat Feather	0
+5687	Armor		0	0	5	0	0	0	1		Head_Top	Orc Helm	0
+5690	Armor		0	0	2	0	1	0	50		Head_Top	Red Wing Hat	1
+5691	Armor		0	0	1	0	0	0	1		Head_Top	Sailor's Bandana	1
+5692	Armor		0	0	1	0	0	0	1		Head_Top	Sea Cat Hat	1
+5738	Armor		0	0	4	0	1	0	1		Head_Top	Snowman Hat	1
+5741	Armor		0	0	1	0	0	0	10		Head_Top	Eternal Egg Shell	0
+5742	Armor		0	0	5	0	0	0	10		Head_Top	Rudolph Santa Hat	1
+5770	Armor		0	0	3	0	1	0	1		Head_Top	Splash Hat	1
+5771	Armor		0	0	3	0	1	0	1		Head_Top	Family Hat	1
+5775	Armor		0	0	1	0	0	0	1		Head_Low	Choco Donut In Mouth	0
+5781	Armor		0	0	0	0	1	0	0		Head_Top	Persika	0
+5786	Armor		0	0	1	0	0	0	1		Head_Mid	Ancient Elven Ear	1
+5788	Armor		0	0	1	0	0	0	1		Head_Mid	3D Glasses	0
+5792	Armor		0	0	3	0	0	0	1		Head_Top	Fish Pin	0
+5793	Armor		0	0	2	0	0	0	1		Head_Mid	Ribbon Of Life	1
+5794	Armor		0	0	1	0	0	0	1		Head_Mid	3D Glasses	0
+5796	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf	0
+5797	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf2	0
+5798	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf3	0
+5799	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf4	0
+5800	Armor		0	0	0	0	0	0	0		Head_Mid	Blush of Groom	1
+5801	Armor		0	0	5	0	0	0	0		Head_Top	Red Tailed Ribbon	1
+5802	Armor		0	0	3	0	1	0	0		Head_Top	Upgraded Elephant Hat	0
+5803	Armor		0	0	2	0	0	0	0		Head_Top	Love Flower Hat	1
+5804	Armor		0	0	0	0	0	0	0		Head_Mid	Pirate Eye Bandage	0
+5805	Armor		0	0	1	0	0	0	70		Head_Top	Victorious Coronet	1
+5806	Armor		0	0	5	0	0	0	0		Head_Top	Poet Natalie's Hat	0
+5807	Armor		0	0	1	0	0	0	50	All	Head_Top	October Fest Cap	0
+5808	Armor		0	0	5	0	1	0	0	Alchemist,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Monk,Priest,Rogue,Sage,Wizard	Head_Low,Head_Mid,Head_Top	Dark Bacilium	1
+5809	Armor		0	0	6	0	0	0	0		Head_Top	Boom Boom Hat	1
+5810	Armor		0	0	3	0	0	0	0	All	Head_Top	Ph.D Hat V	1
+5811	Armor		0	0	5	0	0	0	0		Head_Low	Santa's Beard	0
+5812	Armor		0	0	2	0	0	0	0		Head_Top	Hat Of Expert	0
+5815	Armor		0	0	2	0	0	0	0		Head_Top	Classic Hat	1
+5816	Armor		0	0	0	0	0	0	0		Head_Top	Purple Cowboy Hat	1
+5817	Armor		0	0	3	0	0	0	0		Both_Accessory	Valentine Pledge	1
+5818	Armor		0	0	6	0	0	0	0		Head_Top	Carnival Hat	1
+5819	Armor		0	0	6	0	0	0	0		Head_Top	Carnival Circlet	1
+5821	Armor		0	0	2	0	0	0	0		Head_Top	Gold Tulip Hairpin	1
+5822	Armor		0	0	4	0	0	0	0		Head_Top	Love Chick Hat	1
+5824	Armor		0	0	6	0	1	0	30		Head_Top	Fools Day Hat	0
+5826	Armor		0	0	10	0	0	0	0		Head_Top	Valkyrie Helmet	1
+5827	Armor		0	0	1	0	0	0	1		Head_Top	Book File Hat	0
+5828	Armor		0	0	0	0	0	0	1		Both_Accessory	Honor Gold Ring	1
+5844	Armor		0	0	0	0	0	0	1		Both_Accessory	Loyal Ring3	1
+5846	Armor		0	0	1	0	0	0	1		Head_Low	Buzzy Ball Gum	1
+5851	Armor		0	0	1	0	0	0	60		Head_Mid,Head_Top	Summer Knight	0
+5856	Armor		0	0	2	0	1	0	1		Head_Top	Passion FB Hat	1
+5857	Armor		0	0	2	0	1	0	1		Head_Top	Cool FB Hat	1
+5858	Armor		0	0	2	0	1	0	1		Head_Top	Victory FB Hat	1
+5859	Armor		0	0	2	0	1	0	1		Head_Top	Glory FB Hat	1
+9001	Petegg		0	0	0	0	0	0	0			Poring Egg	0
+9002	Petegg		0	0	0	0	0	0	0			Drops Egg	0
+9003	Petegg		0	0	0	0	0	0	0			Poporing Egg	0
+9004	Petegg		0	0	0	0	0	0	0			Lunatic Egg	0
+9005	Petegg		0	0	0	0	0	0	0			Picky Egg	0
+9006	Petegg		0	0	0	0	0	0	0			Chonchon Egg	0
+9007	Petegg		0	0	0	0	0	0	0			Steel Chonchon Egg	0
+9008	Petegg		0	0	0	0	0	0	0			Hunter Fly Egg	0
+9009	Petegg		0	0	0	0	0	0	0			Savage Babe Egg	0
+9010	Petegg		0	0	0	0	0	0	0			Baby Desert Wolf Egg	0
+9011	Petegg		0	0	0	0	0	0	0			Rocker Egg	0
+9012	Petegg		0	0	0	0	0	0	0			Spore Egg	0
+9013	Petegg		0	0	0	0	0	0	0			Poison Spore Egg	0
+9014	Petegg		0	0	0	0	0	0	0			Peco Peco Egg	0
+9015	Petegg		0	0	0	0	0	0	0			Smokie Egg	0
+9016	Petegg		0	0	0	0	0	0	0			Yoyo Egg	0
+9017	Petegg		0	0	0	0	0	0	0			Orc Warrior Egg	0
+9018	Petegg		0	0	0	0	0	0	0			Munak Egg	0
+9019	Petegg		0	0	0	0	0	0	0			Dokebi Egg	0
+9020	Petegg		0	0	0	0	0	0	0			Sohee Egg	0
+9021	Petegg		0	0	0	0	0	0	0			Isis Egg	0
+9022	Petegg		0	0	0	0	0	0	0			Green Petite Egg	0
+9023	Petegg		0	0	0	0	0	0	0			Deviruchi Egg	0
+9024	Petegg		0	0	0	0	0	0	0			Bapho Jr. Egg	0
+9025	Petegg		0	0	0	0	0	0	0			Bongun Egg	0
+9026	Petegg		0	0	0	0	0	0	0			Zealotus Egg	0
+9027	Petegg		0	0	0	0	0	0	0			Alice Egg	0
+9028	Petegg		0	0	0	0	0	0	0			Hard Rice Cake	0
+9029	Petegg		0	0	0	0	0	0	0			Christmas Goblin's Egg	0
+9030	Petegg		0	0	0	0	0	0	0			Green Maiden Egg	0
+9031	Petegg		0	0	0	0	0	0	0			Spring Rabbit Egg	0
+9032	Petegg		0	0	0	0	0	0	0			Knife Goblin Egg	0
+9033	Petegg		0	0	0	0	0	0	0			Flail Goblin Egg	0
+9034	Petegg		0	0	0	0	0	0	0			Hammer Goblin Egg	0
+9035	Petegg		0	0	0	0	0	0	0			Red Deleter Egg	0
+9036	Petegg		0	0	0	0	0	0	0			Diabolic Egg	0
+9037	Petegg		0	0	0	0	0	0	0			Wanderer Egg	0
+9038	Petegg		0	0	0	0	0	0	0			New Year Doll Egg	0
+9039	Petegg		0	0	0	0	0	0	0			Bacsojin Egg	0
+9040	Petegg		0	0	0	0	0	0	0			Civil Servant Egg	0
+9041	Petegg		0	0	0	0	0	0	0			Leaf Cat Egg	0
+9042	Petegg		0	0	0	0	0	0	0			Loli Ruri Egg	0
+9043	Petegg		0	0	0	0	0	0	0			Marionette Egg	0
+9044	Petegg		0	0	0	0	0	0	0			Shinobi Egg	0
+9045	Petegg		0	0	0	0	0	0	0			Whisper Egg	0
+9046	Petegg		0	0	0	0	0	0	0			Goblin Leader Egg	0
+9047	Petegg		0	0	0	0	0	0	0			Wicked Nymph Egg	0
+9048	Petegg		0	0	0	0	0	0	0			Miyabi Ningyo Egg	0
+9049	Petegg		0	0	0	0	0	0	0			Dullahan Egg	0
+9050	Petegg		0	0	0	0	0	0	0			Medusa Egg	0
+9051	Petegg		0	0	0	0	0	0	0			Stone Shooter Egg	0
+9052	Petegg		0	0	0	0	0	0	0			Incubus Egg	0
+9053	Petegg		0	0	0	0	0	0	0			Golem Egg	0
+9054	Petegg		0	0	0	0	0	0	0			Nightmare Terror Egg	0
+9055	Petegg		0	0	0	0	0	0	0			Succubus Egg	0
+9056	Petegg		0	0	0	0	0	0	0			Imp Egg	0
+10001	Petarmor		0	0	0	0	0	0	0			Skull Helm	0
+10002	Petarmor		0	0	0	0	0	0	0			Monster Oxygen Mask	0
+10003	Petarmor		0	0	0	0	0	0	0			Transparent Head Protector	0
+10004	Petarmor		0	0	0	0	0	0	0			Pacifier	0
+10005	Petarmor		0	0	0	0	0	0	0			Wig	0
+10006	Petarmor		0	0	0	0	0	0	0			Queen's Hair Ornament	0
+10007	Petarmor		0	0	0	0	0	0	0			Silk Ribbon	0
+10008	Petarmor		0	0	0	0	0	0	0			Punisher	0
+10009	Petarmor		0	0	0	0	0	0	0			Wild Flower	0
+10010	Petarmor		0	0	0	0	0	0	0			Battered Pot	0
+10011	Petarmor		0	0	0	0	0	0	0			Stellar Hairpin	0
+10012	Petarmor		0	0	0	0	0	0	0			Tiny Egg Shell	0
+10013	Petarmor		0	0	0	0	0	0	0			Backpack	0
+10014	Petarmor		0	0	0	0	0	0	0			Rocker Glasses	0
+10015	Petarmor		0	0	0	0	0	0	0			Green Lace	0
+10016	Petarmor		0	0	0	0	0	0	0			Golden Bell	0
+10017	Petarmor		0	0	0	0	0	0	0			Bark Shorts	0
+10018	Petarmor		0	0	0	0	0	0	0			Monkey Circlet	0
+10019	Petarmor		0	0	0	0	0	0	0			Red Scarf	0
+10020	Petarmor		0	0	0	0	0	0	0			Grave Keeper's Sword	0
+10021	Petarmor		0	0	0	0	0	0	0			Circular Headgear	0
+10022	Petarmor		0	0	0	0	0	0	0			Gold Earring	0
+10023	Petarmor		0	0	0	0	0	0	0			Green Jewel Bag	0
+10024	Petarmor		0	0	0	0	0	0	0			Fashion Glasses	0
+10025	Petarmor		0	0	0	0	0	0	0			Hairband Of Stars	0
+10026	Petarmor		0	0	0	0	0	0	0			Tassel for Durumagi	0
+10027	Petarmor		0	0	0	0	0	0	0			Pet Soul Ring	0
+10028	Petarmor		0	0	0	0	0	0	0			Beautiful Badges	0
+10029	Petarmor		0	0	0	0	0	0	0			Jade Trinket	0
+10030	Petarmor		0	0	0	0	0	0	0			Summer Fan	0
+10031	Petarmor		0	0	0	0	0	0	0			Ring Of Death	0
+10032	Petarmor		0	0	0	0	0	0	0			Queen's Coronet	0
+10033	Petarmor		0	0	0	0	0	0	0			Afro	0
+10034	Petarmor		0	0	0	0	0	0	0			Masked Ball	0
+10035	Petarmor		0	0	0	0	0	0	0			Spring	0
+10036	Petarmor		0	0	0	0	0	0	0			Horn Of Hell	0
+10037	Petarmor		0	0	0	0	0	0	0			Black Butterfly Mask	0
+10038	Petarmor		0	0	0	0	0	0	0			Horn Barrier	0
+13000	Weapon	Dagger	39	0	0	0	0	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Jujube Dagger	1
+13001	Weapon	Dagger	110	0	0	0	0	4	60	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dragon Killer	1
+13002	Weapon	Dagger	148	0	0	0	0	4	70	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Ginnungagap	1
+13003	Weapon	Dagger	80	0	0	0	1	3	55	Assassin,Ninja,Rogue,Thief	Right_Hand	Cowardice Blade	1
+13004	Weapon	Dagger	80	0	0	0	2	3	55	Assassin,Ninja,Rogue,Thief	Right_Hand	Cowardice Blade	1
+13005	Weapon	Dagger	120	0	0	0	2	4	50	Novice,SuperNovice	Right_Hand	Angelic Wing Dagger	0
+13006	Weapon	Dagger	150	0	0	0	0	3	65	Ninja	Right_Hand	Khukri	1
+13007	Weapon	Dagger	70	0	0	0	0	2	35	Ninja	Right_Hand	Jitte	1
+13008	Weapon	Dagger	70	0	0	0	1	2	35	Ninja	Right_Hand	Jitte	1
+13009	Weapon	Dagger	125	0	0	0	0	4	70	Ninja	Right_Hand	Kamaitachi	1
+13010	Weapon	Dagger	50	0	0	0	2	1	12	Ninja	Right_Hand	Asura	1
+13011	Weapon	Dagger	50	0	0	0	3	1	12	Ninja	Right_Hand	Asura	1
+13012	Weapon	Dagger	95	0	0	0	1	2	24	Ninja	Right_Hand	Murasame	1
+13013	Weapon	Dagger	95	0	0	0	2	2	24	Ninja	Right_Hand	Murasame	1
+13014	Weapon	Dagger	120	0	0	0	0	3	42	Ninja	Right_Hand	Hakujin	1
+13015	Weapon	Dagger	120	0	0	0	1	3	42	Ninja	Right_Hand	Hakujin	1
+13016	Weapon	Dagger	64	0	0	0	2	3	65	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Poison Knife	1
+13017	Weapon	Dagger	70	0	0	0	1	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Ice Pick	1
+13018	Weapon	Dagger	140	0	0	0	1	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Sucsamad	1
+13019	Weapon	Dagger	148	0	0	0	1	4	70	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Ginnungagap	1
+13020	Weapon	Dagger	170	0	0	0	0	4	48		Right_Hand	Warrior's Balmung	1
+13021	Weapon	Dagger	129	0	0	0	0	4	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Combat Knife	1
+13022	Weapon	Dagger	209	0	0	0	0	4	1	Mage,Sage,SoulLinker,Wizard	Right_Hand	Dagger of Counter	1
+13023	Weapon	Dagger	120	0	0	0	0	1	1	Ninja	Right_Hand	Ashura	1
+13024	Weapon	Dagger	105	0	0	0	0	4	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Refined Swordbreaker	1
+13025	Weapon	Dagger	105	0	0	0	0	4	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Refined Mailbreaker	1
+13026	Weapon	Dagger	85	0	0	0	0	4	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Moonlight Dagger	1
+13027	Weapon	Dagger	120	0	0	0	3	4	55	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Scalpel	1
+13028	Weapon	Dagger	130	0	0	0	1	4	55	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Tooth Blade	1
+13029	Weapon	Dagger	120	0	0	0	0	1	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Prinsense Knife	1
+13030	Weapon	Dagger	110	0	0	0	2	4	60	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Dragon Killer	1
+13031	Weapon	Dagger	70	0	0	0	3	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Swordbreaker	1
+13032	Weapon	Dagger	70	0	0	0	3	4	36	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Mailbreaker	1
+13033	Weapon	Dagger	140	0	0	0	1	4	36	Assassin	Right_Hand	Assassin Dagger	1
+13034	Weapon	Dagger	130	0	0	0	2	2	70	Assassin	Right_Hand	Desert Twilight	0
+13035	Weapon	Dagger	50	0	0	0	4	2	70	Assassin	Right_Hand	Sandstorm	0
+13036	Weapon	Dagger	120	0	0	0	0	3	80	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Brave Assassin's Damascus	1
+13037	Weapon	Dagger	120	0	0	0	0	3	80	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Valorous Assassin's Damascus	1
+13038	Weapon	Dagger	120	0	0	0	3	3	70	Rogue	Right_Hand	Dagger of Hunter	1
+13039	Weapon	Dagger	130	0	0	0	2	3	50	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Ivory Knife	1
+13040	Weapon	Dagger	50	0	0	0	3	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Novice Cutter	0
+13041	Weapon	Dagger	63	0	0	0	3	1	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Novice Main Gauche	0
+13042	Weapon	Dagger	120	0	0	0	0	4	80	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Novice,Rogue,Sage,SoulLinker,SuperNovice,Swordsman,Thief,Wizard	Right_Hand	Glorious Gladius	1
+13043	Weapon	Dagger	120	0	0	0	0	4	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Fortune Sword	1
+13044	Weapon	Dagger	105	0	0	0	0	4	0	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Ice Pick	0
+13045	Weapon	Dagger	155	0	0	0	0	4	0	Ninja	Right_Hand	Kamaitachi	0
+13046	Weapon	Dagger	110	0	0	0	3	2	50	Assassin,Rogue,Thief	Right_Hand	Krierg	1
+13047	Weapon	Dagger	135	0	0	0	2	3	50	Assassin,Rogue,Thief	Right_Hand	Weihna	1
+13048	Weapon	Dagger	153	0	0	0	0	3	1	Alchemist,Archer,Assassin,BardDancer,Blacksmith,Crusader,Hunter,Knight,Mage,Merchant,Ninja,Rogue,Sage,SoulLinker,Swordsman,Thief,Wizard	Right_Hand	Damascus	1
+13100	Weapon	Revolver	30	0	0	0	1	1	10	Gunslinger	Both_Hand	Six Shooter	1
+13101	Weapon	Revolver	30	0	0	0	2	1	10	Gunslinger	Both_Hand	Six Shooter	1
+13102	Weapon	Revolver	45	0	0	0	1	2	35	Gunslinger	Both_Hand	Crimson Bolt	1
+13103	Weapon	Revolver	45	0	0	0	2	2	35	Gunslinger	Both_Hand	Crimson Bolt	1
+13104	Weapon	Revolver	70	0	0	0	1	2	55	Gunslinger	Both_Hand	Garrison	1
+13105	Weapon	Revolver	70	0	0	0	2	2	55	Gunslinger	Both_Hand	Garrison	1
+13106	Weapon	Revolver	20	0	0	0	0	3	12	Gunslinger	Both_Hand	Gold Lux	1
+13107	Weapon	Revolver	68	0	0	0	2	3	70	Gunslinger	Both_Hand	Wasteland's Outlaw	1
+13108	Weapon	Revolver	70	0	0	0	0	3	80	Gunslinger	Both_Hand	Soldier Revolver	1
+13109	Weapon	Revolver	100	0	0	0	0	3	0	Gunslinger	Both_Hand	Wasteland Outlaw	1
+13110	Weapon	Revolver	80	0	0	0	0	4	80	Gunslinger	Both_Hand	Glorious Pistol	1
+13112	Weapon	Revolver	4	0	0	0	0	1	26	Gunslinger	Both_Hand	Eden Revlover I	1
+13113	Weapon	Revolver	60	0	0	0	0	1	40	Gunslinger	Both_Hand	Eden Revlover II	1
+13150	Weapon	Rifle	50	0	0	0	3	1	1	Gunslinger	Both_Hand	Branch	0
+13151	Weapon	Rifle	120	0	0	0	1	2	24	Gunslinger	Both_Hand	Cyclone	1
+13152	Weapon	Rifle	120	0	0	0	2	2	24	Gunslinger	Both_Hand	Cyclone	1
+13153	Weapon	Rifle	150	0	0	0	1	2	56	Gunslinger	Both_Hand	Dusk	1
+13154	Weapon	Shotgun	135	0	0	0	1	1	14	Gunslinger	Both_Hand	Rolling Stone	1
+13155	Weapon	Shotgun	180	0	0	0	1	2	35	Gunslinger	Both_Hand	Black Rose	1
+13156	Weapon	Shotgun	210	0	0	0	0	2	24	Gunslinger	Both_Hand	Gate Keeper	1
+13157	Weapon	Gatling	50	0	0	0	1	2	55	Gunslinger	Both_Hand	Drifter	0
+13158	Weapon	Gatling	75	0	0	0	0	3	68	Gunslinger	Both_Hand	Butcher	1
+13159	Weapon	Gatling	75	0	0	0	1	3	68	Gunslinger	Both_Hand	Butcher	1
+13160	Weapon	Grenade	220	0	0	0	0	2	52	Gunslinger	Both_Hand	Destroyer	1
+13161	Weapon	Grenade	220	0	0	0	1	2	52	Gunslinger	Both_Hand	Destroyer	1
+13162	Weapon	Grenade	280	0	0	0	1	2	65	Gunslinger	Both_Hand	Inferno	0
+13163	Weapon	Rifle	150	0	0	0	0	3	70	Gunslinger	Both_Hand	Long Barrel	1
+13164	Weapon	Rifle	150	0	0	0	1	3	70	Gunslinger	Both_Hand	Long Barrel	1
+13165	Weapon	Rifle	170	0	0	0	0	3	70	Gunslinger	Both_Hand	Jungle Carbine	1
+13166	Weapon	Rifle	170	0	0	0	1	3	70	Gunslinger	Both_Hand	Jungle Carbine	1
+13167	Weapon	Shotgun	200	0	0	0	0	4	70	Gunslinger	Both_Hand	Gate Keeper-DD	1
+13168	Weapon	Shotgun	80	0	0	0	1	3	70	Gunslinger	Both_Hand	Thunder P	1
+13169	Weapon	Shotgun	80	0	0	0	2	3	70	Gunslinger	Both_Hand	Thunder P	1
+13170	Weapon	Rifle	138	0	0	0	2	3	70	Gunslinger	Both_Hand	Lever Action Rifle	1
+13171	Weapon	Rifle	50	0	0	0	0	3	80	Gunslinger	Both_Hand	Soldier Rifle	1
+13172	Weapon	Gatling	80	0	0	0	0	3	80	Gunslinger	Both_Hand	Soldier Gatling Gun	1
+13173	Weapon	Shotgun	100	0	0	0	0	3	80	Gunslinger	Both_Hand	Soldier Shotgun	1
+13174	Weapon	Grenade	300	0	0	0	0	3	80	Gunslinger	Both_Hand	Soldier Grenade Launcher	1
+13175	Weapon	Rifle	170	0	0	0	0	3	0	Gunslinger	Both_Hand	Lever Action Rifle	1
+13176	Weapon	Rifle	90	0	0	0	0	4	80	Gunslinger	Both_Hand	Glorious Rifle	1
+13177	Weapon	Gatling	90	0	0	0	0	4	80	Gunslinger	Both_Hand	Glorious Gatling Gun	1
+13178	Weapon	Shotgun	110	0	0	0	0	4	80	Gunslinger	Both_Hand	Glorious Shotgun	1
+13179	Weapon	Grenade	330	0	0	0	0	4	80	Gunslinger	Both_Hand	Glorious Grenade Launcher	1
+13300	Weapon	Huuma	150	0	0	0	0	4	65	Ninja	Both_Hand	Huuma Wing Shuriken	1
+13301	Weapon	Huuma	50	0	0	0	3	4	42	Ninja	Both_Hand	Huuma Giant Wheel Shuriken	1
+13302	Weapon	Huuma	50	0	0	0	4	4	42	Ninja	Both_Hand	Huuma Giant Wheel Shuriken	1
+13303	Weapon	Huuma	185	0	0	0	0	4	55	Ninja	Both_Hand	Huuma Blaze Shuriken	1
+13304	Weapon	Huuma	112	0	0	0	2	3	70	Ninja	Both_Hand	Huuma Calm Mind	1
+13305	Weapon	Huuma	55	0	0	0	0	3	80	Ninja	Both_Hand	Brave Huuma Front Shuriken	1
+13306	Weapon	Huuma	55	0	0	0	0	3	80	Ninja	Both_Hand	Valorous Huuma Front Shuriken	1
+13307	Weapon	Huuma	55	0	0	0	0	4	80	Ninja	Both_Hand	Glorious Shuriken	1
+13308	Weapon	Huuma	230	0	0	0	0	4	0	Ninja	Both_Hand	Huuma Blaze Shuriken	1
+13309	Weapon	Huuma	99	0	0	0	0	4	1	Ninja	Both_Hand	Huuma Giant Wheel Shuriken	1
+13400	Weapon	1hSword	150	0	0	0	1	4	40	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Cutlus	1
+13401	Weapon	1hSword	199	0	0	0	0	4	1	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Excalibur	1
+13402	Weapon	1hSword	185	0	0	0	0	4	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Cutlus	1
+13403	Weapon	1hSword	120	0	0	0	0	4	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Solar Sword	1
+13404	Weapon	1hSword	130	0	0	0	1	4	55	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Platinum Shotel	1
+13405	Weapon	1hSword	125	0	0	0	2	4	55	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Curved Sword	1
+13406	Weapon	1hSword	120	0	0	0	0	1	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Edger	1
+13407	Weapon	1hSword	148	0	0	0	0	4	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Refined Nagan	1
+13408	Weapon	1hSword	120	0	0	0	0	4	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Refined Fireblend	1
+13409	Weapon	1hSword	160	0	0	0	0	4	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Refined Immaterial Sword	1
+13410	Weapon	1hSword	115	0	0	0	0	3	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Valorous Gladiator Blade	1
+13411	Weapon	1hSword	115	0	0	0	0	3	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Brave Gladiator Blade	1
+13412	Weapon	1hSword	150	0	0	0	3	4	75	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Twin Edge of Naght Sieger	1
+13413	Weapon	1hSword	160	0	0	0	3	4	75	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Twin Edge of Naght Sieger	1
+13414	Weapon	1hSword	105	0	0	0	3	3	70	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Elemental Sword	1
+13415	Weapon	1hSword	59	0	0	0	3	1	2	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Novice Falchion	0
+13416	Weapon	1hSword	130	0	0	0	0	4	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Glorious Flamberge	1
+13417	Weapon	1hSword	130	0	0	0	0	4	80	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Novice,Rogue,SuperNovice,Swordsman,Thief	Right_Hand	Glorious Rapier	1
+13418	Weapon	1hSword	130	0	0	0	0	4	80	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Glorious Holy Avenger	1
+13419	Weapon	1hSword	160	0	0	0	0	3	0	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Holy saber	0
+13420	Weapon	1hSword	160	0	0	0	1	4	70	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Right_Hand	Honglyun's Sword	1
+13421	Weapon	1hSword	170	0	0	0	1	3	50	Alchemist,Blacksmith,Crusader,Knight,Merchant,Swordsman	Right_Hand	Ruber	1
+13422	Weapon	1hSword	185	0	0	0	0	3	1	Crusader,Knight	Right_Hand	Flamberge	1
+15000	Armor		0	0	7	0	1	0	85	Alchemist,Assassin,Blacksmith,Crusader,Knight,Merchant,Rogue,Swordsman,Thief	Armor	Bone Plate	1
+15001	Armor		0	0	10	0	0	0	0	All	Armor	Odin's Blessing	0
+16000	Weapon	Mace	130	0	0	0	2	3	50	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Erde	1
+16001	Weapon	Mace	130	0	0	0	2	3	50	Acolyte,Alchemist,Blacksmith,Crusader,Knight,Merchant,Monk,Priest,Swordsman	Right_Hand	Red Square Bag	1
+16002	Weapon	Mace	175	0	0	0	0	3	1	Acolyte,Monk,Priest	Right_Hand	Stunner	1
+16030	Weapon	Mace	400	0	0	0	1	4	130	Blacksmith	Right_Hand	Pile Bunker S	1
+16031	Weapon	Mace	450	0	0	0	0	4	130	Blacksmith	Right_Hand	Pile Bunker P	1
+16032	Weapon	Mace	400	0	0	0	1	4	130	Blacksmith	Right_Hand	Pile Bunker T	1
+18100	Weapon	Bow	190	0	0	0	0	4	1	BardDancer,Hunter	Both_Hand	Shooting Star	1
+18101	Weapon	Bow	185	0	0	0	0	4	0	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Rudra Bow	1
+18102	Weapon	Bow	185	0	0	0	0	4	0	Archer,BardDancer,Hunter,Rogue,Thief	Both_Hand	Rudra Bow	1
+18500	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf6	0
+18501	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf8	0
+18502	Armor		0	0	0	0	0	0	1		Head_Low	Cheer Scarf10	0
+18503	Armor		0	0	2	0	0	0	1		Head_Mid	Small Devil Horns	1
+18505	Armor		0	0	1	0	1	0	30		Head_Low	Umbala Spirit	1
+18506	Armor		0	0	2	0	1	0	1		Head_Low,Head_Mid,Head_Top	Hattah Black	0
+18507	Armor		0	0	0	0	1	0	70	All	Head_Mid	Elven Ears	0
+18539	Armor		0	0	5	0	1	0	10		Head_Top	Skull Cap	1
+18595	Armor		0	0	8	0	1	0	50		Head_Top	Horn of Ancient	1
+18596	Armor		0	0	4	0	0	0	70		Head_Top	Sprout Hat	1
+18597	Armor		0	0	10	0	1	0	0		Head_Top	Mercury Riser	1
+18600	Armor		0	0	5	0	0	0	0		Head_Top	Cat Ear Beret	1
+18612	Armor		0	0	3	0	1	0	0		Head_Top	White Musang Hat	1
+18613	Armor		0	0	3	0	1	0	0		Head_Top	Black Musang Hat	1
+18620	Armor		0	0	2	0	0	0	20		Head_Mid	Heart Eyepatch	0
+18656	Armor		0	0	10	0	0	0	20		Head_Top	Witch's Pumpkin Hat	1
+19500	Armor		0	0	0	0	0	0	0		Costume_Head_Low,Costume_Head_Mid	T Mr Smile	1
+19501	Armor		0	0	0	0	1	0	0		Costume_Head_Low,Costume_Head_Top	T Spinx Helm	0
+19504	Armor		0	0	0	0	0	0	0		Costume_Head_Mid	T Sunglasses	0
+19505	Armor		0	0	0	0	0	0	0		Costume_Head_Low	T Cigarette	0
+19506	Armor		0	0	0	0	0	0	0		Costume_Head_Top	T Valkyrie Feather Band	0
+19507	Armor		0	0	0	0	0	0	1		Costume_Head_Top	Clear Sun	0

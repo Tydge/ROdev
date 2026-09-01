@@ -62,6 +62,21 @@ ensure_managed_plugins() {
   else
     echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
   fi
+
+  # autoGear ships gear_catalog.txt and its generator, so deploy the complete
+  # directory like world_ai.
+  plugin_name="autoGear"
+  source_dir="$MANAGED_PLUGIN_ROOT/$plugin_name"
+  target_dir="$OPENKORE_ROOT/plugins/$plugin_name"
+
+  [[ -f "$source_dir/$plugin_name.pl" ]] || return 0
+  if [[ -L "$target_dir" ]]; then
+    /bin/ln -sfn "$source_dir" "$target_dir"
+  elif [[ ! -e "$target_dir" ]]; then
+    /bin/ln -s "$source_dir" "$target_dir"
+  else
+    echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
+  fi
 }
 
 start_bot_instance() {
