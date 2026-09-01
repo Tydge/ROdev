@@ -7,6 +7,7 @@ OPENKORE_ROOT="$RO_ROOT/openkore"
 BOT_INSTANCES_ROOT="$RO_ROOT/openkore-local/instances"
 TABLE_OVERLAY="$RO_ROOT/openkore-local/tables"
 MANAGED_PLUGIN_ROOT="/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/plugins"
+MANAGED_INSTANCES_ROOT="/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/instances"
 RO_CONTROL="/Users/wangtaizhi/娱乐/RO本地服/自动化/ro-control.sh"
 DB_SOCKET="$RO_ROOT/database/mariadb.sock"
 BOT_ACCOUNT_PREFIX="openkore%"
@@ -77,6 +78,51 @@ ensure_managed_plugins() {
   else
     echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
   fi
+}
+
+deploy_config() {
+  local secrets_file="$MANAGED_INSTANCES_ROOT/secrets.local.txt"
+  local shared_dir="$MANAGED_INSTANCES_ROOT/shared-control"
+
+  [[ -f "$secrets_file" ]] || {
+    echo "[失败] 缺少机密文件：$secrets_file（复制 secrets.example.txt 并填值）"
+    return 1
+  }
+  [[ -d "$shared_dir" ]] || {
+    echo "[失败] 缺少共享控制目录：$shared_dir"
+    return 1
+  }
+
+  local shared_password
+  shared_password=$(/usr/bin/awk '/^password /{print $2; exit}' "$secrets_file")
+  [[ -n "$shared_password" ]] || {
+    echo "[失败] 机密文件缺少共享密码（password 行）"
+    return 1
+  }
+
+  local bot_id line username pin admin
+  for bot_id in "${BOT_IDS[@]}"; do
+    local template="$MANAGED_INSTANCES_ROOT/$bot_id/config.txt.template"
+    local target="$BOT_INSTANCES_ROOT/$bot_id/control/config.txt"
+    [[ -f "$template" ]] || { echo "[跳过] $bot_id 无模板：$template"; continue; }
+
+    line=$(/usr/bin/awk -v b="$bot_id" '$1==b{print; exit}' "$secrets_file")
+    [[ -n "$line" ]] || { echo "[失败] $bot_id 在机密文件中无凭据"; return 1; }
+    read -r _b username pin admin <<< "$line"
+
+    /usr/bin/sed \
+      -e "s/{{username}}/${username}/g" \
+      -e "s/{{password}}/${shared_password}/g" \
+      -e "s/{{loginPinCode}}/${pin}/g" \
+      -e "s/{{adminPassword}}/${admin}/g" \
+      "$template" > "$target.tmp" && /bin/mv "$target.tmp" "$target" || {
+        echo "[失败] $bot_id 渲染失败"; return 1
+      }
+
+    /bin/cp -f "$shared_dir"/*.txt "$BOT_INSTANCES_ROOT/$bot_id/control/" 2>/dev/null || true
+    echo "[OK] $bot_id config.txt 已渲染，共享控制文件已同步。"
+  done
+  echo "[完成] 所有机器人配置已部署；重启机器人生效。"
 }
 
 start_bot_instance() {
@@ -269,8 +315,11 @@ case "${1:-status}" in
   bot-info)
     bot_info
     ;;
+  deploy-config)
+    deploy_config
+    ;;
   *)
-    echo "用法：$SCRIPT_PATH {start|start-manual|start-bot|start-one ID [on|manual]|stop|stop-one ID|stop-all|restart|console [ID]|status|bot-status|bot-info}"
+    echo "用法：$SCRIPT_PATH {start|start-manual|start-bot|start-one ID [on|manual]|stop|stop-one ID|stop-all|restart|console [ID]|status|bot-status|bot-info|deploy-config}"
     exit 2
     ;;
 esac

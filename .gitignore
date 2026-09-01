@@ -17,6 +17,9 @@
 **/instances/*/control/servers.txt
 **/instances/*/logs/
 
+# Local secrets for config templating (see OpenKore机器人/instances/)
+**/instances/secrets.local.txt
+
 # Local databases, dumps, and large binary archives
 **/database/
 *.sql
