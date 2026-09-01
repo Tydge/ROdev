@@ -78,6 +78,7 @@ world_ai/
 - 上述覆盖只直接修改 `%config / %mon_control`；不调用会写 `config.txt` 的 `configModify`。
 - `exec stop`、路线失败、超时、监控异常和插件卸载都会恢复；进程崩溃或重启则天然重新读取磁盘原配置。
 - 多图免费步行路线允许 900 秒，避免首次发现 portal 时 OpenKore 重建 portal LOS 表造成误超时。
+- 挂接 `AI_buy_auto_needitem` 做买货守门：当 `zeny` 低于最便宜补货物品单价时跳过 buyAuto 触发，避免破产角色陷入「触发→买不到→完成→再触发」死循环；跳过一次按 60 秒限流告警。
 
 - MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
 - 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
