@@ -56,6 +56,9 @@ my $EXEC_SAFE_WAIT_SECONDS = 30;
 my $EXEC_MOVE_TIMEOUT_SECONDS = 900;
 my %execution;
 my $buy_guard_last_warn = 0;
+my $auto_execute_last_attempt = time;
+my $auto_execute_backoff_s = 15;
+my $AUTO_EXECUTE_MAX_BACKOFF_S = 300;
 
 Plugins::register(
 	$NAME,
@@ -163,6 +166,13 @@ sub command_handler {
 			inspect_monster($1);
 		} elsif ($args =~ /^inspect\s+map\s+(\S+)$/i) {
 			inspect_map($1);
+		} elsif ($args =~ /^autoexecute\s+(on|off)$/i) {
+			my $enable = lc($1) eq 'on' ? 1 : 0;
+			$config{world_ai_auto_execute} = $enable;
+			wa_log('[AUTO_EXEC] auto_execute=' . ($enable ? 'on' : 'off') .
+				' (runtime only; add "world_ai_auto_execute 1" to config.txt to persist)');
+		} elsif ($args =~ /^autoexecute$/i) {
+			wa_log('[AUTO_EXEC] auto_execute=' . (_auto_execute_enabled() ? 'on' : 'off'));
 		} elsif ($args =~ /^reload$/i) {
 			reload_index();
 		} else {
@@ -187,13 +197,15 @@ sub print_help {
 	wa_log('[HELP] worldai execute');
 	wa_log('[HELP] worldai exec status');
 	wa_log('[HELP] worldai exec stop');
+	wa_log('[HELP] worldai autoexecute [on|off]');
 	wa_log('[HELP] worldai inspect monster <name|aegis|id>');
 	wa_log('[HELP] worldai inspect map <map>');
 	wa_log('[HELP] worldai reload');
 }
 
 sub print_status {
-	wa_log("[STATUS] plugin_version=$VERSION mode=CONTROLLED_EXECUTION exec_state=$execution{state} movement_control=" .
+	wa_log("[STATUS] plugin_version=$VERSION mode=CONTROLLED_EXECUTION exec_state=$execution{state} auto_execute=" .
+		(_auto_execute_enabled() ? 'on' : 'off') . ' movement_control=' .
 		($runtime_override->active ? 'ON' : 'OFF') . ' combat_control=' . ($runtime_override->active ? 'TARGET_OVERRIDE' : 'OFF'));
 	wa_log(sprintf(
 		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d exec_max_hops=%d',
@@ -234,6 +246,12 @@ sub _alive {
 
 sub _transaction_in_progress {
 	return AI::inQueue(qw(storageAuto buyAuto sellAuto teleport NPC skill_use eventMacro)) ? 1 : 0;
+}
+
+sub _auto_execute_enabled {
+	my $value = $config{world_ai_auto_execute};
+	return 0 unless defined $value;
+	return $value =~ /^(?:1|yes|true|on)$/i ? 1 : 0;
 }
 
 sub _reset_execution {
@@ -514,7 +532,33 @@ sub _advance_execution {
 	}
 }
 
+sub maybe_auto_execute {
+	return unless _auto_execute_enabled();
+	return unless _in_game() && _alive();
+	my $state = $execution{state};
+	return unless $state eq 'IDLE' || $state eq 'ERROR';
+	return if _transaction_in_progress();
+
+	my $now = time;
+	return if $now - $auto_execute_last_attempt < $auto_execute_backoff_s;
+	$auto_execute_last_attempt = $now;
+
+	wa_log(sprintf('[AUTO_EXEC] attempt state=%s backoff=%ds', $state, $auto_execute_backoff_s));
+	start_execution();
+	if ($execution{state} eq 'IDLE' || $execution{state} eq 'ERROR') {
+		$auto_execute_backoff_s = $auto_execute_backoff_s == 0
+			? 15
+			: ($auto_execute_backoff_s * 2 > $AUTO_EXECUTE_MAX_BACKOFF_S
+				? $AUTO_EXECUTE_MAX_BACKOFF_S : $auto_execute_backoff_s * 2);
+		wa_log(sprintf('[AUTO_EXEC] failed state=%s next_backoff=%ds', $execution{state}, $auto_execute_backoff_s));
+	} else {
+		$auto_execute_backoff_s = 0;
+		wa_log(sprintf('[AUTO_EXEC] started state=%s', $execution{state}), 'success');
+	}
+}
+
 sub on_ai_pre {
+	maybe_auto_execute();
 	return if $execution{state} eq 'IDLE' || $execution{state} eq 'ERROR';
 	my $ok = eval { _advance_execution(); 1 };
 	unless ($ok) {

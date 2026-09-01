@@ -55,4 +55,39 @@ my $first = $scorer->score_candidate($snapshot, $poring, 'prt_fild08', 70, $pori
 my $second = $scorer->score_candidate($snapshot, $poring, 'prt_fild08', 70, $poring_profile);
 is($first->{score}, $second->{score}, 'same input produces a stable score');
 
+# --- Novice penalty (job_id == 0) ---
+# A level-12 Novice (weak attack, ~100 HP) must not be sent against
+# Baby Desert Wolf: attack 36 exceeds the novice cap and its kill cost /
+# single-hit damage both exceed the tightened novice thresholds.
+my $novice_snapshot = {
+	base_level   => 12,
+	job_id       => 0,
+	hp_max       => 100,
+	attack_total => 10,
+};
+
+my $bwolf = $index->monster(1107);
+my ($bwolf_novice_allowed, $bwolf_novice_reasons) = $scorer->hard_filter($novice_snapshot, $bwolf, 'moc_fild01');
+ok(!$bwolf_novice_allowed, 'Novice is filtered from Baby Desert Wolf');
+like(join(' ', @{$bwolf_novice_reasons}), qr/novice/, 'Novice filter reasons are explained');
+
+my ($poring_novice_allowed, $poring_novice_reasons) = $scorer->hard_filter($novice_snapshot, $poring, 'prt_fild08');
+ok($poring_novice_allowed, 'Novice is still allowed Poring')
+	or diag('Poring was blocked for Novice: ' . join('; ', @{$poring_novice_reasons}));
+
+my ($lunatic_novice_allowed, $lunatic_novice_reasons) = $scorer->hard_filter($novice_snapshot, $index->monster(1063), 'prt_fild08');
+ok($lunatic_novice_allowed, 'Novice is still allowed Lunatic')
+	or diag('Lunatic was blocked for Novice: ' . join('; ', @{$lunatic_novice_reasons}));
+
+# The same level-12 character as a first job still gets the normal policy.
+my $thief_snapshot = {
+	base_level   => 12,
+	job_id       => 6,
+	hp_max       => 310,
+	attack_total => 40,
+};
+my ($bwolf_thief_allowed, $bwolf_thief_reasons) = $scorer->hard_filter($thief_snapshot, $bwolf, 'moc_fild01');
+ok($bwolf_thief_allowed, 'first-job character is still allowed Baby Desert Wolf')
+	or diag('Baby Desert Wolf was blocked for Thief: ' . join('; ', @{$bwolf_thief_reasons}));
+
 done_testing();

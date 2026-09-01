@@ -18,6 +18,17 @@ my %DEFAULTS = (
 	TARGET_RISK_WEIGHT    => 1.0,
 	MAP_RISK_WEIGHT       => 1.0,
 	RANGED_RISK_WEIGHT    => 1.2,
+
+	# Novice (job_id == 0) has no first-job skills, no weapon mastery and far
+	# weaker combat output than a first-job character of the same base level.
+	# A level-only fit therefore sends Novices against monsters they cannot
+	# kill before dying (observed: Baby Desert Wolf killing a level-12 Novice
+	# every ~75s). Apply tighter hard filters and extra risk for Novices.
+	NOVICE_MAX_LEVEL_ABOVE        => 0,    # never fight monsters above own level
+	NOVICE_MAX_MONSTER_ATTACK     => 20,   # hard cap on monster max attack
+	NOVICE_MAX_ATTACK_HP_RATIO    => 0.25, # single monster hit < 25% of max HP
+	NOVICE_MAX_ESTIMATED_HITS     => 15,   # kill must be affordable in few hits
+	NOVICE_TARGET_RISK_MULTIPLIER => 1.6,  # extra risk weight for Novices
 );
 
 sub new {
@@ -32,6 +43,11 @@ sub _num {
 	my ($value, $default) = @_;
 	return $default unless defined $value && looks_like_number($value);
 	return 0 + $value;
+}
+
+sub _is_novice {
+	my ($snapshot) = @_;
+	return _num($snapshot->{job_id}, -1) == 0;
 }
 
 sub _boss_on_map {
@@ -60,19 +76,27 @@ sub hard_filter {
 	my $hp_max = _num($snapshot->{hp_max}, 0);
 	my $attack_max = max(_num($monster->{attack}, 0), _num($monster->{attack2}, 0));
 	my $diff = $monster_level - $char_level;
+	my $is_novice = _is_novice($snapshot);
+
+	my $max_level_above  = $is_novice ? $self->{config}{NOVICE_MAX_LEVEL_ABOVE}    : $self->{config}{MAX_LEVEL_ABOVE};
+	my $max_attack_ratio = $is_novice ? $self->{config}{NOVICE_MAX_ATTACK_HP_RATIO} : $self->{config}{MAX_ATTACK_HP_RATIO};
+	my $max_hits         = $is_novice ? $self->{config}{NOVICE_MAX_ESTIMATED_HITS}  : $self->{config}{MAX_ESTIMATED_HITS};
 
 	push @reasons, 'MVP excluded' if $monster->{is_mvp};
 	push @reasons, 'boss spawn excluded' if _boss_on_map($monster, $map);
-	push @reasons, "monster level is more than $self->{config}{MAX_LEVEL_ABOVE} above character"
-		if $diff > $self->{config}{MAX_LEVEL_ABOVE};
+	push @reasons, "monster level is more than $max_level_above above character"
+		if $diff > $max_level_above;
 	push @reasons, "monster level is more than $self->{config}{MAX_LEVEL_BELOW} below character"
 		if $diff < -$self->{config}{MAX_LEVEL_BELOW};
 
+	push @reasons, 'novice: monster attack exceeds novice limit'
+		if $is_novice && $attack_max > $self->{config}{NOVICE_MAX_MONSTER_ATTACK};
+
 	my ($hits) = _estimated_hits($snapshot, $monster);
-	push @reasons, 'estimated kill cost is extreme'
-		if $hits > $self->{config}{MAX_ESTIMATED_HITS};
-	push @reasons, 'single-hit damage risk is extreme'
-		if $hp_max > 0 && $attack_max / $hp_max >= $self->{config}{MAX_ATTACK_HP_RATIO};
+	push @reasons, $is_novice ? 'novice: estimated kill cost is too high' : 'estimated kill cost is extreme'
+		if $hits > $max_hits;
+	push @reasons, $is_novice ? 'novice: single-hit damage risk is too high' : 'single-hit damage risk is extreme'
+		if $hp_max > 0 && $attack_max / $hp_max >= $max_attack_ratio;
 	push @reasons, 'invalid monster HP' if _num($monster->{hp}, 0) <= 0;
 
 	return @reasons ? (0, \@reasons) : (1, []);
@@ -100,6 +124,7 @@ sub _target_risk {
 	$risk += $hits > 12 ? log($hits / 12) * 5 : 0;
 	$risk += min(8, max(0, $range - 1) * $self->{config}{RANGED_RISK_WEIGHT});
 	$risk += 4 if $diff > 4 && $attack_ratio > 0.20;
+	$risk *= $self->{config}{NOVICE_TARGET_RISK_MULTIPLIER} if _is_novice($snapshot);
 	return min(30, max(0, $risk));
 }
 
@@ -121,6 +146,7 @@ sub _map_danger {
 
 	my $count = max(0, _num($spawn_count, 0));
 	my $spawn_weight = 0.30 + 0.70 * min(1, log(1 + $count) / log(101));
+	$danger *= $self->{config}{NOVICE_TARGET_RISK_MULTIPLIER} if _is_novice($snapshot);
 	return ($danger, $danger * $spawn_weight);
 }
 

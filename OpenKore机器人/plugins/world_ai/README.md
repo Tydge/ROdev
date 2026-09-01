@@ -1,8 +1,8 @@
-# world_ai — Step 3B：bot01 受控真实执行器
+# world_ai — 受控真实执行器（Step 3B/3C → 转正）
 
-`world_ai` 是 OpenKore 上层的练级决策器。Step 3B 保留原有只读评分和路线预检，并增加只由用户手动启动的真实执行模式。执行器选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
+`world_ai` 是 OpenKore 上层的练级决策器。它保留只读评分和路线预检，并提供真实执行模式：选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
 
-Step 3B 只在 bot01 启用；没有定时重选地图，也没有五机器人自动换图。
+执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 
 ## 命令
 
@@ -15,6 +15,7 @@ worldai recommend reachable
 worldai execute
 worldai exec status
 worldai exec stop
+worldai autoexecute [on|off]
 worldai inspect monster <Name|AegisName|ID>
 worldai inspect map <map>
 worldai reload
@@ -29,6 +30,17 @@ worldai reload
 `execute` 会重新评分并使用执行专用路线约束验证候选。若当前正在卖货、买药、仓库、NPC 对话、传送、事件宏或坐下恢复，命令安全拒绝；若正在战斗，则等待当前目标死亡后再出发。命令只决策一次，之后不会因升级或评分变化自动换图。
 
 `exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击与击杀计数。`exec stop` 立即恢复运行态配置；若正在正常战斗、卖货、补药或死亡恢复，不清空这些原生流程，等它结束后再由恢复后的 lockMap 接管。
+
+`autoexecute on|off` 在运行态切换自动执行开关（不写回 `config.txt`）；不带参数则显示当前开关。要在重启后仍自动开始，需在 `config.txt` 写入 `world_ai_auto_execute 1`。
+
+## 自动执行（转正）
+
+当 `config.txt` 存在 `world_ai_auto_execute 1` 时，插件在角色进入游戏、存活且空闲时自动调用一次 `execute`，选择第一条符合安全政策的推荐并接管移动与战斗。执行成功后不再因升级或评分变化自动换图，与原 `execute` 语义一致。
+
+- 首次尝试在插件加载后延迟约 15 秒，避开登录和背包加载窗口。
+- 失败或拒绝时指数退避（15s → 30s → … → 上限 300s），避免「评分失败→立即重试」的紧循环；成功开始后退避归零。
+- 卖货、买药、仓库、NPC、传送、事件宏或坐下恢复期间不会触发。
+- `exec stop` 会停止当前执行；之后自动执行仍会在空闲后再次开始，直到关闭开关（`autoexecute off` 或删除配置）。
 
 ## 目录
 
@@ -82,6 +94,7 @@ world_ai/
 
 - MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
 - 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
+- 新手职（`job_id == 0`，未转职）额外收紧：不打高于自身等级的怪（`NOVICE_MAX_LEVEL_ABOVE=0`）、怪物最大攻击上限 20（`NOVICE_MAX_MONSTER_ATTACK=20`）、单击伤害低于 25% 最大 HP（`NOVICE_MAX_ATTACK_HP_RATIO=0.25`）、预估击杀 15 次以内（`NOVICE_MAX_ESTIMATED_HITS=15`），并给目标风险与地图共刷风险乘 `NOVICE_TARGET_RISK_MULTIPLIER=1.6`。这避免纯等级拟合把没有一转技能/武器精通的新手派去打死打不动的怪（实测 12 级新手被 Baby Desert Wolf 每约 75 秒打死一次）。阈值都在 `Scorer.pm` 的 `%DEFAULTS` 中可调。
 - `skill_range` 暂不评分，因为当前数据几乎都是默认值，不能证明怪物实际拥有远程技能。
 - `attack_range` 参与远程风险。
 - 当前 schema 2 只有刷新数量，没有地图面积和重生时间，因此评分项叫 `spawn_count_score`，不是严格的刷新密度。
@@ -104,7 +117,7 @@ prove -I"OpenKore机器人/plugins/world_ai/lib" \
   "OpenKore机器人/plugins/world_ai/t/runtime_override.t"
 ```
 
-正式启用前还应使用 OpenKore 的 `src` 和 `src/deps` 路径执行 `perl -c`。部署只允许 bot01 的 `sys.txt` 加载正式 `world_ai`；实验插件 `world_ai_test` 不应和 Step 3B 同时加载。
+正式启用前还应使用 OpenKore 的 `src` 和 `src/deps` 路径执行 `perl -c`。实验插件 `world_ai_test` 不应和正式 `world_ai` 同时加载。
 
 ## 第 1 步索引生成
 
