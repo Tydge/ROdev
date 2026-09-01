@@ -41,4 +41,14 @@ my $unreachable = $policy->evaluate({ status => 'UNREACHABLE' });
 ok(!$unreachable->{allowed}, 'unreachable route is rejected');
 is($unreachable->{reasons}[0], 'route_not_reachable', 'reachability failure is explicit');
 
+my $hop_policy = WorldAI::ExecutionPolicy->new(allow_npc => 0, max_hops => 3);
+my $far = $hop_policy->evaluate({ %$free_portal, route_hops => 8 });
+ok(!$far->{allowed}, 'route beyond max hops is rejected');
+is($far->{reasons}[0], 'route_hops_exceeded', 'hop limit rejection is explicit');
+ok($hop_policy->evaluate({ %$free_portal, route_hops => 3 })->{allowed}, 'route within max hops is allowed');
+ok($hop_policy->evaluate({ %$free_portal, route_hops => 0 })->{allowed}, 'same-map route is allowed');
+
+my $unlimited = WorldAI::ExecutionPolicy->new(allow_npc => 0);
+ok($unlimited->evaluate({ %$free_portal, route_hops => 8 })->{allowed}, 'no hop limit by default');
+
 done_testing;

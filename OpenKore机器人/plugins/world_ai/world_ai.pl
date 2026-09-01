@@ -37,7 +37,11 @@ my $route_probe = WorldAI::RouteProbe->new(
 	wall_timeout_ms => 1000,
 	task_slice_s => 0.03,
 );
-my $execution_policy = WorldAI::ExecutionPolicy->new(allow_npc => 0);
+my $EXEC_MAX_HOPS = 3;
+my $execution_policy = WorldAI::ExecutionPolicy->new(
+	allow_npc => 0,
+	max_hops  => $EXEC_MAX_HOPS,
+);
 my $runtime_override = WorldAI::RuntimeOverride->new(
 	config => \%config,
 	mon_control => \%mon_control,
@@ -190,8 +194,8 @@ sub print_status {
 	wa_log("[STATUS] plugin_version=$VERSION mode=CONTROLLED_EXECUTION exec_state=$execution{state} movement_control=" .
 		($runtime_override->active ? 'ON' : 'OFF') . ' combat_control=' . ($runtime_override->active ? 'TARGET_OVERRIDE' : 'OFF'));
 	wa_log(sprintf(
-		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d',
-		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND,
+		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d exec_max_hops=%d',
+		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND, $EXEC_MAX_HOPS,
 	));
 	if ($index->loaded) {
 		wa_log(sprintf(

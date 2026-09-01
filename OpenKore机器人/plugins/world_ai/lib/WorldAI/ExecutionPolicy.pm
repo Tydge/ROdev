@@ -7,6 +7,7 @@ sub new {
 	my ($class, %args) = @_;
 	return bless {
 		allow_npc => $args{allow_npc} ? 1 : 0,
+		max_hops  => defined($args{max_hops}) ? 0 + $args{max_hops} : undef,
 	}, $class;
 }
 
@@ -34,6 +35,8 @@ sub evaluate {
 		push @reasons, 'airship_route_disabled' if $route->{uses_airship};
 		push @reasons, 'save_teleport_disabled' if $route->{uses_save_teleport};
 		push @reasons, 'warp_item_disabled' if $route->{uses_warp_item};
+		push @reasons, 'route_hops_exceeded'
+			if defined($self->{max_hops}) && ($route->{route_hops} || 0) > $self->{max_hops};
 	}
 
 	return {

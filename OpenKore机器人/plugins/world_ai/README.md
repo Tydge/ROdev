@@ -71,6 +71,7 @@ world_ai/
 
 - 执行专用 CalcMapRoute 固定 `budget=0`，并设置 `noGoCommand / noTeleSpawn / noWarpItem / noAirship`。
 - 第一版还拒绝任何 NPC step、票券、收费、command、airship、save teleport 和 warp item 路线。
+- 执行政策默认限制路线最多 3 跳（`exec_max_hops=3`），让角色先在附近练级；超过跳数的候选会以 `route_hops_exceeded` 跳过。后续稳定后可调整 `$EXEC_MAX_HOPS`。
 - 实际 MapRoute 设置 `noGoCommand / noTeleSpawn / noAirship`，运行态把 `route_maxWarpFee / route_warpByItem / saveMap_warp` 设为 0；每次 MapRoute 重算后再次检查路线元数据。
 - 背包存在 Kafra 免费传送券（7060）时拒绝执行，避免实际 MapRoute 使用票券分支。
 - `lockMap`、`lockMap_x/y/randX/randY`、三项路线开关和目标怪物条目都保存原值并精确恢复。
