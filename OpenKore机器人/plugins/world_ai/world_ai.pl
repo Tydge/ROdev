@@ -55,6 +55,7 @@ my $ROUTE_COMMAND_BUDGET_MS = 2000;
 my $EXEC_SAFE_WAIT_SECONDS = 30;
 my $EXEC_MOVE_TIMEOUT_SECONDS = 900;
 my %execution;
+my $buy_guard_last_warn = 0;
 
 Plugins::register(
 	$NAME,
@@ -68,9 +69,10 @@ $commands = Commands::register(
 );
 
 $hooks = Plugins::addHooks(
-	['AI_pre',       \&on_ai_pre],
-	['attack_start', \&on_attack_start],
-	['target_died',  \&on_target_died],
+	['AI_pre',               \&on_ai_pre],
+	['attack_start',         \&on_attack_start],
+	['target_died',          \&on_target_died],
+	['AI_buy_auto_needitem', \&on_buy_auto_needitem],
 );
 
 _reset_execution();
@@ -544,6 +546,35 @@ sub on_target_died {
 	return unless ($monster->{dmgFromYou} || 0) > 0;
 	$execution{kills}++;
 	wa_log("[EXEC] target_kill_confirmed monster=$execution{target_monster} kills=$execution{kills}", 'success');
+}
+
+sub on_buy_auto_needitem {
+	my (undef, $args) = @_;
+	return unless $char && $net && $net->getState() == Network::IN_GAME;
+
+	# Guard against the "broke bot" buyAuto loop: OpenKore triggers buyAuto purely
+	# on item count (minAmount) and only checks zeny while buying, so a penniless
+	# character queues buy -> buys nothing -> "completes" -> triggers again every few
+	# seconds. Skip the trigger entirely when zeny cannot afford the cheapest item.
+	my $zeny = 0 + ($char->{zeny} || 0);
+	my $min_price;
+	for (my $i = 0; exists $config{"buyAuto_$i"}; $i++) {
+		next unless $config{"buyAuto_$i"} && $config{"buyAuto_${i}_npc"} && !$config{"buyAuto_${i}_disabled"};
+		my $price = $config{"buyAuto_${i}_price"};
+		next unless $price && $price =~ /^\d+$/ && $price > 0;
+		$min_price = $price if !defined($min_price) || $price < $min_price;
+	}
+	return unless defined($min_price);
+	return if $zeny >= $min_price;
+
+	$args->{return} = 1;
+	my $now = time;
+	return if $now - $buy_guard_last_warn < 60;
+	$buy_guard_last_warn = $now;
+	wa_warning(sprintf(
+		'[BUY_GUARD] skipped buyAuto zeny=%d cheapest_price=%d',
+		$zeny, $min_price,
+	));
 }
 
 sub print_execution_status {
