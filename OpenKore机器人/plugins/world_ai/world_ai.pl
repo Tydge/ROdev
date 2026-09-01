@@ -4,11 +4,15 @@ use strict;
 use warnings;
 no warnings 'redefine';
 
+use AI;
 use Commands;
 use File::Basename qw(dirname);
-use Globals qw(%maps_lut);
+use Globals qw($char $field $net %config %maps_lut %mon_control);
 use Log qw(message warning);
+use Network;
 use Plugins;
+use Scalar::Util qw(blessed refaddr);
+use Task;
 use Time::HiRes qw(time);
 
 BEGIN {
@@ -16,12 +20,14 @@ BEGIN {
 	unshift @INC, "$folder/lib";
 }
 use WorldAI::CharacterSnapshot;
+use WorldAI::ExecutionPolicy;
 use WorldAI::Index;
 use WorldAI::RouteProbe;
+use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.0.0';
+our $VERSION = '3.1.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -31,27 +37,44 @@ my $route_probe = WorldAI::RouteProbe->new(
 	wall_timeout_ms => 1000,
 	task_slice_s => 0.03,
 );
+my $execution_policy = WorldAI::ExecutionPolicy->new(allow_npc => 0);
+my $runtime_override = WorldAI::RuntimeOverride->new(
+	config => \%config,
+	mon_control => \%mon_control,
+);
 my $commands;
+my $hooks;
 my $MAX_TOP_N = 20;
 my $MAX_ROUTE_PROBES_PER_COMMAND = 8;
 my $ROUTE_PROBE_WALL_TIMEOUT_MS = 1000;
 my $ROUTE_COMMAND_BUDGET_MS = 2000;
+my $EXEC_SAFE_WAIT_SECONDS = 30;
+my $EXEC_MOVE_TIMEOUT_SECONDS = 900;
+my %execution;
 
 Plugins::register(
 	$NAME,
-	'Recommendation-only dynamic leveling advisor',
+	'Controlled dynamic leveling advisor and executor',
 	\&on_unload,
 	\&on_unload,
 );
 
 $commands = Commands::register(
-	['worldai', 'read-only leveling recommendations', \&command_handler],
+	['worldai', 'leveling recommendations and controlled execution', \&command_handler],
 );
+
+$hooks = Plugins::addHooks(
+	['AI_pre',       \&on_ai_pre],
+	['attack_start', \&on_attack_start],
+	['target_died',  \&on_target_died],
+);
+
+_reset_execution();
 
 my ($loaded, $load_error) = $index->reload();
 if ($loaded) {
 	wa_log(sprintf(
-		'[PLUGIN] loaded version=%s schema=%s monsters=%d maps=%d mode=RECOMMEND_ONLY',
+		'[PLUGIN] loaded version=%s schema=%s monsters=%d maps=%d mode=CONTROLLED_EXECUTION',
 		$VERSION, $index->schema, $index->monster_count, $index->map_count,
 	));
 } else {
@@ -122,6 +145,12 @@ sub command_handler {
 			print_route($1);
 		} elsif ($args =~ /^recommend\s+reachable$/i) {
 			print_reachable_recommendation();
+		} elsif ($args =~ /^execute$/i) {
+			start_execution();
+		} elsif ($args =~ /^exec\s+status$/i) {
+			print_execution_status();
+		} elsif ($args =~ /^exec\s+stop$/i) {
+			stop_execution('user_stop');
 		} elsif ($args =~ /^recommend$/i) {
 			print_recommendation();
 		} elsif ($args =~ /^inspect\s+monster\s+(.+)$/i) {
@@ -149,15 +178,19 @@ sub print_help {
 	wa_log('[HELP] worldai recommend');
 	wa_log('[HELP] worldai route <map>');
 	wa_log('[HELP] worldai recommend reachable');
+	wa_log('[HELP] worldai execute');
+	wa_log('[HELP] worldai exec status');
+	wa_log('[HELP] worldai exec stop');
 	wa_log('[HELP] worldai inspect monster <name|aegis|id>');
 	wa_log('[HELP] worldai inspect map <map>');
 	wa_log('[HELP] worldai reload');
 }
 
 sub print_status {
-	wa_log("[STATUS] plugin_version=$VERSION mode=RECOMMEND_ONLY movement_control=OFF combat_control=OFF");
+	wa_log("[STATUS] plugin_version=$VERSION mode=CONTROLLED_EXECUTION exec_state=$execution{state} movement_control=" .
+		($runtime_override->active ? 'ON' : 'OFF') . ' combat_control=' . ($runtime_override->active ? 'TARGET_OVERRIDE' : 'OFF'));
 	wa_log(sprintf(
-		'[STATUS] cpu_model=ON_DEMAND background_hooks=0 max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d',
+		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d',
 		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND,
 	));
 	if ($index->loaded) {
@@ -178,6 +211,359 @@ sub print_status {
 		'[CHARACTER] base=%s job=%s class=%s map=%s hp=%s/%s sp=%s/%s atk=%s def=%s hit=%s flee=%s',
 		map { defined($_) ? $_ : 'undef' } @{$snapshot}{qw(base_level job_level job_name current_map hp hp_max sp sp_max attack_total defense_total hit flee)}
 	));
+}
+
+sub _current_map {
+	return '' unless $field;
+	return $field->baseName // '';
+}
+
+sub _in_game {
+	return $net && $net->getState() == Network::IN_GAME && $char && $field;
+}
+
+sub _alive {
+	return _in_game() && !($char->{dead} || 0) && ($char->{hp} || 0) > 0;
+}
+
+sub _transaction_in_progress {
+	return AI::inQueue(qw(storageAuto buyAuto sellAuto teleport NPC skill_use eventMacro)) ? 1 : 0;
+}
+
+sub _reset_execution {
+	%execution = (
+		state          => 'IDLE',
+		started_at     => 0,
+		state_since    => 0,
+		deadline       => 0,
+		start_map      => '',
+		last_map       => '',
+		target_map     => '',
+		target_monster => '',
+		target_id      => 0,
+		static_rank    => 0,
+		score          => undef,
+		last_error     => '',
+		attacks        => 0,
+		kills          => 0,
+		route_task     => undef,
+		route_signature => '',
+		depart_after   => 0,
+	);
+}
+
+sub _execution_elapsed {
+	return 0 unless $execution{started_at};
+	return time - $execution{started_at};
+}
+
+sub _set_execution_state {
+	my ($state) = @_;
+	$execution{state} = $state;
+	$execution{state_since} = time;
+}
+
+sub _same_task {
+	my ($left, $right) = @_;
+	return 0 unless blessed($left) && blessed($right);
+	return refaddr($left) == refaddr($right);
+}
+
+sub _restore_runtime {
+	my (%args) = @_;
+	my $owned_route = $execution{route_task};
+	my $cancel_owned = $args{cancel_owned} && $owned_route && (AI::action() || '') eq 'route'
+		&& _same_task(AI::args(0), $owned_route);
+	my $restored = $runtime_override->restore();
+	Commands::run('move stop') if $cancel_owned && _in_game();
+	$execution{route_task} = undef;
+	return $restored;
+}
+
+sub _fail_execution {
+	my ($reason) = @_;
+	my $previous = $execution{state};
+	_restore_runtime(cancel_owned => 1);
+	$execution{last_error} = $reason;
+	_set_execution_state('ERROR');
+	wa_warning("[EXEC] FAILED reason=$reason previous_state=$previous current_map=" .
+		(_current_map() || 'unknown') . sprintf(' elapsed=%.1fs', _execution_elapsed()));
+}
+
+sub start_execution {
+	if ($execution{state} ne 'IDLE' && $execution{state} ne 'ERROR') {
+		wa_warning("[EXEC] rejected reason=already_active state=$execution{state}");
+		return;
+	}
+	unless (_alive()) {
+		wa_warning('[EXEC] rejected reason=character_not_ready_or_dead');
+		return;
+	}
+	if (_transaction_in_progress()) {
+		wa_warning('[EXEC] rejected reason=native_transaction_in_progress action=' . (AI::action() || 'none'));
+		return;
+	}
+	if (AI::inQueue('sitAuto')) {
+		wa_warning('[EXEC] rejected reason=character_recovering action=sitAuto');
+		return;
+	}
+	my $ticket = eval { $char->inventory->getByNameID(7060) };
+	if ($ticket && ($ticket->{amount} || 0) > 0) {
+		wa_warning('[EXEC] rejected reason=route_ticket_present item_id=7060');
+		return;
+	}
+
+	_restore_runtime(cancel_owned => 0) if $runtime_override->active;
+	_reset_execution();
+	_set_execution_state('SELECTING');
+	$execution{started_at} = time;
+
+	my ($snapshot, $results, $score_elapsed_ms) = _calculate_ranked();
+	unless ($results && @$results) {
+		_fail_execution('no_allowed_candidate');
+		return;
+	}
+
+	_set_execution_state('VALIDATING');
+	my $validated = $route_probe->first_executable(
+		candidates => $results,
+		policy => $execution_policy,
+		source_map => $snapshot->{current_map}, source_x => $snapshot->{pos_x}, source_y => $snapshot->{pos_y},
+		max_probes => $MAX_ROUTE_PROBES_PER_COMMAND,
+		per_probe_timeout_ms => $ROUTE_PROBE_WALL_TIMEOUT_MS,
+		total_timeout_ms => $ROUTE_COMMAND_BUDGET_MS,
+	);
+	wa_log(sprintf(
+		'[EXEC] selection static_score_ms=%.1f route_elapsed_ms=%s probes=%d policy=PORTAL_ONLY_FREE',
+		$score_elapsed_ms, _route_value($validated->{elapsed_ms}), $validated->{probes_used},
+	));
+	for my $attempt (@{$validated->{attempts}}) {
+		next if $attempt->{cached};
+		my $candidate = $attempt->{candidate};
+		my $route = $attempt->{result};
+		my $policy = $attempt->{policy};
+		wa_log(sprintf(
+			'[EXEC_VALIDATE] static_rank=%d %s (%d) @ %s route=%s policy=%s reason=%s action=%s',
+			$attempt->{static_rank}, $candidate->{monster_name}, $candidate->{monster_id},
+			$candidate->{target_map}, $route->{status}, $policy->{allowed} ? 'ALLOWED' : 'REJECTED',
+			$policy->{code}, $policy->{allowed} ? 'SELECTED' : 'SKIPPED',
+		));
+	}
+
+	unless ($validated->{selected}) {
+		my $reason = $validated->{limit_reached} ? 'route_probe_limit_reached'
+			: $validated->{budget_reached} ? 'route_command_budget_reached'
+			: 'no_policy_allowed_route';
+		_fail_execution($reason);
+		return;
+	}
+
+	my $selected = $validated->{selected};
+	my $selected_attempt = $validated->{attempts}[-1];
+	$execution{start_map} = $snapshot->{current_map};
+	$execution{last_map} = $snapshot->{current_map};
+	$execution{target_map} = $selected->{target_map};
+	$execution{target_monster} = $selected->{monster_name};
+	$execution{target_id} = $selected->{monster_id};
+	$execution{static_rank} = $selected_attempt ? $selected_attempt->{static_rank} : 0;
+	$execution{score} = $selected->{score};
+	$execution{deadline} = time + $EXEC_SAFE_WAIT_SECONDS;
+	_set_execution_state('WAITING_SAFE');
+	wa_log(sprintf(
+		'[EXEC] selected %s (%d) @ %s score=%.1f static_rank=%d state=WAITING_SAFE',
+		@execution{qw(target_monster target_id target_map score static_rank)},
+	), 'success');
+	_advance_execution();
+}
+
+sub _apply_execution {
+	my $ok = eval {
+		$runtime_override->apply(
+			target_map => $execution{target_map},
+			monster => $execution{target_monster},
+		);
+		1;
+	};
+	unless ($ok) {
+		my $error = $@ || 'runtime override failed';
+		$error =~ s/\s+/ /g;
+		_fail_execution("runtime_override_failed:$error");
+		return;
+	}
+
+	$execution{deadline} = time + $EXEC_MOVE_TIMEOUT_SECONDS;
+	_set_execution_state('MOVING');
+	wa_log("[EXEC] runtime_override=APPLIED persistence=MEMORY_ONLY lockMap=$execution{target_map} " .
+		"lock_coordinates=CLEARED paid_and_special_routes=DISABLED target=$execution{target_monster}");
+	if (_current_map() eq $execution{target_map}) {
+		_set_execution_state('ACTIVE');
+		wa_log("[EXEC] ACTIVE map=$execution{target_map} monster=$execution{target_monster} arrival=same_map", 'success');
+		return;
+	}
+
+	my $queued = eval {
+		require Task::MapRoute;
+		AI::clear(qw(move route mapRoute attack items_take items_gather take));
+		my $task = Task::MapRoute->new(
+			actor => $char,
+			map => $execution{target_map},
+			noGoCommand => 1,
+			noTeleSpawn => 1,
+			noAirship => 1,
+			attackOnRoute => 0,
+			isToLockMap => 1,
+			notifyUponArrival => 1,
+		);
+		$char->queue('route', $task);
+		$execution{route_task} = $task;
+		$execution{route_signature} = '';
+		1;
+	};
+	unless ($queued) {
+		my $error = $@ || 'MapRoute queue failed';
+		$error =~ s/\s+/ /g;
+		_fail_execution("maproute_queue_failed:$error");
+		return;
+	}
+	wa_log('[EXEC] navigation=QUEUED task=Task::MapRoute noGoCommand=1 noTeleSpawn=1 noAirship=1 maxWarpFee=0');
+}
+
+sub _advance_execution {
+	return if $execution{state} eq 'IDLE' || $execution{state} eq 'ERROR';
+	if ($execution{state} eq 'WAITING_SAFE') {
+		if (time >= $execution{deadline}) {
+			_fail_execution('safe_state_timeout');
+			return;
+		}
+		return unless _alive();
+		return if _transaction_in_progress();
+		return if $execution{depart_after} && time < $execution{depart_after};
+		my $safe_to_depart = AI::isIdle() || $execution{depart_after}
+			|| AI::is(qw(route move));
+		return unless $safe_to_depart;
+		_apply_execution();
+		return;
+	}
+
+	if ($execution{state} eq 'MOVING') {
+		my $map = _current_map();
+		if ($map && $map ne $execution{last_map}) {
+			wa_log("[EXEC] map_changed $execution{last_map} -> $map");
+			$execution{last_map} = $map;
+		}
+		if ($map eq $execution{target_map}) {
+			$execution{route_task} = undef;
+			_set_execution_state('ACTIVE');
+			wa_log(sprintf('[EXEC] ACTIVE map=%s monster=%s arrival_elapsed=%.1fs',
+				$execution{target_map}, $execution{target_monster}, _execution_elapsed()), 'success');
+			return;
+		}
+		if ($execution{route_task}) {
+			my $solution = $execution{route_task}{mapSolution};
+			if (ref($solution) eq 'ARRAY' && @$solution) {
+				my $signature = join('|', map {
+					join(':', map { defined($_) ? $_ : '' }
+						@{$_}{qw(portal walk zeny amount_of_tickets_used is_command is_airship is_teleportToSaveMap is_teleportItemWarp)})
+				} @$solution);
+				if ($signature ne ($execution{route_signature} || '')) {
+					my $metadata = WorldAI::RouteProbe->parse_route_metadata($solution);
+					my $checked = $execution_policy->evaluate({ status => 'REACHABLE', %$metadata });
+					if (!$checked->{allowed}) {
+						_fail_execution("runtime_route_policy_rejected:$checked->{code}");
+						return;
+					}
+					$execution{route_signature} = $signature;
+					wa_log(sprintf(
+						'[EXEC] runtime_route_policy=ALLOWED hops=%s zeny=%s tickets=%s npc=%s command=%s airship=%s save_teleport=%s warp_item=%s',
+						map { defined($metadata->{$_}) ? $metadata->{$_} : 'undef' }
+							qw(route_hops route_zeny route_tickets uses_npc uses_command uses_airship uses_save_teleport uses_warp_item),
+					));
+				}
+			}
+			my $task_status = eval { $execution{route_task}->getStatus() };
+			if (defined($task_status) && $task_status == Task::DONE) {
+				my $error = eval { $execution{route_task}->getError() };
+				my $detail = $error ? (($error->{code} // 'unknown') . ':' . ($error->{message} // 'unknown'))
+					: 'ended_before_target';
+				$detail =~ s/\s+/ /g;
+				_fail_execution("maproute_done_before_target:$detail");
+				return;
+			} elsif (defined($task_status) && $task_status == Task::STOPPED) {
+				_fail_execution('maproute_stopped_before_target');
+				return;
+			}
+		}
+		if (time >= $execution{deadline}) {
+			_fail_execution('movement_timeout');
+			return;
+		}
+	}
+
+	if ($execution{state} eq 'ACTIVE') {
+		my $map = _current_map();
+		if ($map && $map ne $execution{last_map}) {
+			wa_log("[EXEC] native_detour $execution{last_map} -> $map action=" . (AI::action() || 'none'));
+			$execution{last_map} = $map;
+		}
+	}
+}
+
+sub on_ai_pre {
+	return if $execution{state} eq 'IDLE' || $execution{state} eq 'ERROR';
+	my $ok = eval { _advance_execution(); 1 };
+	unless ($ok) {
+		my $error = $@ || 'unknown monitor failure';
+		$error =~ s/\s+/ /g;
+		_fail_execution("monitor_exception:$error");
+	}
+}
+
+sub on_attack_start {
+	my (undef, $args) = @_;
+	return unless $execution{state} eq 'ACTIVE' && $args->{ID};
+	my $monster = eval { $Globals::monstersList->getByID($args->{ID}) };
+	return unless $monster && lc($monster->name // '') eq lc($execution{target_monster});
+	$execution{attacks}++;
+	wa_log("[EXEC] target_attack_started monster=$execution{target_monster} count=$execution{attacks}", 'success');
+}
+
+sub on_target_died {
+	my (undef, $args) = @_;
+	if ($execution{state} eq 'WAITING_SAFE') {
+		$execution{depart_after} = time + 1.5;
+		wa_log('[EXEC] current_combat_finished departure_scheduled=yes');
+		return;
+	}
+	return unless $execution{state} eq 'ACTIVE';
+	my $monster = $args->{monster};
+	return unless $monster && lc($monster->name // '') eq lc($execution{target_monster});
+	return unless ($monster->{dmgFromYou} || 0) > 0;
+	$execution{kills}++;
+	wa_log("[EXEC] target_kill_confirmed monster=$execution{target_monster} kills=$execution{kills}", 'success');
+}
+
+sub print_execution_status {
+	wa_log(sprintf(
+		'[EXEC_STATUS] state=%s active_override=%s current_map=%s start_map=%s target_map=%s target_monster=%s target_id=%s static_rank=%s score=%s elapsed=%.1fs ai_action=%s attacks=%d kills=%d last_error=%s',
+		$execution{state}, $runtime_override->active ? 'yes' : 'no', _current_map() || 'unknown',
+		map { defined($_) && $_ ne '' ? $_ : 'none' }
+			@execution{qw(start_map target_map target_monster target_id static_rank score)},
+		_execution_elapsed(), AI::action() || 'none', $execution{attacks}, $execution{kills},
+		$execution{last_error} || 'none',
+	));
+}
+
+sub stop_execution {
+	my ($reason) = @_;
+	if ($execution{state} eq 'IDLE' && !$runtime_override->active) {
+		wa_log('[EXEC_STOP] no_active_execution');
+		return;
+	}
+	my $previous = $execution{state};
+	my $restored = _restore_runtime(cancel_owned => 1);
+	wa_log("[EXEC_STOP] reason=$reason previous_state=$previous restored=" . ($restored ? 'yes' : 'not_needed') .
+		' native_transactions_preserved=yes', 'success');
+	_reset_execution();
 }
 
 sub _candidate_result {
@@ -493,8 +879,11 @@ sub reload_index {
 }
 
 sub on_unload {
+	my $previous = $execution{state};
+	my $restored = _restore_runtime(cancel_owned => 1);
+	Plugins::delHooks($hooks) if $hooks;
 	Commands::unregister($commands) if $commands;
-	wa_log('[PLUGIN] unloaded side_effects=none');
+	wa_log("[PLUGIN] unloaded previous_exec_state=$previous runtime_restored=" . ($restored ? 'yes' : 'not_needed'));
 }
 
 1;

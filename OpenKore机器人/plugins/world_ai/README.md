@@ -1,6 +1,8 @@
-# world_ai — Step 3A：路线可达性预检
+# world_ai — Step 3B：bot01 受控真实执行器
 
-`world_ai` 是 OpenKore 上层的练级决策器。当前版本在 Step 2 静态收益/风险评分之上，使用 OpenKore 原生 `Task::CalcMapRoute` 验证目标地图从当前位置是否可达。它只计算路线，不创建 `Task::MapRoute`，不自动移动、不修改 `lockMap`、不修改 `mon_control`、不操作 AI 队列，也不接管战斗。
+`world_ai` 是 OpenKore 上层的练级决策器。Step 3B 保留原有只读评分和路线预检，并增加只由用户手动启动的真实执行模式。执行器选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
+
+Step 3B 只在 bot01 启用；没有定时重选地图，也没有五机器人自动换图。
 
 ## 命令
 
@@ -10,6 +12,9 @@ worldai top [N]
 worldai recommend
 worldai route <map>
 worldai recommend reachable
+worldai execute
+worldai exec status
+worldai exec stop
 worldai inspect monster <Name|AegisName|ID>
 worldai inspect map <map>
 worldai reload
@@ -21,6 +26,10 @@ worldai reload
 
 `recommend reachable` 先完成原有静态排序，再按顺序验证唯一地图，选择第一条明确 `REACHABLE` 的候选。不可达地图跳过，超时或异常按 `UNKNOWN` 处理；原始分数不修改。
 
+`execute` 会重新评分并使用执行专用路线约束验证候选。若当前正在卖货、买药、仓库、NPC 对话、传送、事件宏或坐下恢复，命令安全拒绝；若正在战斗，则等待当前目标死亡后再出发。命令只决策一次，之后不会因升级或评分变化自动换图。
+
+`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击与击杀计数。`exec stop` 立即恢复运行态配置；若正在正常战斗、卖货、补药或死亡恢复，不清空这些原生流程，等它结束后再由恢复后的 lockMap 接管。
+
 ## 目录
 
 ```text
@@ -31,12 +40,16 @@ world_ai/
 │   ├── Index.pm
 │   ├── CharacterSnapshot.pm
 │   ├── Scorer.pm
-│   └── RouteProbe.pm
+│   ├── RouteProbe.pm
+│   ├── ExecutionPolicy.pm
+│   └── RuntimeOverride.pm
 ├── t/
 │   ├── index.t
 │   ├── scorer.t
 │   ├── performance.t
-│   └── route_probe.t
+│   ├── route_probe.t
+│   ├── execution_policy.t
+│   └── runtime_override.t
 └── tools/gen_index.py
 ```
 
@@ -44,15 +57,26 @@ world_ai/
 - `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态。
 - `Scorer.pm`：无 OpenKore 副作用的纯评分模块。
 - `RouteProbe.pm`：局部执行 `Task::CalcMapRoute`，解析三态与路线元数据；不加入 AI queue。
-- `world_ai.pl`：命令、输出和错误隔离。
+- `ExecutionPolicy.pm`：定义执行阶段允许的路线及拒绝原因。
+- `RuntimeOverride.pm`：保存、应用和精确恢复纯内存配置覆盖。
+- `world_ai.pl`：命令、状态机、原生 MapRoute 创建、运行路线复核和错误隔离。
 
 ## CPU 约束
 
-插件没有 `AI_pre` 钩子、后台线程、轮询或定时任务。只有用户命令会按需评分或计算路线；`status` 不会遍历候选。一次评分中每张地图的共存怪风险只建立一次并复用，路线结果也只在单次命令内按地图去重，命令结束后缓存释放。因此机器人空闲或正常战斗时，world_ai 不产生持续 CPU 负载。
+评分和路线推荐仍只在用户执行命令时运行；`status` 不遍历候选，也没有定时重算。插件有一个轻量 `AI_pre` 状态监控钩子，但在 `IDLE / ERROR` 时立即返回，只在执行活动期间检查地图变化、超时和实际 MapRoute 的路线元数据。
 
 路线计算使用 30 ms 的 `CalcMapRoute maxTime` 时间片、单地图 1000 ms 外层 deadline、整条 `recommend reachable` 2000 ms 总预算，并最多验证 8 张唯一地图。达到限制会输出 `route_probe_limit_reached` 或 `route_command_budget_reached`。由于 OpenKore 内部路径函数为同步调用，该上限是当前配置下的工程保护和实测预算，不宣称为可抢占任意内部调用的硬实时保证。
 
 ## 安全边界
+
+- 执行专用 CalcMapRoute 固定 `budget=0`，并设置 `noGoCommand / noTeleSpawn / noWarpItem / noAirship`。
+- 第一版还拒绝任何 NPC step、票券、收费、command、airship、save teleport 和 warp item 路线。
+- 实际 MapRoute 设置 `noGoCommand / noTeleSpawn / noAirship`，运行态把 `route_maxWarpFee / route_warpByItem / saveMap_warp` 设为 0；每次 MapRoute 重算后再次检查路线元数据。
+- 背包存在 Kafra 免费传送券（7060）时拒绝执行，避免实际 MapRoute 使用票券分支。
+- `lockMap`、`lockMap_x/y/randX/randY`、三项路线开关和目标怪物条目都保存原值并精确恢复。
+- 上述覆盖只直接修改 `%config / %mon_control`；不调用会写 `config.txt` 的 `configModify`。
+- `exec stop`、路线失败、超时、监控异常和插件卸载都会恢复；进程崩溃或重启则天然重新读取磁盘原配置。
+- 多图免费步行路线允许 900 秒，避免首次发现 portal 时 OpenKore 重建 portal LOS 表造成误超时。
 
 - MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
 - 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
@@ -73,10 +97,12 @@ prove -I"OpenKore机器人/plugins/world_ai/lib" \
   "OpenKore机器人/plugins/world_ai/t/index.t" \
   "OpenKore机器人/plugins/world_ai/t/scorer.t" \
   "OpenKore机器人/plugins/world_ai/t/performance.t" \
-  "OpenKore机器人/plugins/world_ai/t/route_probe.t"
+  "OpenKore机器人/plugins/world_ai/t/route_probe.t" \
+  "OpenKore机器人/plugins/world_ai/t/execution_policy.t" \
+  "OpenKore机器人/plugins/world_ai/t/runtime_override.t"
 ```
 
-正式启用前还应使用 OpenKore 的 `src` 和 `src/deps` 路径执行 `perl -c`，再只在 bot01 的 manual AI 模式完成无副作用验证。
+正式启用前还应使用 OpenKore 的 `src` 和 `src/deps` 路径执行 `perl -c`。部署只允许 bot01 的 `sys.txt` 加载正式 `world_ai`；实验插件 `world_ai_test` 不应和 Step 3B 同时加载。
 
 ## 第 1 步索引生成
 

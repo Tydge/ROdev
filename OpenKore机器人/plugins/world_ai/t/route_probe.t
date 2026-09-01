@@ -6,6 +6,7 @@ use FindBin qw($Bin);
 use lib "$Bin/../lib";
 
 use WorldAI::RouteProbe;
+use WorldAI::ExecutionPolicy;
 
 {
 	package Local::Task;
@@ -96,6 +97,22 @@ subtest 'reachable route uses cumulative metadata from final step' => sub {
 	is($result->{uses_airship}, 1, 'airship detected');
 	is($created->[0]{maxTime}, 0.03, 'small internal calculation slice passed');
 	is($created->[0]{budget}, 500, 'current character budget passed');
+};
+
+subtest 'execution route flags are passed to CalcMapRoute' => sub {
+	my ($probe, $created) = make_probe(
+		finish_after => 1,
+		route => [{ map => 'start', walk => 10, zeny => 0, amount_of_tickets_used => 0 }],
+		route_string => 'start -> target',
+	);
+	$probe->probe(
+		map => 'target', source_map => 'start', source_x => 1, source_y => 2,
+		budget => 0, noGoCommand => 1, noTeleSpawn => 1, noWarpItem => 1, noAirship => 1,
+	);
+	is($created->[0]{budget}, 0, 'zero budget is preserved');
+	for my $flag (qw(noGoCommand noTeleSpawn noWarpItem noAirship)) {
+		is($created->[0]{$flag}, 1, "$flag is passed");
+	}
 };
 
 subtest 'explicit route failures are unreachable' => sub {
@@ -194,6 +211,33 @@ subtest 'candidate total command budget is explicit' => sub {
 	ok(!$selected->{selected}, 'nothing selected beyond total command budget');
 	ok($selected->{budget_reached}, 'total command budget is reported');
 	is($selected->{probes_used}, 1, 'no second map is probed after budget');
+};
+
+subtest 'executable selector skips reachable policy rejection' => sub {
+	my $probe = Local::SelectorProbe->new(clock => sub { 0 });
+	$probe->{responses} = {
+		paid_map => {
+			status => 'REACHABLE', route_zeny => 2000, route_tickets => 0,
+			uses_npc => 1, uses_command => 0, uses_airship => 0,
+			uses_save_teleport => 0, uses_warp_item => 0,
+		},
+		free_map => {
+			status => 'REACHABLE', route_zeny => 0, route_tickets => 0,
+			uses_npc => 0, uses_command => 0, uses_airship => 0,
+			uses_save_teleport => 0, uses_warp_item => 0,
+		},
+	};
+	my $selected = $probe->first_executable(
+		candidates => [
+			{ monster_id => 1, target_map => 'paid_map' },
+			{ monster_id => 2, target_map => 'free_map' },
+		],
+		policy => WorldAI::ExecutionPolicy->new(allow_npc => 0),
+		source_map => 'start', source_x => 1, source_y => 2,
+	);
+	is($selected->{selected}{monster_id}, 2, 'free candidate after rejected reachable route is selected');
+	ok(!$selected->{attempts}[0]{policy}{allowed}, 'first reachable route is policy-rejected');
+	ok($selected->{attempts}[1]{policy}{allowed}, 'second route is policy-allowed');
 };
 
 done_testing;

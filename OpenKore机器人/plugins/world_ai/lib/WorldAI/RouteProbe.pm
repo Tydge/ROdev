@@ -192,6 +192,9 @@ sub probe {
 			suppressDebug => 1,
 		);
 		$task_args{budget} = $source->{zeny} if defined $source->{zeny};
+		for my $flag (qw(noGoCommand noTeleSpawn noWarpItem noAirship)) {
+			$task_args{$flag} = $args{$flag} if exists $args{$flag};
+		}
 		$task = $factory->(%task_args);
 		$task->activate();
 		1;
@@ -324,6 +327,70 @@ sub first_reachable {
 		};
 		push @attempts, $attempt;
 		if ($cache{$map}{status} eq 'REACHABLE') {
+			return {
+				selected => $candidate, selected_result => $cache{$map}, attempts => \@attempts,
+				probes_used => $probes_used, limit_reached => 0, budget_reached => 0,
+				elapsed_ms => $self->_elapsed_ms($started),
+			};
+		}
+	}
+
+	return {
+		selected => undef, attempts => \@attempts, probes_used => $probes_used,
+		limit_reached => 0, budget_reached => 0, elapsed_ms => $self->_elapsed_ms($started),
+	};
+}
+
+sub first_executable {
+	my ($self, %args) = @_;
+	my $candidates = $args{candidates} || [];
+	my $policy = $args{policy};
+	die 'execution policy is required' unless $policy && $policy->can('evaluate');
+	my $max_probes = defined($args{max_probes}) ? $args{max_probes} : 8;
+	my $total_timeout_ms = defined($args{total_timeout_ms}) ? $args{total_timeout_ms} : 2000;
+	my $per_probe_timeout_ms = defined($args{per_probe_timeout_ms})
+		? $args{per_probe_timeout_ms} : $self->{wall_timeout_ms};
+	my $started = $self->{clock}->();
+	my (%cache, %policy_cache, @attempts);
+	my $probes_used = 0;
+	my $route_options = $policy->can('route_options') ? $policy->route_options() : {};
+
+	for my $index (0 .. $#$candidates) {
+		my $candidate = $candidates->[$index];
+		my $map = $candidate->{target_map};
+		my $cached = exists $cache{$map};
+		if (!$cached) {
+			my $elapsed = $self->_elapsed_ms($started);
+			return {
+				selected => undef, attempts => \@attempts, probes_used => $probes_used,
+				limit_reached => 0, budget_reached => 1, elapsed_ms => $elapsed,
+			} if $elapsed >= $total_timeout_ms;
+			return {
+				selected => undef, attempts => \@attempts, probes_used => $probes_used,
+				limit_reached => 1, budget_reached => 0, elapsed_ms => $elapsed,
+			} if $probes_used >= $max_probes;
+
+			my $remaining = $total_timeout_ms - $elapsed;
+			my $timeout = $per_probe_timeout_ms < $remaining ? $per_probe_timeout_ms : $remaining;
+			$cache{$map} = $self->probe(
+				map => $map,
+				source_map => $args{source_map}, source_x => $args{source_x}, source_y => $args{source_y},
+				wall_timeout_ms => $timeout,
+				%{$route_options},
+			);
+			$policy_cache{$map} = $policy->evaluate($cache{$map});
+			$probes_used++;
+		}
+
+		my $attempt = {
+			static_rank => $index + 1,
+			candidate => $candidate,
+			result => $cache{$map},
+			policy => $policy_cache{$map},
+			cached => $cached ? 1 : 0,
+		};
+		push @attempts, $attempt;
+		if ($policy_cache{$map}{allowed}) {
 			return {
 				selected => $candidate, selected_result => $cache{$map}, attempts => \@attempts,
 				probes_used => $probes_used, limit_reached => 0, budget_reached => 0,
