@@ -1,6 +1,8 @@
-# world_ai — 受控真实执行器（Step 3B/3C → 转正）
+# world_ai — 受控真实执行器 + 职业战斗策略（Step 4A）
 
 `world_ai` 是 OpenKore 上层的练级决策器。它保留只读评分和路线预检，并提供真实执行模式：选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
+
+Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。运行时目标同步不改写技能槽的等级、SP、距离、最大使用次数等条件，`attackUseWeapon` 也不会被关闭，因此技能不可用时仍可普通攻击。
 
 执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 
@@ -15,6 +17,7 @@ worldai recommend reachable
 worldai execute
 worldai exec status
 worldai exec stop
+worldai combat inspect
 worldai autoexecute [on|off]
 worldai inspect monster <Name|AegisName|ID>
 worldai inspect map <map>
@@ -30,6 +33,18 @@ worldai reload
 `execute` 会重新评分并使用执行专用路线约束验证候选。若当前正在卖货、买药、仓库、NPC 对话、传送、事件宏或坐下恢复，命令安全拒绝；若正在战斗，则等待当前目标死亡后再出发。命令只决策一次，之后不会因升级或评分变化自动换图。
 
 `exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击与击杀计数。`exec stop` 立即恢复运行态配置；若正在正常战斗、卖货、补药或死亡恢复，不清空这些原生流程，等它结束后再由恢复后的 lockMap 接管。
+
+`combat inspect` 是只读诊断：显示当前职业族、已学技能 handle、已配置 `attackSkillSlot`、当前执行目标、匹配策略和实际 `monsters` 过滤。`recommend` / `top` 不会应用战斗策略，只有 `execute` 成功应用最终目标时才同步。
+
+## Step 4A 基线策略
+
+- Thief / Assassin 族：继续普攻，不自动发明主动技能。
+- Swordman / Knight 族：仅同步已学且已配置的 `SM_BASH`。
+- Mage / Wizard 族：仅同步已学且已配置的 `MG_FIREBOLT`。
+- Archer / Hunter 族：仅同步已学且已配置的 `AC_DOUBLE`。
+- Acolyte / Priest 族：仅同步已学且已配置的 `AL_HOLYLIGHT`；`AL_HEAL` 等辅助技能原配置不受影响。
+
+如果技能未学、没有对应原生技能槽，或目标被槽的 `notMonsters` 明确排除，策略会输出原因并保持普攻基线，不会改写排除条件。
 
 `autoexecute on|off` 在运行态切换自动执行开关（不写回 `config.txt`）；不带参数则显示当前开关。要在重启后仍自动开始，需在 `config.txt` 写入 `world_ai_auto_execute 1`。
 
@@ -51,6 +66,8 @@ world_ai/
 ├── lib/WorldAI/
 │   ├── Index.pm
 │   ├── CharacterSnapshot.pm
+│   ├── CombatPolicy.pm
+│   ├── CombatRuntimeOverride.pm
 │   ├── Scorer.pm
 │   ├── RouteProbe.pm
 │   ├── ExecutionPolicy.pm
@@ -61,16 +78,20 @@ world_ai/
 │   ├── performance.t
 │   ├── route_probe.t
 │   ├── execution_policy.t
+│   ├── combat_policy.t
+│   ├── combat_runtime_override.t
 │   └── runtime_override.t
 └── tools/gen_index.py
 ```
 
 - `Index.pm`：加载和校验索引，建立名称与 ID 查询表；reload 失败时保留旧数据。
 - `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态。
+- `CombatPolicy.pm`：根据职业族、已学技能、已配置原生技能槽和最终执行目标生成纯数据策略。
+- `CombatRuntimeOverride.pm`：只修改匹配技能槽的运行时 `monsters` 值，并精确恢复。
 - `Scorer.pm`：无 OpenKore 副作用的纯评分模块。
 - `RouteProbe.pm`：局部执行 `Task::CalcMapRoute`，解析三态与路线元数据；不加入 AI queue。
 - `ExecutionPolicy.pm`：定义执行阶段允许的路线及拒绝原因。
-- `RuntimeOverride.pm`：保存、应用和精确恢复纯内存配置覆盖。
+- `RuntimeOverride.pm`：保存、应用和精确恢复地图、路线和目标怪的纯内存配置覆盖。
 - `world_ai.pl`：命令、状态机、原生 MapRoute 创建、运行路线复核和错误隔离。
 
 ## CPU 约束
@@ -86,7 +107,7 @@ world_ai/
 - 执行政策默认限制路线最多 3 跳（`exec_max_hops=3`），让角色先在附近练级；超过跳数的候选会以 `route_hops_exceeded` 跳过。后续稳定后可调整 `$EXEC_MAX_HOPS`。
 - 实际 MapRoute 设置 `noGoCommand / noTeleSpawn / noAirship`，运行态把 `route_maxWarpFee / route_warpByItem / saveMap_warp` 设为 0；每次 MapRoute 重算后再次检查路线元数据。
 - 背包存在 Kafra 免费传送券（7060）时拒绝执行，避免实际 MapRoute 使用票券分支。
-- `lockMap`、`lockMap_x/y/randX/randY`、三项路线开关和目标怪物条目都保存原值并精确恢复。
+- `lockMap`、`lockMap_x/y/randX/randY`、三项路线开关、目标怪物条目和已更改的 `attackSkillSlot_*_monsters` 都保存原值并精确恢复。
 - 上述覆盖只直接修改 `%config / %mon_control`；不调用会写 `config.txt` 的 `configModify`。
 - `exec stop`、路线失败、超时、监控异常和插件卸载都会恢复；进程崩溃或重启则天然重新读取磁盘原配置。
 - 多图免费步行路线允许 900 秒，避免首次发现 portal 时 OpenKore 重建 portal LOS 表造成误超时。
@@ -114,6 +135,8 @@ prove -I"OpenKore机器人/plugins/world_ai/lib" \
   "OpenKore机器人/plugins/world_ai/t/performance.t" \
   "OpenKore机器人/plugins/world_ai/t/route_probe.t" \
   "OpenKore机器人/plugins/world_ai/t/execution_policy.t" \
+  "OpenKore机器人/plugins/world_ai/t/combat_policy.t" \
+  "OpenKore机器人/plugins/world_ai/t/combat_runtime_override.t" \
   "OpenKore机器人/plugins/world_ai/t/runtime_override.t"
 ```
 

@@ -7,11 +7,12 @@ no warnings 'redefine';
 use AI;
 use Commands;
 use File::Basename qw(dirname);
-use Globals qw($char $field $net %config %maps_lut %mon_control);
+use Globals qw($char $field $net %config %jobs_lut %maps_lut %mon_control);
 use Log qw(message warning);
 use Network;
 use Plugins;
 use Scalar::Util qw(blessed refaddr);
+use Skill;
 use Task;
 use Time::HiRes qw(time);
 
@@ -20,6 +21,8 @@ BEGIN {
 	unshift @INC, "$folder/lib";
 }
 use WorldAI::CharacterSnapshot;
+use WorldAI::CombatPolicy;
+use WorldAI::CombatRuntimeOverride;
 use WorldAI::ExecutionPolicy;
 use WorldAI::Index;
 use WorldAI::RouteProbe;
@@ -27,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.2.0';
+our $VERSION = '3.3.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -46,6 +49,8 @@ my $runtime_override = WorldAI::RuntimeOverride->new(
 	config => \%config,
 	mon_control => \%mon_control,
 );
+my $combat_policy = WorldAI::CombatPolicy->new();
+my $combat_runtime_override = WorldAI::CombatRuntimeOverride->new(config => \%config);
 my $commands;
 my $hooks;
 my $MAX_TOP_N = 20;
@@ -160,6 +165,8 @@ sub command_handler {
 			print_execution_status();
 		} elsif ($args =~ /^exec\s+stop$/i) {
 			stop_execution('user_stop');
+		} elsif ($args =~ /^combat\s+inspect$/i) {
+			print_combat_inspect();
 		} elsif ($args =~ /^recommend$/i) {
 			print_recommendation();
 		} elsif ($args =~ /^inspect\s+monster\s+(.+)$/i) {
@@ -197,6 +204,7 @@ sub print_help {
 	wa_log('[HELP] worldai execute');
 	wa_log('[HELP] worldai exec status');
 	wa_log('[HELP] worldai exec stop');
+	wa_log('[HELP] worldai combat inspect');
 	wa_log('[HELP] worldai autoexecute [on|off]');
 	wa_log('[HELP] worldai inspect monster <name|aegis|id>');
 	wa_log('[HELP] worldai inspect map <map>');
@@ -206,7 +214,8 @@ sub print_help {
 sub print_status {
 	wa_log("[STATUS] plugin_version=$VERSION mode=CONTROLLED_EXECUTION exec_state=$execution{state} auto_execute=" .
 		(_auto_execute_enabled() ? 'on' : 'off') . ' movement_control=' .
-		($runtime_override->active ? 'ON' : 'OFF') . ' combat_control=' . ($runtime_override->active ? 'TARGET_OVERRIDE' : 'OFF'));
+		($runtime_override->active ? 'ON' : 'OFF') . ' target_control=' . ($runtime_override->active ? 'ON' : 'OFF') .
+		' combat_policy=' . ($combat_runtime_override->active ? 'ON' : 'OFF'));
 	wa_log(sprintf(
 		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d exec_max_hops=%d',
 		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND, $EXEC_MAX_HOPS,
@@ -273,6 +282,7 @@ sub _reset_execution {
 		route_task     => undef,
 		route_signature => '',
 		depart_after   => 0,
+		combat_policy  => undef,
 	);
 }
 
@@ -298,10 +308,55 @@ sub _restore_runtime {
 	my $owned_route = $execution{route_task};
 	my $cancel_owned = $args{cancel_owned} && $owned_route && (AI::action() || '') eq 'route'
 		&& _same_task(AI::args(0), $owned_route);
-	my $restored = $runtime_override->restore();
+	my $combat_restored = $combat_runtime_override->restore();
+	my $movement_restored = $runtime_override->restore();
 	Commands::run('move stop') if $cancel_owned && _in_game();
 	$execution{route_task} = undef;
-	return $restored;
+	return $combat_restored || $movement_restored;
+}
+
+sub _known_skills {
+	my %known;
+	return \%known unless $char && ref($char->{skills}) eq 'HASH';
+	for my $handle (keys %{$char->{skills}}) {
+		my $level = $char->{skills}{$handle}{lv} || 0;
+		$known{$handle} = 0 + $level if $level > 0;
+	}
+	return \%known;
+}
+
+sub _attack_skill_slots {
+	my @slots;
+	for (my $i = 0; exists $config{"attackSkillSlot_$i"}; $i++) {
+		my $configured = $config{"attackSkillSlot_$i"};
+		next unless defined($configured) && _trim($configured) ne '';
+		my $skill = eval { Skill->new(auto => $configured) };
+		my $handle = $skill ? eval { $skill->getHandle() } : undef;
+		my $name = $skill ? eval { $skill->getName() } : undef;
+		push @slots, {
+			index => $i,
+			configured_skill => $configured,
+			handle => $handle // '',
+			name => $name // '',
+			monsters => $config{"attackSkillSlot_${i}_monsters"},
+			not_monsters => $config{"attackSkillSlot_${i}_notMonsters"},
+		};
+	}
+	return \@slots;
+}
+
+sub _build_combat_policy {
+	my (%args) = @_;
+	my $job_id = $char ? $char->{jobID} : undef;
+	return $combat_policy->evaluate(
+		job_id => $job_id,
+		job_name => defined($job_id) ? ($jobs_lut{$job_id} // "Class $job_id") : undef,
+		known_skills => _known_skills(),
+		attack_skill_slots => _attack_skill_slots(),
+		target_monster_name => $args{target_monster_name},
+		target_monster_id => $args{target_monster_id},
+		target_map => $args{target_map},
+	);
 }
 
 sub _fail_execution {
@@ -337,7 +392,7 @@ sub start_execution {
 		return;
 	}
 
-	_restore_runtime(cancel_owned => 0) if $runtime_override->active;
+	_restore_runtime(cancel_owned => 0) if $runtime_override->active || $combat_runtime_override->active;
 	_reset_execution();
 	_set_execution_state('SELECTING');
 	$execution{started_at} = time;
@@ -406,6 +461,12 @@ sub _apply_execution {
 			target_map => $execution{target_map},
 			monster => $execution{target_monster},
 		);
+		$execution{combat_policy} = _build_combat_policy(
+			target_monster_name => $execution{target_monster},
+			target_monster_id => $execution{target_id},
+			target_map => $execution{target_map},
+		);
+		$combat_runtime_override->apply(policy => $execution{combat_policy});
 		1;
 	};
 	unless ($ok) {
@@ -419,6 +480,7 @@ sub _apply_execution {
 	_set_execution_state('MOVING');
 	wa_log("[EXEC] runtime_override=APPLIED persistence=MEMORY_ONLY lockMap=$execution{target_map} " .
 		"lock_coordinates=CLEARED paid_and_special_routes=DISABLED target=$execution{target_monster}");
+	_log_combat_policy($execution{combat_policy}, prefix => 'COMBAT_POLICY');
 	if (_current_map() eq $execution{target_map}) {
 		_set_execution_state('ACTIVE');
 		wa_log("[EXEC] ACTIVE map=$execution{target_map} monster=$execution{target_monster} arrival=same_map", 'success');
@@ -630,11 +692,12 @@ sub print_execution_status {
 		_execution_elapsed(), AI::action() || 'none', $execution{attacks}, $execution{kills},
 		$execution{last_error} || 'none',
 	));
+	_log_combat_policy($execution{combat_policy}, prefix => 'EXEC_COMBAT') if $execution{combat_policy};
 }
 
 sub stop_execution {
 	my ($reason) = @_;
-	if ($execution{state} eq 'IDLE' && !$runtime_override->active) {
+	if ($execution{state} eq 'IDLE' && !$runtime_override->active && !$combat_runtime_override->active) {
 		wa_log('[EXEC_STOP] no_active_execution');
 		return;
 	}
@@ -643,6 +706,78 @@ sub stop_execution {
 	wa_log("[EXEC_STOP] reason=$reason previous_state=$previous restored=" . ($restored ? 'yes' : 'not_needed') .
 		' native_transactions_preserved=yes', 'success');
 	_reset_execution();
+}
+
+sub _display_filter {
+	my ($value) = @_;
+	return '<all>' unless defined($value) && _trim($value) ne '';
+	return $value;
+}
+
+sub _log_combat_policy {
+	my ($policy, %args) = @_;
+	return unless $policy;
+	my $prefix = $args{prefix} || 'COMBAT_POLICY';
+	wa_log(sprintf(
+		'[%s] class_family=%s mode=%s target=%s target_id=%s target_map=%s normal_attack_fallback=%s runtime_override=%s',
+		$prefix,
+		$policy->{class_family} // 'UNSUPPORTED', $policy->{mode} // 'NORMAL_ATTACK_BASELINE',
+		$policy->{target_monster_name} || 'none', $policy->{target_monster_id} || 'none',
+		$policy->{target_map} || 'none', $policy->{fallback_normal_attack} ? 'ON' : 'OFF',
+		$combat_runtime_override->active ? 'ON' : 'OFF',
+	));
+	if (!@{$policy->{skills} || []}) {
+		wa_log("[$prefix] active_skills=none");
+		return;
+	}
+	for my $skill (@{$policy->{skills}}) {
+		wa_log(sprintf(
+			'[%s_SKILL] handle=%s learned_level=%d enabled=%s slots=%s reason=%s',
+			$prefix, $skill->{skill_handle}, $skill->{known_level} || 0,
+			$skill->{enabled} ? 'yes' : 'no',
+			@{$skill->{slots} || []} ? join(',', @{$skill->{slots}}) : 'none',
+			$skill->{reason} || 'none',
+		));
+	}
+	for my $override (@{$combat_runtime_override->overrides}) {
+		wa_log(sprintf(
+			'[%s_SYNC] slot=%d handle=%s changed=%s monsters=%s',
+			$prefix, $override->{slot}, $override->{skill_handle} || 'unknown',
+			$override->{changed} ? 'yes' : 'already_allowed', _display_filter($override->{applied_filter}),
+		));
+	}
+}
+
+sub print_combat_inspect {
+	my $target_name = $execution{target_monster} || '';
+	my $policy = _build_combat_policy(
+		target_monster_name => $target_name,
+		target_monster_id => $execution{target_id} || undef,
+		target_map => $execution{target_map} || undef,
+	);
+	my $job_id = $char ? $char->{jobID} : undef;
+	wa_log(sprintf(
+		'[COMBAT_INSPECT] character_class=%s job_id=%s executed_target=%s execution_state=%s',
+		defined($job_id) ? ($jobs_lut{$job_id} // "Class $job_id") : 'unavailable',
+		defined($job_id) ? $job_id : 'none', $target_name || 'none', $execution{state},
+	));
+	my $known = _known_skills();
+	wa_log('[COMBAT_INSPECT] known_skills=' .
+		(keys(%$known) ? join(', ', map { "$_(Lv$known->{$_})" } sort keys %$known) : 'none'));
+	my $slots = _attack_skill_slots();
+	if (@$slots) {
+		for my $slot (@$slots) {
+			wa_log(sprintf(
+				'[COMBAT_SLOT] slot=%d configured=%s handle=%s learned_level=%d monsters=%s notMonsters=%s',
+				$slot->{index}, $slot->{configured_skill}, $slot->{handle} || 'unresolved',
+				$known->{$slot->{handle}} || 0, _display_filter($slot->{monsters}),
+				_display_filter($slot->{not_monsters}),
+			));
+		}
+	} else {
+		wa_log('[COMBAT_SLOT] none');
+	}
+	_log_combat_policy($policy, prefix => 'COMBAT_INSPECT_POLICY');
 }
 
 sub _candidate_result {

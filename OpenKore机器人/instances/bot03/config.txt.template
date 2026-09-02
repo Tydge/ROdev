@@ -617,6 +617,7 @@ attackSkillSlot MG_FIREBOLT {
 	dist 8
 	maxDist 9
 	sp > 20%
+	maxAttempts 4
 	monsters Poring, Pupa, Fabre, Lunatic, Drops, Chonchon, Willow, Roda Frog
 }
 

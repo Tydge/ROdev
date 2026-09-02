@@ -610,6 +610,18 @@ pet_return 20
 # You can copy & paste any block multiple times. So if you want to
 # configure two attack skills, just duplicate the attackSkillSlot block.
 
+# Conservative Swordman baseline. The slot uses the learned Bash level, spends
+# SP only above 40%, and falls back to weapon attacks after two uses per target.
+attackSkillSlot SM_BASH {
+	lvl
+	dist 1
+	maxDist 1
+	sp > 40%
+	maxAttempts 4
+	maxUses 2
+	monsters Poring, Pupa, Fabre, Lunatic, Drops, Chonchon, Willow, Roda Frog
+}
+
 attackSkillSlot {
 	lvl
 	dist 1
