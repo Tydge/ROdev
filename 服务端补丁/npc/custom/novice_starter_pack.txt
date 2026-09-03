@@ -20,5 +20,17 @@ OnPCLoginEvent:
 		dispbottom "Archer supply recovery received: 1,000 Arrows.";
 	}
 
+	// One-time Red Potion relief for the four active grinders that had spent their
+	// starting supplies and could no longer afford buyAuto (KoreHelper 36z,
+	// EthanRowe 49z, CalebWren 0z, NoraEllis low). MiraVale is excluded because the
+	// Novice starter pack already granted its potions.
+	if (!RODEV_POTION_RELIEF_V1 &&
+	    (strcharinfo(0) == "KoreHelper" || strcharinfo(0) == "EthanRowe" ||
+	     strcharinfo(0) == "CalebWren" || strcharinfo(0) == "NoraEllis")) {
+		set RODEV_POTION_RELIEF_V1, 1;
+		getitem 501, 100; // Red Potion
+		dispbottom "Potion relief received: 100 Red Potions.";
+	}
+
 	end;
 }

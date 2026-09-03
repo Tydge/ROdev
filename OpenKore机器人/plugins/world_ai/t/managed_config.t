@@ -39,5 +39,9 @@ like($starter, qr/Class == Job_Novice && !RODEV_NOVICE_STARTER_V1/,
 like($starter, qr/set Zeny, Zeny \+ 5000;/, 'starter grant includes 5,000 Zeny');
 like($starter, qr/getitem 501, 100;/, 'starter grant includes 100 Red Potions');
 like($starter, qr/getitem 1243, 1;/, 'starter grant includes Novice Main-Gauche');
+like($starter, qr/RODEV_POTION_RELIEF_V1/,
+	'one-time Red Potion relief is protected by a character flag');
+like($starter, qr/"KoreHelper".*"EthanRowe".*"CalebWren".*"NoraEllis"/s,
+	'potion relief targets the four broke grinders and skips MiraVale');
 
 done_testing();
