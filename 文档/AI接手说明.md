@@ -1,6 +1,6 @@
 # RO 本地服 AI / 开发者接手说明
 
-最后更新：2026-08-24（Asia/Shanghai）
+最后更新：2026-09-03（Asia/Shanghai）
 
 ## 1. 当前结论
 
@@ -109,6 +109,39 @@ System/PrivateAirplane_true.lub
 - 正常任务日志：`questid2display.txt` 与 `OngoingQuestInfoList_True.lub` 已使用英文资源。
 
 ## 7. 当前待办
+
+### world_ai Step 4A.1（职业技能成长顺序与五职业验收）
+
+状态：**配置和代码已完成；五职业最终技能实战矩阵随自然成长继续**。需求来源为
+`ROdev_world_ai_STEP4A1_职业技能成长顺序与五职业验收_开发任务.md`，测试记录见
+`OpenKore机器人/文档/WORLD_AI_STEP4A1_TEST_REPORT.md`。
+
+已完成：
+
+1. 只重排技能学习顺序，不改变技能集合和最终目标等级：bot02 提前
+   `SM_BASH`，bot03 转 Mage 后优先 `MG_FIREBOLT`，bot04 提前
+   `AC_DOUBLE`；bot01 保持现状，bot05 做回归验证。
+2. 保留 `skillsAddAuto` 为唯一正常学习入口，不直接改数据库、不使用 GM
+   命令补技能。
+3. ACTIVE / MOVING 期间监听 OpenKore `packet_charSkills`，仅在基线技能启用签名实际变化时重算并同步 CombatPolicy，不在每次 `AI_pre` 全量重算。
+4. 新增 `SKILL_PROGRESS`、配置离线测试、实机验收矩阵和 Step 4A.1 测试报告。
+5. 解决 Archer 无箭问题：现有 bot04 一次性恢复 1000 Arrow；长期使用 `buyAuto 1750`，低于等于 200 自动补到 1000。
+
+2026-09-02 实机基线：
+
+- bot01 Thief Job 15：`TF_DOUBLE 10`，现有普攻基线正常。
+- bot02 Swordman Job 20：`SM_SWORD 10 / SM_TWOHAND 9 / SM_BASH 0`；已投入点
+  不可回退，重排后从后续技能点开始学习 Bash。
+- bot03 Novice Job 8：`NV_BASIC 7 / MG_FIREBOLT 0`；须先自然达到 Job 10 并
+  完成既有自动转职，才能进行 Mage / Fire Bolt 实机验收。
+- bot04 Archer Job 16：`AC_OWL 10 / AC_VULTURE 5 / AC_DOUBLE 0`；已投入点
+  不可回退。当前另有“没有箭矢”运行问题，解决补箭/装备箭矢前无法完成
+  Double Strafe 实战验收。
+- bot05 Acolyte Job 10：`AL_DP 7 / AL_HEAL 2 / AL_HOLYLIGHT 1`，可用于
+  Holy Light、Heal 与 world_ai 动态目标回归。
+
+三项基线主动技能在本服 Pre-Renewal 技能树中均可直接学习，没有新增前置冲突。
+完整五职业 PASS 依赖自然获得后续 Job 经验，因此 bot02 的 Bash、bot03 转 Mage 后的 Fire Bolt、bot04 的 Double Strafe 仍需随角色成长补齐实战验收。不能把“代码完成”误记为“最终验收完成”。
 
 ### 小地图标记悬停乱码
 

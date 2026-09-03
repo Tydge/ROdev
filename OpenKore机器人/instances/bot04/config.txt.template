@@ -305,7 +305,7 @@ statsAddAuto_dontUseBonus 0
 statsAdd_over_99 1
 
 skillsAddAuto 1
-skillsAddAuto_list NV_BASIC 9, AC_OWL 10, AC_VULTURE 10, AC_CONCENTRATION 10, AC_DOUBLE 10, AC_SHOWER 9, HT_BEASTBANE 10, HT_FALCON 1, HT_BLITZBEAT 5, HT_STEELCROW 10, HT_SKIDTRAP 1, HT_LANDMINE 5, HT_ANKLESNARE 5, HT_FLASHER 1, HT_FREEZINGTRAP 1, HT_SANDMAN 5, HT_REMOVETRAP 1, HT_SHOCKWAVE 1, HT_BLASTMINE 1, HT_CLAYMORETRAP 1, HT_DETECTING 1
+skillsAddAuto_list NV_BASIC 9, AC_DOUBLE 10, AC_OWL 10, AC_VULTURE 10, AC_CONCENTRATION 10, AC_SHOWER 9, HT_BEASTBANE 10, HT_FALCON 1, HT_BLITZBEAT 5, HT_STEELCROW 10, HT_SKIDTRAP 1, HT_LANDMINE 5, HT_ANKLESNARE 5, HT_FLASHER 1, HT_FREEZINGTRAP 1, HT_SANDMAN 5, HT_REMOVETRAP 1, HT_SHOCKWAVE 1, HT_BLASTMINE 1, HT_CLAYMORETRAP 1, HT_DETECTING 1
 
 # Shared equipment decision module. It only equips identified, class/level-valid
 # upgrades and leaves carded or unknown/custom equipment alone.
@@ -766,6 +766,23 @@ buyAuto 501 {
 	maxDistance
 	dcOnEmpty 0
 	# [checkSelfCondition]
+}
+
+buyAuto 1750 {
+	npc prt_in 126 76
+	npc_steps b
+	isMarket 0
+	standpoint
+	distance 3
+	price 1
+	minAmount 200
+	maxAmount 1000
+	batchSize
+	onlyIdentified
+	zeny
+	minDistance
+	maxDistance
+	dcOnEmpty 0
 }
 
 sellAuto 1

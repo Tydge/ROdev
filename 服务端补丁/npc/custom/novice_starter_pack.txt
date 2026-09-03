@@ -1,0 +1,24 @@
+// One-time starter resources for new Novices on the local server.
+// The character variable prevents reconnects and script reloads from granting twice.
+
+-	script	RODevNoviceStarterPack	-1,{
+OnPCLoginEvent:
+	if (Class == Job_Novice && !RODEV_NOVICE_STARTER_V1) {
+		set RODEV_NOVICE_STARTER_V1, 1;
+		set Zeny, Zeny + 5000;
+		getitem 501, 100;  // Red Potion
+		if (countitem(1243) < 1)
+			getitem 1243, 1; // Novice Main-Gauche, ATK 45
+		dispbottom "Starter pack received: 100 Red Potions, 5,000 Zeny, and a Novice Main-Gauche.";
+	}
+
+	// One-time migration for the existing Archer who exhausted the original arrows
+	// before automatic ammunition replenishment was configured.
+	if (strcharinfo(0) == "CalebWren" && !RODEV_ARROW_RECOVERY_V1) {
+		set RODEV_ARROW_RECOVERY_V1, 1;
+		getitem 1750, 1000; // Arrow
+		dispbottom "Archer supply recovery received: 1,000 Arrows.";
+	}
+
+	end;
+}

@@ -9,7 +9,10 @@ use Scalar::Util qw(looks_like_number);
 my %DEFAULTS = (
 	MAX_LEVEL_ABOVE       => 8,
 	MAX_LEVEL_BELOW       => 15,
-	MAX_ESTIMATED_HITS    => 65,
+	# Targets needing dozens of normal attacks looked attractive on EXP alone but
+	# were not sustainable in live play (a level-27 Swordman repeatedly died to
+	# Savage at ~26 estimated hits and never completed a kill).
+	MAX_ESTIMATED_HITS    => 20,
 	MAX_ATTACK_HP_RATIO   => 0.65,
 	LEVEL_FIT_WEIGHT      => 1.0,
 	EXP_WEIGHT            => 1.0,

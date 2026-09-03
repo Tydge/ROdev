@@ -90,4 +90,18 @@ my ($bwolf_thief_allowed, $bwolf_thief_reasons) = $scorer->hard_filter($thief_sn
 ok($bwolf_thief_allowed, 'first-job character is still allowed Baby Desert Wolf')
 	or diag('Baby Desert Wolf was blocked for Thief: ' . join('; ', @{$bwolf_thief_reasons}));
 
+# Live regression: EthanRowe had 81 total attack at Base 27. Savage needs about
+# 26 estimated normal attacks and produced repeated deaths with zero kills, so it
+# must no longer pass the normal first-job hard filter.
+my $swordman_snapshot = {
+	base_level   => 27,
+	job_id       => 1,
+	hp_max       => 504,
+	attack_total => 81,
+};
+my $savage = $index->monster(1166);
+my ($savage_allowed, $savage_reasons) = $scorer->hard_filter($swordman_snapshot, $savage, 'prt_fild10');
+ok(!$savage_allowed, 'repeatedly fatal Savage target is filtered for the live Swordman baseline');
+like(join(' ', @{$savage_reasons}), qr/kill cost/, 'Savage rejection explains excessive kill cost');
+
 done_testing();

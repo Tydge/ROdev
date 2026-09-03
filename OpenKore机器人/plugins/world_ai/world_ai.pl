@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.3.0';
+our $VERSION = '3.4.1';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -64,6 +64,12 @@ my $buy_guard_last_warn = 0;
 my $auto_execute_last_attempt = time;
 my $auto_execute_backoff_s = 15;
 my $AUTO_EXECUTE_MAX_BACKOFF_S = 300;
+my $MAX_ZERO_KILL_DEATHS = 2;
+my $MAX_LOW_PROGRESS_DEATHS = 2;
+my $MAX_NO_KILL_ATTACKS = 3;
+my $MAX_NO_KILL_ELAPSED_S = 180;
+my $TARGET_FAILURE_COOLDOWN_S = 1800;
+my %target_cooldown;
 
 Plugins::register(
 	$NAME,
@@ -80,6 +86,7 @@ $hooks = Plugins::addHooks(
 	['AI_pre',               \&on_ai_pre],
 	['attack_start',         \&on_attack_start],
 	['target_died',          \&on_target_died],
+	['packet_charSkills',    \&on_skill_update],
 	['AI_buy_auto_needitem', \&on_buy_auto_needitem],
 );
 
@@ -238,6 +245,7 @@ sub print_status {
 		'[CHARACTER] base=%s job=%s class=%s map=%s hp=%s/%s sp=%s/%s atk=%s def=%s hit=%s flee=%s',
 		map { defined($_) ? $_ : 'undef' } @{$snapshot}{qw(base_level job_level job_name current_map hp hp_max sp sp_max attack_total defense_total hit flee)}
 	));
+	_log_skill_progress();
 }
 
 sub _current_map {
@@ -279,6 +287,8 @@ sub _reset_execution {
 		last_error     => '',
 		attacks        => 0,
 		kills          => 0,
+		deaths         => 0,
+		dead_seen      => 0,
 		route_task     => undef,
 		route_signature => '',
 		depart_after   => 0,
@@ -325,6 +335,34 @@ sub _known_skills {
 	return \%known;
 }
 
+sub _log_skill_progress {
+	return unless $char;
+	my $job_id = $char->{jobID};
+	my $family = $combat_policy->class_family(
+		job_id => $job_id,
+		job_name => $jobs_lut{$job_id} // "Class $job_id",
+	);
+	my %baseline = (
+		THIEF_FAMILY    => ['TF_DOUBLE', 10, 'passive'],
+		SWORDMAN_FAMILY => ['SM_BASH', 10, 'active'],
+		MAGE_FAMILY     => ['MG_FIREBOLT', 10, 'active'],
+		ARCHER_FAMILY   => ['AC_DOUBLE', 10, 'active'],
+		ACOLYTE_FAMILY  => ['AL_HOLYLIGHT', 1, 'active'],
+	);
+	my $entry = $baseline{$family};
+	unless ($entry) {
+		wa_log("[SKILL_PROGRESS] class_family=$family baseline=none learned=0 target=0 ready=no");
+		return;
+	}
+	my ($handle, $target, $role) = @$entry;
+	my $known = _known_skills();
+	my $level = $known->{$handle} || 0;
+	wa_log(sprintf(
+		'[SKILL_PROGRESS] class_family=%s baseline=%s role=%s learned=%d target=%d ready=%s',
+		$family, $handle, $role, $level, $target, $level > 0 ? 'yes' : 'no',
+	));
+}
+
 sub _attack_skill_slots {
 	my @slots;
 	for (my $i = 0; exists $config{"attackSkillSlot_$i"}; $i++) {
@@ -359,6 +397,58 @@ sub _build_combat_policy {
 	);
 }
 
+sub _combat_activation_signature {
+	my ($policy) = @_;
+	return '' unless $policy;
+	return join('|',
+		$policy->{class_family} // '',
+		$policy->{mode} // '',
+		map {
+			join(':', $_->{skill_handle} // '', $_->{enabled} ? 1 : 0,
+				join(',', @{$_->{slots} || []}))
+		} @{$policy->{skills} || []},
+	);
+}
+
+sub _uses_standard_arrows {
+	return 0 unless $char;
+	my $job = $jobs_lut{$char->{jobID}} // '';
+	return $job =~ /(?:Archer|Hunter|Sniper|Ranger)/i ? 1 : 0;
+}
+
+sub _standard_arrow_count {
+	return 0 unless $char && $char->inventory;
+	return 0 + (eval { $char->inventory->sumByNameID(1750) } || 0);
+}
+
+sub _execution_resource_issue {
+	return 'missing_ammo:item_id=1750' if _uses_standard_arrows() && _standard_arrow_count() < 1;
+	return;
+}
+
+sub _target_key {
+	my ($monster_id, $map) = @_;
+	return join('@', 0 + ($monster_id || 0), $map || '');
+}
+
+sub _filter_feedback_cooldowns {
+	my ($results) = @_;
+	my $now = time;
+	my @eligible;
+	for my $candidate (@{$results || []}) {
+		my $key = _target_key($candidate->{monster_id}, $candidate->{target_map});
+		my $until = $target_cooldown{$key} || 0;
+		if ($until > $now) {
+			wa_log(sprintf('[FEEDBACK_FILTER] skipped %s (%d) @ %s cooldown_remaining=%.0fs',
+				$candidate->{monster_name}, $candidate->{monster_id}, $candidate->{target_map}, $until - $now));
+			next;
+		}
+		delete $target_cooldown{$key} if $until;
+		push @eligible, $candidate;
+	}
+	return \@eligible;
+}
+
 sub _fail_execution {
 	my ($reason) = @_;
 	my $previous = $execution{state};
@@ -386,6 +476,10 @@ sub start_execution {
 		wa_warning('[EXEC] rejected reason=character_recovering action=sitAuto');
 		return;
 	}
+	if (my $resource_issue = _execution_resource_issue()) {
+		wa_warning("[EXEC] rejected reason=$resource_issue");
+		return;
+	}
 	my $ticket = eval { $char->inventory->getByNameID(7060) };
 	if ($ticket && ($ticket->{amount} || 0) > 0) {
 		wa_warning('[EXEC] rejected reason=route_ticket_present item_id=7060');
@@ -398,6 +492,7 @@ sub start_execution {
 	$execution{started_at} = time;
 
 	my ($snapshot, $results, $score_elapsed_ms) = _calculate_ranked();
+	$results = _filter_feedback_cooldowns($results) if $results;
 	unless ($results && @$results) {
 		_fail_execution('no_allowed_candidate');
 		return;
@@ -586,6 +681,18 @@ sub _advance_execution {
 	}
 
 	if ($execution{state} eq 'ACTIVE') {
+		if (my $resource_issue = _execution_resource_issue()) {
+			_fail_execution($resource_issue);
+			return;
+		}
+		if ($execution{kills} == 0 && $execution{attacks} >= $MAX_NO_KILL_ATTACKS &&
+			_execution_elapsed() >= $MAX_NO_KILL_ELAPSED_S) {
+			my $key = _target_key($execution{target_id}, $execution{target_map});
+			$target_cooldown{$key} = time + $TARGET_FAILURE_COOLDOWN_S;
+			wa_warning("[FEEDBACK_FILTER] cooldown_applied target=$execution{target_monster} map=$execution{target_map} seconds=$TARGET_FAILURE_COOLDOWN_S reason=no_kill_progress");
+			_fail_execution('no_kill_progress');
+			return;
+		}
 		my $map = _current_map();
 		if ($map && $map ne $execution{last_map}) {
 			wa_log("[EXEC] native_detour $execution{last_map} -> $map action=" . (AI::action() || 'none'));
@@ -620,6 +727,22 @@ sub maybe_auto_execute {
 }
 
 sub on_ai_pre {
+	if ($execution{state} eq 'ACTIVE' && !_alive()) {
+		unless ($execution{dead_seen}) {
+			$execution{dead_seen} = 1;
+			$execution{deaths}++;
+			wa_warning("[EXEC] character_death target=$execution{target_monster} deaths=$execution{deaths} kills=$execution{kills}");
+			if (($execution{kills} == 0 && $execution{deaths} >= $MAX_ZERO_KILL_DEATHS) ||
+				($execution{deaths} >= $MAX_LOW_PROGRESS_DEATHS && $execution{kills} < $execution{deaths})) {
+				my $key = _target_key($execution{target_id}, $execution{target_map});
+				$target_cooldown{$key} = time + $TARGET_FAILURE_COOLDOWN_S;
+				wa_warning("[FEEDBACK_FILTER] cooldown_applied target=$execution{target_monster} map=$execution{target_map} seconds=$TARGET_FAILURE_COOLDOWN_S reason=repeated_deaths_low_progress");
+				_fail_execution('repeated_deaths_low_progress');
+			}
+		}
+		return;
+	}
+	$execution{dead_seen} = 0 if $execution{state} eq 'ACTIVE';
 	maybe_auto_execute();
 	return if $execution{state} eq 'IDLE' || $execution{state} eq 'ERROR';
 	my $ok = eval { _advance_execution(); 1 };
@@ -628,6 +751,24 @@ sub on_ai_pre {
 		$error =~ s/\s+/ /g;
 		_fail_execution("monitor_exception:$error");
 	}
+}
+
+sub on_skill_update {
+	return unless ($execution{state} eq 'ACTIVE' || $execution{state} eq 'MOVING') &&
+		$combat_runtime_override->active;
+	my $updated = _build_combat_policy(
+		target_monster_name => $execution{target_monster},
+		target_monster_id => $execution{target_id},
+		target_map => $execution{target_map},
+	);
+	return if _combat_activation_signature($updated) eq
+		_combat_activation_signature($execution{combat_policy});
+
+	$combat_runtime_override->restore();
+	$execution{combat_policy} = $updated;
+	$combat_runtime_override->apply(policy => $updated);
+	wa_log('[COMBAT_REFRESH] reason=learned_skill_state_changed', 'success');
+	_log_combat_policy($updated, prefix => 'COMBAT_REFRESH');
 }
 
 sub on_attack_start {
@@ -685,11 +826,11 @@ sub on_buy_auto_needitem {
 
 sub print_execution_status {
 	wa_log(sprintf(
-		'[EXEC_STATUS] state=%s active_override=%s current_map=%s start_map=%s target_map=%s target_monster=%s target_id=%s static_rank=%s score=%s elapsed=%.1fs ai_action=%s attacks=%d kills=%d last_error=%s',
+		'[EXEC_STATUS] state=%s active_override=%s current_map=%s start_map=%s target_map=%s target_monster=%s target_id=%s static_rank=%s score=%s elapsed=%.1fs ai_action=%s attacks=%d kills=%d deaths=%d last_error=%s',
 		$execution{state}, $runtime_override->active ? 'yes' : 'no', _current_map() || 'unknown',
 		map { defined($_) && $_ ne '' ? $_ : 'none' }
 			@execution{qw(start_map target_map target_monster target_id static_rank score)},
-		_execution_elapsed(), AI::action() || 'none', $execution{attacks}, $execution{kills},
+		_execution_elapsed(), AI::action() || 'none', $execution{attacks}, $execution{kills}, $execution{deaths},
 		$execution{last_error} || 'none',
 	));
 	_log_combat_policy($execution{combat_policy}, prefix => 'EXEC_COMBAT') if $execution{combat_policy};

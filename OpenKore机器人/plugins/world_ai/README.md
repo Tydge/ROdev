@@ -1,8 +1,8 @@
-# world_ai — 受控真实执行器 + 职业战斗策略（Step 4A）
+# world_ai — 受控真实执行器 + 职业战斗策略（Step 4A.1）
 
 `world_ai` 是 OpenKore 上层的练级决策器。它保留只读评分和路线预检，并提供真实执行模式：选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
 
-Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。运行时目标同步不改写技能槽的等级、SP、距离、最大使用次数等条件，`attackUseWeapon` 也不会被关闭，因此技能不可用时仍可普通攻击。
+Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。Step 4A.1 调整 Swordman / Mage / Archer 的自然学习顺序，并在 `packet_charSkills` 中只当基线技能启用状态改变时刷新活动战斗策略。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。
 
 执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 
@@ -32,7 +32,7 @@ worldai reload
 
 `execute` 会重新评分并使用执行专用路线约束验证候选。若当前正在卖货、买药、仓库、NPC 对话、传送、事件宏或坐下恢复，命令安全拒绝；若正在战斗，则等待当前目标死亡后再出发。命令只决策一次，之后不会因升级或评分变化自动换图。
 
-`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击与击杀计数。`exec stop` 立即恢复运行态配置；若正在正常战斗、卖货、补药或死亡恢复，不清空这些原生流程，等它结束后再由恢复后的 lockMap 接管。
+`status` 额外输出当前职业族的基线技能、已学等级、目标等级与是否已可用。`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击、击杀与死亡计数。`exec stop` 立即恢复运行态配置。
 
 `combat inspect` 是只读诊断：显示当前职业族、已学技能 handle、已配置 `attackSkillSlot`、当前执行目标、匹配策略和实际 `monsters` 过滤。`recommend` / `top` 不会应用战斗策略，只有 `execute` 成功应用最终目标时才同步。
 
@@ -55,6 +55,7 @@ worldai reload
 - 首次尝试在插件加载后延迟约 15 秒，避开登录和背包加载窗口。
 - 失败或拒绝时指数退避（15s → 30s → … → 上限 300s），避免「评分失败→立即重试」的紧循环；成功开始后退避归零。
 - 卖货、买药、仓库、NPC、传送、事件宏或坐下恢复期间不会触发。
+- Archer / Hunter 族完全无标准 Arrow（物品 1750）时不开始或继续执行，由 OpenKore `buyAuto 1750` 在箭少于等于 200 支时去 Prontera 工具商自动补到 1000 支。
 - `exec stop` 会停止当前执行；之后自动执行仍会在空闲后再次开始，直到关闭开关（`autoexecute off` 或删除配置）。
 
 ## 目录
@@ -112,6 +113,7 @@ world_ai/
 - `exec stop`、路线失败、超时、监控异常和插件卸载都会恢复；进程崩溃或重启则天然重新读取磁盘原配置。
 - 多图免费步行路线允许 900 秒，避免首次发现 portal 时 OpenKore 重建 portal LOS 表造成误超时。
 - 挂接 `AI_buy_auto_needitem` 做买货守门：当 `zeny` 低于最便宜补货物品单价时跳过 buyAuto 触发，避免破产角色陷入「触发→买不到→完成→再触发」死循环；跳过一次按 60 秒限流告警。
+- 普通职业预估击杀上限由 65 收紧为 20 次；实战中同一怪物@地图长时间多次开战却零击杀，或反复死亡且击杀进度偏低时，将该组合冷却 1800 秒再重新选择。
 
 - MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
 - 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
@@ -137,6 +139,7 @@ prove -I"OpenKore机器人/plugins/world_ai/lib" \
   "OpenKore机器人/plugins/world_ai/t/execution_policy.t" \
   "OpenKore机器人/plugins/world_ai/t/combat_policy.t" \
   "OpenKore机器人/plugins/world_ai/t/combat_runtime_override.t" \
+  "OpenKore机器人/plugins/world_ai/t/managed_config.t" \
   "OpenKore机器人/plugins/world_ai/t/runtime_override.t"
 ```
 

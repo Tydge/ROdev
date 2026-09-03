@@ -61,18 +61,18 @@
 
 ## 当前行为
 
-- 固定地图：`prt_fild08`（普隆德拉南门外），只用原生刷怪，不修改地图刷怪。
-- 分级白名单：Poring、Pupa 可立即攻击；Base Lv.3 解锁 Lunatic，Lv.5 解锁 Drops；其他怪物默认不主动攻击（`all 0`）。
+- 五个实例均由 `world_ai` 按实时等级、职业、攻防、怪物强度、同图风险和免费路线选择练级目标；只用原生刷怪，不修改地图刷怪。
+- 评分层排除 MVP/Boss、明显越级和预估超过 20 次攻击才能击杀的目标；实战中长时间零击杀或反复死亡时，会将该怪物@地图冷却 30 分钟后自动重新选择。
 - 普攻、自动拾取、小范围巡逻均已开启。
 - HP 低于 55% 时使用物品 ID 569/501（Novice Potion / Red Potion）；低于 45% 且没有合适动作时坐下，恢复到 90%。使用 ID 是为了避免 OpenKore 的韩文物品表导致英文名称匹配失败。
-- 死亡后使用 OpenKore 默认复活流程，并回到当前固定地图。
-- 负重达到 48% 时自动停止打怪，前往 Prontera 室内工具商人出售普通掉落；Red Potion 少于 10 瓶时补到 30 瓶，然后自动返回南门。
+- 死亡后使用 OpenKore 默认复活流程，然后返回当前 `world_ai` 目标地图。
+- 负重达到 48% 时自动停止打怪，前往 Prontera 室内工具商人出售普通掉落；Red Potion 少于 10 瓶时补到 30 瓶。Archer 的 Arrow 少于等于 200 支时会到同一商人自动补到 1000 支，完全无箭时 `world_ai` 暂停出发。
 - 当前出售范围：Jellopy、Clover、Sticky Mucus、Feather，以及超过 20 个的 Apple、超过 10 个的 Carrot。卡片、驯养物、Empty Bottle、药水和所有自有装备均受保护。
 - 五条固定职业愿望均会在 Novice Job 10 自动一转、第一职业 Job 50 自动二转并跳过转职任务：Assassin、Knight、Wizard、Hunter、Priest。完整设定见 `角色档案/`。
 - 属性按生存与匕首输出分阶段自动成长，最终目标为 STR 90 / AGI 90 / VIT 30 / INT 1 / DEX 50 / LUK 1。
-- 技能按完整职业规划自动分配：Novice 9 点、Thief 49 点、Assassin 49 点；服务端在两次转职门槛提供补齐与转职保护，避免最后一点技能尚未分配而卡住。
+- 技能按各职业完整规划由 `skillsAddAuto` 自然分配；Swordman 优先 Bash、Mage 优先 Fire Bolt、Archer 优先 Double Strafe，不改变原有技能集和最终等级。活动执行期间首次学会基线技能时，`world_ai` 会轻量刷新策略，无需重新选图。
 - 已启用共享装备决策器 `autoGear`：登录、转职、拾到装备或装备被卸下后，会根据 rAthena 的完整装备目录判断职业、等级、鉴定状态、基础攻防、精炼和插槽，再选择确实更好的装备。已插卡装备和无法可靠评分的自定义装备默认不会被替换。
-- 当前装备为 Novice Main-Gauche、+4 Adventurer's Suit、+4 Guard，且已公开装备供其他玩家右键查看。
+- 新建 Novice 首次登录一次性获得 5,000 Zeny、100 个 Red Potion 和 ATK 45 的 Novice Main-Gauche。转职后 `autoGear` 会切换为背包中更适合职业的武器，职业武器保留 1 件不会在新手阶段被卖掉。
 - 自动交易、组队和玩家摆摊尚未开启；自动出售、补药、属性成长、技能成长和职业路线已经开启。
 
 ## 原生跨地图与按怪选图实验
@@ -90,7 +90,7 @@ worldtest stop
 
 ## world_ai 动态练级推荐与受控执行
 
-bot01 已启用正式 `world_ai` Step 3B。它从 OpenKore 当前 `$char` / `$field` 读取实时角色状态，使用 rAthena Pre-Renewal 静态索引生成可解释的怪物×地图推荐，并可用 OpenKore 原生 `Task::CalcMapRoute` 做只读路线预检或手动启动一次真实执行：
+五个实例已启用正式 `world_ai`。它从 OpenKore 当前 `$char` / `$field` 读取实时角色状态，使用 rAthena Pre-Renewal 静态索引生成可解释的怪物×地图推荐，并用 OpenKore 原生 `Task::CalcMapRoute` 做只读路线预检或受控真实执行：
 
 ```text
 worldai status
@@ -106,7 +106,7 @@ worldai inspect map <map>
 worldai reload
 ```
 
-`route` 与 `recommend reachable` 仍然完全只读。只有 `worldai execute` 会使用零费用、普通 portal/步行政策选择目标，纯内存覆盖 `lockMap` 和目标怪物条目，并把移动交给受约束的 OpenKore 原生 `Task::MapRoute`。没有后台自动重新选图；`exec stop`、错误、超时或插件卸载会恢复原状态。详细设计见 `plugins/world_ai/README.md`，Step 3A 与 Step 3B 的证据分别见对应测试报告。
+`route` 与 `recommend reachable` 仍然完全只读。`worldai execute` 使用零费用、普通 portal/步行政策选择目标，纯内存覆盖 `lockMap`、目标怪物和匹配技能槽，并把移动与战斗交给 OpenKore 原生流程。自动执行只在当前任务结束、失败或反馈冷却后重新选择；`exec stop`、错误、超时或插件卸载会恢复原状态。
 
 需要单独以 manual AI 测试 bot01 时可执行：
 

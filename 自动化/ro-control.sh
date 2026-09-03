@@ -13,6 +13,28 @@ DB_ADMIN="/opt/homebrew/opt/mariadb@11.4/bin/mariadb-admin"
 PRLCTL="/usr/local/bin/prlctl"
 VM_NAME="Windows 11"
 OPENKORE_CTRL="/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/脚本/openkore-control.sh"
+MANAGED_SERVER_PATCH_ROOT="/Users/wangtaizhi/娱乐/RO本地服/服务端补丁"
+
+deploy_server_patches() {
+  local source_file="$MANAGED_SERVER_PATCH_ROOT/npc/custom/novice_starter_pack.txt"
+  local target_file="$RATHENA_DIR/npc/custom/novice_starter_pack.txt"
+  local script_conf="$RATHENA_DIR/npc/scripts_custom.conf"
+  local registration="npc: npc/custom/novice_starter_pack.txt"
+
+  [[ -f "$source_file" ]] || {
+    echo "[失败] 缺少服务端补丁：$source_file"
+    return 1
+  }
+  /bin/mkdir -p "${target_file:h}"
+  if [[ ! -f "$target_file" ]] || ! /usr/bin/cmp -s "$source_file" "$target_file"; then
+    /bin/cp -f "$source_file" "$target_file" || return 1
+    echo "[OK] 已部署新手启动资源脚本。"
+  fi
+  if ! /usr/bin/grep -Fqx "$registration" "$script_conf"; then
+    print -r -- "$registration" >> "$script_conf" || return 1
+    echo "[OK] 已注册新手启动资源脚本。"
+  fi
+}
 
 port_is_open() {
   /usr/sbin/lsof -nP -iTCP:"$1" -sTCP:LISTEN >/dev/null 2>&1
@@ -190,6 +212,7 @@ case "${1:-status}" in
   start-backend)
     echo "正在启动 RO 后端（不启动 Windows 虚拟机）……"
     start_database || exit 1
+    deploy_server_patches || exit 1
     start_server "ro-login" "login-server" 6900 "login-server.log" || exit 1
     start_server "ro-char" "char-server" 6121 "char-server.log" || exit 1
     start_server "ro-map" "map-server" 5121 "map-server.log" || exit 1
@@ -199,6 +222,7 @@ case "${1:-status}" in
   start)
     echo "正在启动 RO 本地服……"
     start_database || exit 1
+    deploy_server_patches || exit 1
     start_server "ro-login" "login-server" 6900 "login-server.log" || exit 1
     start_server "ro-char" "char-server" 6121 "char-server.log" || exit 1
     start_server "ro-map" "map-server" 5121 "map-server.log" || exit 1
