@@ -67,6 +67,7 @@ my $EXEC_SAFE_WAIT_SECONDS = 30;
 my $EXEC_MOVE_TIMEOUT_SECONDS = 900;
 my %execution;
 my $buy_guard_last_warn = 0;
+my $recovery_gate_last_warn = 0;
 my $auto_execute_last_attempt = time;
 my $auto_execute_backoff_s = 15;
 my $AUTO_EXECUTE_MAX_BACKOFF_S = 300;
@@ -437,6 +438,19 @@ sub _execution_resource_issue {
 	return;
 }
 
+# 资源感知“回血闸门”：濒死（<40%）且无法自愈（没红药也没钱买最便宜红药）时，
+# 不派新执行，让 sitAuto 先坐地回血，避免带着残血去送死。
+sub _recovery_gate_reason {
+	return 'not_ready' unless $char;
+	my $hp = $char->{hp} || 0;
+	my $hp_max = $char->{hp_max} || 0;
+	my $zeny = $char->{zeny} || 0;
+	my $potions = $char->inventory ? (eval { $char->inventory->sumByNameID(501) } || 0) : 0;
+	my $hp_ratio = $hp_max > 0 ? $hp / $hp_max : 1;
+	return 'low_hp_no_heal' if $hp_ratio < 0.4 && $potions < 1 && $zeny < 50;
+	return;
+}
+
 sub _target_key {
 	my ($monster_id, $map) = @_;
 	return join('@', 0 + ($monster_id || 0), $map || '');
@@ -740,6 +754,16 @@ sub maybe_auto_execute {
 	my $state = $execution{state};
 	return unless $state eq 'IDLE' || $state eq 'ERROR';
 	return if _transaction_in_progress();
+
+	# 资源感知：濒死且无续航时先坐地回血，不要派新执行。
+	if (my $recovery = _recovery_gate_reason()) {
+		my $now = time;
+		if ($now - $recovery_gate_last_warn >= 30) {
+			$recovery_gate_last_warn = $now;
+			wa_log("[AUTO_EXEC] deferred reason=$recovery (sit & recover first)");
+		}
+		return;
+	}
 
 	my $now = time;
 	return if $now - $auto_execute_last_attempt < $auto_execute_backoff_s;
