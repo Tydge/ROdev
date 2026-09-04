@@ -80,9 +80,9 @@ attackAuto_notWhile_sellAuto 1
 attackAuto_considerDamagedAggressive 0
 attackAuto_considerAggressiveIfCastOnCastSensor 0
 attackAllowStartStorageBuySell 1
-attackDistance 1
-attackDistanceAuto 1
-attackMaxDistance 1
+attackDistance 8
+attackDistanceAuto 0
+attackMaxDistance 10
 attackMaxRouteTime 4
 attackMinPlayerDistance 2
 attackMinPortalDistance 4
@@ -259,10 +259,10 @@ maxUnobstructedWalkPathDistance 17
 # If there are obstacles and the path is walkable the max dist acceptable is 14
 maxObstructedWalkPathDistance 14
 
-runFromTarget 0
+runFromTarget 1
 runFromTarget_inAdvance 0
 runFromTarget_dist 5
-runFromTarget_minStep 7
+runFromTarget_minStep 6
 runFromTarget_maxPathDistance 13
 runFromTarget_noAttackMethodFallback 0
 runFromTarget_noAttackMethodFallback_attackMaxDist 14
@@ -305,7 +305,7 @@ statsAddAuto_dontUseBonus 0
 statsAdd_over_99 1
 
 skillsAddAuto 1
-skillsAddAuto_list NV_BASIC 9, MG_FIREBOLT 10, MG_SRECOVERY 7, MG_SIGHT 1, MG_FIREBALL 5, MG_FIREWALL 10, MG_COLDBOLT 5, MG_FROSTDIVER 1, MG_LIGHTNINGBOLT 5, MG_THUNDERSTORM 5, WZ_JUPITEL 10, WZ_STORMGUST 10, WZ_VERMILION 10, WZ_EARTHSPIKE 5, WZ_HEAVENDRIVE 5, WZ_QUAGMIRE 5, WZ_ESTIMATION 1, WZ_SIGHTRASHER 2, WZ_METEOR 1
+skillsAddAuto_list NV_BASIC 9, MG_FIREBOLT 10, MG_FIREBALL 5, MG_FIREWALL 10, MG_COLDBOLT 5, MG_FROSTDIVER 1, MG_SRECOVERY 7, MG_SIGHT 1, MG_LIGHTNINGBOLT 5, MG_THUNDERSTORM 5, WZ_JUPITEL 10, WZ_STORMGUST 10, WZ_VERMILION 10, WZ_EARTHSPIKE 5, WZ_HEAVENDRIVE 5, WZ_QUAGMIRE 5, WZ_ESTIMATION 1, WZ_SIGHTRASHER 2, WZ_METEOR 1
 
 # Shared equipment decision module. It only equips identified, class/level-valid
 # upgrades and leaves carded or unknown/custom equipment alone.
@@ -619,6 +619,26 @@ attackSkillSlot MG_FIREBOLT {
 	sp > 20%
 	maxAttempts 4
 	monsters Poring, Pupa, Fabre, Lunatic, Drops, Chonchon, Willow, Roda Frog
+}
+
+# 冰冻定身：目标接近前先冻住，打断其靠近并配合风筝。
+attackSkillSlot MG_FROSTDIVER {
+	lvl 1
+	dist 5
+	maxDist 8
+	sp > 15%
+	maxAttempts 2
+	monsters
+}
+
+# 火墙挡路：目标贴近时在其位置铺火墙，逼退并持续灼烧。
+attackSkillSlot MG_FIREWALL {
+	lvl 10
+	dist 1
+	maxDist 4
+	sp > 30%
+	maxAttempts 2
+	monsters
 }
 
 attackSkillSlot {
@@ -1013,4 +1033,5 @@ avoidObstaclesDefaultPortals {
 #}
 macro_orphans terminate
 
+world_ai_exec_max_hops 6
 world_ai_auto_execute 1

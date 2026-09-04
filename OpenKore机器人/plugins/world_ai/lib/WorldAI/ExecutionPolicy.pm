@@ -11,6 +11,17 @@ sub new {
 	}, $class;
 }
 
+# 校验 world_ai_exec_max_hops：非法值（0、负数、字符串、>10）返回 undef，由调用方回退默认。
+sub normalize_max_hops {
+	my ($class, $value) = @_;
+	return undef unless defined $value;
+	$value =~ s/^\s+|\s+$//g if defined $value;
+	return undef if $value eq '' || $value !~ /^\d+$/;
+	my $n = 0 + $value;
+	return undef if $n < 1 || $n > 10;
+	return $n;
+}
+
 sub route_options {
 	return {
 		budget       => 0,

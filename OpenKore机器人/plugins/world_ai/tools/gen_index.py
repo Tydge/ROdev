@@ -33,6 +33,9 @@ DEFAULT_RATHENA_ROOT = "/Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/r
 # 怪物数值库（Pre-Renewal）。db/mob_db.yml 只是导入桩，真正的数据在这里。
 MOB_DB_REL = "db/pre-re/mob_db.yml"
 
+# 元素克制表（Pre-Renewal），是 Fire/Holy 技能评分的权威来源。
+ATTR_FIX_REL = "db/pre-re/attr_fix.yml"
+
 # 定义静态刷怪脚本集合的 conf。按顺序解析，未注释的 `npc:` 行才是真正加载的刷怪文件。
 SPAWN_CONF_RELS = [
     "npc/scripts_monsters.conf",
@@ -62,9 +65,56 @@ SCHEMA_INT_KEYS = [
 ]
 SCHEMA_STR_KEYS = ["aegis_name", "name", "size", "race", "element"]
 
+# 怪物 AI 模式：mob_db.yml 的 `Ai:` 是 Aegis 怪物类型名（MONSTER_TYPE_XX），
+# 不是直接可读的位掩码。真正的 mode 位掩码来自 rAthena src/map/mob.hpp 的
+# `enum e_aegis_monstertype`。`Modes:` 是稀疏的位覆盖表（MD_* 位），叠加在 Ai 之上。
+MONSTER_TYPE = {
+    "01": 0x81, "02": 0x83, "03": 0x1089, "04": 0x3885, "05": 0x2085,
+    "06": 0x0, "07": 0x108B, "08": 0x7085, "09": 0x3095, "10": 0x84,
+    "11": 0x84, "12": 0x2085, "13": 0x308D, "17": 0x91, "19": 0x3095,
+    "20": 0x3295, "21": 0x3695, "24": 0xA1, "25": 0x1, "26": 0xB695,
+    "27": 0x8084,
+}
+
+# 与 src/common/mmo.hpp 的 e_mode 位一致。Modes: 块里的键直接以 "MD_<键>" 形式
+# 解析，所以这里只保留当前 mob_db.yml 实际用到的覆盖键。
+MD = {
+    "CanMove": 0x1, "Looter": 0x2, "Aggressive": 0x4, "Assist": 0x8,
+    "CastSensorIdle": 0x10, "NoRandomWalk": 0x20, "NoCast": 0x40,
+    "CanAttack": 0x80, "CastSensorChase": 0x200, "ChangeChase": 0x400,
+    "Angry": 0x800, "ChangeTargetMelee": 0x1000, "ChangeTargetChase": 0x2000,
+    "TargetWeak": 0x4000, "RandomTarget": 0x8000, "IgnoreMelee": 0x10000,
+    "IgnoreMagic": 0x20000, "IgnoreRanged": 0x40000, "Mvp": 0x80000,
+    "IgnoreMisc": 0x100000, "KnockbackImmune": 0x200000,
+    "TeleportBlock": 0x400000, "FixedItemDrop": 0x1000000,
+    "Detector": 0x2000000, "StatusImmune": 0x4000000,
+    "SkillImmune": 0x8000000,
+}
+
+# 输出为可解释布尔的位。cast_sensor 合并 idle 与 chase 两个位。
+MODE_FLAG_BITS = [
+    ("can_move", 0x1),
+    ("looter", 0x2),
+    ("aggressive", 0x4),
+    ("assist", 0x8),
+    ("cast_sensor", 0x10 | 0x200),
+    ("can_attack", 0x80),
+    ("mvp", 0x80000),
+    ("ignore_melee", 0x10000),
+    ("ignore_magic", 0x20000),
+    ("ignore_ranged", 0x40000),
+    ("ignore_misc", 0x100000),
+    ("detector", 0x2000000),
+]
+
 ID_LINE_RE = re.compile(r"^  - Id:\s*(\d+)\s*$")
 FIELD_LINE_RE = re.compile(r"^    ([A-Za-z][A-Za-z0-9_]*):\s*(.*?)\s*$")
+MODE_LINE_RE = re.compile(r"^      ([A-Za-z][A-Za-z0-9_]*):\s*(true|false)\s*$")
 MAP_NAME_RE = re.compile(r"^[A-Za-z0-9_@]+$")
+
+ATTR_LEVEL_RE = re.compile(r"^  - Level:\s*(\d+)\s*$")
+ATTR_OUTER_RE = re.compile(r"^    ([A-Za-z]+):\s*$")
+ATTR_INNER_RE = re.compile(r"^      ([A-Za-z]+):\s*(-?\d+)\s*$")
 
 
 def log(msg):
@@ -72,9 +122,13 @@ def log(msg):
 
 
 def parse_mob_db(path):
-    """解析 pre-re mob_db.yml，返回 { mob_id(int): {字段: 值} }。"""
+    """解析 pre-re mob_db.yml，返回 { mob_id(int): {字段: 值} }。
+
+    额外捕获 `Ai`（字符串，默认 "06"）与 `Modes:` 覆盖块（存入 "_modes" 字典）。
+    """
     monsters = {}
     cur = None
+    in_modes = False
     with open(path, encoding="utf-8") as fh:
         for line in fh:
             if line.lstrip().startswith("#"):
@@ -85,14 +139,29 @@ def parse_mob_db(path):
                 cur = dict(INT_FIELDS)
                 cur.update(STR_FIELDS)
                 cur["Id"] = mid
+                cur["Ai"] = "06"
+                cur["_modes"] = {}
                 monsters[mid] = cur
+                in_modes = False
                 continue
             if cur is None:
                 continue
+            if in_modes:
+                mm = MODE_LINE_RE.match(line)
+                if mm:
+                    cur["_modes"][mm.group(1)] = mm.group(2) == "true"
+                    continue
+                in_modes = False
             m = FIELD_LINE_RE.match(line)
             if not m:
                 continue
             key, raw = m.group(1), m.group(2)
+            if key == "Modes":
+                in_modes = True
+                continue
+            if key == "Ai":
+                cur["Ai"] = raw.strip() or "06"
+                continue
             if key in INT_FIELDS:
                 try:
                     cur[key] = int(raw)
@@ -101,6 +170,49 @@ def parse_mob_db(path):
             elif key in STR_FIELDS:
                 cur[key] = raw
     return monsters
+
+
+def parse_attr_fix(path):
+    """解析 pre-re attr_fix.yml，返回 { level(int): { 攻击元素: { 防御元素: % } } }。"""
+    table = {}
+    cur_level = None
+    cur_outer = None
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            stripped = line.strip()
+            if not stripped or stripped.startswith("#"):
+                continue
+            m = ATTR_LEVEL_RE.match(line)
+            if m:
+                cur_level = int(m.group(1))
+                table[cur_level] = {}
+                cur_outer = None
+                continue
+            m = ATTR_OUTER_RE.match(line)
+            if m and cur_level is not None:
+                cur_outer = m.group(1)
+                table[cur_level][cur_outer] = {}
+                continue
+            m = ATTR_INNER_RE.match(line)
+            if m and cur_level is not None and cur_outer is not None:
+                table[cur_level][cur_outer][m.group(1)] = int(m.group(2))
+                continue
+    return table
+
+
+def compute_mode(mob):
+    """由 Ai 类型名 + Modes 覆盖块算出最终 mode 位掩码。"""
+    base = MONSTER_TYPE.get(mob.get("Ai", "06"), 0)
+    raw = base
+    for key, active in (mob.get("_modes") or {}).items():
+        bit = MD.get(key)
+        if bit is None:
+            continue
+        if active:
+            raw |= bit
+        else:
+            raw &= ~bit
+    return raw
 
 
 def conf_npc_paths(conf_path):
@@ -168,6 +280,10 @@ def parse_spawn_file(path, rel, spawns):
 
 
 def build_monster_entry(mob):
+    raw_mode = compute_mode(mob)
+    mode = {"mode_raw": raw_mode}
+    for name, bit in MODE_FLAG_BITS:
+        mode[name] = bool(raw_mode & bit)
     return {
         "id": mob["Id"],
         "aegis_name": mob.get("AegisName", ""),
@@ -189,6 +305,7 @@ def build_monster_entry(mob):
         "walk_speed": mob["WalkSpeed"],
         "attack_range": mob["AttackRange"],
         "skill_range": mob["SkillRange"],
+        "mode": mode,
         "maps": {},
         "boss_spawn_maps": [],
     }
@@ -213,6 +330,15 @@ def validate_index(monsters_out):
                 )
         if not isinstance(entry.get("is_mvp"), bool):
             raise AssertionError("monster %s 字段 is_mvp 应为 bool" % mid)
+        mode = entry.get("mode")
+        if not isinstance(mode, dict):
+            raise AssertionError("monster %s 字段 mode 应为 object" % mid)
+        if not isinstance(mode.get("mode_raw"), int):
+            raise AssertionError("monster %s 字段 mode.mode_raw 应为 int" % mid)
+        for name, _bit in MODE_FLAG_BITS:
+            if not isinstance(mode.get(name), bool):
+                raise AssertionError(
+                    "monster %s 字段 mode.%s 应为 bool" % (mid, name))
 
 
 def sha256_file(path):
@@ -263,6 +389,14 @@ def main(argv):
     else:
         monsters = parse_mob_db(mob_db_path)
         log("[info] mob_db 解析完成，共 %d 条怪物" % len(monsters))
+
+    attr_fix_path = os.path.join(root, ATTR_FIX_REL)
+    if not os.path.isfile(attr_fix_path):
+        errors.append("必需的 attr_fix 缺失: %s" % ATTR_FIX_REL)
+        element_table = {}
+    else:
+        element_table = parse_attr_fix(attr_fix_path)
+        log("[info] attr_fix 解析完成，共 %d 个元素等级" % len(element_table))
 
     spawn_files = collect_spawn_files(root, errors)
 
@@ -329,6 +463,8 @@ def main(argv):
     input_sha256 = {}
     if os.path.isfile(mob_db_path):
         input_sha256[MOB_DB_REL] = sha256_file(mob_db_path)
+    if os.path.isfile(attr_fix_path):
+        input_sha256[ATTR_FIX_REL] = sha256_file(attr_fix_path)
     for full, rel in spawn_files:
         try:
             input_sha256[rel] = sha256_file(full)
@@ -359,10 +495,11 @@ def main(argv):
 
     doc = {
         "meta": {
-            "schema_version": 2,
+            "schema_version": 3,
             "generated_at": datetime.datetime.now().astimezone().isoformat(timespec="seconds"),
             "sources": {
                 "mob_db": MOB_DB_REL,
+                "attr_fix": ATTR_FIX_REL,
                 "spawn_files": [rel for _, rel in spawn_files],
                 "spawn_file_count": len(spawn_files),
                 "input_sha256": input_sha256,
@@ -380,6 +517,7 @@ def main(argv):
         },
         "monsters": ordered_monsters,
         "maps": ordered_maps,
+        "element_table": element_table,
     }
 
     out = args.out

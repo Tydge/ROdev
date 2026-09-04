@@ -6,7 +6,7 @@ use warnings;
 use JSON::PP qw(decode_json);
 use Scalar::Util qw(looks_like_number);
 
-our $SUPPORTED_SCHEMA = 2;
+our $SUPPORTED_SCHEMA = 3;
 
 sub new {
 	my ($class, %args) = @_;
@@ -63,20 +63,23 @@ sub _read_state {
 
 	my $monsters = $doc->{monsters};
 	my $maps = $doc->{maps};
+	my $element_table = $doc->{element_table};
 	return (undef, 'monsters must be an object') unless ref $monsters eq 'HASH';
 	return (undef, 'maps must be an object') unless ref $maps eq 'HASH';
+	return (undef, 'element_table must be an object') unless ref $element_table eq 'HASH';
 
 	my (%by_name, %by_aegis);
 	my $pair_count = 0;
 	for my $id (keys %{$monsters}) {
 		my $monster = $monsters->{$id};
 		return (undef, "monster $id must be an object") unless ref $monster eq 'HASH';
-		for my $key (qw(id name aegis_name level hp base_exp job_exp attack attack2 maps)) {
+		for my $key (qw(id name aegis_name level hp base_exp job_exp attack attack2 maps mode)) {
 			return (undef, "monster $id missing $key") unless exists $monster->{$key};
 		}
 		return (undef, "monster key/id mismatch for $id")
 			unless looks_like_number($monster->{id}) && int($monster->{id}) == int($id);
 		return (undef, "monster $id maps must be an object") unless ref $monster->{maps} eq 'HASH';
+		return (undef, "monster $id mode must be an object") unless ref $monster->{mode} eq 'HASH';
 
 		push @{$by_name{lc($monster->{name} // '')}}, int($id) if length($monster->{name} // '');
 		push @{$by_aegis{lc($monster->{aegis_name} // '')}}, int($id) if length($monster->{aegis_name} // '');
@@ -99,10 +102,11 @@ sub _read_state {
 	}
 
 	return ({
-		doc        => $doc,
-		by_name    => \%by_name,
-		by_aegis   => \%by_aegis,
-		pair_count => $pair_count,
+		doc           => $doc,
+		by_name       => \%by_name,
+		by_aegis      => \%by_aegis,
+		pair_count    => $pair_count,
+		element_table => $element_table,
 	}, undef);
 }
 
@@ -125,6 +129,30 @@ sub monster {
 	my ($self, $id) = @_;
 	return undef unless $self->loaded && defined $id && $id =~ /^\d+$/;
 	return $self->{state}{doc}{monsters}{int($id)};
+}
+
+sub mode {
+	my ($self, $id) = @_;
+	return undef unless $self->loaded && defined $id && $id =~ /^\d+$/;
+	my $monster = $self->{state}{doc}{monsters}{int($id)};
+	return undef unless $monster;
+	return $monster->{mode};
+}
+
+sub element_table { return $_[0]->loaded ? $_[0]->{state}{element_table} : undef; }
+
+# 元素克制倍率（百分比）：攻击元素 × 目标防御元素 × 目标元素等级。
+# 返回数值百分比（如 150 表示 1.5×，50 表示 0.5×），缺失时返回 undef。
+sub element_factor {
+	my ($self, $attacker, $target, $level) = @_;
+	return undef unless $self->loaded && defined($attacker) && defined($target) && defined($level);
+	my $table = $self->{state}{element_table};
+	my $lvl = $table->{"$level"} || $table->{$level};
+	return undef unless ref($lvl) eq 'HASH';
+	my $outer = $lvl->{$attacker};
+	return undef unless ref($outer) eq 'HASH';
+	return undef unless exists $outer->{$target};
+	return $outer->{$target};
 }
 
 sub map_spawns {

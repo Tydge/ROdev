@@ -104,4 +104,71 @@ my ($savage_allowed, $savage_reasons) = $scorer->hard_filter($swordman_snapshot,
 ok(!$savage_allowed, 'repeatedly fatal Savage target is filtered for the live Swordman baseline');
 like(join(' ', @{$savage_reasons}), qr/kill cost/, 'Savage rejection explains excessive kill cost');
 
+# --- Step 4A.2: class-aware scoring ---
+sub fake_map_profile { return { total => 0, contributions => {} }; }
+
+my $dummy = {
+	id => 9991, name => 'EarthDummy', level => 30, hp => 1000,
+	base_exp => 500, job_exp => 400, defense => 20, magic_defense => 5,
+	element => 'Earth', element_level => 1, attack => 40, attack2 => 50,
+	attack_range => 1, is_mvp => 0, boss_spawn_maps => [],
+};
+
+# 1. Key regression: Mage with weak physical ATK but real MATK + Fire Bolt is not blocked.
+$scorer->set_combat_context(
+	known_skills       => { MG_FIREBOLT => 6 },
+	attack_skill_slots => [{ index => 0, handle => 'MG_FIREBOLT', not_monsters => '' }],
+	element_table      => $index->element_table,
+);
+my $mage_snapshot = {
+	base_level => 30, job_id => 2, job_name => 'Mage',
+	hp => 500, hp_max => 500, sp => 100, sp_max => 200,
+	attack_total => 30, attack_magic_avg => 150,
+};
+my ($mage_allowed, $mage_reasons) = $scorer->hard_filter($mage_snapshot, $dummy, 'test_map');
+ok($mage_allowed, 'Mage with Fire Bolt is not blocked by low physical ATK')
+	or diag('Mage was blocked: ' . join('; ', @{$mage_reasons}));
+my $mage_scored = $scorer->score_candidate($mage_snapshot, $dummy, 'test_map', 10, fake_map_profile());
+is($mage_scored->{estimate_mode}, 'MAGIC_SKILL', 'Mage candidate uses magic estimate');
+
+# 2. DEF penalizes physical, MDEF penalizes magic.
+my $tanky = { %$dummy, defense => 80, magic_defense => 5 };
+my $mage_tanky = $scorer->score_candidate($mage_snapshot, $tanky, 'test_map', 10, fake_map_profile());
+
+$scorer->set_combat_context(
+	known_skills       => { SM_BASH => 10 },
+	attack_skill_slots => [{ index => 0, handle => 'SM_BASH', not_monsters => '' }],
+	element_table      => $index->element_table,
+);
+my $sword_snapshot = {
+	base_level => 30, job_id => 1, job_name => 'Swordman',
+	hp => 800, hp_max => 800, sp => 200, sp_max => 200, attack_total => 100,
+};
+my $sword_tanky = $scorer->score_candidate($sword_snapshot, $tanky, 'test_map', 10, fake_map_profile());
+ok($sword_tanky->{breakdown}{defense_penalty} > $mage_tanky->{breakdown}{defense_penalty},
+	'high DEF penalizes the physical class more than the magic class');
+
+# 3. Element ordering for Fire.
+$scorer->set_combat_context(
+	known_skills       => { MG_FIREBOLT => 6 },
+	attack_skill_slots => [{ index => 0, handle => 'MG_FIREBOLT', not_monsters => '' }],
+	element_table      => $index->element_table,
+);
+my $fire_earth = $scorer->score_candidate($mage_snapshot, { %$dummy, element => 'Earth' }, 'test_map', 10, fake_map_profile());
+my $fire_water = $scorer->score_candidate($mage_snapshot, { %$dummy, element => 'Water' }, 'test_map', 10, fake_map_profile());
+ok($fire_earth->{element_factor} > $fire_water->{element_factor},
+	'Fire Bolt sees favorable factor vs Earth, unfavorable vs Water');
+ok($fire_earth->{score} > $fire_water->{score},
+	'element flows into score via kill_cost: Earth ranks above Water');
+
+# 4. Ranged risk: melee suffers more than ranged, but ranged risk stays positive.
+$scorer->set_combat_context(known_skills => {}, attack_skill_slots => [], element_table => $index->element_table);
+my $ranged_monster = { %$dummy, attack_range => 3 };
+my $melee_est = $scorer->score_candidate($sword_snapshot, $ranged_monster, 'test_map', 10, fake_map_profile());
+my $ranged_snap = { %$sword_snapshot, job_id => 3, job_name => 'Archer' };
+my $ranged_est = $scorer->score_candidate($ranged_snap, $ranged_monster, 'test_map', 10, fake_map_profile());
+ok($melee_est->{breakdown}{target_risk} > $ranged_est->{breakdown}{target_risk},
+	'melee suffers more range risk than ranged');
+ok($ranged_est->{breakdown}{target_risk} > 0, 'ranged range risk is still positive');
+
 done_testing();

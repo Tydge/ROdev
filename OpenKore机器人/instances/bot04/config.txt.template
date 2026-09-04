@@ -1028,4 +1028,5 @@ avoidObstaclesDefaultPortals {
 #}
 macro_orphans terminate
 
+world_ai_exec_max_hops 6
 world_ai_auto_execute 1

@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.4.1';
+our $VERSION = '3.5.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -40,7 +40,13 @@ my $route_probe = WorldAI::RouteProbe->new(
 	wall_timeout_ms => 1000,
 	task_slice_s => 0.03,
 );
-my $EXEC_MAX_HOPS = 3;
+my $EXEC_MAX_HOPS = WorldAI::ExecutionPolicy->normalize_max_hops($config{world_ai_exec_max_hops});
+unless (defined $EXEC_MAX_HOPS) {
+	$EXEC_MAX_HOPS = 6;
+	my $raw = defined($config{world_ai_exec_max_hops}) ? $config{world_ai_exec_max_hops} : '';
+	$raw =~ s/\s+/ /g;
+	wa_warning("[PLUGIN] invalid world_ai_exec_max_hops='$raw' (expected 1..10); falling back to 6");
+}
 my $execution_policy = WorldAI::ExecutionPolicy->new(
 	allow_npc => 0,
 	max_hops  => $EXEC_MAX_HOPS,
@@ -69,7 +75,11 @@ my $MAX_LOW_PROGRESS_DEATHS = 2;
 my $MAX_NO_KILL_ATTACKS = 3;
 my $MAX_NO_KILL_ELAPSED_S = 180;
 my $TARGET_FAILURE_COOLDOWN_S = 1800;
-my %target_cooldown;
+my $GLOBAL_MONSTER_COOLDOWN_S = 3600;   # 跨图换怪冷却：同一怪累计死亡过多则全局弃选 1 小时
+my $MAX_GLOBAL_MONSTER_DEATHS = 2;      # 累计死亡达到此阈值即触发全局换怪
+my %target_cooldown;                    # key: "monster_id@map"（单图）
+my %monster_cooldown;                   # key: monster_id（跨图全局）
+my %monster_stats;                      # monster_id -> { kills => N, deaths => M }（会话累计）
 
 Plugins::register(
 	$NAME,
@@ -227,6 +237,7 @@ sub print_status {
 		'[STATUS] cpu_model=ON_DEMAND_SCORING background_hook=ACTIVE_STATE_MONITOR max_top_n=%d route_engine=Task::CalcMapRoute route_probe_timeout_ms=%d route_command_budget_ms=%d max_route_probes=%d exec_max_hops=%d',
 		$MAX_TOP_N, $ROUTE_PROBE_WALL_TIMEOUT_MS, $ROUTE_COMMAND_BUDGET_MS, $MAX_ROUTE_PROBES_PER_COMMAND, $EXEC_MAX_HOPS,
 	));
+	wa_log('[STATUS] route_budget_zeny=0 special_routes=OFF');
 	if ($index->loaded) {
 		wa_log(sprintf(
 			'[STATUS] index=loaded schema=%s monsters=%d maps=%d candidate_pairs=%d',
@@ -242,8 +253,8 @@ sub print_status {
 		return;
 	}
 	wa_log(sprintf(
-		'[CHARACTER] base=%s job=%s class=%s map=%s hp=%s/%s sp=%s/%s atk=%s def=%s hit=%s flee=%s',
-		map { defined($_) ? $_ : 'undef' } @{$snapshot}{qw(base_level job_level job_name current_map hp hp_max sp sp_max attack_total defense_total hit flee)}
+		'[CHARACTER] base=%s job=%s class=%s map=%s hp=%s/%s sp=%s/%s atk=%s def=%s hit=%s flee=%s matk=%s mdef=%s',
+		map { defined($_) ? $_ : 'undef' } @{$snapshot}{qw(base_level job_level job_name current_map hp hp_max sp sp_max attack_total defense_total hit flee attack_magic_avg def_magic_total)}
 	));
 	_log_skill_progress();
 }
@@ -431,11 +442,33 @@ sub _target_key {
 	return join('@', 0 + ($monster_id || 0), $map || '');
 }
 
+sub _register_monster_death {
+	my ($monster_id) = @_;
+	return unless $monster_id;
+	$monster_stats{$monster_id}{deaths}++;
+	my $s = $monster_stats{$monster_id};
+	if ($s->{deaths} >= $MAX_GLOBAL_MONSTER_DEATHS && ($s->{kills} || 0) < $s->{deaths}) {
+		$monster_cooldown{$monster_id} = time + $GLOBAL_MONSTER_COOLDOWN_S;
+		wa_warning(sprintf(
+			'[FEEDBACK_FILTER] global_monster_cooldown monster_id=%d deaths=%d kills=%d seconds=%d reason=repeated_deaths_across_maps',
+			$monster_id, $s->{deaths}, $s->{kills} || 0, $GLOBAL_MONSTER_COOLDOWN_S,
+		));
+	}
+}
+
 sub _filter_feedback_cooldowns {
 	my ($results) = @_;
 	my $now = time;
 	my @eligible;
 	for my $candidate (@{$results || []}) {
+		my $global_until = $monster_cooldown{$candidate->{monster_id}} || 0;
+		if ($global_until > $now) {
+			wa_log(sprintf('[FEEDBACK_FILTER] skipped %s (%d) global_monster_cooldown_remaining=%.0fs',
+				$candidate->{monster_name}, $candidate->{monster_id}, $global_until - $now));
+			next;
+		}
+		delete $monster_cooldown{$candidate->{monster_id}} if $global_until;
+
 		my $key = _target_key($candidate->{monster_id}, $candidate->{target_map});
 		my $until = $target_cooldown{$key} || 0;
 		if ($until > $now) {
@@ -732,6 +765,7 @@ sub on_ai_pre {
 			$execution{dead_seen} = 1;
 			$execution{deaths}++;
 			wa_warning("[EXEC] character_death target=$execution{target_monster} deaths=$execution{deaths} kills=$execution{kills}");
+			_register_monster_death($execution{target_id});
 			if (($execution{kills} == 0 && $execution{deaths} >= $MAX_ZERO_KILL_DEATHS) ||
 				($execution{deaths} >= $MAX_LOW_PROGRESS_DEATHS && $execution{kills} < $execution{deaths})) {
 				my $key = _target_key($execution{target_id}, $execution{target_map});
@@ -792,6 +826,7 @@ sub on_target_died {
 	return unless $monster && lc($monster->name // '') eq lc($execution{target_monster});
 	return unless ($monster->{dmgFromYou} || 0) > 0;
 	$execution{kills}++;
+	$monster_stats{$execution{target_id}}{kills}++;
 	wa_log("[EXEC] target_kill_confirmed monster=$execution{target_monster} kills=$execution{kills}", 'success');
 }
 
@@ -976,6 +1011,13 @@ sub _calculate_ranked {
 		return;
 	}
 
+	$scorer->set_combat_context(
+		known_skills       => _known_skills(),
+		attack_skill_slots => _attack_skill_slots(),
+		element_table      => $index->element_table,
+		archer_has_ammo    => (_execution_resource_issue() ? 0 : 1),
+	);
+
 	my $started = time;
 	my $results = _all_candidates($snapshot);
 	my $elapsed_ms = (time - $started) * 1000;
@@ -986,8 +1028,8 @@ sub _print_breakdown {
 	my ($result) = @_;
 	my $b = $result->{breakdown};
 	wa_log(sprintf(
-		'  breakdown: +level_fit=%s +exp_value=%s +spawn_count_score=%s -kill_cost=%s -target_risk=%s -map_risk=%s',
-		map { _fmt($b->{$_}) } qw(level_fit exp_value spawn_count_score kill_cost target_risk map_risk)
+		'  breakdown: +level_fit=%s +exp_value=%s +spawn_count_score=%s +class_match=%s -kill_cost=%s -defense_penalty=%s -target_risk=%s -map_risk=%s',
+		map { _fmt($b->{$_}) } qw(level_fit exp_value spawn_count_score class_match kill_cost defense_penalty target_risk map_risk)
 	));
 }
 
@@ -1001,6 +1043,12 @@ sub _print_compact_result {
 		$result->{route_reachability},
 	));
 	_print_breakdown($result);
+	wa_log(sprintf(
+		'  combat: class=%s estimate=%s damage=%s power=%s kill_cost=%s element_factor=%s degraded=%s',
+		map { defined($_) ? $_ : 'n/a' }
+			@{$result}{qw(class_family estimate_mode damage_type effective_power estimated_kill_cost element_factor)},
+		$result->{degraded} ? 'yes' : 'no',
+	));
 	wa_log('  reasons: ' . (@{$result->{reasons}} ? join('; ', @{$result->{reasons}}) : 'balanced static score'));
 }
 
@@ -1031,7 +1079,8 @@ sub print_recommendation {
 	}
 	wa_log(sprintf('[RECOMMEND] elapsed_ms=%.1f', $elapsed_ms));
 	_print_compact_result(1, $results->[0]);
-	wa_log('  estimated_hits=' . _fmt($results->[0]{estimated_hits}));
+	wa_log('  estimated_kill_cost=' . _fmt($results->[0]{estimated_kill_cost}) .
+		' estimate_mode=' . ($results->[0]{estimate_mode} // 'n/a'));
 }
 
 sub _route_value {

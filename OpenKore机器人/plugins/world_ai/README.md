@@ -1,8 +1,10 @@
-# world_ai — 受控真实执行器 + 职业战斗策略（Step 4A.1）
+# world_ai — 受控真实执行器 + 职业感知评分（Step 4A.2）
 
 `world_ai` 是 OpenKore 上层的练级决策器。它保留只读评分和路线预检，并提供真实执行模式：选择第一条符合安全政策的推荐，临时修改运行态 `lockMap` 与目标怪物控制，创建受约束的 OpenKore 原生 `Task::MapRoute`；到达后仍由 OpenKore 原有战斗、拾取、卖货、补药、复活和 lockMap 返回流程工作。
 
 Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。Step 4A.1 调整 Swordman / Mage / Archer 的自然学习顺序，并在 `packet_charSkills` 中只当基线技能启用状态改变时刷新活动战斗策略。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。
+
+Step 4A.2 让 Scorer 按职业实际战斗方式选怪/选图：新增共享 `ClassProfile` 与 `CombatEstimate`，把 Mage / Acolyte 从物理 ATK 模型切到 MATK 模型（Fire Bolt / Holy Light），把 Swordman Bash / Archer Double Strafe / Thief Double Attack 的有限输出加成纳入评分，并让 DEF / MDEF / 元素克制和怪物 Mode 进入评分与 map risk。路线执行上限从写死的 3 hops 放宽为可配置（默认 6）。
 
 执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 
@@ -32,7 +34,9 @@ worldai reload
 
 `execute` 会重新评分并使用执行专用路线约束验证候选。若当前正在卖货、买药、仓库、NPC 对话、传送、事件宏或坐下恢复，命令安全拒绝；若正在战斗，则等待当前目标死亡后再出发。命令只决策一次，之后不会因升级或评分变化自动换图。
 
-`status` 额外输出当前职业族的基线技能、已学等级、目标等级与是否已可用。`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击、击杀与死亡计数。`exec stop` 立即恢复运行态配置。
+`status` 额外输出当前职业族的基线技能、已学等级、目标等级与是否已可用，以及 `exec_max_hops`、`route_budget_zeny=0`、`special_routes=OFF` 和实时 MATK / MDEF。`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击、击杀与死亡计数。`exec stop` 立即恢复运行态配置。
+
+`top` / `recommend` 的每项会额外输出 `combat` 行：`class`、`estimate`（`PHYSICAL_NORMAL / PHYSICAL_SKILL / MAGIC_SKILL / MAGIC_DEGRADED`）、`damage`、`power`、`kill_cost` 和 `degraded`，并把 `class_match`、`element_match`、`defense_penalty` 计入 breakdown。
 
 `combat inspect` 是只读诊断：显示当前职业族、已学技能 handle、已配置 `attackSkillSlot`、当前执行目标、匹配策略和实际 `monsters` 过滤。`recommend` / `top` 不会应用战斗策略，只有 `execute` 成功应用最终目标时才同步。
 
@@ -67,7 +71,9 @@ world_ai/
 ├── lib/WorldAI/
 │   ├── Index.pm
 │   ├── CharacterSnapshot.pm
+│   ├── ClassProfile.pm
 │   ├── CombatPolicy.pm
+│   ├── CombatEstimate.pm
 │   ├── CombatRuntimeOverride.pm
 │   ├── Scorer.pm
 │   ├── RouteProbe.pm
@@ -79,19 +85,23 @@ world_ai/
 │   ├── performance.t
 │   ├── route_probe.t
 │   ├── execution_policy.t
+│   ├── class_profile.t
+│   ├── combat_estimate.t
 │   ├── combat_policy.t
 │   ├── combat_runtime_override.t
 │   └── runtime_override.t
 └── tools/gen_index.py
 ```
 
-- `Index.pm`：加载和校验索引，建立名称与 ID 查询表；reload 失败时保留旧数据。
-- `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态。
-- `CombatPolicy.pm`：根据职业族、已学技能、已配置原生技能槽和最终执行目标生成纯数据策略。
+- `Index.pm`：加载和校验索引，建立名称与 ID 查询表，暴露怪物 `mode` 与元素克制表；reload 失败时保留旧数据。
+- `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态，含 MATK / MDEF。
+- `ClassProfile.pm`：共享职业 Profile（职业族、伤害类型、战斗风格、基线技能/元素、被动技能）。
+- `CombatPolicy.pm`：根据职业族、已学技能、已配置原生技能槽和最终执行目标生成纯数据策略（复用 `ClassProfile`）。
+- `CombatEstimate.pm`：由快照 + 职业 Profile + 怪物生成战斗代理值（`raw_power` / `effective_power` / `estimated_kill_cost` / `defense_penalty` / `element_factor`）。
 - `CombatRuntimeOverride.pm`：只修改匹配技能槽的运行时 `monsters` 值，并精确恢复。
-- `Scorer.pm`：无 OpenKore 副作用的纯评分模块。
+- `Scorer.pm`：无 OpenKore 副作用的纯评分模块，接入 `CombatEstimate` 与 `ClassProfile`。
 - `RouteProbe.pm`：局部执行 `Task::CalcMapRoute`，解析三态与路线元数据；不加入 AI queue。
-- `ExecutionPolicy.pm`：定义执行阶段允许的路线及拒绝原因。
+- `ExecutionPolicy.pm`：定义执行阶段允许的路线及拒绝原因，并校验 `world_ai_exec_max_hops`。
 - `RuntimeOverride.pm`：保存、应用和精确恢复地图、路线和目标怪的纯内存配置覆盖。
 - `world_ai.pl`：命令、状态机、原生 MapRoute 创建、运行路线复核和错误隔离。
 
@@ -105,7 +115,7 @@ world_ai/
 
 - 执行专用 CalcMapRoute 固定 `budget=0`，并设置 `noGoCommand / noTeleSpawn / noWarpItem / noAirship`。
 - 第一版还拒绝任何 NPC step、票券、收费、command、airship、save teleport 和 warp item 路线。
-- 执行政策默认限制路线最多 3 跳（`exec_max_hops=3`），让角色先在附近练级；超过跳数的候选会以 `route_hops_exceeded` 跳过。后续稳定后可调整 `$EXEC_MAX_HOPS`。
+- 执行政策默认限制路线最多 6 跳，可通过 `world_ai_exec_max_hops` 配置（合法范围 1..10，非法值 warning 后回退 6）。超过跳数的候选会以 `route_hops_exceeded` 跳过。收费/NPC/特殊传送路线仍保持关闭。
 - 实际 MapRoute 设置 `noGoCommand / noTeleSpawn / noAirship`，运行态把 `route_maxWarpFee / route_warpByItem / saveMap_warp` 设为 0；每次 MapRoute 重算后再次检查路线元数据。
 - 背包存在 Kafra 免费传送券（7060）时拒绝执行，避免实际 MapRoute 使用票券分支。
 - `lockMap`、`lockMap_x/y/randX/randY`、三项路线开关、目标怪物条目和已更改的 `attackSkillSlot_*_monsters` 都保存原值并精确恢复。
@@ -113,14 +123,16 @@ world_ai/
 - `exec stop`、路线失败、超时、监控异常和插件卸载都会恢复；进程崩溃或重启则天然重新读取磁盘原配置。
 - 多图免费步行路线允许 900 秒，避免首次发现 portal 时 OpenKore 重建 portal LOS 表造成误超时。
 - 挂接 `AI_buy_auto_needitem` 做买货守门：当 `zeny` 低于最便宜补货物品单价时跳过 buyAuto 触发，避免破产角色陷入「触发→买不到→完成→再触发」死循环；跳过一次按 60 秒限流告警。
-- 普通职业预估击杀上限由 65 收紧为 20 次；实战中同一怪物@地图长时间多次开战却零击杀，或反复死亡且击杀进度偏低时，将该组合冷却 1800 秒再重新选择。
+- 普通职业预估击杀上限收紧为物理 20 次、魔法 24 次；魔法职业改用 MATK 作为主要 power 来源，不再被法杖物攻 20-hit 上限误杀。实战中同一怪物@地图长时间多次开战却零击杀，或反复死亡且击杀进度偏低时，将该组合冷却 1800 秒再重新选择。
 
 - MVP 或候选地图属于 `boss_spawn_maps` 时硬排除。
 - 明显超出等级、单击伤害或预估击杀次数阈值的怪物硬排除。
 - 新手职（`job_id == 0`，未转职）额外收紧：不打高于自身等级的怪（`NOVICE_MAX_LEVEL_ABOVE=0`）、怪物最大攻击上限 20（`NOVICE_MAX_MONSTER_ATTACK=20`）、单击伤害低于 25% 最大 HP（`NOVICE_MAX_ATTACK_HP_RATIO=0.25`）、预估击杀 15 次以内（`NOVICE_MAX_ESTIMATED_HITS=15`），并给目标风险与地图共刷风险乘 `NOVICE_TARGET_RISK_MULTIPLIER=1.6`。这避免纯等级拟合把没有一转技能/武器精通的新手派去打死打不动的怪（实测 12 级新手被 Baby Desert Wolf 每约 75 秒打死一次）。阈值都在 `Scorer.pm` 的 `%DEFAULTS` 中可调。
 - `skill_range` 暂不评分，因为当前数据几乎都是默认值，不能证明怪物实际拥有远程技能。
-- `attack_range` 参与远程风险。
-- 当前 schema 2 只有刷新数量，没有地图面积和重生时间，因此评分项叫 `spawn_count_score`，不是严格的刷新密度。
+- `attack_range` 参与远程风险；远程/施法职业（Archer、Mage、Acolyte）对远程怪的额外惩罚按约 70% 计入，但不归零。
+- 怪物 Mode 进入 map risk：完全被动的 co-spawn 明显降险，Aggressive 保持全额，Cast Sensor 对施法职业额外提险。
+- 元素克制来自 rAthena `db/pre-re/attr_fix.yml`（生成进 `element_table`），只对 Fire Bolt / Holy Light 生效，且只是中等幅度修正，不会压过安全过滤。
+- 当前 schema 3 只有刷新数量，没有地图面积和重生时间，因此评分项叫 `spawn_count_score`，不是严格的刷新密度。
 - Top 榜只使用 `%maps_lut` 已知地图；路线仍标为 `UNVERIFIED`，Step 3 执行前必须重新验证。
 - `CANNOT_LOAD_FIELD` 和 `CANNOT_CALCULATE_ROUTE` 归类为 `UNREACHABLE`；超时、角色状态不足、异常或未知 Task 错误一律归类为 `UNKNOWN`。
 - 路线 `walk`、Zeny 和票券是 OpenKore 最后一步的累计值，不把每一步重复相加；当前阶段不把路线成本加入 score。
@@ -137,6 +149,8 @@ prove -I"OpenKore机器人/plugins/world_ai/lib" \
   "OpenKore机器人/plugins/world_ai/t/performance.t" \
   "OpenKore机器人/plugins/world_ai/t/route_probe.t" \
   "OpenKore机器人/plugins/world_ai/t/execution_policy.t" \
+  "OpenKore机器人/plugins/world_ai/t/class_profile.t" \
+  "OpenKore机器人/plugins/world_ai/t/combat_estimate.t" \
   "OpenKore机器人/plugins/world_ai/t/combat_policy.t" \
   "OpenKore机器人/plugins/world_ai/t/combat_runtime_override.t" \
   "OpenKore机器人/plugins/world_ai/t/managed_config.t" \
@@ -154,8 +168,8 @@ python3 "OpenKore机器人/plugins/world_ai/tools/gen_index.py" \
   --rathena-root "/Users/wangtaizhi/Documents/Codex/2026-08-22/j/outputs/ro-local/rathena"
 ```
 
-数据来自 `db/pre-re/mob_db.yml` 与三个怪物脚本配置实际启用的静态刷怪文件。必需输入缺失时默认失败且不覆盖旧索引；只有显式传 `--allow-partial` 才允许生成部分数据。
+数据来自 `db/pre-re/mob_db.yml`（含 `Ai` 怪物类型与 `Modes` 覆盖 → 怪物 Mode）、`db/pre-re/attr_fix.yml`（元素克制表）与三个怪物脚本配置实际启用的静态刷怪文件。必需输入缺失时默认失败且不覆盖旧索引；只有显式传 `--allow-partial` 才允许生成部分数据。
 
-当前 schema 2 包含 510 种有静态刷新点的怪物、318 张地图。内部关联始终使用怪物 ID，避免 Name/AegisName/刷怪脚本别名不一致。
+当前 schema 3 包含 510 种有静态刷新点的怪物、318 张地图，以及 `element_table` 与每只怪的 `mode`（`can_move / aggressive / assist / cast_sensor / detector / ...` 和 `mode_raw`）。内部关联始终使用怪物 ID，避免 Name/AegisName/刷怪脚本别名不一致。
 
 已知边界：不索引 NPC 动态召唤；不计算真实 EXP/hour、掉落收益、路线成本、地图面积或实际重生率；不修改 rAthena 原生刷怪。

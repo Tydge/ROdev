@@ -51,4 +51,27 @@ ok($hop_policy->evaluate({ %$free_portal, route_hops => 0 })->{allowed}, 'same-m
 my $unlimited = WorldAI::ExecutionPolicy->new(allow_npc => 0);
 ok($unlimited->evaluate({ %$free_portal, route_hops => 8 })->{allowed}, 'no hop limit by default');
 
+# --- configurable hops (Step 4A.2: default 6) ---
+my $six = WorldAI::ExecutionPolicy->new(allow_npc => 0, max_hops => 6);
+ok($six->evaluate({ %$free_portal, route_hops => 3 })->{allowed}, '3 hops allowed under max 6');
+ok($six->evaluate({ %$free_portal, route_hops => 4 })->{allowed}, '4 hops allowed under max 6');
+ok($six->evaluate({ %$free_portal, route_hops => 6 })->{allowed}, '6 hops allowed under max 6');
+ok(!$six->evaluate({ %$free_portal, route_hops => 7 })->{allowed}, '7 hops rejected under max 6');
+
+my $four = WorldAI::ExecutionPolicy->new(allow_npc => 0, max_hops => 4);
+ok($four->evaluate({ %$free_portal, route_hops => 4 })->{allowed}, 'custom max 4 allows 4 hops');
+ok(!$four->evaluate({ %$free_portal, route_hops => 5 })->{allowed}, 'custom max 4 rejects 5 hops');
+
+# --- normalize_max_hops validation ---
+is(WorldAI::ExecutionPolicy->normalize_max_hops('6'), 6, 'valid hops string normalizes');
+is(WorldAI::ExecutionPolicy->normalize_max_hops(6), 6, 'valid hops number normalizes');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('1'), 1, 'min hops is 1');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('10'), 10, 'max hops is 10');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('0'), undef, 'zero is invalid');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('-1'), undef, 'negative is invalid');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('11'), undef, 'above max is invalid');
+is(WorldAI::ExecutionPolicy->normalize_max_hops('abc'), undef, 'non-numeric is invalid');
+is(WorldAI::ExecutionPolicy->normalize_max_hops(''), undef, 'empty is invalid');
+is(WorldAI::ExecutionPolicy->normalize_max_hops(undef), undef, 'undef is invalid');
+
 done_testing;
