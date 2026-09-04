@@ -55,6 +55,15 @@ sub capture {
 	my $pos_x = _number($char->{pos_to}{x});
 	my $pos_y = _number($char->{pos_to}{y});
 
+	# 续航相关资源：红药（501）与箭矢（1750）。用于“资源感知”的脆弱度评估，
+	# 让 AI 在没有补给时自动降级去打弱怪/坐地回血，而不是继续越级送死。
+	my $red_potion_count = 0;
+	my $arrow_count = 0;
+	if ($char->inventory) {
+		$red_potion_count = 0 + (eval { $char->inventory->sumByNameID(501) } || 0);
+		$arrow_count = 0 + (eval { $char->inventory->sumByNameID(1750) } || 0);
+	}
+
 	return ({
 		base_level       => $base_level,
 		job_level        => _number($char->{lv_job}),
@@ -68,6 +77,8 @@ sub capture {
 		pos_x            => $pos_x,
 		pos_y            => $pos_y,
 		zeny             => _number($char->{zeny}),
+		red_potion_count => $red_potion_count,
+		arrow_count      => $arrow_count,
 		attack           => $attack,
 		attack_bonus     => $attack_bonus,
 		attack_total     => _sum_defined($attack, $attack_bonus),

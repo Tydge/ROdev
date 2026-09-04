@@ -30,6 +30,14 @@ my %DEFAULTS = (
 	RANGED_RISK_WEIGHT    => 1.2,
 	RANGED_RISK_RANGED_FACTOR => 0.7,
 
+	# 资源感知（脆弱度）：没药/没钱/低血时收紧安全过滤并放大风险，
+	# 让 AI 自动降级去打弱怪/坐地回血攒钱，而不是越级送死。
+	VULNERABILITY_RISK_MULT        => 0.5,  # 每级脆弱 → target/map risk ×(1+0.5)
+	VULNERABILITY_LEVEL_STEP       => 3,    # 每级脆弱 → max_level_above -3
+	VULNERABILITY_ATTACK_STEP      => 0.15, # 每级脆弱 → max_attack_ratio -0.15
+	VULNERABILITY_AGGRESSIVE_LEVEL => 2,    # 脆弱 ≥ 此级 → 拒绝主动怪
+	POTION_MIN_PRICE               => 50,   # 最低红药价（与 BUY_GUARD 一致）
+
 	# Novice (job_id == 0) has no first-job skills, no weapon mastery and far
 	# weaker combat output than a first-job character of the same base level.
 	NOVICE_MAX_LEVEL_ABOVE        => 0,    # never fight monsters above own level
@@ -76,6 +84,26 @@ sub _is_novice {
 	return _num($snapshot->{job_id}, -1) == 0;
 }
 
+# 脆弱度（0..3）：综合“续航能力 + 当前血量”评估当前角色有多危险。
+# 值越高，打分时越偏向安全弱怪、越回避危险目标/地图。
+sub _vulnerability {
+	my ($self, $snapshot) = @_;
+	my $hp = _num($snapshot->{hp}, 0);
+	my $hp_max = _num($snapshot->{hp_max}, 0);
+	my $hp_ratio = $hp_max > 0 ? $hp / $hp_max : 1.0;
+	my $zeny = _num($snapshot->{zeny}, 0);
+	my $potions = _num($snapshot->{red_potion_count}, 0);
+
+	my $level = 0;
+	# 无续航：既没红药也没钱买最低价红药（连一瓶都买不起）
+	$level++ if $potions < 1 && $zeny < $self->{config}{POTION_MIN_PRICE};
+	# 血量偏低
+	$level++ if $hp_ratio < 0.7;
+	# 血量危险
+	$level++ if $hp_ratio < 0.35;
+	return min(3, $level);
+}
+
 sub _boss_on_map {
 	my ($monster, $map) = @_;
 	return 0 unless ref($monster->{boss_spawn_maps}) eq 'ARRAY';
@@ -120,6 +148,13 @@ sub hard_filter {
 	my $max_level_above  = $is_novice ? $self->{config}{NOVICE_MAX_LEVEL_ABOVE}    : $self->{config}{MAX_LEVEL_ABOVE};
 	my $max_attack_ratio = $is_novice ? $self->{config}{NOVICE_MAX_ATTACK_HP_RATIO} : $self->{config}{MAX_ATTACK_HP_RATIO};
 
+	# 资源感知收紧：脆弱时下调可挑战等级上限与单次伤害上限。
+	my $vuln = $self->_vulnerability($snapshot);
+	if (!$is_novice && $vuln > 0) {
+		$max_level_above = max(0, $max_level_above - $self->{config}{VULNERABILITY_LEVEL_STEP} * $vuln);
+		$max_attack_ratio = max(0.25, $max_attack_ratio - $self->{config}{VULNERABILITY_ATTACK_STEP} * $vuln);
+	}
+
 	push @reasons, 'MVP excluded' if $monster->{is_mvp};
 	push @reasons, 'boss spawn excluded' if _boss_on_map($monster, $map);
 	push @reasons, "monster level is more than $max_level_above above character"
@@ -129,6 +164,11 @@ sub hard_filter {
 
 	push @reasons, 'novice: monster attack exceeds novice limit'
 		if $is_novice && $attack_max > $self->{config}{NOVICE_MAX_MONSTER_ATTACK};
+
+	# 资源感知：重度脆弱时回避主动怪（主动怪会先手，脆皮扛不住）。
+	my $aggressive = $monster->{mode} && $monster->{mode}{aggressive} ? 1 : 0;
+	push @reasons, 'vulnerable: aggressive monster avoided'
+		if $vuln >= $self->{config}{VULNERABILITY_AGGRESSIVE_LEVEL} && $aggressive;
 
 	my $estimate = $self->_combat_estimate($snapshot, $monster);
 	# 硬过滤用“裸攻击力”（ATK/MATK，不含技能/被动/元素倍率）估算击杀成本。
@@ -281,11 +321,17 @@ sub score_candidate {
 		* $self->{config}{KILL_COST_WEIGHT};
 	my $defense_penalty = $estimate->{defense_penalty} * $self->{config}{DEFENSE_PENALTY_WEIGHT};
 	my $class_match = $self->_class_match($estimate);
-	my $target_risk = $self->_target_risk($snapshot, $monster, $estimate) * $self->{config}{TARGET_RISK_WEIGHT};
+
+	# 资源感知：脆弱度放大目标风险与地图风险（缺续航时更怕受伤/群怪）。
+	my $vuln = $self->_vulnerability($snapshot);
+	my $vuln_mult = 1 + $self->{config}{VULNERABILITY_RISK_MULT} * $vuln;
+
+	my $target_risk = $self->_target_risk($snapshot, $monster, $estimate)
+		* $self->{config}{TARGET_RISK_WEIGHT} * $vuln_mult;
 
 	my $own_map_risk = $map_profile->{contributions}{$monster->{id}}{weighted} // 0;
 	my $map_risk = min(35, max(0, ($map_profile->{total} // 0) - $own_map_risk))
-		* $self->{config}{MAP_RISK_WEIGHT};
+		* $self->{config}{MAP_RISK_WEIGHT} * $vuln_mult;
 	my $score = $level_fit + $exp_value + $spawn_score + $class_match
 		- $kill_cost - $defense_penalty - $target_risk - $map_risk;
 
@@ -295,6 +341,7 @@ sub score_candidate {
 	push @reasons, 'good static EXP value' if $exp_value >= 14;
 	push @reasons, 'ranged basic attack' if _num($monster->{attack_range}, 1) > 1;
 	push @reasons, 'dangerous co-spawns on map' if $map_risk >= 5;
+	push @reasons, "vulnerable: low resources (level=$vuln)" if $vuln > 0;
 	push @reasons, @{$estimate->{reasons}} if @{$estimate->{reasons}};
 
 	my $combined_risk = $target_risk + $map_risk;
@@ -325,6 +372,7 @@ sub score_candidate {
 		defense_penalty_val => $defense_penalty,
 		element_factor      => $estimate->{element_factor},
 		degraded            => $estimate->{degraded},
+		vulnerability       => $vuln,
 		travel_cost => undef,
 		route_reachability => 'UNVERIFIED',
 	};

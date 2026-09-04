@@ -171,4 +171,21 @@ ok($melee_est->{breakdown}{target_risk} > $ranged_est->{breakdown}{target_risk},
 	'melee suffers more range risk than ranged');
 ok($ranged_est->{breakdown}{target_risk} > 0, 'ranged range risk is still positive');
 
+# 5. Vulnerability: broke + low HP tightens safety and inflates risk.
+$scorer->set_combat_context(known_skills => {}, attack_skill_slots => [], element_table => $index->element_table);
+my $healthy = { base_level => 30, job_id => 1, job_name => 'Swordman',
+	hp => 800, hp_max => 800, zeny => 1000, red_potion_count => 10, attack_total => 100 };
+my $broke = { %$healthy, hp => 200, hp_max => 800, zeny => 10, red_potion_count => 0 };
+my $agg_monster = { %$dummy, attack => 150, attack2 => 150, mode => { aggressive => 1 } };
+my ($b_allowed, $b_reasons) = $scorer->hard_filter($broke, $agg_monster, 'test_map');
+ok(!$b_allowed, 'broke+lowHP bot rejects aggressive monster');
+ok((grep { /aggressive/ } @{$b_reasons}), 'aggressive rejection reason is explicit');
+
+my $hitter = { %$dummy, attack => 150, attack2 => 150 };
+my $h_scored = $scorer->score_candidate($healthy, $hitter, 'test_map', 10, fake_map_profile());
+my $b_scored = $scorer->score_candidate($broke, $hitter, 'test_map', 10, fake_map_profile());
+ok($b_scored->{breakdown}{target_risk} > $h_scored->{breakdown}{target_risk},
+	'vulnerable bot inflates target risk vs healthy bot');
+ok($b_scored->{score} < $h_scored->{score}, 'vulnerable bot scores dangerous target lower');
+
 done_testing();

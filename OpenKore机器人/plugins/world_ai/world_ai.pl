@@ -1044,9 +1044,9 @@ sub _print_compact_result {
 	));
 	_print_breakdown($result);
 	wa_log(sprintf(
-		'  combat: class=%s estimate=%s damage=%s power=%s kill_cost=%s element_factor=%s degraded=%s',
+		'  combat: class=%s estimate=%s damage=%s power=%s kill_cost=%s element_factor=%s vuln=%s degraded=%s',
 		map { defined($_) ? $_ : 'n/a' }
-			@{$result}{qw(class_family estimate_mode damage_type effective_power estimated_kill_cost element_factor)},
+			@{$result}{qw(class_family estimate_mode damage_type effective_power estimated_kill_cost element_factor vulnerability)},
 		$result->{degraded} ? 'yes' : 'no',
 	));
 	wa_log('  reasons: ' . (@{$result->{reasons}} ? join('; ', @{$result->{reasons}}) : 'balanced static score'));
