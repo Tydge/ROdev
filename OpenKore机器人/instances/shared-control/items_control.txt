@@ -614,9 +614,11 @@ Spearman Scroll 10 0 0 0
 507 0 0 0 # Red Herb
 569 30 0 0 # Novice Potion
 619 0 0 0 # Unripe Apple (Poring taming item)
-713 0 0 0 # Empty Bottle
-1201 0 0 0 # Knife [3]
-1202 0 0 0 # Knife [4]
+713 0 0 1 # Empty Bottle - junk, sell (heavy, 3z each; frees weight & funds potions)
+1201 0 0 0 # Knife [3] - equipped weapon, keep
+1202 0 0 1 # Knife [4] - sell duplicates (unidentified starter loot)
+1604 0 0 1 # Wand [2] - sell duplicates (unidentified starter loot)
+1605 0 0 1 # Wand [3] - sell duplicates (unidentified starter loot)
 2101 0 0 0 # Guard
 2301 0 0 0 # Cotton Shirt
 2305 0 0 0 # Adventurer's Suit

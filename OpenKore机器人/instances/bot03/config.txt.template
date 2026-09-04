@@ -770,6 +770,20 @@ useSelf_item 569, 501 {
 	dcOnEmpty 0
 }
 
+# 自给自足：没钱买红药时，用打怪捡到的草药/食物回血，避免残血送死。
+useSelf_item 507, 508 {
+	hp < 60%
+	inLockOnly 1
+	timeout 1
+	dcOnEmpty 0
+}
+useSelf_item 512, 515, 582 {
+	hp < 75%
+	inLockOnly 1
+	timeout 1
+	dcOnEmpty 0
+}
+
 ######## Autostorage/autosell ########
 
 buyAuto 501 {

@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.5.0';
+our $VERSION = '3.6.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -68,6 +68,7 @@ my $EXEC_MOVE_TIMEOUT_SECONDS = 900;
 my %execution;
 my $buy_guard_last_warn = 0;
 my $recovery_gate_last_warn = 0;
+my %recovery_mode = (active => 0, saved => {});   # 濒死兜底：暂停原生战斗+坐地回血
 my $auto_execute_last_attempt = time;
 my $auto_execute_backoff_s = 15;
 my $AUTO_EXECUTE_MAX_BACKOFF_S = 300;
@@ -451,6 +452,42 @@ sub _recovery_gate_reason {
 	return;
 }
 
+# 濒死兜底：把“回血优先”下沉到原生战斗层。
+# attackAuto=0 阻止原生 AI 主动打怪/跑图找怪；route_randomWalk=0 停止乱走；
+# 再排队 sitAuto 让它真正坐下回血（而不是被 attackAuto 优先级盖过、带着残血去送死）。
+sub _enter_recovery_mode {
+	return if $recovery_mode{active};
+	my %saved;
+	for my $key (qw(attackAuto route_randomWalk)) {
+		$saved{$key} = {
+			existed => exists($config{$key}) ? 1 : 0,
+			value   => $config{$key},
+		};
+	}
+	$recovery_mode{saved} = \%saved;
+	$recovery_mode{active} = 1;
+	$config{attackAuto} = 0;
+	$config{route_randomWalk} = 0;
+	eval { AI::queue('sitAuto'); 1 };
+	wa_warning('[RECOVER] enter recovery mode: attackAuto=0 route_randomWalk=0 (sit & regen first)');
+}
+
+sub _leave_recovery_mode {
+	return unless $recovery_mode{active};
+	my $saved = $recovery_mode{saved} || {};
+	for my $key (qw(attackAuto route_randomWalk)) {
+		my $s = $saved->{$key};
+		if ($s && $s->{existed}) {
+			$config{$key} = $s->{value};
+		} else {
+			delete $config{$key};
+		}
+	}
+	$recovery_mode{saved} = {};
+	$recovery_mode{active} = 0;
+	wa_warning('[RECOVER] leave recovery mode: restored attackAuto/route_randomWalk');
+}
+
 sub _target_key {
 	my ($monster_id, $map) = @_;
 	return join('@', 0 + ($monster_id || 0), $map || '');
@@ -801,6 +838,14 @@ sub on_ai_pre {
 		return;
 	}
 	$execution{dead_seen} = 0 if $execution{state} eq 'ACTIVE';
+
+	# 资源感知兜底：濒死且无法自愈时，暂停原生战斗并坐地回血；恢复后自动还原。
+	if (_alive() && _recovery_gate_reason()) {
+		_enter_recovery_mode();
+		return;
+	}
+	_leave_recovery_mode();
+
 	maybe_auto_execute();
 	return if $execution{state} eq 'IDLE' || $execution{state} eq 'ERROR';
 	my $ok = eval { _advance_execution(); 1 };
