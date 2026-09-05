@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.6.0';
+our $VERSION = '3.7.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -78,10 +78,14 @@ my $MAX_NO_KILL_ATTACKS = 3;
 my $MAX_NO_KILL_ELAPSED_S = 180;
 my $TARGET_FAILURE_COOLDOWN_S = 1800;
 my $GLOBAL_MONSTER_COOLDOWN_S = 3600;   # 跨图换怪冷却：同一怪累计死亡过多则全局弃选 1 小时
-my $MAX_GLOBAL_MONSTER_DEATHS = 2;      # 累计死亡达到此阈值即触发全局换怪
+my $MAX_GLOBAL_MONSTER_DEATHS = 2;      # 累计死亡达到此阈值即触发全局换怪（净亏损：死得比杀得多）
+my $MAX_MONSTER_DEATH_RATE = 0.10;      # 死亡率 > 10% 也弃选（能杀但死太频繁，如音速投掷/晕眩爆发）
+my $MIN_DEATHS_FOR_RATE = 3;            # 至少累计死亡 3 次才评估死亡率（避免小样本误判）
+my $MONSTER_COOLDOWN_MAX_S = 86400;     # 冷却上限 24 小时（越挫越久，封顶一天）
 my %target_cooldown;                    # key: "monster_id@map"（单图）
 my %monster_cooldown;                   # key: monster_id（跨图全局）
 my %monster_stats;                      # monster_id -> { kills => N, deaths => M }（会话累计）
+my %monster_cooldown_count;             # monster_id -> 触发弃选的次数（用于冷却翻倍）
 
 Plugins::register(
 	$NAME,
@@ -498,13 +502,32 @@ sub _register_monster_death {
 	return unless $monster_id;
 	$monster_stats{$monster_id}{deaths}++;
 	my $s = $monster_stats{$monster_id};
-	if ($s->{deaths} >= $MAX_GLOBAL_MONSTER_DEATHS && ($s->{kills} || 0) < $s->{deaths}) {
-		$monster_cooldown{$monster_id} = time + $GLOBAL_MONSTER_COOLDOWN_S;
-		wa_warning(sprintf(
-			'[FEEDBACK_FILTER] global_monster_cooldown monster_id=%d deaths=%d kills=%d seconds=%d reason=repeated_deaths_across_maps',
-			$monster_id, $s->{deaths}, $s->{kills} || 0, $GLOBAL_MONSTER_COOLDOWN_S,
-		));
+	my $deaths = $s->{deaths};
+	my $kills = $s->{kills} || 0;
+	my $total = $deaths + $kills;
+	my $rate = $total > 0 ? $deaths / $total : 1;
+
+	# 换怪判据（任一命中即全局弃选该怪一段时间）：
+	# 1) 净亏损：打不死它（死得比杀得多）—— 原始逻辑
+	# 2) 高死亡率：能杀它但死得太频繁（音速投掷/晕眩等技能爆发）
+	my $reason;
+	if ($deaths >= $MAX_GLOBAL_MONSTER_DEATHS && $kills < $deaths) {
+		$reason = 'net_negative';
+	} elsif ($deaths >= $MIN_DEATHS_FOR_RATE && $rate > $MAX_MONSTER_DEATH_RATE) {
+		$reason = 'high_death_rate';
 	}
+	return unless $reason;
+
+	# 越挫越久：同一怪反复触发时冷却翻倍（1h→2h→4h...封顶 24h）
+	my $count = ($monster_cooldown_count{$monster_id} || 0) + 1;
+	$monster_cooldown_count{$monster_id} = $count;
+	my $seconds = $GLOBAL_MONSTER_COOLDOWN_S * (1 << ($count - 1));
+	$seconds = $MONSTER_COOLDOWN_MAX_S if $seconds > $MONSTER_COOLDOWN_MAX_S;
+	$monster_cooldown{$monster_id} = time + $seconds;
+	wa_warning(sprintf(
+		'[FEEDBACK_FILTER] global_monster_cooldown monster_id=%d deaths=%d kills=%d death_rate=%.1f%% seconds=%d reason=%s',
+		$monster_id, $deaths, $kills, $rate * 100, $seconds, $reason,
+	));
 }
 
 sub _filter_feedback_cooldowns {
