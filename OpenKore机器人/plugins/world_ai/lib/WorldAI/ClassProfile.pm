@@ -48,6 +48,8 @@ my %FAMILY_PROFILE = (
 		baseline_skill  => 'AL_HOLYLIGHT',
 		baseline_element => 'Holy',
 		passive_skill   => undef,
+		# 辅助/脆皮职业单刷时偏好略低于自身的怪（约 2 级），而非同级或越级硬拼。
+		level_fit_bias  => 2,
 	},
 );
 
@@ -107,6 +109,7 @@ sub damage_type     { my ($f) = @_; my $p = profile($f); return $p ? $p->{primar
 sub baseline_element { my ($f) = @_; my $p = profile($f); return $p ? $p->{baseline_element} : undef; }
 sub combat_style    { my ($f) = @_; my $p = profile($f); return $p ? $p->{combat_style} : 'MELEE'; }
 sub passive_skill   { my ($f) = @_; my $p = profile($f); return $p ? $p->{passive_skill} : undef; }
+sub level_fit_bias  { my ($f) = @_; my $p = profile($f); return ($p && defined $p->{level_fit_bias}) ? 0 + $p->{level_fit_bias} : 0; }
 
 # 判断基线技能对某个目标是否“实际可用”：已学 + 有对应 attackSkillSlot +
 # 未被 notMonsters 明确排除。返回 undef 表示该职业族没有主动基线技能。

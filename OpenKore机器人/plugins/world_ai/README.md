@@ -4,7 +4,7 @@
 
 Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。Step 4A.1 调整 Swordman / Mage / Archer 的自然学习顺序，并在 `packet_charSkills` 中只当基线技能启用状态改变时刷新活动战斗策略。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。
 
-Step 4A.2 让 Scorer 按职业实际战斗方式选怪/选图：新增共享 `ClassProfile` 与 `CombatEstimate`，把 Mage / Acolyte 从物理 ATK 模型切到 MATK 模型（Fire Bolt / Holy Light），把 Swordman Bash / Archer Double Strafe / Thief Double Attack 的有限输出加成纳入评分，并让 DEF / MDEF / 元素克制和怪物 Mode 进入评分与 map risk。**职业感知选怪**：按基线攻击元素（Holy/Fire/Neutral）对目标元素的克制倍率做显式偏好（`element_affinity`）——Acolyte 主动偏向不死/暗（Holy 150%+）、物理职业回避幽灵（Neutral 25%）、元素免疫目标硬过滤；同时把确定性主动技能倍率（Holy Light 固定 1.5×、Bash、Fire Bolt）计入硬过滤击杀成本，避免 Acolyte 的不死猎物被裸 MATK 误杀。路线执行上限从写死的 3 hops 放宽为可配置（默认 6）。
+Step 4A.2 让 Scorer 按职业实际战斗方式选怪/选图：新增共享 `ClassProfile` 与 `CombatEstimate`，把 Mage / Acolyte 从物理 ATK 模型切到 MATK 模型（Fire Bolt / Holy Light），把 Swordman Bash / Archer Double Strafe / Thief Double Attack 的有限输出加成纳入评分，并让 DEF / MDEF / 元素克制和怪物 Mode 进入评分与 map risk。**职业感知选怪**：按基线攻击元素（Holy/Fire/Neutral）对目标元素的克制倍率做显式偏好（`element_affinity`）——Acolyte 主动偏向不死/暗（Holy 150%+）、物理职业回避幽灵（Neutral 25%）、元素免疫目标硬过滤；同时把确定性主动技能倍率（Holy Light 固定 1.5×、Bash、Fire Bolt）计入硬过滤击杀成本，避免 Acolyte 的不死猎物被裸 MATK 误杀；脆皮/辅助职业（Acolyte）还通过 `level_fit_bias` 把等级拟合峰值向“略低于自身”偏移，偏好稍弱的怪而非同级硬拼。路线执行上限从写死的 3 hops 放宽为可配置（默认 6）。
 
 执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 

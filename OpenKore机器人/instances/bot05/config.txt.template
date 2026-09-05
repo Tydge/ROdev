@@ -300,7 +300,7 @@ sitAuto_look_delay
 sitTensionRelax 0
 
 statsAddAuto 1
-statsAddAuto_list 20 int, 15 vit, 15 dex, 40 int, 30 vit, 30 dex, 60 int, 50 vit, 50 dex, 80 int, 70 vit, 70 dex, 90 int
+statsAddAuto_list 20 str, 20 vit, 20 dex, 20 int, 30 str, 30 vit, 30 dex, 30 int, 40 str, 40 vit, 40 dex, 40 int, 50 str, 50 vit, 50 dex, 50 int, 60 str, 60 vit, 60 dex, 60 int
 statsAddAuto_dontUseBonus 0
 statsAdd_over_99 1
 
@@ -684,6 +684,22 @@ useSelf_skill AL_HEAL {
 	lvl 10
 	hp < 55%
 	sp > 15
+}
+
+# 战斗服事：给自己加 Blessing（+STR/INT/DEX）与 Increase AGI（攻速/闪避），
+# 状态消失后自动补。技能未学满时 useSelf_skill 自动不触发，安全。
+useSelf_skill AL_BLESSING {
+	lvl 10
+	sp > 20
+	whenStatusInactive EFST_BLESSING
+	notWhileSitting 0
+}
+
+useSelf_skill AL_INCAGI {
+	lvl 10
+	sp > 20
+	whenStatusInactive EFST_INC_AGI
+	notWhileSitting 0
 }
 
 useSelf_skill_smartHeal 1

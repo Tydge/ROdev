@@ -238,4 +238,28 @@ ok($sword_ghost->{breakdown}{element_affinity} < 0, 'physical class penalizes Gh
 ok($sword_ghost->{breakdown}{element_affinity} < $sword_neutral->{breakdown}{element_affinity},
 	'Ghost ranks below Neutral for physical class');
 
+# --- 7. Class-aware level preference: Acolyte prefers slightly-below-level ---
+# Acolyte (support) carries level_fit_bias=2, so its level-fit peak shifts to
+# monsters ~2 levels below self; a Swordman (no bias) still peaks at same level.
+$scorer->set_combat_context(
+	known_skills       => { AL_HOLYLIGHT => 1 },
+	attack_skill_slots => [{ index => 0, handle => 'AL_HOLYLIGHT', not_monsters => '' }],
+	element_table      => $index->element_table,
+);
+my $ac_base   = { %$acolyte_snapshot, base_level => 28 };
+my $lvl_same  = { %$dummy, level => 28 };
+my $lvl_below = { %$dummy, level => 26 };
+my $ac_same   = $scorer->score_candidate($ac_base, $lvl_same,  'test_map', 10, fake_map_profile());
+my $ac_below  = $scorer->score_candidate($ac_base, $lvl_below, 'test_map', 10, fake_map_profile());
+ok($ac_below->{breakdown}{level_fit} > $ac_same->{breakdown}{level_fit},
+	'Acolyte prefers slightly-below-level monster over same-level');
+
+$scorer->set_combat_context(known_skills => {}, attack_skill_slots => [], element_table => $index->element_table);
+my $sword_base  = { base_level => 28, job_id => 1, job_name => 'Swordman',
+	hp => 700, hp_max => 700, attack_total => 100, zeny => 100, red_potion_count => 5 };
+my $sword_same  = $scorer->score_candidate($sword_base, $lvl_same,  'test_map', 10, fake_map_profile());
+my $sword_below = $scorer->score_candidate($sword_base, $lvl_below, 'test_map', 10, fake_map_profile());
+ok($sword_same->{breakdown}{level_fit} > $sword_below->{breakdown}{level_fit},
+	'Swordman (no bias) prefers same-level over 2-below');
+
 done_testing();

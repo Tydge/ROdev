@@ -331,8 +331,13 @@ sub score_candidate {
 	} unless $allowed;
 
 	my $estimate = $self->_combat_estimate($snapshot, $monster);
+	my $family = WorldAI::ClassProfile::class_family(
+		job_id => $snapshot->{job_id}, job_name => $snapshot->{job_name});
 	my $diff = _num($monster->{level}, 0) - _num($snapshot->{base_level}, 0);
-	my $level_fit = _level_fit($diff) * $self->{config}{LEVEL_FIT_WEIGHT};
+	# 职业感知：脆皮/辅助职业把等级拟合峰值向“略低于自身”偏移（level_fit_bias），
+	# 使其偏好稍弱的怪而非同级硬拼，但仍受 MAX_LEVEL_BELOW 约束、不会去打太低级怪。
+	my $fit_diff = $diff + WorldAI::ClassProfile::level_fit_bias($family);
+	my $level_fit = _level_fit($fit_diff) * $self->{config}{LEVEL_FIT_WEIGHT};
 	my $total_exp = max(0, _num($monster->{base_exp}, 0) + _num($monster->{job_exp}, 0));
 	my $exp_value = min(24, log(1 + $total_exp) * 3.5) * $self->{config}{EXP_WEIGHT};
 	my $spawn_score = min(18, log(1 + max(0, _num($spawn_count, 0))) * 4)
