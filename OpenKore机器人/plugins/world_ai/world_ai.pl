@@ -7,7 +7,7 @@ no warnings 'redefine';
 use AI;
 use Commands;
 use File::Basename qw(dirname);
-use Globals qw($char $field $net %config %jobs_lut %maps_lut %mon_control);
+use Globals qw($char $field $net %config %jobs_lut %maps_lut %mon_control %monsters_lut);
 use Log qw(message warning);
 use Network;
 use Plugins;
@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.7.0';
+our $VERSION = '3.8.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -86,6 +86,7 @@ my %target_cooldown;                    # key: "monster_id@map"（单图）
 my %monster_cooldown;                   # key: monster_id（跨图全局）
 my %monster_stats;                      # monster_id -> { kills => N, deaths => M }（会话累计）
 my %monster_cooldown_count;             # monster_id -> 触发弃选的次数（用于冷却翻倍）
+my %monster_avoided;                    # monster_id -> 1，记录我们为“冷却避让”设的 mon_control 条目
 
 Plugins::register(
 	$NAME,
@@ -499,7 +500,7 @@ sub _target_key {
 
 sub _register_monster_death {
 	my ($monster_id) = @_;
-	return unless $monster_id;
+	return 0 unless $monster_id;
 	$monster_stats{$monster_id}{deaths}++;
 	my $s = $monster_stats{$monster_id};
 	my $deaths = $s->{deaths};
@@ -516,7 +517,7 @@ sub _register_monster_death {
 	} elsif ($deaths >= $MIN_DEATHS_FOR_RATE && $rate > $MAX_MONSTER_DEATH_RATE) {
 		$reason = 'high_death_rate';
 	}
-	return unless $reason;
+	return 0 unless $reason;
 
 	# 越挫越久：同一怪反复触发时冷却翻倍（1h→2h→4h...封顶 24h）
 	my $count = ($monster_cooldown_count{$monster_id} || 0) + 1;
@@ -524,10 +525,36 @@ sub _register_monster_death {
 	my $seconds = $GLOBAL_MONSTER_COOLDOWN_S * (1 << ($count - 1));
 	$seconds = $MONSTER_COOLDOWN_MAX_S if $seconds > $MONSTER_COOLDOWN_MAX_S;
 	$monster_cooldown{$monster_id} = time + $seconds;
+	_set_monster_avoidance($monster_id);
 	wa_warning(sprintf(
 		'[FEEDBACK_FILTER] global_monster_cooldown monster_id=%d deaths=%d kills=%d death_rate=%.1f%% seconds=%d reason=%s',
 		$monster_id, $deaths, $kills, $rate * 100, $seconds, $reason,
 	));
+	return 1;
+}
+
+# world 冷却只影响选怪评分，原生 attackAuto 仍会见怪就打；
+# 这里把冷却同步成 mon_control attack_auto=0，让原生 AI 也躲开这个怪（被攻击时才自卫）。
+sub _set_monster_avoidance {
+	my ($monster_id) = @_;
+	return unless $monster_id;
+	$mon_control{$monster_id}{attack_auto} = 0;
+	my $name = $monsters_lut{$monster_id};
+	$mon_control{lc($name)}{attack_auto} = 0 if defined $name && $name ne '';
+	$monster_avoided{$monster_id} = 1;
+}
+
+sub _clear_monster_avoidance {
+	my ($monster_id) = @_;
+	return unless $monster_id && delete $monster_avoided{$monster_id};
+	# 只清理我们为“冷却避让”设的条目，避免误删用户自定义的 mon_control。
+	my $id_entry = $mon_control{$monster_id};
+	delete $mon_control{$monster_id} if $id_entry && ($id_entry->{attack_auto} // '') eq '0';
+	my $name = $monsters_lut{$monster_id};
+	if (defined $name && $name ne '') {
+		my $n_entry = $mon_control{lc($name)};
+		delete $mon_control{lc($name)} if $n_entry && ($n_entry->{attack_auto} // '') eq '0';
+	}
 }
 
 sub _filter_feedback_cooldowns {
@@ -542,6 +569,7 @@ sub _filter_feedback_cooldowns {
 			next;
 		}
 		delete $monster_cooldown{$candidate->{monster_id}} if $global_until;
+		_clear_monster_avoidance($candidate->{monster_id});
 
 		my $key = _target_key($candidate->{monster_id}, $candidate->{target_map});
 		my $until = $target_cooldown{$key} || 0;
@@ -849,8 +877,10 @@ sub on_ai_pre {
 			$execution{dead_seen} = 1;
 			$execution{deaths}++;
 			wa_warning("[EXEC] character_death target=$execution{target_monster} deaths=$execution{deaths} kills=$execution{kills}");
-			_register_monster_death($execution{target_id});
-			if (($execution{kills} == 0 && $execution{deaths} >= $MAX_ZERO_KILL_DEATHS) ||
+			# 全局弃选命中（净亏损或高死亡率）→ 立即中止当前执行，改打别的怪
+			if (_register_monster_death($execution{target_id})) {
+				_fail_execution('monster_avoided_by_feedback');
+			} elsif (($execution{kills} == 0 && $execution{deaths} >= $MAX_ZERO_KILL_DEATHS) ||
 				($execution{deaths} >= $MAX_LOW_PROGRESS_DEATHS && $execution{kills} < $execution{deaths})) {
 				my $key = _target_key($execution{target_id}, $execution{target_map});
 				$target_cooldown{$key} = time + $TARGET_FAILURE_COOLDOWN_S;
