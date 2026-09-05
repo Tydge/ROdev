@@ -99,7 +99,9 @@ sub estimate {
 	my $combat_style = $profile->{combat_style} || 'MELEE';
 	my @reasons;
 	my $degraded = 0;
-	my ($estimate_mode, $source, $skill_level, $raw_power, $skill_mult);
+	my ($estimate_mode, $source, $skill_level, $raw_power, $skill_mult, $active_skill_mult);
+	$skill_mult = 1.0;
+	$active_skill_mult = 1.0;
 
 	# 基线主动技能是否实际可用（已学 + 有槽 + 未被 notMonsters 排除）。
 	my ($use_skill, $skill_handle) = (0, undef);
@@ -132,6 +134,7 @@ sub estimate {
 			}
 			$source = $skill_handle;
 			$skill_mult = $self->_skill_mult($skill_handle, $skill_level, $snapshot);
+			$active_skill_mult = $skill_mult;
 			push @reasons, "$skill_handle baseline active";
 		} else {
 			# 魔法职业没有可用技能 → 退化为普攻，伤害类型也随之变为物理。
@@ -139,6 +142,7 @@ sub estimate {
 			$source = 'normal_attack';
 			$damage_type = 'PHYSICAL';
 			$skill_mult = 1.0;
+			$active_skill_mult = 1.0;
 			my $atk = _num($snapshot->{attack_total}, undef);
 			if (defined($atk) && $atk > 0) {
 				$raw_power = $atk;
@@ -163,11 +167,13 @@ sub estimate {
 			$estimate_mode = 'PHYSICAL_SKILL';
 			$source = $skill_handle;
 			$skill_mult = $self->_skill_mult($skill_handle, $skill_level, $snapshot);
+			$active_skill_mult = $skill_mult;
 			push @reasons, "$skill_handle baseline active";
 		} else {
 			$estimate_mode = 'PHYSICAL_NORMAL';
 			$source = 'normal_attack';
 			$skill_mult = 1.0;
+			$active_skill_mult = 1.0;
 		}
 
 		# Thief 被动 Double Attack：期望输出加成（Lv10 ≈ +50%），不是每击必翻倍。
@@ -185,13 +191,18 @@ sub estimate {
 
 	# 元素克制必须作用到伤害本身（进而影响 kill_cost），不能只作为评分提示：
 	# Fire 打 Fire（25%）应显著抬高 kill_cost，Fire 打 Earth（150%）应显著压低。
-	my $element_factor = 1.0;
-	if ($damage_type eq 'MAGIC' && $profile->{baseline_element}) {
-		$element_factor = $self->_element_factor($profile->{baseline_element}, $monster, $element_table);
-	}
+	# 攻击元素：魔法职业用其基线元素（Holy/Fire），物理（含魔法职业退化的普攻）用 Neutral。
+	my $attack_element = $damage_type eq 'MAGIC'
+		? ($profile->{baseline_element} || 'Neutral')
+		: 'Neutral';
+	my $element_factor = $self->_element_factor($attack_element, $monster, $element_table);
 	push @reasons, 'target element favorable' if $element_factor > 1.05;
 	push @reasons, 'target element unfavorable' if $element_factor < 0.95;
 
+	# filter_power：硬过滤用“裸攻击力 × 确定性主动技能倍率”（不含被动期望、不含元素）。
+	# 主动技能（Holy Light 固定 1.5×、Bash、Fire Bolt）是确定性输出，理应计入击杀成本；
+	# 元素克制与 Thief 被动 Double Attack 是“偏好/期望”信号，留在评分层，不拿来穿透安全阈值。
+	my $filter_power = max(1, $raw_power * $active_skill_mult);
 	my $effective_power = max(1, $raw_power * $skill_mult * $element_factor);
 	my $estimated_kill_cost = _num($monster->{hp}, 0) / $effective_power;
 	my $defense_penalty = $self->_defense_penalty($damage_type, $monster);
@@ -205,7 +216,10 @@ sub estimate {
 		source               => $source,
 		skill_level          => $skill_level,
 		raw_power            => $raw_power,
+		filter_power         => $filter_power,
+		active_skill_mult    => $active_skill_mult,
 		effective_power      => $effective_power,
+		attack_element       => $attack_element,
 		defense_penalty      => $defense_penalty,
 		element_factor       => $element_factor,
 		estimated_kill_cost  => $estimated_kill_cost,

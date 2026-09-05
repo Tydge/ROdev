@@ -188,4 +188,54 @@ ok($b_scored->{breakdown}{target_risk} > $h_scored->{breakdown}{target_risk},
 	'vulnerable bot inflates target risk vs healthy bot');
 ok($b_scored->{score} < $h_scored->{score}, 'vulnerable bot scores dangerous target lower');
 
+# --- 6. Class-aware element affinity (职业感知选怪) ---
+# Acolyte Holy Light (Holy element) should actively prefer Undead/Dark and be
+# neutral on Earth/Neutral; the preference must be visible as a score term.
+$scorer->set_combat_context(
+	known_skills       => { AL_HOLYLIGHT => 1 },
+	attack_skill_slots => [{ index => 0, handle => 'AL_HOLYLIGHT', not_monsters => '' }],
+	element_table      => $index->element_table,
+);
+my $acolyte_snapshot = {
+	base_level => 28, job_id => 4, job_name => 'Acolyte',
+	hp => 700, hp_max => 700, sp => 90, sp_max => 93,
+	attack_total => 19, attack_magic_avg => 96, zeny => 100, red_potion_count => 5,
+};
+my $undead_dummy = { %$dummy, element => 'Undead', element_level => 1 };
+my $earth_dummy  = { %$dummy, element => 'Earth',  element_level => 1 };
+my $ac_undead = $scorer->score_candidate($acolyte_snapshot, $undead_dummy, 'test_map', 10, fake_map_profile());
+my $ac_earth  = $scorer->score_candidate($acolyte_snapshot, $earth_dummy,  'test_map', 10, fake_map_profile());
+ok($ac_undead->{element_factor} > $ac_earth->{element_factor}, 'Acolyte Holy Light favors Undead over Earth');
+ok($ac_undead->{breakdown}{element_affinity} > 0, 'Undead gives Acolyte positive element affinity');
+ok($ac_earth->{breakdown}{element_affinity} == 0, 'Earth (neutral for Holy) gives zero affinity');
+ok($ac_undead->{score} > $ac_earth->{score}, 'element affinity lifts Undead above Earth for Acolyte');
+
+# Active Holy Light multiplier must count toward the hard-filter kill cost so
+# level-appropriate Undead prey (Soldier Skeleton hp 2334) is not over-filtered
+# by raw MATK alone (2334/96 ≈ 24.3 would exceed the 24-hit magic cap).
+my $soldier_skeleton = $index->monster(1028);
+my ($sk_allowed, $sk_reasons) = $scorer->hard_filter($acolyte_snapshot, $soldier_skeleton, 'pay_dun01');
+ok($sk_allowed, 'Acolyte Holy Light allows Soldier Skeleton (active skill counted)')
+	or diag('Soldier Skeleton blocked: ' . join('; ', @{$sk_reasons}));
+
+# Holy-element target is immune to Holy Light → hard-filtered, not just scored low.
+my $holy_dummy = { %$dummy, element => 'Holy', element_level => 1 };
+my ($holy_allowed, $holy_reasons) = $scorer->hard_filter($acolyte_snapshot, $holy_dummy, 'test_map');
+ok(!$holy_allowed, 'Acolyte is hard-filtered from Holy-element target (immune)');
+like(join(' ', @{$holy_reasons}), qr/immune/, 'immune element rejection is explicit');
+
+# Physical classes (Neutral basic attack) must avoid Ghost: Neutral does 25% to Ghost.
+$scorer->set_combat_context(known_skills => {}, attack_skill_slots => [], element_table => $index->element_table);
+my $sword_physical = {
+	base_level => 28, job_id => 1, job_name => 'Swordman',
+	hp => 700, hp_max => 700, attack_total => 100, zeny => 100, red_potion_count => 5,
+};
+my $ghost_dummy   = { %$dummy, element => 'Ghost',   element_level => 1 };
+my $neutral_dummy = { %$dummy, element => 'Neutral', element_level => 1 };
+my $sword_ghost   = $scorer->score_candidate($sword_physical, $ghost_dummy,   'test_map', 10, fake_map_profile());
+my $sword_neutral = $scorer->score_candidate($sword_physical, $neutral_dummy, 'test_map', 10, fake_map_profile());
+ok($sword_ghost->{breakdown}{element_affinity} < 0, 'physical class penalizes Ghost element');
+ok($sword_ghost->{breakdown}{element_affinity} < $sword_neutral->{breakdown}{element_affinity},
+	'Ghost ranks below Neutral for physical class');
+
 done_testing();

@@ -27,6 +27,11 @@ my %DEFAULTS = (
 	CLASS_MATCH_WEIGHT    => 1.0,
 	DEFENSE_PENALTY_WEIGHT => 1.0,
 	CLASS_MATCH_BONUS     => 3.0,
+	# 职业感知选怪：按基线攻击元素（Holy/Fire/Neutral）对目标元素的克制/被克做显式偏好。
+	# 数据驱动（读 element_table），不硬编码种族清单：克制 → 加分，被克 → 减分，免疫 → 硬过滤。
+	ELEMENT_AFFINITY_WEIGHT => 1.0,
+	ELEMENT_AFFINITY_SCALE  => 8.0,  # 每偏离 1.0 的元素倍率换算的分数
+	ELEMENT_AFFINITY_CAP    => 8.0,  # 单项上限/下限，避免压过安全风险
 	RANGED_RISK_WEIGHT    => 1.2,
 	RANGED_RISK_RANGED_FACTOR => 0.7,
 
@@ -171,13 +176,17 @@ sub hard_filter {
 		if $vuln >= $self->{config}{VULNERABILITY_AGGRESSIVE_LEVEL} && $aggressive;
 
 	my $estimate = $self->_combat_estimate($snapshot, $monster);
-	# 硬过滤用“裸攻击力”（ATK/MATK，不含技能/被动/元素倍率）估算击杀成本。
-	# 技能依赖 SP 与咏唱、被动与元素是评分层面的期望加成，不该拿来穿透安全阈值：
-	# 否则 Thief 的 Double Attack 被动会把 Wolf 从 20.9 次拉低到 13.9 次而放行致死。
-	my $raw_power = _num($estimate->{raw_power}, 0);
-	my $kill_cost = $raw_power > 0
-		? _num($monster->{hp}, 0) / $raw_power
+	# 硬过滤用“裸攻击力 × 确定性主动技能倍率”（filter_power）估算击杀成本。
+	# 主动技能（Holy Light 固定 1.5×、Bash、Fire Bolt）是确定性输出，理应计入击杀成本；
+	# 被动（Thief Double Attack）与元素克制是“期望/偏好”信号，留在评分层，不拿来穿透安全阈值。
+	my $filter_power = _num($estimate->{filter_power}, _num($estimate->{raw_power}, 0));
+	my $kill_cost = $filter_power > 0
+		? _num($monster->{hp}, 0) / $filter_power
 		: $estimate->{estimated_kill_cost};
+
+	# 元素免疫/完全被克（倍率 ≤ 0，如 Holy 打 Holy）→ 实际伤害为零，硬过滤。
+	push @reasons, 'baseline element ineffective vs target (immune)'
+		if _num($estimate->{element_factor}, 1.0) <= 0;
 	my $max_kill_cost = $is_novice ? $self->{config}{NOVICE_MAX_ESTIMATED_HITS}
 		: ($estimate->{damage_type} eq 'MAGIC'
 			? $self->{config}{MAX_KILL_COST_MAGIC}
@@ -299,6 +308,17 @@ sub _class_match {
 	return 0;
 }
 
+# 职业感知选怪：按基线攻击元素对目标元素的克制倍率（element_factor）做显式偏好。
+# 数据驱动、连续且带上下限：克制（>1）加分、被克（<1）减分、中性（=1）为 0。
+# 与 kill_cost 的间接效应并存——kill_cost 是“伤害数学”，这里是对“职业天敌”的显式偏好。
+sub _element_affinity {
+	my ($self, $estimate) = @_;
+	my $factor = _num($estimate->{element_factor}, 1.0);
+	my $affinity = ($factor - 1.0) * $self->{config}{ELEMENT_AFFINITY_SCALE};
+	my $cap = $self->{config}{ELEMENT_AFFINITY_CAP};
+	return max(-$cap, min($cap, $affinity)) * $self->{config}{ELEMENT_AFFINITY_WEIGHT};
+}
+
 sub score_candidate {
 	my ($self, $snapshot, $monster, $map, $spawn_count, $map_profile) = @_;
 	my ($allowed, $filter_reasons) = $self->hard_filter($snapshot, $monster, $map);
@@ -321,6 +341,7 @@ sub score_candidate {
 		* $self->{config}{KILL_COST_WEIGHT};
 	my $defense_penalty = $estimate->{defense_penalty} * $self->{config}{DEFENSE_PENALTY_WEIGHT};
 	my $class_match = $self->_class_match($estimate);
+	my $element_affinity = $self->_element_affinity($estimate);
 
 	# 资源感知：脆弱度放大目标风险与地图风险（缺续航时更怕受伤/群怪）。
 	my $vuln = $self->_vulnerability($snapshot);
@@ -332,7 +353,7 @@ sub score_candidate {
 	my $own_map_risk = $map_profile->{contributions}{$monster->{id}}{weighted} // 0;
 	my $map_risk = min(35, max(0, ($map_profile->{total} // 0) - $own_map_risk))
 		* $self->{config}{MAP_RISK_WEIGHT} * $vuln_mult;
-	my $score = $level_fit + $exp_value + $spawn_score + $class_match
+	my $score = $level_fit + $exp_value + $spawn_score + $class_match + $element_affinity
 		- $kill_cost - $defense_penalty - $target_risk - $map_risk;
 
 	my @reasons;
@@ -341,6 +362,8 @@ sub score_candidate {
 	push @reasons, 'good static EXP value' if $exp_value >= 14;
 	push @reasons, 'ranged basic attack' if _num($monster->{attack_range}, 1) > 1;
 	push @reasons, 'dangerous co-spawns on map' if $map_risk >= 5;
+	push @reasons, 'target element strongly favorable' if $element_affinity >= 3;
+	push @reasons, 'target element resisted' if $element_affinity <= -3;
 	push @reasons, "vulnerable: low resources (level=$vuln)" if $vuln > 0;
 	push @reasons, @{$estimate->{reasons}} if @{$estimate->{reasons}};
 
@@ -355,6 +378,7 @@ sub score_candidate {
 			exp_value        => $exp_value,
 			spawn_count_score => $spawn_score,
 			class_match      => $class_match,
+			element_affinity => $element_affinity,
 			kill_cost        => $kill_cost,
 			defense_penalty  => $defense_penalty,
 			target_risk      => $target_risk,
@@ -371,6 +395,8 @@ sub score_candidate {
 		raw_power           => $estimate->{raw_power},
 		defense_penalty_val => $defense_penalty,
 		element_factor      => $estimate->{element_factor},
+		attack_element      => $estimate->{attack_element},
+		element_affinity    => $element_affinity,
 		degraded            => $estimate->{degraded},
 		vulnerability       => $vuln,
 		travel_cost => undef,

@@ -613,9 +613,10 @@ pet_return 20
 # Holy Light is granted when Nora becomes an Acolyte so the support build can
 # level independently before it has a party to heal.
 # 不限制 monsters：对任何怪都用圣光打（魔法伤害），否则退回 1 伤害平A等于送死。
+# dist 1（最小距离）：怪贴脸也能施法，避免怪进入近身后 Holy Light 停用→退回 1 伤害平A。
 attackSkillSlot AL_HOLYLIGHT {
 	lvl 1
-	dist 8
+	dist 1
 	maxDist 9
 	sp > 25%
 	maxAttempts 4

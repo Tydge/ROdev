@@ -30,7 +30,7 @@ use WorldAI::RuntimeOverride;
 use WorldAI::Scorer;
 
 our $NAME = 'world_ai';
-our $VERSION = '3.8.0';
+our $VERSION = '3.9.0';
 
 my $plugin_dir = $Plugins::current_plugin_folder || dirname(__FILE__);
 my $index_path = "$plugin_dir/map_index.json";
@@ -1150,8 +1150,8 @@ sub _print_breakdown {
 	my ($result) = @_;
 	my $b = $result->{breakdown};
 	wa_log(sprintf(
-		'  breakdown: +level_fit=%s +exp_value=%s +spawn_count_score=%s +class_match=%s -kill_cost=%s -defense_penalty=%s -target_risk=%s -map_risk=%s',
-		map { _fmt($b->{$_}) } qw(level_fit exp_value spawn_count_score class_match kill_cost defense_penalty target_risk map_risk)
+		'  breakdown: +level_fit=%s +exp_value=%s +spawn_count_score=%s +class_match=%s +element_affinity=%s -kill_cost=%s -defense_penalty=%s -target_risk=%s -map_risk=%s',
+		map { _fmt($b->{$_}) } qw(level_fit exp_value spawn_count_score class_match element_affinity kill_cost defense_penalty target_risk map_risk)
 	));
 }
 
@@ -1166,9 +1166,9 @@ sub _print_compact_result {
 	));
 	_print_breakdown($result);
 	wa_log(sprintf(
-		'  combat: class=%s estimate=%s damage=%s power=%s kill_cost=%s element_factor=%s vuln=%s degraded=%s',
+		'  combat: class=%s estimate=%s damage=%s power=%s kill_cost=%s element_factor=%s attack_element=%s vuln=%s degraded=%s',
 		map { defined($_) ? $_ : 'n/a' }
-			@{$result}{qw(class_family estimate_mode damage_type effective_power estimated_kill_cost element_factor vulnerability)},
+			@{$result}{qw(class_family estimate_mode damage_type effective_power estimated_kill_cost element_factor attack_element vulnerability)},
 		$result->{degraded} ? 'yes' : 'no',
 	));
 	wa_log('  reasons: ' . (@{$result->{reasons}} ? join('; ', @{$result->{reasons}}) : 'balanced static score'));

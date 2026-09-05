@@ -4,7 +4,7 @@
 
 Step 4A 在执行目标确定后，根据当前职业和 `$char->{skills}` 中真实已学技能，把目标怪名加入匹配的 OpenKore 原生 `attackSkillSlot_*_monsters`。Step 4A.1 调整 Swordman / Mage / Archer 的自然学习顺序，并在 `packet_charSkills` 中只当基线技能启用状态改变时刷新活动战斗策略。它不直接施法，也不实现技能循环、吟唱、距离、冷却或 SP 判断；这些仍全部由 OpenKore 处理。
 
-Step 4A.2 让 Scorer 按职业实际战斗方式选怪/选图：新增共享 `ClassProfile` 与 `CombatEstimate`，把 Mage / Acolyte 从物理 ATK 模型切到 MATK 模型（Fire Bolt / Holy Light），把 Swordman Bash / Archer Double Strafe / Thief Double Attack 的有限输出加成纳入评分，并让 DEF / MDEF / 元素克制和怪物 Mode 进入评分与 map risk。路线执行上限从写死的 3 hops 放宽为可配置（默认 6）。
+Step 4A.2 让 Scorer 按职业实际战斗方式选怪/选图：新增共享 `ClassProfile` 与 `CombatEstimate`，把 Mage / Acolyte 从物理 ATK 模型切到 MATK 模型（Fire Bolt / Holy Light），把 Swordman Bash / Archer Double Strafe / Thief Double Attack 的有限输出加成纳入评分，并让 DEF / MDEF / 元素克制和怪物 Mode 进入评分与 map risk。**职业感知选怪**：按基线攻击元素（Holy/Fire/Neutral）对目标元素的克制倍率做显式偏好（`element_affinity`）——Acolyte 主动偏向不死/暗（Holy 150%+）、物理职业回避幽灵（Neutral 25%）、元素免疫目标硬过滤；同时把确定性主动技能倍率（Holy Light 固定 1.5×、Bash、Fire Bolt）计入硬过滤击杀成本，避免 Acolyte 的不死猎物被裸 MATK 误杀。路线执行上限从写死的 3 hops 放宽为可配置（默认 6）。
 
 执行可由用户手动启动（`worldai execute`），也可通过 `world_ai_auto_execute 1` 在登录后自动开始。执行只决策一次，不会因升级或评分变化自动换图。
 
@@ -36,7 +36,7 @@ worldai reload
 
 `status` 额外输出当前职业族的基线技能、已学等级、目标等级与是否已可用，以及 `exec_max_hops`、`route_budget_zeny=0`、`special_routes=OFF` 和实时 MATK / MDEF。`exec status` 输出 `IDLE / SELECTING / VALIDATING / WAITING_SAFE / MOVING / ACTIVE / ERROR`、目标、地图、AI action、攻击、击杀与死亡计数。`exec stop` 立即恢复运行态配置。
 
-`top` / `recommend` 的每项会额外输出 `combat` 行：`class`、`estimate`（`PHYSICAL_NORMAL / PHYSICAL_SKILL / MAGIC_SKILL / MAGIC_DEGRADED`）、`damage`、`power`、`kill_cost` 和 `degraded`，并把 `class_match`、`element_match`、`defense_penalty` 计入 breakdown。
+`top` / `recommend` 的每项会额外输出 `combat` 行：`class`、`estimate`（`PHYSICAL_NORMAL / PHYSICAL_SKILL / MAGIC_SKILL / MAGIC_DEGRADED`）、`damage`、`power`、`kill_cost`、`element_factor`、`attack_element` 和 `degraded`，并把 `class_match`、`element_affinity`、`defense_penalty` 计入 breakdown。
 
 `combat inspect` 是只读诊断：显示当前职业族、已学技能 handle、已配置 `attackSkillSlot`、当前执行目标、匹配策略和实际 `monsters` 过滤。`recommend` / `top` 不会应用战斗策略，只有 `execute` 成功应用最终目标时才同步。
 
@@ -97,7 +97,7 @@ world_ai/
 - `CharacterSnapshot.pm`：从 OpenKore `$char`、`$field` 读取实时状态，含 MATK / MDEF。
 - `ClassProfile.pm`：共享职业 Profile（职业族、伤害类型、战斗风格、基线技能/元素、被动技能）。
 - `CombatPolicy.pm`：根据职业族、已学技能、已配置原生技能槽和最终执行目标生成纯数据策略（复用 `ClassProfile`）。
-- `CombatEstimate.pm`：由快照 + 职业 Profile + 怪物生成战斗代理值（`raw_power` / `effective_power` / `estimated_kill_cost` / `defense_penalty` / `element_factor`）。
+- `CombatEstimate.pm`：由快照 + 职业 Profile + 怪物生成战斗代理值（`raw_power` / `filter_power` / `effective_power` / `estimated_kill_cost` / `defense_penalty` / `element_factor` / `attack_element`）。`filter_power` 是“裸攻击力 × 确定性主动技能倍率”，供硬过滤安全计算击杀成本；`element_factor` 用基线攻击元素（魔法用 Holy/Fire，物理用 Neutral）对目标元素查表。
 - `CombatRuntimeOverride.pm`：只修改匹配技能槽的运行时 `monsters` 值，并精确恢复。
 - `Scorer.pm`：无 OpenKore 副作用的纯评分模块，接入 `CombatEstimate` 与 `ClassProfile`。
 - `RouteProbe.pm`：局部执行 `Task::CalcMapRoute`，解析三态与路线元数据；不加入 AI queue。
@@ -131,7 +131,7 @@ world_ai/
 - `skill_range` 暂不评分，因为当前数据几乎都是默认值，不能证明怪物实际拥有远程技能。
 - `attack_range` 参与远程风险；远程/施法职业（Archer、Mage、Acolyte）对远程怪的额外惩罚按约 70% 计入，但不归零。
 - 怪物 Mode 进入 map risk：完全被动的 co-spawn 明显降险，Aggressive 保持全额，Cast Sensor 对施法职业额外提险。
-- 元素克制来自 rAthena `db/pre-re/attr_fix.yml`（生成进 `element_table`），只对 Fire Bolt / Holy Light 生效，且只是中等幅度修正，不会压过安全过滤。
+- 元素克制来自 rAthena `db/pre-re/attr_fix.yml`（生成进 `element_table`）。魔法职业用基线元素（Fire Bolt=Fire、Holy Light=Holy），物理职业普攻按 Neutral 查表，因此物理职业会回避幽灵系（Neutral 对 Ghost 仅 25%）。元素倍率既流入伤害/击杀成本，也以 `element_affinity`（默认 ±8 封顶）显式加分/减分，但免疫（倍率 ≤ 0）会被硬过滤，且只是中等幅度修正、不会压过安全过滤。
 - 当前 schema 3 只有刷新数量，没有地图面积和重生时间，因此评分项叫 `spawn_count_score`，不是严格的刷新密度。
 - Top 榜只使用 `%maps_lut` 已知地图；路线仍标为 `UNVERIFIED`，Step 3 执行前必须重新验证。
 - `CANNOT_LOAD_FIELD` 和 `CANNOT_CALCULATE_ROUTE` 归类为 `UNREACHABLE`；超时、角色状态不足、异常或未知 Task 错误一律归类为 `UNKNOWN`。
