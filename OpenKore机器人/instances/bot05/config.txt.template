@@ -80,9 +80,9 @@ attackAuto_notWhile_sellAuto 1
 attackAuto_considerDamagedAggressive 0
 attackAuto_considerAggressiveIfCastOnCastSensor 0
 attackAllowStartStorageBuySell 1
-attackDistance 1
-attackDistanceAuto 1
-attackMaxDistance 1
+attackDistance 8
+attackDistanceAuto 0
+attackMaxDistance 10
 attackMaxRouteTime 4
 attackMinPlayerDistance 2
 attackMinPortalDistance 4
@@ -259,7 +259,7 @@ maxUnobstructedWalkPathDistance 17
 # If there are obstacles and the path is walkable the max dist acceptable is 14
 maxObstructedWalkPathDistance 14
 
-runFromTarget 0
+runFromTarget 1
 runFromTarget_inAdvance 0
 runFromTarget_dist 5
 runFromTarget_minStep 7
@@ -305,7 +305,7 @@ statsAddAuto_dontUseBonus 0
 statsAdd_over_99 1
 
 skillsAddAuto 1
-skillsAddAuto_list NV_BASIC 9, AL_DP 7, AL_HEAL 10, AL_INCAGI 10, AL_BLESSING 10, AL_RUWACH 1, AL_TELEPORT 2, AL_WARP 4, AL_PNEUMA 1, AL_ANGELUS 2, AL_HOLYWATER 1, AL_CURE 1, MG_SRECOVERY 4, PR_STRECOVERY 1, ALL_RESURRECTION 4, PR_IMPOSITIO 5, PR_SUFFRAGIUM 3, PR_ASPERSIO 5, PR_SANCTUARY 10, PR_KYRIE 10, PR_MAGNIFICAT 5, PR_LEXDIVINA 2
+skillsAddAuto_list NV_BASIC 9, AL_DP 7, AL_HEAL 10, AL_INCAGI 10, AL_BLESSING 10, AL_RUWACH 1, AL_TELEPORT 2, AL_WARP 4, AL_PNEUMA 1, AL_ANGELUS 2, AL_HOLYWATER 1, AL_CURE 1, AL_HOLYLIGHT 5, MG_SRECOVERY 4, PR_STRECOVERY 1, ALL_RESURRECTION 4, PR_IMPOSITIO 5, PR_SUFFRAGIUM 3, PR_ASPERSIO 5, PR_SANCTUARY 10, PR_KYRIE 10, PR_MAGNIFICAT 5, PR_LEXDIVINA 2
 
 # Shared equipment decision module. It only equips identified, class/level-valid
 # upgrades and leaves carded or unknown/custom equipment alone.
@@ -612,13 +612,13 @@ pet_return 20
 
 # Holy Light is granted when Nora becomes an Acolyte so the support build can
 # level independently before it has a party to heal.
+# 不限制 monsters：对任何怪都用圣光打（魔法伤害），否则退回 1 伤害平A等于送死。
 attackSkillSlot AL_HOLYLIGHT {
 	lvl 1
 	dist 8
 	maxDist 9
 	sp > 25%
 	maxAttempts 4
-	monsters Poring, Pupa, Fabre, Lunatic, Drops, Chonchon, Willow, Roda Frog
 }
 
 attackSkillSlot {
