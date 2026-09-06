@@ -1,0 +1,21 @@
+character:
+  name: Cartwright
+  character_id: 150008
+  account_id: 2000006
+identity:
+  archetype: central Merchant vendor (city-bound, non-combat)
+  career_wish: { first_job: Merchant, skip_job_quests: true }
+role:
+  purpose: central trading / vending / (future) buying-store station
+  station: Prontera (156, 193)
+growth:
+  priorities: []
+  combat_style: none; vends and later runs the economy state machine
+implementation:
+  bot_instance: bot06
+  shared_career_script: npc/custom/bot_career_paths.txt
+  note: >-
+    Merchant class and vendor skill set (Pushcart / Vending / Overcharge /
+    Discount / Inccarry / ChangeCart / CartDecorate / AllBuyingStore) were
+    granted server-side for the Stage 3 capability probe, matching the project's
+    DB-created-character precedent. skillsAddAuto is disabled for this instance.

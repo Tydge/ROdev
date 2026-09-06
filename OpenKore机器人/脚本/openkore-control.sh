@@ -11,7 +11,7 @@ MANAGED_INSTANCES_ROOT="/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/i
 RO_CONTROL="/Users/wangtaizhi/娱乐/RO本地服/自动化/ro-control.sh"
 DB_SOCKET="$RO_ROOT/database/mariadb.sock"
 BOT_ACCOUNT_PREFIX="openkore%"
-BOT_IDS=(bot01 bot02 bot03 bot04 bot05)
+BOT_IDS=(bot01 bot02 bot03 bot04 bot05 bot06)
 SCRIPT_PATH="${0:A}"
 
 if command -v mysql >/dev/null 2>&1; then
