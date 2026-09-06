@@ -1,0 +1,20 @@
+character:
+  name: Penny
+  character_id: 150009
+  account_id: 2000007
+identity:
+  archetype: city-bound customer probe (non-combat)
+  career_wish: { first_job: Novice, skip_job_quests: true }
+role:
+  purpose: buyer/seller counterpart for bot06 central Merchant economy probes
+  station: Prontera (157, 170)
+growth:
+  priorities: []
+  combat_style: none; buys from vends, sells into buying stores
+implementation:
+  bot_instance: bot07
+  shared_career_script: npc/custom/bot_career_paths.txt
+  note: >-
+    DB-created Novice customer. Holds zeny (to buy from Cartwright's vending
+    shop) and a few loot items (to sell into Cartwright's buying store). All
+    interactions are driven manually via vl/vender and bl/buyer commands.

@@ -11,7 +11,7 @@ MANAGED_INSTANCES_ROOT="/Users/wangtaizhi/娱乐/RO本地服/OpenKore机器人/i
 RO_CONTROL="/Users/wangtaizhi/娱乐/RO本地服/自动化/ro-control.sh"
 DB_SOCKET="$RO_ROOT/database/mariadb.sock"
 BOT_ACCOUNT_PREFIX="openkore%"
-BOT_IDS=(bot01 bot02 bot03 bot04 bot05 bot06)
+BOT_IDS=(bot01 bot02 bot03 bot04 bot05 bot06 bot07)
 SCRIPT_PATH="${0:A}"
 
 if command -v mysql >/dev/null 2>&1; then
@@ -78,6 +78,20 @@ ensure_managed_plugins() {
   else
     echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
   fi
+
+  # economy implements the buying-store (收购店) auto-buy state machine.
+  plugin_name="economy"
+  source_dir="$MANAGED_PLUGIN_ROOT/$plugin_name"
+  target_dir="$OPENKORE_ROOT/plugins/$plugin_name"
+
+  [[ -f "$source_dir/$plugin_name.pl" ]] || return 0
+  if [[ -L "$target_dir" ]]; then
+    /bin/ln -sfn "$source_dir" "$target_dir"
+  elif [[ ! -e "$target_dir" ]]; then
+    /bin/ln -s "$source_dir" "$target_dir"
+  else
+    echo "[警告] 保留现有插件目录，未覆盖：$target_dir"
+  fi
 }
 
 deploy_config() {
@@ -120,6 +134,13 @@ deploy_config() {
       }
 
     /bin/cp -f "$shared_dir"/*.txt "$BOT_INSTANCES_ROOT/$bot_id/control/" 2>/dev/null || true
+
+    # 按实例的控制文件覆盖（例如 bot06 商人的 shop.txt / buyer_shop.txt），
+    # 在共享控制文件之后拷贝，覆盖共享默认值。
+    if [[ -d "$MANAGED_INSTANCES_ROOT/$bot_id/control" ]]; then
+      /bin/cp -f "$MANAGED_INSTANCES_ROOT/$bot_id/control/"*.txt "$BOT_INSTANCES_ROOT/$bot_id/control/" 2>/dev/null || true
+    fi
+
     echo "[OK] $bot_id config.txt 已渲染，共享控制文件已同步。"
   done
   echo "[完成] 所有机器人配置已部署；重启机器人生效。"

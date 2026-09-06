@@ -1,0 +1,5 @@
+# bot06 中央商人收购清单（韩文显示名 + 收购价 + 数量上限）。
+# makeBuyerShop 会从“背包”里匹配同名物品以取得 nameID，故待收购物品需在背包中留样。
+Cartwright Buying Shop
+젤로피	20	5
+빈병	15	5

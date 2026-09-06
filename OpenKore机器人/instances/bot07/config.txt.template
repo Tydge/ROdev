@@ -1,10 +1,9 @@
 # Please Read the Users Manual
 # The Manual is located at https://openkore.com/wiki/Manual
 #
-# bot06 = 中央 Merchant（Cartwright，char_id 150008）。
-# 这是一个常驻城市的交易/摆摊角色，不打怪、不挂 world_ai。
-# Merchant 职业技能（含 Pushcart / Vending / Overcharge / Discount 等）由
-# 阶段 3 探针在服务端一次性授予；此处 skillsAddAuto 关闭，避免覆盖。
+# bot07 = 顾客探针（Penny，char_id 150009，Novice）。
+# 常驻 Prontera 的买家/卖家角色：向 bot06 中央商人的摆摊购买，并向其收购店出售。
+# 不打怪、不摆摊、不开收购店，全部用控制台命令 vl/vender/bl/buyer 手工驱动。
 
 ######## Login options and server-specific options ########
 
@@ -68,7 +67,7 @@ alias_heal sp 28
 allowedMaps
 allowedMaps_reaction 1
 
-# 中央商人不打怪，也不自动寻路巡逻。
+# 顾客不打怪、不寻路巡逻。
 attackAuto 0
 attackAuto_routeToLock 0
 attackAuto_outOfLock 0
@@ -189,9 +188,9 @@ cartMaxWeight 7900
 itemsTakeGreed 0
 itemsCheckWeight 0
 
-# 常驻 Prontera 摆摊点（156,170 附近无 NPC，满足 min_npc_vendchat_distance=3）。
+# 常驻 Prontera，紧邻 bot06 中央商人（156,170）。
 lockMap prontera
-lockMap_x 156
+lockMap_x 157
 lockMap_y 170
 lockMap_randX 0
 lockMap_randY 0
@@ -218,26 +217,20 @@ runFromTarget 0
 runFromTarget_dist 5
 
 saveMap prontera
-saveMap_x 156
+saveMap_x 157
 saveMap_y 170
 saveMap_warp 0
 saveMap_warpToBuyOrSell 0
 saveMap_warp_minDistance
 saveMap_warpChatCommand
 
-# 摆摊开关。阶段 3 探针用手工 openshop / closeshop；
-# 后续 economy 状态机接管后可改为 shopAuto_open 1。
+# 顾客不摆摊、不开收购店。
 shopAuto_open 0
 shop_random 0
 shop_useSkill 1
 
-# 收购店由 economy 插件状态机接管（open/close/zeny 保底），故原生开关保持关闭。
 buyerShopAuto_open 0
 buyerShop_random 0
-
-# Economy V1 自动收购状态机（plugins/economy/economy.pl）
-economy_buy_store_enabled 1
-economy_buy_store_reserve 2000
 
 sitAuto_hp_lower 0
 sitAuto_hp_upper 0
@@ -256,7 +249,6 @@ statsAdd_over_99 1
 skillsAddAuto 0
 skillsAddAuto_list
 
-# 商人角色不需要自动换装，探针期间保持关闭。
 autoGear 0
 autoGear_role physical
 autoGear_checkInterval 10
@@ -337,7 +329,6 @@ repairAuto_inTownOnly 0
 
 ######## Autostorage/autosell ########
 
-# 中央商人自己不回城卖货、不找 NPC 补给；这些由 economy 状态机后续接管。
 sellAuto 0
 sellAuto_npc
 sellAuto_standpoint
