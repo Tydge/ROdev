@@ -133,6 +133,7 @@ worldai reload
 - OpenKore serverType：`kRO_RagexeRE_2021_11_03`
 - 实际角色块长度：`175`
 - dated recvpackets：`kRO/Ragexe_2021_11_03`
+- Trade 对端报价：0x0B42 已按 62 字节结构绑定到 deal_add_other，物品与 Zeny 回显、取消、掉线回滚和重登持久化均已验证
 
 ## 已知限制
 
