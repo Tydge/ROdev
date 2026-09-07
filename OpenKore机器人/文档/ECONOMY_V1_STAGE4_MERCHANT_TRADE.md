@@ -136,7 +136,9 @@ That person is in another deal.
 
 - bot06 Cartwright：online，prontera (156,170)，zeny 8,970，Poring Card ×1，摆摊已关。
 - bot07 Penny：online，prontera (157,170)，zeny 11,030，无卡片，已授予 NV_BASIC 9。
-- 收购店（buying store）：许可证 6377 已耗尽（每开一次消耗 1 张），当前无法重开，留待补货（Sprint 8 前需补许可证或走无技能道具路径）。
+- 收购店（buying store）：许可证 6377 已耗尽（每开一次消耗 1 张），当前无法重开。
+  注意：收购店与 Sprint 8（阶段 5 普通 Trade 自动收购）是两套独立机制；Sprint 8 用普通 Trade 收卡，
+  不依赖收购店许可证，许可证补货不是 Sprint 8 的前置项。
 
 ## 五、遗留 / 备注
 

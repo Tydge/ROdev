@@ -27,6 +27,8 @@
 Sprint 7（阶段 4 Merchant 专项普通 Trade）已通过，见 `ECONOMY_V1_STAGE4_MERCHANT_TRADE.md`。
 下一步实现卖家 / 买家普通 Trade 状态机：带 nonce 的 SELL_REQUEST / READY 私聊握手、
 精确角色名白名单自动接单、单张 Rocker Card 10,000z 的估值与锁定前报价校验，
-以及拒绝 / 超时 / 容量不足后的 world_ai 控制权释放。前置项：为 bot06 补购收购店许可证（当前 6377 已耗尽）。
+以及拒绝 / 超时 / 容量不足后的 world_ai 控制权释放。
+真实前置项：① bot06 资金需 ≥10,000z（当前 8,970z）；② 一张 Rocker Card（bot05 NoraEllis 有 6 张真实掉落，或 probe 角色注入测试品）。
+收购店许可证 6377 已耗尽，但 Sprint 8 用普通 Trade 收卡、不依赖收购店，许可证补货不是前置项。
 
 Sprint 4 已于 2026-09-07 完成：只读分类由 autoGear 完成评估后触发，未开启自动交易。
