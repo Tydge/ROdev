@@ -6,8 +6,9 @@ no warnings 'redefine';
 
 use AI;
 use Commands;
-use Globals qw($char $field $net %config $buyershopstarted $shopstarted %items_control %incomingDeal %outgoingDeal %currentDeal);
+use Globals qw($char $field $net $messageSender %config $buyershopstarted $shopstarted %items_control %incomingDeal %outgoingDeal %currentDeal $playersList);
 use Log qw(message warning);
+use Misc qw(sendMessage);
 use Network;
 use Plugins;
 use Time::HiRes qw(time);
@@ -15,6 +16,7 @@ use File::Basename qw(dirname);
 use JSON::PP qw(decode_json);
 use lib dirname(__FILE__) . '/lib';
 use Economy::Classifier;
+use Economy::Trade;
 
 my $catalog = {};
 my %classification_cache;
@@ -91,8 +93,16 @@ my $hooks = Plugins::addHooks(
 	['packet/buying_store_update', \&on_buying_store_update],
 	['buyer_shop_closed',          \&on_buyer_shop_closed],
 	['autoGear_evaluation_complete', \&classify_inventory],
-	['postloadfiles', \&load_item_catalog],
+	['postloadfiles', \&on_postloadfiles],
 	['error_deal', \&on_trade_request_error],
+	# Sprint 8：普通 Trade 自动收购状态机（seller/buyer）。
+	['packet_privMsg', \&on_trade_pm],
+	['incoming_deal', \&on_trade_incoming],
+	['engaged_deal', \&on_trade_engaged],
+	['finalized_deal', \&on_trade_finalized],
+	['complete_deal', \&on_trade_complete],
+	['cancelled_deal', \&on_trade_cancelled],
+	['error_deal', \&on_trade_error],
 );
 
 my %state = (
@@ -141,6 +151,9 @@ sub _has_license {
 }
 
 sub on_ai_pre {
+	# Sprint 8 普通 Trade 状态机独立于收购店运行，先 tick（自带 1s 节流）。
+	on_trade_tick();
+
 	return unless _enabled();
 	return unless _in_game();
 	my $now = time;
@@ -215,6 +228,184 @@ sub on_buyer_shop_closed {
 	econ_log('[STATE] buyer shop closed');
 }
 
+############################################################################
+# Sprint 8 —— 普通 Trade 自动收购状态机（seller / buyer）。
+#
+# 用 Economy::Trade（纯状态机）驱动真实 Trade 协议：
+#   seller: SELL_REQUEST <nonce> <itemID> → READY → 发起 Trade → 放卡 → 核对报价 → 锁定 → 确认
+#   buyer : 校验白名单/nonce → READY → 接单 → 检测卡片 → 放 zeny → 锁定 → 确认
+#
+# 配置（config.txt）：
+#   economy_trade_enabled 1           # 总开关
+#   economy_trade_role seller         # seller | buyer
+#   economy_trade_item 4023           # 交易物品 nameID
+#   economy_trade_price 10000         # 固定价格（z）
+#   economy_trade_merchant Cartwright # seller 用：商人名
+#   economy_trade_sellers Penny       # buyer 用：卖家白名单（逗号分隔）
+#   economy_trade_timeout 30          # 状态 watchdog 秒
+#   economy_trade_cooldown 15         # done/error 后重试冷却秒
+############################################################################
+
+my $trade;               # Economy::Trade 实例
+my $trade_last_tick = 0;
+my $TRADE_TICK_SECONDS = 1;
+
+sub _trade_enabled {
+	my $v = $config{economy_trade_enabled};
+	return 0 unless defined $v;
+	return $v =~ /^(1|yes|true|on)$/i ? 1 : 0;
+}
+
+sub _trade_role {
+	my $r = $config{economy_trade_role} || '';
+	return $r eq 'seller' || $r eq 'buyer' ? $r : '';
+}
+
+sub _trade_num {
+	my ($key) = @_;
+	my $v = $config{$key};
+	return 0 unless defined $v && $v =~ /^\d+$/;
+	return 0 + $v;
+}
+
+sub _trade_sellers {
+	my %s;
+	for my $n (split /,/, $config{economy_trade_sellers} || '') {
+		$n =~ s/^\s+|\s+$//g;
+		$s{$n} = 1 if $n ne '';
+	}
+	return \%s;
+}
+
+sub _build_trade {
+	$trade = undef;
+	return unless _trade_enabled();
+	my $role = _trade_role();
+	return unless $role;
+	my %args = (
+		role => $role,
+		item_id => _trade_num('economy_trade_item'),
+		price => _trade_num('economy_trade_price'),
+		timeout => _trade_num('economy_trade_timeout') || 30,
+		cooldown => _trade_num('economy_trade_cooldown') || 15,
+	);
+	if ($role eq 'seller') {
+		$args{merchant} = $config{economy_trade_merchant} || '';
+	} else {
+		$args{sellers} = _trade_sellers();
+	}
+	$trade = Economy::Trade->new(%args);
+	econ_log(sprintf('[TRADE] initialized role=%s itemID=%s price=%sz merchant=%s sellers=%s',
+		$role, $args{item_id}, $args{price},
+		($args{merchant} || '-'), (join ',', sort keys %{ $args{sellers} || {} }) || '-'));
+}
+
+# 启动时插件先于 config.txt 加载，故在 postloadfiles（config 已就绪）再构建一次。
+sub on_postloadfiles {
+	load_item_catalog();
+	_build_trade();
+}
+
+sub _feed_trade {
+	my ($method, @args) = @_;
+	return unless $trade;
+	_execute_trade_actions($trade->$method(@args));
+}
+
+sub _execute_trade_actions {
+	my ($actions) = @_;
+	return unless $actions;
+	for my $a (@$actions) {
+		my $type = $a->{type};
+		if ($type eq 'log') {
+			econ_log($a->{msg});
+		} elsif ($type eq 'send_pm') {
+			sendMessage($messageSender, 'pm', $a->{msg}, $a->{to});
+		} elsif ($type eq 'accept_deal') {
+			$messageSender->sendDealReply(3);
+		} elsif ($type eq 'reject_deal') {
+			$messageSender->sendDealReply(4);
+		} elsif ($type eq 'initiate_deal') {
+			my ($partner) = grep { $_->name eq $a->{name} } @$playersList;
+			if ($partner) {
+				main::deal($partner);
+			} else {
+				econ_warn(sprintf('[TRADE] initiate_deal: %s not nearby', $a->{name}));
+			}
+		} elsif ($type eq 'add_item') {
+			my $item = $char->inventory->getByNameID($a->{nameID});
+			if ($item) {
+				main::dealAddItem($item, $a->{amount});
+			} else {
+				econ_warn(sprintf('[TRADE] add_item: itemID=%s not in inventory', $a->{nameID}));
+			}
+		} elsif ($type eq 'add_zeny') {
+			$currentDeal{you_zeny} = $a->{amount};
+		} elsif ($type eq 'finalize') {
+			$messageSender->sendDealAddItem(pack('v', 0), $currentDeal{you_zeny} || 0);
+			$messageSender->sendDealFinalize();
+		} elsif ($type eq 'commit') {
+			$messageSender->sendDealTrade();
+		}
+	}
+}
+
+sub on_trade_pm {
+	my (undef, $args) = @_;
+	_feed_trade('on_pm', $args->{privMsgUser}, $args->{privMsg});
+}
+
+sub on_trade_incoming {
+	my (undef, $args) = @_;
+	_feed_trade('on_incoming_deal', $args->{name});
+}
+
+sub on_trade_engaged {
+	my (undef, $args) = @_;
+	_feed_trade('on_engaged', $args->{name});
+}
+
+sub on_trade_finalized {
+	_feed_trade('on_other_finalized');
+}
+
+sub on_trade_complete {
+	_feed_trade('on_complete');
+}
+
+sub on_trade_cancelled {
+	_feed_trade('on_cancelled');
+}
+
+sub on_trade_error {
+	my (undef, $args) = @_;
+	_feed_trade('on_error', $args->{type});
+}
+
+sub on_trade_tick {
+	return unless $trade && _in_game();
+	my $now = time;
+	return if $now - $trade_last_tick < $TRADE_TICK_SECONDS;
+	$trade_last_tick = $now;
+
+	my %ctx = ( now => $now, other_finalized => $currentDeal{other_finalize} ? 1 : 0 );
+	if (_trade_role() eq 'seller') {
+		my $item = $char->inventory->getByNameID(_trade_num('economy_trade_item'));
+		$ctx{has_card} = $item ? 1 : 0;
+		$ctx{other_zeny} = $currentDeal{other_zeny} || 0;
+	} else {
+		$ctx{other_items} = \%{ $currentDeal{other} || {} };
+	}
+	_feed_trade('tick', %ctx);
+}
+
+sub _print_trade_status {
+	return econ_log('[TRADE] disabled') unless $trade;
+	econ_log(sprintf('[TRADE] role=%s state=%s itemID=%s price=%sz counterpart=%s nonce=%s',
+		_trade_role(), $trade->state(), _trade_num('economy_trade_item'), _trade_num('economy_trade_price'),
+		($trade->counterpart || '-'), ($trade->nonce || '-')));
+}
+
 sub _print_status {
 	econ_log(sprintf(
 		'[STATUS] enabled=%s buying_store_open=%s vending_open=%s zeny=%d reserve=%d skill=%s license=%s purchases=%d spent=%dz open_fail_streak=%d last_close_reason=%s',
@@ -244,6 +435,11 @@ sub command_handler {
 		}
 	} elsif ($args eq 'status') {
 		_print_status();
+	} elsif ($args eq 'trade' || $args eq 'trade status') {
+		_print_trade_status();
+	} elsif ($args eq 'trade reset') {
+		econ_log('[CMD] rebuild trade state machine');
+		_build_trade();
 	} elsif ($args eq 'open') {
 		econ_log('[CMD] force open buying store');
 		$state{last_open_try} = 0;
@@ -259,7 +455,7 @@ sub command_handler {
 		$state{last_close_reason} = '';
 		econ_log('[CMD] session statistics reset');
 	} else {
-		econ_log('[HELP] economy status | open | close | reset | classify');
+		econ_log('[HELP] economy status | open | close | reset | classify | trade [status|reset]');
 	}
 }
 
@@ -270,5 +466,6 @@ sub on_unload {
 }
 
 load_item_catalog();
+_build_trade();
 
 1;

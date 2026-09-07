@@ -13,8 +13,9 @@
 | 实验 2.1 / Sprint 4：classify_item 与离线测试 | 已完成共享分类器、只读运行日志及离线测试，见 ECONOMY_V1_STAGE2_CLASSIFIER |
 | 阶段 3 / Sprint 5–6：Merchant 引导和实例管理 | 核心能力已完成，见 STAGE3_MERCHANT_PROBE；严格总计划验收仍需核对真人坐标检查、资金来源等证据 |
 | 阶段 4 / Sprint 7：Combat Bot 与 Merchant 普通 Trade | 本次完成，见 ECONOMY_V1_STAGE4_MERCHANT_TRADE；含拒绝后 incomingDeal 残留修复、真实 Trade 资产守恒、忙碌拒绝与重登持久化验收 |
-| 阶段 5 / Sprint 8：自动 Trade 收一张 Card | 未实现；当前 economy 插件是 buying store 自动开关，不是普通 Trade 买卖双方状态机 |
-| 阶段 6–8：拆批、回城接入、排队和异常恢复 | 未实现；部分底层中断能力已经探针验证 |
+| 阶段 5 / Sprint 8：自动 Trade 收一张 Card | 本次完成，见 ECONOMY_V1_STAGE5_AUTO_TRADE；nonce 私聊握手 + 白名单接单 + 报价校验 + 锁定竞态修复，实机全自动成交 4023 @10,000z |
+| 阶段 6：多物品交易与拆批 | 未实现；当前状态机固定单物品、单数量 |
+| 阶段 7–8：回城接入、排队、异常恢复 | 未实现；world_ai 的 deal/economy 忙碌保护仍未接入 |
 | 阶段 9–10：收货入 Cart、自动摆摊及收货切换 | 手工 Cart/Vending 和买家购买能力已验证；真实掉落的自动完整链路未验收 |
 
 ## 历史编号差异
@@ -22,13 +23,13 @@
 `ECONOMY_V1_STAGE4_BUYING_STORE.md` 是额外的收购店与摆摊封包能力报告，
 其“阶段 4 完成”不等于总计划阶段 4 或阶段 5 完成。既有成果保留，后续不再用该报告编号推断总计划进度。
 
-## 下一步：Sprint 8 自动收购一张 Card
+## 下一步：阶段 6 多物品交易 / 阶段 7 接入回城流程
 
-Sprint 7（阶段 4 Merchant 专项普通 Trade）已通过，见 `ECONOMY_V1_STAGE4_MERCHANT_TRADE.md`。
-下一步实现卖家 / 买家普通 Trade 状态机：带 nonce 的 SELL_REQUEST / READY 私聊握手、
-精确角色名白名单自动接单、单张 Rocker Card 10,000z 的估值与锁定前报价校验，
-以及拒绝 / 超时 / 容量不足后的 world_ai 控制权释放。
-真实前置项：① bot06 资金需 ≥10,000z（当前 8,970z）；② 一张 Rocker Card（bot05 NoraEllis 有 6 张真实掉落，或 probe 角色注入测试品）。
-收购店许可证 6377 已耗尽，但 Sprint 8 用普通 Trade 收卡、不依赖收购店，许可证补货不是前置项。
+Sprint 8（阶段 5 普通 Trade 自动收购）已通过，见 `ECONOMY_V1_STAGE5_AUTO_TRADE.md`。
+下一步建议：先做阶段 6（单笔多物品 + 超过 10 条目的拆批与定价），
+再做阶段 7（把 seller 侧接进战斗 bot 真实回城流，并为 world_ai 增加 deal/economy 忙碌保护）。
+
+注：实机收购目标是 4023（Baby Desert Wolf Card），非计划示例的 Rocker Card（4021）；
+后者当前无真实掉落，且状态机按 nameID 判定、与卡片种类无关，改配置一行即可切换。
 
 Sprint 4 已于 2026-09-07 完成：只读分类由 autoGear 完成评估后触发，未开启自动交易。

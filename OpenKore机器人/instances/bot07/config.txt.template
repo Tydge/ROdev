@@ -232,6 +232,15 @@ shop_useSkill 1
 buyerShopAuto_open 0
 buyerShop_random 0
 
+# Economy V1 Sprint 8 —— 普通 Trade 自动收购（顾客侧 = seller）
+economy_trade_enabled 1
+economy_trade_role seller
+economy_trade_item 4023
+economy_trade_price 10000
+economy_trade_merchant Cartwright
+economy_trade_timeout 30
+economy_trade_cooldown 15
+
 sitAuto_hp_lower 0
 sitAuto_hp_upper 0
 sitAuto_sp_lower 0
