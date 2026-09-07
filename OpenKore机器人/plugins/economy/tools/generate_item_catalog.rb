@@ -16,7 +16,7 @@ end
   end
 end
 catalog = items.sort.to_h.transform_values do |item|
-  item.select { |key, _| %w[Id Type Locations Trade CustomOverride].include?(key) }
+  item.select { |key, _| %w[Id Type Locations Trade CustomOverride Weight Stack].include?(key) }.merge('Weight' => item.fetch('Weight', 0))
 end
 rows = catalog.map { |id, meta| "  #{JSON.generate(id.to_s)}: #{JSON.generate(meta)}" }
 File.write(output, "{\n" + rows.join(",\n") + "\n}\n")

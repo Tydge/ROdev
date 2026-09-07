@@ -232,11 +232,10 @@ shop_useSkill 1
 buyerShopAuto_open 0
 buyerShop_random 0
 
-# Economy V1 Sprint 8 —— 普通 Trade 自动收购（顾客侧 = seller）
+# Economy V1 阶段 5–6 —— 普通 Trade 多物品自动收购（顾客侧 = seller）
+# 价格统一读取 plugins/economy/trade_prices.json；每笔最多 10 个库存条目。
 economy_trade_enabled 1
 economy_trade_role seller
-economy_trade_item 4023
-economy_trade_price 10000
 economy_trade_merchant Cartwright
 economy_trade_timeout 30
 economy_trade_cooldown 15

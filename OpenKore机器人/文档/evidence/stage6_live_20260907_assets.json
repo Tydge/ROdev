@@ -1,0 +1,1655 @@
+{
+  "checks": {
+    "bot06_rollback_unchanged": true,
+    "bot06_settlement_relog_persistent": true,
+    "bot07_rollback_unchanged": true,
+    "bot07_settlement_relog_persistent": true,
+    "final_cash_restored": true
+  },
+  "snapshots": {
+    "bot01": [
+      [
+        "22:56:09",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 8,
+              "identified": 1,
+              "nameID": 619,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 4,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 4,
+              "identified": 1,
+              "nameID": 1002,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4006,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 620,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 30,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 7,
+              "upgrade": 0
+            },
+            {
+              "amount": 5,
+              "identified": 1,
+              "nameID": 578,
+              "slot": 8,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4029,
+              "slot": 9,
+              "upgrade": 0
+            },
+            {
+              "amount": 76,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 10,
+              "upgrade": 0
+            },
+            {
+              "amount": 20,
+              "identified": 1,
+              "nameID": 515,
+              "slot": 11,
+              "upgrade": 0
+            },
+            {
+              "amount": 9,
+              "identified": 1,
+              "nameID": 507,
+              "slot": 12,
+              "upgrade": 0
+            },
+            {
+              "amount": 36,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 13,
+              "upgrade": 0
+            },
+            {
+              "amount": 28,
+              "identified": 1,
+              "nameID": 915,
+              "slot": 14,
+              "upgrade": 0
+            },
+            {
+              "amount": 5,
+              "identified": 1,
+              "nameID": 935,
+              "slot": 15,
+              "upgrade": 0
+            },
+            {
+              "amount": 25,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 16,
+              "upgrade": 0
+            },
+            {
+              "amount": 6,
+              "identified": 1,
+              "nameID": 938,
+              "slot": 17,
+              "upgrade": 0
+            },
+            {
+              "amount": 6,
+              "identified": 1,
+              "nameID": 705,
+              "slot": 18,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 949,
+              "slot": 19,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 20,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 21,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 22,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2305,
+              "slot": 23,
+              "upgrade": 4
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2101,
+              "slot": 24,
+              "upgrade": 4
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 2402,
+              "slot": 25,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 2402,
+              "slot": 26,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 1602,
+              "slot": 27,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 2402,
+              "slot": 28,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 1602,
+              "slot": 29,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 1602,
+              "slot": 30,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 0,
+              "nameID": 1202,
+              "slot": 31,
+              "upgrade": 0
+            }
+          ],
+          "name": "KoreHelper",
+          "zeny": 32823
+        }
+      ]
+    ],
+    "bot06": [
+      [
+        "22:49:58",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 5,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 10000
+        }
+      ],
+      [
+        "22:51:15",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 5,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 30000
+        }
+      ],
+      [
+        "22:52:05",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 0
+        }
+      ],
+      [
+        "22:52:27",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 30000
+        }
+      ],
+      [
+        "22:53:07",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 30000
+        }
+      ],
+      [
+        "22:55:07",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 0
+        }
+      ],
+      [
+        "22:55:18",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 0
+        }
+      ],
+      [
+        "22:56:10",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 10000
+        }
+      ],
+      [
+        "22:56:23",
+        {
+          "cart": [
+            {
+              "amount": 1,
+              "nameID": 909
+            },
+            {
+              "amount": 1,
+              "nameID": 705
+            },
+            {
+              "amount": 1,
+              "nameID": 938
+            },
+            {
+              "amount": 1,
+              "nameID": 949
+            },
+            {
+              "amount": 1,
+              "nameID": 925
+            },
+            {
+              "amount": 1,
+              "nameID": 713
+            },
+            {
+              "amount": 1,
+              "nameID": 515
+            },
+            {
+              "amount": 1,
+              "nameID": 507
+            },
+            {
+              "amount": 1,
+              "nameID": 508
+            },
+            {
+              "amount": 1,
+              "nameID": 569
+            },
+            {
+              "amount": 1,
+              "nameID": 501
+            }
+          ],
+          "inventory": [
+            {
+              "amount": 3,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4023,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1201,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 2301,
+              "slot": 5,
+              "upgrade": 0
+            }
+          ],
+          "name": "Cartwright",
+          "zeny": 10000
+        }
+      ]
+    ],
+    "bot07": [
+      [
+        "22:50:00",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 21030
+        }
+      ],
+      [
+        "22:51:16",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 1030
+        }
+      ],
+      [
+        "22:52:10",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 31030
+        }
+      ],
+      [
+        "22:52:28",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 1030
+        }
+      ],
+      [
+        "22:53:08",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4001,
+              "slot": 5,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4004,
+              "slot": 6,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 4031,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 1030
+        }
+      ],
+      [
+        "22:55:09",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 7,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 31030
+        }
+      ],
+      [
+        "22:55:20",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 31030
+        }
+      ],
+      [
+        "22:56:12",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 21030
+        }
+      ],
+      [
+        "22:56:24",
+        {
+          "cart": [],
+          "inventory": [
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 909,
+              "slot": 0,
+              "upgrade": 0
+            },
+            {
+              "amount": 2,
+              "identified": 1,
+              "nameID": 713,
+              "slot": 1,
+              "upgrade": 0
+            },
+            {
+              "amount": 100,
+              "identified": 1,
+              "nameID": 501,
+              "slot": 2,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 512,
+              "slot": 3,
+              "upgrade": 0
+            },
+            {
+              "amount": 1,
+              "identified": 1,
+              "nameID": 1243,
+              "slot": 4,
+              "upgrade": 0
+            }
+          ],
+          "name": "Penny",
+          "zeny": 21030
+        }
+      ]
+    ]
+  }
+}

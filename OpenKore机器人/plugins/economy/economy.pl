@@ -17,9 +17,16 @@ use JSON::PP qw(decode_json);
 use lib dirname(__FILE__) . '/lib';
 use Economy::Classifier;
 use Economy::Trade;
+use Economy::Inventory;
 
 my $catalog = {};
 my %classification_cache;
+my $gear_snapshot = q{};
+sub _gear_snapshot {
+    return q{} unless _in_game() && $char->inventory->isReady;
+    return join(q{|}, map { join(q{:}, $_->{binID}, Economy::Inventory::signature($_), $_->{equipped}||0) }
+        grep { ($catalog->{$_->{nameID}}{Type}||q{}) =~ /^(Weapon|Armor)$/ } @{$char->inventory->getItems});
+}
 sub load_item_catalog {
     $catalog = {};
     %classification_cache = ();
@@ -36,6 +43,7 @@ sub load_item_catalog {
 # No inventory mutation, Trade, NPC sell or price calculation occurs here.
 sub classify_inventory {
     return unless _in_game();
+    $gear_snapshot = _gear_snapshot();
     return if defined $config{economy_classify_enabled} && !$config{economy_classify_enabled};
     my $classifier = Economy::Classifier->new(catalog => $catalog, npc_rules => \%items_control);
     my %seen;
@@ -54,7 +62,7 @@ sub classify_inventory {
 
 
 our $NAME = 'economy';
-our $VERSION = '1.0.0';
+our $VERSION = '1.1.0';
 
 ############################################################################
 # Economy V1 —— 自动收购（收购店 / buying store）状态机。
@@ -79,7 +87,7 @@ our $VERSION = '1.0.0';
 #   economy reset   重置会话统计
 ############################################################################
 
-Plugins::register($NAME, 'Economy V1 auto-buy (收购店) state machine', \&on_unload, \&on_unload);
+Plugins::register($NAME, 'Economy V1 classification and safe multi-item Trade', \&on_unload, \&on_unload);
 
 my $commands = Commands::register(
 	['economy', 'economy state machine control', \&command_handler],
@@ -103,6 +111,10 @@ my $hooks = Plugins::addHooks(
 	['complete_deal', \&on_trade_complete],
 	['cancelled_deal', \&on_trade_cancelled],
 	['error_deal', \&on_trade_error],
+	['packet/deal_add_other', \&on_trade_other_item],
+	['packet/deal_add_you', \&on_trade_own_ack],
+	['zeny_change', \&on_trade_zeny],
+	['Network::stateChanged', \&on_trade_connection],
 );
 
 my %state = (
@@ -154,6 +166,7 @@ sub on_ai_pre {
 	# Sprint 8 普通 Trade 状态机独立于收购店运行，先 tick（自带 1s 节流）。
 	on_trade_tick();
 
+	return if _trade_enabled() || _trade_active();
 	return unless _enabled();
 	return unless _in_game();
 	my $now = time;
@@ -229,26 +242,29 @@ sub on_buyer_shop_closed {
 }
 
 ############################################################################
-# Sprint 8 —— 普通 Trade 自动收购状态机（seller / buyer）。
+# 阶段 5–6 —— 安全普通 Trade 与最多 10 项的顺序拆批。
 #
 # 用 Economy::Trade（纯状态机）驱动真实 Trade 协议：
-#   seller: SELL_REQUEST <nonce> <itemID> → READY → 发起 Trade → 放卡 → 核对报价 → 锁定 → 确认
-#   buyer : 校验白名单/nonce → READY → 接单 → 检测卡片 → 放 zeny → 锁定 → 确认
+#   seller: 分段发送清单 → READY → 逐项加物/ACK → 核对报价 → 锁定 → 提交 → 核对资产
+#   buyer : 白名单/nonce/容量 → READY → 核对真实实例 → 报价 → 等卖家锁定 → 提交 → 核对资产
 #
 # 配置（config.txt）：
 #   economy_trade_enabled 1           # 总开关
 #   economy_trade_role seller         # seller | buyer
-#   economy_trade_item 4023           # 交易物品 nameID
-#   economy_trade_price 10000         # 固定价格（z）
+#   固定价格统一读取 trade_prices.json（nameID -> 每件 Zeny）
 #   economy_trade_merchant Cartwright # seller 用：商人名
 #   economy_trade_sellers Penny       # buyer 用：卖家白名单（逗号分隔）
 #   economy_trade_timeout 30          # 状态 watchdog 秒
-#   economy_trade_cooldown 15         # done/error 后重试冷却秒
+#   economy_trade_cooldown 15         # 成交/回滚已核对后的冷却秒
 ############################################################################
 
 my $trade;               # Economy::Trade 实例
 my $trade_last_tick = 0;
-my $TRADE_TICK_SECONDS = 1;
+my ($policy, $pending_item, $server_zeny);
+my $zeny_version = 0;
+my @trade_pm_queue;
+my $last_pm = 0;
+sub _trade_active { return $trade && $trade->active; }
 
 sub _trade_enabled {
 	my $v = $config{economy_trade_enabled};
@@ -278,132 +294,189 @@ sub _trade_sellers {
 }
 
 sub _build_trade {
-	$trade = undef;
-	return unless _trade_enabled();
-	my $role = _trade_role();
-	return unless $role;
-	my %args = (
-		role => $role,
-		item_id => _trade_num('economy_trade_item'),
-		price => _trade_num('economy_trade_price'),
-		timeout => _trade_num('economy_trade_timeout') || 30,
-		cooldown => _trade_num('economy_trade_cooldown') || 15,
-	);
-	if ($role eq 'seller') {
-		$args{merchant} = $config{economy_trade_merchant} || '';
-	} else {
-		$args{sellers} = _trade_sellers();
-	}
-	$trade = Economy::Trade->new(%args);
-	econ_log(sprintf('[TRADE] initialized role=%s itemID=%s price=%sz merchant=%s sellers=%s',
-		$role, $args{item_id}, $args{price},
-		($args{merchant} || '-'), (join ',', sort keys %{ $args{sellers} || {} }) || '-'));
+    if ($trade && $trade->active) {
+        _execute_trade_actions($trade->abort('RESET_REQUESTED'));
+        econ_warn('[TRADE] active session retained for reconciliation; reset after it is idle');
+        return;
+    }
+    $trade = undef;
+    @trade_pm_queue=();
+    return unless _trade_enabled() && _trade_role();
+    my $prices;
+    eval {
+        open my $fh, '<', dirname(__FILE__).'/trade_prices.json' or die $!;
+        $prices=decode_json(do {local $/; <$fh>});
+        die 'price table must be object' unless ref($prices) eq 'HASH';
+        1;
+    } or do {econ_warn("[TRADE] price table unavailable: $@"); return;};
+    $policy=Economy::Inventory->new(catalog=>$catalog, npc_rules=>\%items_control, prices=>$prices);
+    $trade=Economy::Trade->new(role=>_trade_role(), policy=>$policy,
+        merchant=>$config{economy_trade_merchant}||'', sellers=>_trade_sellers(),
+        timeout=>_trade_num('economy_trade_timeout')||30,
+        cooldown=>_trade_num('economy_trade_cooldown')||15);
+    econ_log('[TRADE] initialized multi-item protocol; shared fixed price table');
 }
-
-# 启动时插件先于 config.txt 加载，故在 postloadfiles（config 已就绪）再构建一次。
-sub on_postloadfiles {
-	load_item_catalog();
-	_build_trade();
-}
-
+sub on_postloadfiles { load_item_catalog(); _build_trade(); }
 sub _feed_trade {
-	my ($method, @args) = @_;
-	return unless $trade;
-	_execute_trade_actions($trade->$method(@args));
+    my ($method,@args)=@_;
+    return unless $trade;
+    _execute_trade_actions($trade->$method(@args));
 }
-
+sub _peer {
+    my ($name)=@_;
+    return unless $playersList && $name;
+    my ($p)=grep {$_->name eq $name} @$playersList;
+    return $p;
+}
+sub _trade_context {
+    my ($name)=@_;
+    return {} unless _in_game() && $char->inventory->isReady;
+    my $peer=_peer($name);
+    my $near=0;
+    if ($peer && $peer->{pos_to} && $char->{pos_to}) {
+        my $dx=abs($peer->{pos_to}{x}-$char->{pos_to}{x});
+        my $dy=abs($peer->{pos_to}{y}-$char->{pos_to}{y});
+        $near=$dx<=2 && $dy<=2;
+    }
+    # Stage 7 owns roaming/world_ai integration. Until then, only stationary,
+    # explicitly configured probes may initiate or accept economic sessions.
+    my $safe=_trade_enabled() && !$shopstarted && !$buyershopstarted && !$char->{sitting}
+        && !$config{world_ai_auto_execute}
+        && !AI::inQueue(qw(attack skill_use route mapRoute move storageAuto buyAuto sellAuto NPC teleport));
+    my $items=$char->inventory->getItems;
+    my $cart=$char->cart;
+    my $cart_items=$cart && $cart->isReady ? $cart->getItems : [];
+    my $gear_ready=$gear_snapshot ne '' && $gear_snapshot eq _gear_snapshot();
+    my $candidates=$policy ? $policy->candidates($items,$gear_ready) : [];
+    my $incoming_ok=!%incomingDeal || ($incomingDeal{name}||'') eq ($name||'');
+    my $ctx={safe=>$safe && !%currentDeal && !%outgoingDeal && $incoming_ok, trade_safe=>$safe,
+        self_name=>$char->{name}||'', peer_near=>$near, peer_name=>$currentDeal{name}||'', candidates=>$candidates,
+        deal_active=>(%currentDeal || %outgoingDeal || %incomingDeal)?1:0,
+        snapshot=>Economy::Inventory::snapshot($items,$char->{zeny},$cart_items),
+        zeny_version=>$zeny_version,server_zeny=>$server_zeny,
+        other_zeny=>$currentDeal{other_zeny}||0,
+        other_item_count=>scalar keys %{$currentDeal{other}||{}},
+        own_finalized=>$currentDeal{you_finalize}||0, other_finalized=>$currentDeal{other_finalize}||0};
+    # Reserve Cart room for ALL already acquired priced stock still in inventory.
+    my $pending=$policy ? $policy->candidates($items,1) : [];
+    my $pending_weight=0;
+    my (%inv_amounts,%cart_amounts);
+    $inv_amounts{$_->{nameID}}+=$_->{amount} for @$items;
+    $cart_amounts{$_->{nameID}}+=$_->{amount} for @$cart_items;
+    for my $i (@$pending) {
+        $pending_weight+=($catalog->{$i->{nameID}}{Weight}||0)*$i->{amount}/10;
+        $cart_amounts{$i->{nameID}}+=$i->{amount};
+    }
+    $ctx->{capacity}={ready=>($cart && $cart->isReady && $char->{weight_max} && $cart->{weight_max})?1:0,
+        zeny=>$char->{zeny}, inventory_free=>100-$char->inventory->size,
+        weight=>($char->{weight}||0)+1, weight_max=>$char->{weight_max}||0,
+        cart_free=>($cart ? $cart->items_max-$cart->size : 0)-scalar(@$pending),
+        cart_weight=>($cart ? $cart->{weight} : 0)+$pending_weight+1,
+        cart_weight_max=>$cart ? $cart->{weight_max} : 0,
+        inventory_amounts=>\%inv_amounts,cart_amounts=>\%cart_amounts};
+    return $ctx;
+}
 sub _execute_trade_actions {
-	my ($actions) = @_;
-	return unless $actions;
-	for my $a (@$actions) {
-		my $type = $a->{type};
-		if ($type eq 'log') {
-			econ_log($a->{msg});
-		} elsif ($type eq 'send_pm') {
-			sendMessage($messageSender, 'pm', $a->{msg}, $a->{to});
-		} elsif ($type eq 'accept_deal') {
-			$messageSender->sendDealReply(3);
-		} elsif ($type eq 'reject_deal') {
-			$messageSender->sendDealReply(4);
-		} elsif ($type eq 'initiate_deal') {
-			my ($partner) = grep { $_->name eq $a->{name} } @$playersList;
-			if ($partner) {
-				main::deal($partner);
-			} else {
-				econ_warn(sprintf('[TRADE] initiate_deal: %s not nearby', $a->{name}));
-			}
-		} elsif ($type eq 'add_item') {
-			my $item = $char->inventory->getByNameID($a->{nameID});
-			if ($item) {
-				main::dealAddItem($item, $a->{amount});
-			} else {
-				econ_warn(sprintf('[TRADE] add_item: itemID=%s not in inventory', $a->{nameID}));
-			}
-		} elsif ($type eq 'add_zeny') {
-			$currentDeal{you_zeny} = $a->{amount};
-		} elsif ($type eq 'finalize') {
-			$messageSender->sendDealAddItem(pack('v', 0), $currentDeal{you_zeny} || 0);
-			$messageSender->sendDealFinalize();
-		} elsif ($type eq 'commit') {
-			$messageSender->sendDealTrade();
-		}
-	}
+    my ($actions)=@_;
+    for my $a (@{$actions||[]}) {
+        my $t=$a->{type};
+        if ($t eq 'log') {econ_log($a->{msg}); next;}
+        if ($t eq 'send_pm') {push @trade_pm_queue,$a; next;}
+        next unless _in_game();
+        if ($t eq 'cancel_deal') {
+            @trade_pm_queue=(); $pending_item=undef;
+            if (%currentDeal) {$messageSender->sendCurrentDealCancel();}
+            elsif (%incomingDeal || %outgoingDeal) {$messageSender->sendDealReply(4);}
+            else {_feed_trade('on_cancelled');}
+        } elsif ($t eq 'reject_request') {
+            $messageSender->sendDealReply(4) unless %currentDeal;
+        } elsif ($t eq 'accept_deal') {$messageSender->sendDealReply(3);}
+        elsif ($t eq 'initiate_deal') {
+            my $p=_peer($a->{name});
+            if ($p) {main::deal($p);} else {_feed_trade('abort','PEER_MISSING');}
+        } elsif ($t eq 'add_item') {
+            my $item=$char->inventory->get($a->{slot});
+            my $gear_ready=$gear_snapshot ne '' && $gear_snapshot eq _gear_snapshot();
+            if (!$item || Economy::Inventory::signature($item) ne $a->{sig} || $item->{amount}<$a->{amount}
+                || !$policy->eligible($item,$gear_ready)) {
+                _feed_trade('abort','INVENTORY_CHANGED'); next;
+            }
+            $pending_item={%$a, wire_id=>$item->{ID}};
+            main::dealAddItem($item,$a->{amount});
+        } elsif ($t eq 'add_zeny') {
+            $currentDeal{you_zeny}=$a->{amount}; # Native protocol offer, never an asset ledger.
+            $messageSender->sendDealAddItem(pack('v',0),$a->{amount});
+        } elsif ($t eq 'finalize') {$messageSender->sendDealFinalize();}
+        elsif ($t eq 'commit') {$messageSender->sendDealTrade();}
+    }
 }
-
 sub on_trade_pm {
-	my (undef, $args) = @_;
-	_feed_trade('on_pm', $args->{privMsgUser}, $args->{privMsg});
+    my (undef,$a)=@_;
+    _feed_trade('on_pm',$a->{privMsgUser},$a->{privMsg},_trade_context($a->{privMsgUser}));
 }
-
 sub on_trade_incoming {
-	my (undef, $args) = @_;
-	_feed_trade('on_incoming_deal', $args->{name});
+    my (undef,$a)=@_;
+    _feed_trade('on_incoming_deal',$a->{name},_trade_context($a->{name}));
 }
-
 sub on_trade_engaged {
-	my (undef, $args) = @_;
-	_feed_trade('on_engaged', $args->{name});
+    my (undef,$a)=@_;
+    _feed_trade('on_engaged',$a->{name},_trade_context($a->{name}));
 }
-
-sub on_trade_finalized {
-	_feed_trade('on_other_finalized');
+sub on_trade_other_item {
+    my (undef,$a)=@_;
+    _feed_trade('on_other_item',$a) if $a->{nameID};
 }
-
-sub on_trade_complete {
-	_feed_trade('on_complete');
+sub on_trade_own_ack {
+    my (undef,$a)=@_;
+    return unless $trade && $trade->active;
+    if ($a->{fail} && $a->{fail}!=192) {_feed_trade('abort','ADD_FAILED_'.$a->{fail}); return;}
+    if (unpack('v',$a->{ID})==0) {_feed_trade('on_own_zeny'); return;}
+    my $p=$pending_item; $pending_item=undef;
+    unless ($p && $a->{ID} eq $p->{wire_id}) {_feed_trade('abort','UNEXPECTED_ACK'); return;}
+    # Packet handler has already removed this item locally. Pass the immutable
+    # sent instance; only now may the next add overwrite lastItemAmount.
+    if ($gear_snapshot ne '') {
+        my $expected=join('|',grep {index($_,$p->{slot}.':'.$p->{sig}.':')!=0} split /\|/,$gear_snapshot);
+        $gear_snapshot=$expected if $expected eq _gear_snapshot();
+    }
+    _feed_trade('on_own_item',@$p{qw(slot sig amount)});
 }
-
-sub on_trade_cancelled {
-	_feed_trade('on_cancelled');
+sub on_trade_zeny {my (undef,$a)=@_; $server_zeny=$a->{zeny}; $zeny_version++;}
+sub on_trade_connection {
+    return if _in_game();
+    @trade_pm_queue=(); $pending_item=undef; $gear_snapshot='';
+    _feed_trade('on_disconnected');
 }
-
-sub on_trade_error {
-	my (undef, $args) = @_;
-	_feed_trade('on_error', $args->{type});
+sub on_trade_finalized { on_trade_tick(1); }
+sub on_trade_complete { _feed_trade('on_complete'); on_trade_tick(1); }
+sub on_trade_cancelled { $pending_item=undef; @trade_pm_queue=(); _feed_trade('on_cancelled'); }
+sub on_trade_error {my (undef,$a)=@_; _feed_trade('on_error',$a->{type});}
+sub _send_trade_pm {
+    my ($a)=@_;
+    return unless _in_game() && length($a->{msg})<=240;
+    # Misc::sendMessage defaults to 80-char word splitting, which corrupts
+    # manifest fingerprints. The native sender preserves one protocol frame.
+    Misc::sendMessage_send($messageSender,'pm',$a->{msg},$a->{to});
 }
-
 sub on_trade_tick {
-	return unless $trade && _in_game();
-	my $now = time;
-	return if $now - $trade_last_tick < $TRADE_TICK_SECONDS;
-	$trade_last_tick = $now;
-
-	my %ctx = ( now => $now, other_finalized => $currentDeal{other_finalize} ? 1 : 0 );
-	if (_trade_role() eq 'seller') {
-		my $item = $char->inventory->getByNameID(_trade_num('economy_trade_item'));
-		$ctx{has_card} = $item ? 1 : 0;
-		$ctx{other_zeny} = $currentDeal{other_zeny} || 0;
-	} else {
-		$ctx{other_items} = \%{ $currentDeal{other} || {} };
-	}
-	_feed_trade('tick', %ctx);
+    my ($force)=@_;
+    return unless $trade && _in_game();
+    my $now=time;
+    return if !$force && $now-$trade_last_tick<1;
+    $trade_last_tick=$now;
+    if (!_trade_enabled()) {_feed_trade('abort','DISABLED');}
+    my $ctx=_trade_context($trade->counterpart || $config{economy_trade_merchant});
+    _feed_trade('tick',now=>$now,%$ctx);
+    # Pace manifest messages to avoid server private-message flood limits.
+    if (@trade_pm_queue && $now-$last_pm>=1) {
+        my $a=shift @trade_pm_queue;
+        _send_trade_pm($a); $last_pm=$now;
+    }
 }
 
 sub _print_trade_status {
-	return econ_log('[TRADE] disabled') unless $trade;
-	econ_log(sprintf('[TRADE] role=%s state=%s itemID=%s price=%sz counterpart=%s nonce=%s',
-		_trade_role(), $trade->state(), _trade_num('economy_trade_item'), _trade_num('economy_trade_price'),
-		($trade->counterpart || '-'), ($trade->nonce || '-')));
+    return econ_log('[TRADE] disabled') unless $trade;
+    econ_log('[TRADE] role='._trade_role().' state='.$trade->state.' tx='.$trade->nonce.' peer='.$trade->counterpart);
 }
 
 sub _print_status {
@@ -437,6 +510,8 @@ sub command_handler {
 		_print_status();
 	} elsif ($args eq 'trade' || $args eq 'trade status') {
 		_print_trade_status();
+	} elsif ($args eq 'trade reconcile') {
+        _feed_trade('reconcile',_trade_context($trade ? $trade->counterpart : ''));
 	} elsif ($args eq 'trade reset') {
 		econ_log('[CMD] rebuild trade state machine');
 		_build_trade();
@@ -455,11 +530,13 @@ sub command_handler {
 		$state{last_close_reason} = '';
 		econ_log('[CMD] session statistics reset');
 	} else {
-		econ_log('[HELP] economy status | open | close | reset | classify | trade [status|reset]');
+		econ_log('[HELP] economy status | open | close | reset | classify | trade [status|reset|reconcile]');
 	}
 }
 
 sub on_unload {
+	_feed_trade('abort','PLUGIN_UNLOAD');
+	@trade_pm_queue=();
 	Plugins::delHooks($hooks) if $hooks;
 	Commands::unregister($commands) if $commands;
 	econ_log('[PLUGIN] unloaded');
