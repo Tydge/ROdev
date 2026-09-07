@@ -6,11 +6,50 @@ no warnings 'redefine';
 
 use AI;
 use Commands;
-use Globals qw($char $field $net %config $buyershopstarted $shopstarted);
+use Globals qw($char $field $net %config $buyershopstarted $shopstarted %items_control);
 use Log qw(message warning);
 use Network;
 use Plugins;
 use Time::HiRes qw(time);
+use File::Basename qw(dirname);
+use JSON::PP qw(decode_json);
+use lib dirname(__FILE__) . '/lib';
+use Economy::Classifier;
+
+my $catalog = {};
+my %classification_cache;
+sub load_item_catalog {
+    $catalog = {};
+    %classification_cache = ();
+    my $path = dirname(__FILE__) . '/item_catalog.json';
+    eval {
+        open my $fh, '<', $path or die "$path: $!";
+        $catalog = decode_json(do { local $/; <$fh> });
+        die 'catalog must be an object' unless ref($catalog) eq 'HASH';
+        1;
+    } or do { $catalog = {}; warning "[ECO][ERROR] catalog unavailable: $@\n"; };
+}
+
+# Only autoGear's completed evaluation triggers this read-only observer.
+# No inventory mutation, Trade, NPC sell or price calculation occurs here.
+sub classify_inventory {
+    return unless _in_game();
+    return if defined $config{economy_classify_enabled} && !$config{economy_classify_enabled};
+    my $classifier = Economy::Classifier->new(catalog => $catalog, npc_rules => \%items_control);
+    my %seen;
+    for my $item (@{$char->inventory->getItems}) {
+        my $result = $classifier->classify_item($item, gear_ready => 1);
+        my $key = join(':', $char->{charID} // '', $item->{binID} // '', $item->{nameID});
+        my $signature = join(':', $result->{decision}, $result->{reason}, $item->{amount} // 0);
+        $seen{$key} = $signature;
+        next if ($classification_cache{$key} // '') eq $signature;
+        message sprintf("[ECO][CLASSIFY] nameID=%s binID=%s amount=%s -> %s reason=%s (read_only)\n",
+            $item->{nameID}, $item->{binID} // '?', $item->{amount} // 0,
+            $result->{decision}, $result->{reason}), 'info';
+    }
+    %classification_cache = %seen;
+}
+
 
 our $NAME = 'economy';
 our $VERSION = '1.0.0';
@@ -51,6 +90,8 @@ my $hooks = Plugins::addHooks(
 	['AI_pre/manual',              \&on_ai_pre],
 	['packet/buying_store_update', \&on_buying_store_update],
 	['buyer_shop_closed',          \&on_buyer_shop_closed],
+	['autoGear_evaluation_complete', \&classify_inventory],
+	['postloadfiles', \&load_item_catalog],
 );
 
 my %state = (
@@ -181,7 +222,15 @@ sub command_handler {
 	$args = '' unless defined $args;
 	$args =~ s/^\s+|\s+$//g;
 
-	if ($args eq 'status') {
+	if ($args eq 'classify') {
+		%classification_cache = ();
+		if (defined &autoGear::request_check && $config{autoGear}) {
+			autoGear::request_check();
+			econ_log('[CLASSIFY] queued until autoGear completes a safe evaluation');
+		} else {
+			econ_warn('[CLASSIFY] deferred: autoGear is unavailable or disabled');
+		}
+	} elsif ($args eq 'status') {
 		_print_status();
 	} elsif ($args eq 'open') {
 		econ_log('[CMD] force open buying store');
@@ -198,7 +247,7 @@ sub command_handler {
 		$state{last_close_reason} = '';
 		econ_log('[CMD] session statistics reset');
 	} else {
-		econ_log('[HELP] economy status | open | close | reset');
+		econ_log('[HELP] economy status | open | close | reset | classify');
 	}
 }
 
@@ -207,5 +256,7 @@ sub on_unload {
 	Commands::unregister($commands) if $commands;
 	econ_log('[PLUGIN] unloaded');
 }
+
+load_item_catalog();
 
 1;

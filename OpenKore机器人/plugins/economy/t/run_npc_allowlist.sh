@@ -21,3 +21,7 @@ ruby -r yaml -r json -e '
   "$rathena_root/db/import/item_db.yml" > "$catalog"
 PERL5LIB="$openkore_root/src:$openkore_root/src/deps" \
   perl "$script_dir/npc_allowlist.t" "$policy" "$catalog"
+PERL5LIB="$openkore_root/src:$openkore_root/src/deps" \
+  perl "$script_dir/classifier.t" "$policy"
+PERL5LIB="$openkore_root/src:$openkore_root/src/deps" \
+  perl "$script_dir/autogear_order.t"

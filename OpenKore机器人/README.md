@@ -76,6 +76,13 @@
 - 新建 Novice 首次登录一次性获得 5,000 Zeny、100 个 Red Potion 和 ATK 45 的 Novice Main-Gauche。转职后 `autoGear` 会切换为背包中更适合职业的武器，所有职业武器及重复装备均不会被自动卖给 NPC。
 - 自动交易、组队和玩家摆摊尚未开启；自动出售、补药、属性成长、技能成长和职业路线已经开启。
 
+## Economy V1 进度
+
+总计划和逐项状态见 `文档/RO_Bot_Economy_V1_Development_Plan.md`、`文档/ECONOMY_V1_PROGRESS.md`。
+已完成 Sprint 3 的 NPC 白名单及 Sprint 4 的共享只读分类器。
+`autoGear` 完成安全装备评估后输出 `[ECO][CLASSIFY]`，可用 `economy classify` 请求重新观察。
+分类日志不会触发出售、Trade 或资产转移；普通自动收购状态机仍待后续实现。
+
 ## 原生跨地图与按怪选图实验
 
 仓库保留最小实验插件 `world_ai_test` 的源码，启动脚本仍会把它链接到 OpenKore 运行目录，但 bot01 的 `sys.txt` 已不再自动加载它。它只用于历史验证；Step 3B 运行时应只加载正式 `world_ai`，避免两个插件同时清理移动状态。

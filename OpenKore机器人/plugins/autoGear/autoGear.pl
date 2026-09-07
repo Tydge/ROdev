@@ -219,8 +219,11 @@ sub on_ai_pre {
 	$next_check = time + $interval;
 
 	my $action = AI::action() // '';
-	return if $action =~ /attack|skill|npc|sell|buy|storage|deal/;
-	choose_one_upgrade();
+	return if $action =~ /attack|skill|npc|sell|buy|storage|deal|equip/;
+	# Publish only after a complete evaluation finds no pending upgrade.
+	# An equip request is asynchronous: wait for a later evaluation/ack.
+	return if choose_one_upgrade();
+	Plugins::callHook('autoGear_evaluation_complete', {});
 }
 
 # Also load immediately when the plugin is added to an already running bot.
