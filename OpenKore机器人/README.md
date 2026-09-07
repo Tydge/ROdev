@@ -68,12 +68,12 @@
 - HP 低于 55% 时使用物品 ID 569/501（Novice Potion / Red Potion）；低于 45% 且没有合适动作时坐下，恢复到 90%。使用 ID 是为了避免 OpenKore 的韩文物品表导致英文名称匹配失败。
 - 死亡后使用 OpenKore 默认复活流程，然后返回当前 `world_ai` 目标地图。
 - 负重达到 48% 时自动停止打怪，前往 Prontera 室内工具商人出售普通掉落；Red Potion 少于 10 瓶时补到 30 瓶。Archer 的 Arrow 少于等于 200 支时会到同一商人自动补到 1000 支，完全无箭时 `world_ai` 暂停出发。
-- 当前出售范围：Jellopy、Clover、Sticky Mucus、Feather，以及超过 20 个的 Apple、超过 10 个的 Carrot。卡片、驯养物、Empty Bottle、药水和所有自有装备均受保护。
+- 当前 NPC 出售白名单仅为物品 ID 705（Clover）、909（Jellopy）、920（Wolf Claw）、938（Sticky Mucus）、949（Feather）。其余物品默认全部保留，包括所有卡片、装备及重复装备、Apple、Carrot、驯养物、Empty Bottle、药水和未知物品；不按显示名称或整个 Etc 类型出售。
 - 五条固定职业愿望均会在 Novice Job 10 自动一转、第一职业 Job 50 自动二转并跳过转职任务：Assassin、Knight、Wizard、Hunter、Priest。完整设定见 `角色档案/`。
 - 属性按生存与匕首输出分阶段自动成长，最终目标为 STR 90 / AGI 90 / VIT 30 / INT 1 / DEX 50 / LUK 1。
 - 技能按各职业完整规划由 `skillsAddAuto` 自然分配；Swordman 优先 Bash、Mage 优先 Fire Bolt、Archer 优先 Double Strafe，不改变原有技能集和最终等级。活动执行期间首次学会基线技能时，`world_ai` 会轻量刷新策略，无需重新选图。
 - 已启用共享装备决策器 `autoGear`：登录、转职、拾到装备或装备被卸下后，会根据 rAthena 的完整装备目录判断职业、等级、鉴定状态、基础攻防、精炼和插槽，再选择确实更好的装备。已插卡装备和无法可靠评分的自定义装备默认不会被替换。
-- 新建 Novice 首次登录一次性获得 5,000 Zeny、100 个 Red Potion 和 ATK 45 的 Novice Main-Gauche。转职后 `autoGear` 会切换为背包中更适合职业的武器，职业武器保留 1 件不会在新手阶段被卖掉。
+- 新建 Novice 首次登录一次性获得 5,000 Zeny、100 个 Red Potion 和 ATK 45 的 Novice Main-Gauche。转职后 `autoGear` 会切换为背包中更适合职业的武器，所有职业武器及重复装备均不会被自动卖给 NPC。
 - 自动交易、组队和玩家摆摊尚未开启；自动出售、补药、属性成长、技能成长和职业路线已经开启。
 
 ## 原生跨地图与按怪选图实验
