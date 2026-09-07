@@ -6,7 +6,7 @@ no warnings 'redefine';
 
 use AI;
 use Commands;
-use Globals qw($char $field $net %config $buyershopstarted $shopstarted %items_control);
+use Globals qw($char $field $net %config $buyershopstarted $shopstarted %items_control %incomingDeal %outgoingDeal %currentDeal);
 use Log qw(message warning);
 use Network;
 use Plugins;
@@ -92,6 +92,7 @@ my $hooks = Plugins::addHooks(
 	['buyer_shop_closed',          \&on_buyer_shop_closed],
 	['autoGear_evaluation_complete', \&classify_inventory],
 	['postloadfiles', \&load_item_catalog],
+	['error_deal', \&on_trade_request_error],
 );
 
 my %state = (
@@ -196,6 +197,17 @@ sub on_buying_store_update {
 	$state{spent_zeny} += $zeny;
 	econ_log(sprintf('[BUY] purchase itemID=%s count=%s cost=%sz (session purchases=%d spent=%dz)',
 		$args->{itemID} // '?', $count, $zeny, $state{purchases}, $state{spent_zeny}));
+}
+
+# Receive::deal_begin clears only outgoingDeal after a rejected acceptance.
+# Clear the stale incoming request too, but never touch an engaged transaction.
+sub on_trade_request_error {
+    my (undef, $args) = @_;
+    return if %currentDeal;
+    return unless defined $args->{type} && $args->{type} =~ /^(?:0|1|2|4|5)$/;
+    %incomingDeal = ();
+    %outgoingDeal = ();
+    econ_log("[TRADE] request rejected type=$args->{type}; pending requests cleared");
 }
 
 sub on_buyer_shop_closed {
