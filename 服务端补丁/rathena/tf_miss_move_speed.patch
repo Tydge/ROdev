@@ -1,0 +1,15 @@
+diff --git a/src/map/status.cpp b/src/map/status.cpp
+index 4027a54..c6bf27b 100644
+--- a/src/map/status.cpp
++++ b/src/map/status.cpp
+@@ -8163,8 +8163,8 @@ static uint16 status_calc_speed(block_list *bl, status_change *sc, int32 speed)
+ 			val = max( val, 2 * sc->getSCE(SC_WINDWALK)->val1 );
+ 		if( sc->getSCE(SC_CARTBOOST) )
+ 			val = max( val, 20 );
+-		if( sd && (sd->class_&MAPID_SECONDMASK) == MAPID_ASSASSIN && pc_checkskill(sd,TF_MISS) > 0 )
+-			val = max( val, 1 * pc_checkskill(sd,TF_MISS) );
++		if( sd && pc_checkskill(sd,TF_MISS) > 0 )
++			val = max( val, 2 * pc_checkskill(sd,TF_MISS) );
+ 		if( sc->getSCE(SC_CLOAKING) && (sc->getSCE(SC_CLOAKING)->val4&1) == 1 )
+ 			val = max( val, sc->getSCE(SC_CLOAKING)->val1 >= 10 ? 25 : 3 * sc->getSCE(SC_CLOAKING)->val1 - 3 );
+ 		if( sc->getSCE(SC_BERSERK) )
